@@ -709,7 +709,7 @@
 					<![CDATA[jdbc:mysql://192.168.0.110/${db.name}_prev?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
 				</jdbc.url.prev>
 				<jdbc.username>root</jdbc.username>
-				<jdbc.password>wincrown</jdbc.password>
+				<jdbc.password>mdsplus</jdbc.password>
 				<jdbc.validationQuery><![CDATA[SELECT 1 + 1]]></jdbc.validationQuery>
             </properties>
         </profile>
@@ -739,7 +739,7 @@
 					<![CDATA[jdbc:mysql://192.168.0.110/${db.name}_prev?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
 				</jdbc.url.prev>
 				<jdbc.username>root</jdbc.username>
-				<jdbc.password>wincrown</jdbc.password>
+				<jdbc.password>mdsplus</jdbc.password>
 				<jdbc.validationQuery><![CDATA[SELECT 1 + 1]]></jdbc.validationQuery>
             </properties>
         </profile>
@@ -801,7 +801,7 @@
         	<![CDATA[jdbc:mysql://192.168.0.110/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
         </test.jdbc.url>
         <test.jdbc.username>root</test.jdbc.username>
-        <test.jdbc.password>wincrown</test.jdbc.password>
+        <test.jdbc.password>mdsplus</test.jdbc.password>
         <test.jdbc.driverClassName>com.mysql.jdbc.Driver</test.jdbc.driverClassName>
         <test.hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</test.hibernate.dialect>
         

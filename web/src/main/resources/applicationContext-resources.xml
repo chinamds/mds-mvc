@@ -12,7 +12,7 @@
             <list>
             	<value>file:${mds.home}/config/jdbc.properties</value>
                 <!-- <value>classpath:jdbc.properties</value> -->
-                <value>classpath:mail.properties</value>
+                <value>file:${mds.home}/config/mail.properties</value>
                 <value>classpath:hibernate.properties</value>
                 <value>file:${mds.home}/config/mds.properties</value>
             </list>
