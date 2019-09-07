@@ -1,0 +1,6 @@
+﻿.navbar .nav > li > a {
+padding: 8px 10px !important;/* this the one which enforces space between each link*/
+}
+
+.wallpaper {position:absolute; width:100%; height:100%; top:0; left:0; z-index:0}
+.wallpaper img {height:100%; width:100%; margin:0 auto;}

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!--
+         NOTE: If you are looking for the Hibernate database connection info,
+         it is initialized via the beans in
+         [mds.dir]/config/spring/api/core-hibernate.xml
+        -->
+
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.hbm2ddl.import_files_sql_extractor">org.hibernate.tool.hbm2ddl.SingleLineSqlCommandExtractor</property>
+        <property name="hibernate.connection.autocommit">false</property>
+        <property name="hibernate.jdbc.batch_size">20</property>
+        <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+
+        <!--Debug property that can be used to display the sql-->
+        <property name="show_sql">false</property>
+
+        <!--Second level cache configuration-->
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</property>
+        <property name="hibernate.cache.use_structured_entries">true</property>
+        <property name="javax.persistence.sharedCache.mode">ENABLE_SELECTIVE</property>
+        <!-- Set in config/spring/api/core-hibernate.xml -->
+        <!--<property name="net.sf.ehcache.configurationResourceName">file:${mds.dir}/config/hibernate-ehcache-config.xml</property>-->
+
+
+        <!-- Entities to be loaded by hibernate -->
+        <mapping class="com.mds.app.util.WebApp"/>
+
+        <mapping class="com.mds.authorize.ResourcePolicy"/>
+
+        <mapping class="com.mds.checker.ChecksumHistory"/>
+        <mapping class="com.mds.checker.ChecksumResult"/>
+        <mapping class="com.mds.checker.MostRecentChecksum"/>
+
+        <mapping class="com.mds.content.MDSObject"/>
+        <mapping class="com.mds.content.Bitstream"/>
+        <mapping class="com.mds.content.BitstreamFormat"/>
+        <mapping class="com.mds.content.Bundle"/>
+        <mapping class="com.mds.content.Collection"/>
+        <mapping class="com.mds.content.Community"/>
+        <mapping class="com.mds.content.Item"/>
+        <mapping class="com.mds.content.MetadataField"/>
+        <mapping class="com.mds.content.MetadataSchema"/>
+        <mapping class="com.mds.content.MetadataValue"/>
+        <mapping class="com.mds.content.Site"/>
+        <mapping class="com.mds.content.WorkspaceItem"/>
+
+        <mapping class="com.mds.eperson.EPerson"/>
+        <mapping class="com.mds.eperson.Group"/>
+        <mapping class="com.mds.eperson.Group2GroupCache"/>
+        <mapping class="com.mds.eperson.RegistrationData"/>
+        <mapping class="com.mds.eperson.Subscription"/>
+
+        <mapping class="com.mds.handle.Handle"/>
+
+        <mapping class="com.mds.harvest.HarvestedCollection"/>
+        <mapping class="com.mds.harvest.HarvestedItem"/>
+
+        <mapping class="com.mds.identifier.DOI"/>
+
+        <mapping class="com.mds.versioning.Version"/>
+        <mapping class="com.mds.versioning.VersionHistory"/>
+
+        <mapping class="com.mds.app.requestitem.RequestItem"/>
+
+        <!--Basic workflow services, comment or remove when switching to the configurable workflow -->
+        <mapping class="com.mds.workflowbasic.BasicWorkflowItem"/>
+        <mapping class="com.mds.workflowbasic.TaskListItem"/>
+
+        <!--Configurable workflow services, uncomment the xml workflow classes below to enable the configurable workflow-->
+        <!--<mapping class="com.mds.xmlworkflow.storedcomponents.ClaimedTask"/>
+        <mapping class="com.mds.xmlworkflow.storedcomponents.CollectionRole"/>
+        <mapping class="com.mds.xmlworkflow.storedcomponents.InProgressUser"/>
+        <mapping class="com.mds.xmlworkflow.storedcomponents.PoolTask"/>
+        <mapping class="com.mds.xmlworkflow.storedcomponents.WorkflowItemRole"/>
+        <mapping class="com.mds.xmlworkflow.storedcomponents.XmlWorkflowItem"/>-->
+
+    </session-factory>
+</hibernate-configuration>

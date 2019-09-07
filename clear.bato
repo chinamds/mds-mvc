@@ -1,0 +1,37 @@
+del /s /q common\target
+rmdir /s /q common\target
+
+del /s /q core\target
+rmdir /s /q core\target
+
+del /s /q web\target
+rmdir /s /q web\target
+
+del /s /q web\logs
+rmdir /s /q web\logs
+
+del /s /q mds\DataCenter
+rmdir /s /q mds\DataCenter
+
+del /s /q webbase\target
+rmdir /s /q webbase\target
+
+del /s /q mds-services\target
+rmdir /s /q mds-services\target
+
+del /s /q mds-ng\mds-angular\target
+rmdir /s /q mds-ng\mds-angular\target
+
+del /s /q mds-ng\mds-angularjs\target
+rmdir /s /q mds-ng\mds-angularjs\target
+
+del /s /q mds-ng\mds-angular\node_modules
+rmdir /s /q mds-ng\mds-angular\node_modules
+
+del /s /q mds-ng\mds-angularjs\node_modules
+rmdir /s /q mds-ng\mds-angularjs\node_modules
+
+del /s /q mds-ng\mds-boot\target
+rmdir /s /q mds-ng\mds-boot\target
+
+del pom.xml

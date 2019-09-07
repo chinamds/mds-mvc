@@ -1,0 +1,26 @@
+# Global :
+.idea
+.project
+.classpath
+target
+node_modules
+jspm_packages
+dist
+*-old
+*.log
+*.iml
+*.DS_Store
+*.iws
+*.ipr
+mail.properties
+jdbc.properties
+clear.bat
+yarn-error.log
+.gradle/
+.svn/
+.mvn/
+.settings/
+logs/
+mds/mmrepo/
+mds/App_Data/
+bin/

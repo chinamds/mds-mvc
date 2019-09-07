@@ -1,0 +1,22 @@
+<%@ include file="/common/taglibs.jsp"%>
+
+<ul class="nav nav-tabs">
+    <li ${op eq 'userProfile.viewprofile' ? 'class="nav-item active"' : ''}>
+    <a class="nav-link" href="${ctx}/sys/users/loginUser/viewInfo">
+        <i class="fa fa-eye"></i>
+        <fmt:message key="userProfile.viewprofile"/>
+    </a>
+    </li>
+    <li ${op eq 'userProfile.editprofile' ? 'class="nav-item active"' : ''}>
+    <a class="nav-link" href="${ctx}/sys/users/loginUser/updateInfo">
+        <i class="fa fa-edit"></i>
+        <fmt:message key="userProfile.editprofile"/>
+    </a>
+    </li>
+    <li ${op eq 'changepassword' ? 'class="nav-item active"' : ''}>
+    <a class="nav-link" href="${ctx}/sys/users/loginUser/changePassword">
+        <i class="fa fa-key"></i>
+        <fmt:message key="updatePassword.changePasswordLink"/>
+    </a>
+    </li>
+</ul>

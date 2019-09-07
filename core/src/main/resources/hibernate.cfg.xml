@@ -1,0 +1,158 @@
+<!-- The following doctype doesn't work when offline, so default to old one, which does work.-->
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!-- <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"> -->
+
+<hibernate-configuration>
+    <session-factory>
+    	<mapping class="com.mds.common.model.Country"/>
+    	<mapping class="com.mds.common.model.State"/>
+    	<mapping class="com.mds.common.model.Currency"/>
+    	<mapping class="com.mds.common.model.ZipCode"/>
+    	<mapping class="com.mds.common.model.ZipCodeType"/>
+    	<mapping class="com.mds.common.model.CardType"/>
+    	
+    	<mapping class="com.mds.sys.model.Tenant"/>
+    	<mapping class="com.mds.sys.model.AppSetting"/>
+    	<mapping class="com.mds.sys.model.TaskDefinition"/>
+    	<mapping class="com.mds.sys.model.Area"/>
+    	<mapping class="com.mds.sys.model.Organization"/>
+    	<mapping class="com.mds.sys.model.OrganizationLogo"/>
+    	<mapping class="com.mds.sys.model.MenuFunction"/>
+        <mapping class="com.mds.sys.model.User"/>
+        <mapping class="com.mds.sys.model.UserPhoto"/>
+        <mapping class="com.mds.sys.model.UserAddress"/>
+        <mapping class="com.mds.sys.model.UserContact"/>
+        <!-- <mapping class="com.mds.sys.model.UserOnline"/>
+        <mapping class="com.mds.sys.model.UserLastOnline"/> -->
+        <mapping class="com.mds.sys.model.UserStatusHistory"/>
+        <mapping class="com.mds.sys.model.Auth"/>
+        <mapping class="com.mds.sys.model.Role"/>
+        <mapping class="com.mds.sys.model.Permission"/>
+        <mapping class="com.mds.sys.model.Log"/>
+        <mapping class="com.mds.sys.model.Dict"/>
+        <mapping class="com.mds.sys.model.MenuFunctionPermission"/>
+        <mapping class="com.mds.sys.model.Setting"/>
+        <mapping class="com.mds.sys.model.SettingMst"/>
+        <mapping class="com.mds.sys.model.Module"/>
+        <mapping class="com.mds.sys.model.AutoUpdate"/>
+        <mapping class="com.mds.sys.model.AutoUpdateFile"/>
+        <mapping class="com.mds.sys.model.Notification"/>
+        <mapping class="com.mds.sys.model.NotificationTemplate"/>
+        <mapping class="com.mds.sys.model.MyMessage"/>
+        <mapping class="com.mds.sys.model.MyCalendar"/>
+        <mapping class="com.mds.sys.model.MyMessageContent"/>
+        <mapping class="com.mds.sys.model.MyMessageRecipient"/>
+        <mapping class="com.mds.sys.model.MyMessageReFw"/>
+        
+        <mapping class="com.mds.hrm.model.Staff"/>
+        <mapping class="com.mds.hrm.model.IdentityType"/>
+        <mapping class="com.mds.hrm.model.Department"/>
+        <mapping class="com.mds.hrm.model.Position"/>
+        <mapping class="com.mds.hrm.model.StaffDepartment"/>
+        <mapping class="com.mds.hrm.model.StaffPosition"/>
+        <mapping class="com.mds.hrm.model.StaffIdentity"/>
+                
+        <mapping class="com.mds.wf.model.OrganizationWorkflowType"/>
+        <mapping class="com.mds.wf.model.Activity"/>
+        <mapping class="com.mds.wf.model.ActivityOrganizationUser"/>
+        <mapping class="com.mds.wf.model.Workflow"/>
+        <mapping class="com.mds.wf.model.WorkflowDetail"/>
+        
+        <mapping class="com.mds.i18n.model.Culture"/>
+        <mapping class="com.mds.i18n.model.LocalizedResource"/>
+        <mapping class="com.mds.i18n.model.NeutralResource"/>
+        
+        <mapping class="com.mds.cm.model.ContentType"/>
+        <mapping class="com.mds.cm.model.Album"/>
+        <mapping class="com.mds.cm.model.ContentObject"/>
+        <mapping class="com.mds.cm.model.ContentQueue"/>
+        <mapping class="com.mds.cm.model.ContentTemplate"/>
+        <mapping class="com.mds.cm.model.Gallery"/>
+        <mapping class="com.mds.cm.model.GalleryMapping"/>
+        <mapping class="com.mds.cm.model.GalleryControlSetting"/>
+        <mapping class="com.mds.cm.model.GallerySetting"/>
+        <mapping class="com.mds.cm.model.Metadata"/>
+        <mapping class="com.mds.cm.model.MetadataTag"/>
+        <mapping class="com.mds.cm.model.MimeType"/>
+        <mapping class="com.mds.cm.model.MimeTypeGallery"/>
+        <mapping class="com.mds.cm.model.Synchronize"/>
+        <mapping class="com.mds.cm.model.Tag"/>
+        <mapping class="com.mds.cm.model.UiTemplate"/>
+        <mapping class="com.mds.cm.model.UserGalleryProfile"/>
+        <mapping class="com.mds.cm.model.ContentWorkflow"/>
+        <mapping class="com.mds.cm.model.ContentActivity"/>
+        <mapping class="com.mds.cm.model.Banner"/>
+        <mapping class="com.mds.cm.model.Clock"/>
+        <mapping class="com.mds.cm.model.Weather"/>
+        <mapping class="com.mds.cm.model.Slideshow"/>
+        <mapping class="com.mds.cm.model.ContentList"/>
+        <mapping class="com.mds.cm.model.ContentListItem"/>
+        <mapping class="com.mds.cm.model.ContentListZone"/>
+        <mapping class="com.mds.cm.model.DailyList"/>
+        <mapping class="com.mds.cm.model.DailyListItem"/>
+        <mapping class="com.mds.cm.model.DailyListZone"/>
+        <mapping class="com.mds.cm.model.DailyListWorkflow"/>
+        <mapping class="com.mds.cm.model.DailyListActivity"/>
+    
+    	<mapping class="com.mds.pl.model.Catalogue"/>   	  
+    	<mapping class="com.mds.pl.model.Product"/>
+        <mapping class="com.mds.pl.model.Zone"/>
+        <mapping class="com.mds.pl.model.Playlist"/>   	  
+    	<mapping class="com.mds.pl.model.PlaylistItem"/>
+        <mapping class="com.mds.pl.model.AHPlaylist"/>
+        <mapping class="com.mds.pl.model.LayoutMst"/>
+        <mapping class="com.mds.pl.model.LayoutDtl"/>
+        
+        <mapping class="com.mds.pm.model.Player"/>   	  
+    	<mapping class="com.mds.pm.model.PlayerGroup"/>
+        <mapping class="com.mds.pm.model.PlayerMapping"/>
+        <mapping class="com.mds.pm.model.PlayerOutput"/>   	  
+    	<mapping class="com.mds.pm.model.PlayerStatus"/>
+        <mapping class="com.mds.pm.model.FileTransferStatus"/>
+        <mapping class="com.mds.pm.model.FileTransferTask"/>
+        <mapping class="com.mds.pm.model.PlayerTask"/>
+        <mapping class="com.mds.pm.model.PlayerTaskScheduler"/>
+        <mapping class="com.mds.pm.model.PlayerIdentity"/>
+    
+        <mapping class="com.mds.ps.model.Channel"/>
+        <mapping class="com.mds.ps.model.PlayerTuner"/>
+        <mapping class="com.mds.ps.model.Calendar"/>
+        
+        <mapping class="com.mds.msg.model.AHMessage"/>
+        <mapping class="com.mds.msg.model.Message"/>
+        <mapping class="com.mds.msg.model.MessageZone"/>
+        <mapping class="com.mds.msg.model.MsgSending"/>
+        
+        <mapping class="com.mds.content.model.MDSObject"/>
+        <mapping class="com.mds.content.model.Bitstream"/>
+        <mapping class="com.mds.content.model.BitstreamFormat"/>
+        <mapping class="com.mds.content.model.Bundle"/>
+        <mapping class="com.mds.content.model.Collection"/>
+        <mapping class="com.mds.content.model.Community"/>
+        <mapping class="com.mds.content.model.Item"/>
+        <mapping class="com.mds.content.model.MetadataField"/>
+        <mapping class="com.mds.content.model.MetadataSchema"/>
+        <mapping class="com.mds.content.model.MetadataValue"/>
+        <mapping class="com.mds.content.model.Site"/>
+        <mapping class="com.mds.content.model.WorkspaceItem"/>
+        
+        <mapping class="com.mds.handle.model.Handle"/>
+        
+        <mapping class="com.mds.eperson.model.EPerson"/>
+        <mapping class="com.mds.eperson.model.Group"/>
+        <mapping class="com.mds.eperson.model.Group2GroupCache"/>
+        <mapping class="com.mds.eperson.model.RegistrationData"/>
+        <mapping class="com.mds.eperson.model.Subscription"/>
+        
+        <mapping class="com.mds.checker.model.ChecksumHistory"/>
+        <mapping class="com.mds.checker.model.ChecksumResult"/>
+        <mapping class="com.mds.checker.model.MostRecentChecksum"/>
+        
+        <mapping class="com.mds.authorize.model.ResourcePolicy"/>
+        
+        <mapping class="com.mds.app.util.model.WebApp"/>
+        <mapping class="com.mds.app.requestitem.model.RequestItem"/>
+    </session-factory>
+</hibernate-configuration>

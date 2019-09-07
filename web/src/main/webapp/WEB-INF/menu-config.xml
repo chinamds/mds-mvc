@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MenuConfig>
+    <Displayers>
+        <Displayer name="Velocity" type="net.sf.navigator.displayer.VelocityMenuDisplayer"/>
+    </Displayers>
+    <Menus>
+        <Menu name="Home" title="home.title" page="/home" roles="ROLE_ADMIN,ROLE_USER"/>
+        <Menu name="ContentMenu" title="menu.content" description="Content Menu" roles="ROLE_ADMIN,ROLE_USER" page="/banners">
+            <Item name="Banners" title="menu.content.banners" page="/banners"/>
+            <Item name="Slideshows" title="menu.content.slideshows" page="/admin/activeUsers"/>
+            <Item name="ContentList" title="menu.content.contentlists" page="/admin/reload"/>
+            <Item name="Clocks" title="menu.content.clocks" page="/banners/texts"/>
+        </Menu>
+        <Menu name="OperationMenu" title="menu.operation" description="Operation Menu" roles="ROLE_ADMIN,ROLE_USER" page="/catalogues">
+            <Item name="Catalogues" title="menu.operation.catalogues" page="/catalogues"/>
+            <Item name="Playlists" title="menu.operation.playlists" page="/operation/calendar/calendarview"/>
+            <Item name="Calendar" title="menu.operation.calendar" page="/calendars"/>
+            <Item name="EmergencyBroadcast" title="menu.operation.emergencybroadcast" page="/fileupload"/>
+        </Menu>
+        <Menu name="UserMenu" title="menu.user" description="User Menu" page="/userform" roles="ROLE_ADMIN,ROLE_USER"/>
+        <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" page="/admin/users">
+            <Item name="ViewUsers" title="menu.admin.users" page="/admin/users"/>
+            <Item name="ActiveUsers" title="home.activeUsers" page="/admin/activeUsers"/>
+            <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/>
+            <Item name="FileUpload" title="menu.selectFile" page="/fileupload"/>
+            <Item name="Area" title="menu.admin.area" page="/sys/area/list"/>
+        </Menu>
+        <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
+        <!--Area-START-->
+        <Menu name="AreaMenu" title="areaList.title" page="/areas"/>
+        <!--Area-END-->
+        <!--Organization-START-->
+        <Menu name="OrganizationMenu" title="organizationList.title" page="/companies"/>
+        <!--Organization-END-->
+        <!--Menu-START-->
+        <Menu name="MenuMenu" title="menuList.title" page="/menus"/>
+        <!--Menu-END-->
+        <!--Role-START-->
+        <Menu name="RoleMenu" title="roleList.title" page="/roles"/>
+        <!--Role-END-->
+        <!--Permission-START-->
+        <Menu name="PermissionMenu" title="permissionList.title" page="/permissions"/>
+        <!--Permission-END-->
+        <!--MenuPermission-START-->
+        <Menu name="MenuPermissionMenu" title="menuPermissionList.title" page="/menuPermissions"/>
+        <!--MenuPermission-END-->
+        <!--Gallery-START-->
+        <Menu name="GalleryMenu" title="galleryList.title" page="/galleries"/>
+        <!--Gallery-END-->
+        <!--GalleryMapping-START-->
+        <Menu name="GalleryMappingMenu" title="galleryMappingList.title" page="/galleryMappings"/>
+        <!--GalleryMapping-END-->
+        <!--Zone-START-->
+        <Menu name="ZoneMenu" title="zoneList.title" page="/zones"/>
+        <!--Zone-END-->
+        <!--LayoutMst-START-->
+        <Menu name="LayoutMstMenu" title="layoutMstList.title" page="/layoutMsts"/>
+        <!--LayoutMst-END-->
+        <!--LayoutDtl-START-->
+        <Menu name="LayoutDtlMenu" title="layoutDtlList.title" page="/layoutDtls"/>
+        <!--LayoutDtl-END-->
+        <!--ChannelMapping-START-->
+        <Menu name="ChannelMappingMenu" title="channelMappingList.title" page="/channelMappings"/>
+        <!--ChannelMapping-END-->
+        <!--PlayerGroup-START-->
+        <Menu name="PlayerGroupMenu" title="playerGroupList.title" page="/playerGroups"/>
+        <!--PlayerGroup-END-->
+        <!--Player-START-->
+        <Menu name="PlayerMenu" title="playerList.title" page="/players"/>
+        <!--Player-END-->
+        <!--PlayerOutput-START-->
+        <Menu name="PlayerOutputMenu" title="playerOutputList.title" page="/playerOutputs"/>
+        <!--PlayerOutput-END-->
+        <!--PlayerMapping-START-->
+        <Menu name="PlayerMappingMenu" title="playerMappingList.title" page="/playerMappings"/>
+        <!--PlayerMapping-END-->
+        <!--Culture-START-->
+        <Menu name="CultureMenu" title="cultureList.title" page="/cultures"/>
+        <!--Culture-END-->
+        <!--LocalizedResource-START-->
+        <Menu name="LocalizedResourceMenu" title="localizedResourceList.title" page="/localizedResources"/>
+        <!--LocalizedResource-END-->
+        <!--NeutralResource-START-->
+        <Menu name="NeutralResourceMenu" title="neutralResourceList.title" page="/neutralResources"/>
+        <!--NeutralResource-END-->
+        <!--MyCalendar-START-->
+        <Menu name="MyCalendarMenu" title="myCalendarList.title" page="/myCalendars"/>
+        <!--MyCalendar-END-->
+        <!--TaskDefinition-START-->
+        <Menu name="TaskDefinitionMenu" title="taskDefinitionList.title" page="/taskDefinitions"/>
+        <!--TaskDefinition-END-->
+        <!--MyMessageContent-START-->
+        <Menu name="MyMessageContentMenu" title="myMessageContentList.title" page="/myMessageContents"/>
+        <!--MyMessageContent-END-->
+        <!--MyMessageRecipient-START-->
+        <Menu name="MyMessageRecipientMenu" title="myMessageRecipientList.title" page="/myMessageRecipients"/>
+        <!--MyMessageRecipient-END-->
+        <!--Notification-START-->
+        <Menu name="NotificationMenu" title="notificationList.title" page="/notifications"/>
+        <!--Notification-END-->
+        <!--NotificationTemplate-START-->
+        <Menu name="NotificationTemplateMenu" title="notificationTemplateList.title" page="/notificationTemplates"/>
+        <!--NotificationTemplate-END-->
+        <!--AppSetting-START-->
+        <Menu name="AppSettingMenu" title="appSettingList.title" page="/appSettings"/>
+        <!--AppSetting-END-->
+        <!--Album-START-->
+        <Menu name="AlbumMenu" title="albumList.title" page="/albums"/>
+        <!--Album-END-->
+    </Menus>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</MenuConfig>

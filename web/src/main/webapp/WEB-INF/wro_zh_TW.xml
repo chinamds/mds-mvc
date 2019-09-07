@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<groups xmlns="http://www.isdc.ro/wro">
+
+    <!-- CSS URL Rewriting fails when using webjar resource locator:
+         https://github.com/alexo/wro4j/issues/127 -->
+    <!-- zh TW Start      -->
+    <!-- zh TW Start      -->
+    <!-- zh TW Start      -->
+    <group name="main_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
+        <css>/static/3rdparty/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>/static/3rdparty/select2/css/select2.css</css>
+        <css>/static/3rdparty/select2/css/select2-bootstrap.css</css>
+        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
+        <css>/static/skins/mds.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
+        <js>/static/3rdparty/bootstrap-datetimepicker/js/moment.min.js</js>
+        <js>/static/3rdparty/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
+        <js>/static/3rdparty/jquery.fileDownload/jquery.fileDownload.js</js>
+        <js>/static/3rdparty/select2/js/select2.full.js</js>
+        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
+        <js>/static/3rdparty/bootstrap-waitingfor/bootstrap-waitingfor.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/mainframe.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/scripts/script.js</js>
+    </group>
+    <group name="grp_calendar_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>/static/skins/mds.css</css>
+        <css>/static/3rdparty/calendar/css/calendar.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/scripts/script.js</js>
+        <js>/static/3rdparty/calendar/components/underscore/underscore-min.js</js>
+        <js>/static/3rdparty/calendar/components/jstimezonedetect/jstz.js</js>
+        <js>/static/3rdparty/calendar/js/calendar.js</js>       
+    </group>
+    <group name="grp_fullcalendar_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
+        <css>/static/3rdparty/bootstrap-colorpicker/css/bootstrap-colorpicker.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>/static/3rdparty/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css</css>
+        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
+        <css>/static/skins/mds.css</css>
+        <css>/static/3rdparty/fullcalendar/fullcalendar.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
+        <js>/static/3rdparty/bootstrap-colorpicker/js/bootstrap-colorpicker.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/3rdparty/fullcalendar/lib/moment.min.js</js>
+        <js>/static/3rdparty/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js</js>
+        <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
+        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
+        <js>/static/3rdparty/bootstrap-waitingfor/bootstrap-waitingfor.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/mainframe.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <!-- <js>/static/3rdparty/jquery-ui.js</js>
+        <js>/static/3rdparty/jquery.layout-latest.js</js> -->
+        <js>/static/scripts/script.js</js>
+        <js>/static/3rdparty/fullcalendar/fullcalendar.js</js>
+    </group>
+    
+    <group name="grp_bootstrap-tabs-x_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
+        <css>/static/3rdparty/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>/static/3rdparty/webui-popover/jquery.webui-popover.css</css>
+        <css>/static/3rdparty/zTree/css/bootstrapStyle/bootstrapStyle.css</css>
+        <css>/static/3rdparty/select2/css/select2.css</css>
+        <css>/static/3rdparty/select2/css/select2-bootstrap.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.css</css>
+        <css>/static/3rdparty/bootstrap-duallistbox/bootstrap-duallistbox.min.css</css>
+        <css>/static/3rdparty/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css</css>
+        <css>/static/3rdparty/bootstrap-tabs-x/css/bootstrap-tabs-x.css</css>
+        <css>/static/3rdparty/bootstrap-treeview/bootstrap-treeview.css</css>
+        <css>/static/skins/mds.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+        <js>/static/3rdparty/jquery/jquery-migrate-3.0.0.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+        <js>/static/3rdparty/popper.js/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/3rdparty/bootstrap-datetimepicker/js/moment.min.js</js>
+        <js>/static/3rdparty/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js</js>
+        <js>/static/3rdparty/select2/js/select2.full.js</js>
+        <js>/static/3rdparty/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js</js>
+        <js>/static/3rdparty/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-en-US.min.js</js>
+        <js>/static/3rdparty/bootstrap-table/extensions/select2-filter/bootstrap-table-select2-filter.min.js</js>
+        <js>/static/3rdparty/zTree/js/jquery.ztree.all.js</js>
+        <js>/static/3rdparty/webui-popover/jquery.webui-popover.js</js>
+        <js>/static/3rdparty/bootstrap-tabs-x/js/bootstrap-tabs-x.js</js>
+        <js>/static/3rdparty/bootstrap-treeview/bootstrap-treeview.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/3rdparty/zTree/js/tree.common.js</js>
+        <js>/static/scripts/script.js</js>
+    </group>
+    
+    <group name="grp_appendgrid_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
+        <css>/static/3rdparty/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>/static/3rdparty/jstree/themes/default/style.css</css>
+        <css>/static/3rdparty/bootstrap-fileinput/css/fileinput.min.css</css>
+        <css>/static/3rdparty/select2/css/select2.css</css>
+        <css>/static/3rdparty/select2/css/select2-bootstrap.css</css>
+        <css>/static/3rdparty/bootstrap-duallistbox/bootstrap-duallistbox.min.css</css>
+        <css>/static/3rdparty/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css</css>
+        <css>/static/3rdparty/onoffcanvas/onoffcanvas.css</css>
+        <css>/static/3rdparty/smartwizard/css/smart_wizard.css</css>
+        <css>/static/3rdparty/smartwizard/css/smart_wizard_theme_arrows.css</css>
+		<css>/static/3rdparty/jquery.appendGrid/jquery-ui.structure.min.css</css>
+		<css>/static/3rdparty/jquery.appendGrid/jquery-ui.theme.min.css</css>
+        <css>/static/3rdparty/jquery.appendGrid/jquery.appendGrid-1.7.1.css</css>
+        <css>/static/skins/mds.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+        <js>/static/3rdparty/popper.js/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/3rdparty/bootstrap-fileinput/js/plugins/piexif.min.js</js>
+        <js>/static/3rdparty/bootstrap-fileinput/js/plugins/sortable.min.js</js>
+        <js>/static/3rdparty/bootstrap-fileinput/js/plugins/purify.min.js</js>
+        <js>/static/3rdparty/bootstrap-fileinput/js/fileinput.min.js</js>
+        <js>/static/3rdparty/bootstrap-datetimepicker/js/moment.min.js</js>
+        <js>/static/3rdparty/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js</js>
+        <js>/static/3rdparty/select2/js/select2.full.js</js>
+        <js>/static/3rdparty/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js</js>
+        <js>/static/3rdparty/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js</js>
+        <js>/static/3rdparty/onoffcanvas/onoffcanvas.min.js</js>
+        <js>/static/3rdparty/smartwizard/js/jquery.smartWizard.js</js>
+        <!-- <js>/static/3rdparty/jquery-ui/jquery-ui.min.js</js> -->
+		<js>/static/3rdparty/jquery.appendGrid/jquery-ui-1.12.1.min.js</js>
+        <js>/static/3rdparty/jquery.appendGrid/jquery.appendGrid-1.7.1.js</js>
+        <!-- <js>/static/scripts/mds.js</js> -->
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/3rdparty/jstree/jstree.js</js>
+        <js>/static/scripts/albumtreepicker.js</js>
+        <js>/static/scripts/glib.js</js>       
+        <js>/static/scripts/sizeutils.js</js>
+        <js>/static/scripts/gallery.js</js>
+        <js>/static/scripts/script.js</js>
+    </group>
+    
+    <group name="grp_layout_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
+        <css>/static/3rdparty/cropperjs/cropper.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <!-- <css>/static/3rdparty/pnotify/PNotifyBrightTheme.css</css> -->
+        <css>/static/3rdparty/jstree/themes/default/style.css</css>
+        <css>/static/3rdparty/metismenu/metisMenu.min.css</css>
+        <css>/static/3rdparty/scrolling-tabs/jquery.scrolling-tabs.min.css</css>
+        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
+        <css>/static/skins/light/styles/jquery-ui.css</css>
+        <css>/static/3rdparty/layout-default-latest.css</css>
+        <css>/static/skins/mds.css</css>
+        <css>/static/skins/light/styles/gallery.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+        <js>/static/3rdparty/jquery/jquery-migrate-3.0.0.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
+        <js>/static/3rdparty/cropperjs/cropper.js</js>
+        <js>/static/3rdparty/cropperjs/jquery-cropper.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <!-- <js>/static/3rdparty/pnotify/umd/PNotifyAnimate.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyCallbacks.js</js> -->
+        <!-- <js>/static/3rdparty/pnotify/umd/PNotifyCompat.js</js> -->
+        <js>/static/3rdparty/metismenu/metisMenu.js</js>
+        <js>/static/3rdparty/scrolling-tabs/jquery.scrolling-tabs.js</js>
+        <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
+        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
+        <js>/static/3rdparty/bootstrap-waitingfor/bootstrap-waitingfor.js</js>
+        <!-- <js>/static/scripts/mds.js</js> -->
+        <js>/static/scripts/mainframe.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/3rdparty/jquery-ui/jquery-ui.min.js</js>
+        <js>/static/3rdparty/jquery.layout-latest.js</js>
+        <js>/static/3rdparty/plupload/plupload.full.min.js</js>
+        <js>/static/3rdparty/plupload/jquery.ui.plupload/jquery.ui.plupload.js</js>
+        <js>/static/scripts/script.js</js>
+        <js>/static/3rdparty/jstree/jstree.js</js>
+        <js>/static/scripts/albumtreepicker.js</js>
+        <js>/static/scripts/glib.js</js>
+        <js>/static/scripts/sizeutils.js</js>
+        <js>/static/scripts/gallery.js</js>      
+    </group>
+    
+    <group name="grp_treeview_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
+        <css>/static/3rdparty/zTree/css/bootstrapStyle/bootstrapStyle.css</css>
+        <css>/static/3rdparty/bootstrap-iconpicker/icon-fonts/elusive-icons-2.0.0/css/elusive-icons.min.css</css>
+        <css>/static/3rdparty/bootstrap-iconpicker/icon-fonts/map-icons-2.1.0/css/map-icons.min.css</css>
+        <!-- <css>http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css</css> -->
+        <!-- <css>https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css</css>
+        <css>https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.min.css</css>
+        <css>https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.9/typicons.min.css</css>
+        <css>https://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.4.1-1/css/weather-icons.min.css</css>
+        <css>https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.8.0/css/flag-icon.min.css</css> -->
+        <css>/static/3rdparty/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css</css>
+        <css>/static/skins/mds.css</css>
+        <css>/static/skins/ztreepicker-widget.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
+        <js>/static/3rdparty/zTree/js/jquery.ztree.all.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/scripts/tree.common.js</js>
+        <js>/static/3rdparty/bootstrap-iconpicker/js/bootstrap-iconpicker-iconset-all.min.js</js>
+        <js>/static/3rdparty/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js</js>
+        <js>/static/scripts/script.js</js>
+    </group>
+    <group name="grp_boostrap_treeview_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
+        <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
+        <css>/static/3rdparty/bootstrap-treeview/bootstrap-treeview.css</css>
+        <css>/static/skins/mds.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
+        <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
+        <js>/static/3rdparty/bootstrap-treeview/bootstrap-treeview.js</js>
+        <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/scripts/script.js</js>
+    </group>
+    <group name="grp_treetable_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
+        <css>/static/3rdparty/treeTable/themes/vsStyle/treeTable.min.css</css>
+        <css>/static/skins/mds.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
+        <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
+        <js>/static/3rdparty/treeTable/jquery.treeTable.min.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/mainframe.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/scripts/script.js</js>
+    </group>
+        
+    <group name="grp_dialog_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
+        <css>/static/3rdparty/webui-popover/jquery.webui-popover.css</css>
+        <css>/static/skins/mds.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
+        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
+        <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
+        <js>/static/3rdparty/webui-popover/jquery.webui-popover.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/mainframe.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/scripts/script.js</js>
+    </group>
+    <group name="grp_fileupload_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
+        <css>/static/skins/mds.css</css>
+        <css>/static/skins/skins/light/styles/mds.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
+        <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
+        <js>/static/3rdparty/plupload/plupload.full.min.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/script.js</js>
+    </group>
+    
+    <group name="grp_personal_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
+        <css>/static/3rdparty/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>/static/skins/mds.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
+        <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
+        <js>/static/3rdparty/bootstrap-datetimepicker/js/moment.min.js</js>
+        <js>/static/3rdparty/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/mainframe.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/scripts/script.js</js>
+    </group>
+    
+    <group name="grp_boostrap_table_treegrid_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
+        <css>/static/3rdparty/jquery-treegrid/css/jquery.treegrid.css</css>
+        <css>/static/skins/mds.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
+        <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
+        <js>/static/3rdparty/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.js</js>
+        <js>/static/3rdparty/jquery-treegrid/js/jquery.treegrid.js</js>
+        <js>/static/3rdparty/jquery.fileDownload/jquery.fileDownload.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/mainframe.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/scripts/script.js</js>
+    </group>
+    
+    <group name="grp_editor_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
+        <css>/static/3rdparty/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css</css>
+        <!-- <css>/static/3rdparty/bootstrap3-wysiwyg/bootstrap3-wysihtml5.css</css> -->
+        <css>/static/3rdparty/summernote/summernote-bs4.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>/static/3rdparty/select2/css/select2.css</css>
+        <css>/static/3rdparty/select2/css/select2-bootstrap.css</css>
+        <css>/static/skins/mds.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <js>/static/3rdparty/summernote/summernote-bs4.js</js>
+        <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
+        <js>/static/3rdparty/fullcalendar/lib/moment.min.js</js>
+        <js>/static/3rdparty/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/3rdparty/select2/js/select2.full.js</js>
+        <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/mainframe.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/scripts/script.js</js>
+    </group>
+    
+    <group name="grp_contenteditor_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
+        <css>/static/3rdparty/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css</css>
+        <css>/static/3rdparty/bootstrap3-wysiwyg/bootstrap3-wysihtml5.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>/static/skins/mds.css</css>
+        <css>/static/skins/contenteditor/css/style.css</css>
+        <css>/static/scripts/contenteditor/color/jquery.miniColors.css</css>
+        <css>/static/skins/contenteditor/css/scroll_menu.css</css>
+        <css>/static/skins/contenteditor/css/slider.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <js>/static/3rdparty/bootstrap3-wysiwyg/bootstrap3-wysihtml5.all.js</js>
+        <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
+        <js>/static/3rdparty/fullcalendar/lib/moment.min.js</js>
+        <js>/static/3rdparty/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/mainframe.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/scripts/script.js</js>
+        <js>/static/3rdparty/webcam/webcam.js</js>
+        <js>/static/scripts/contenteditor/js/bootstrap-slider.js</js>
+        <js>/static/scripts/contenteditor/color/jquery.miniColors.js</js>
+        <js>/static/scripts/contenteditor/js/all.js</js>
+        <js>/static/scripts/contenteditor/js/underscore-min.js</js>
+        <js>/static/scripts/contenteditor/js/jquery.urlvars.js</js>
+        <js>/static/scripts/contenteditor/js/jquery.scrollmenu.js</js>
+        <js>/static/scripts/contenteditor/js/fabricplus.js</js>
+    </group>
+    
+    <group name="grp_form_zh_TW">
+        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
+        <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
+        <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
+        <css>/static/3rdparty/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css</css>
+        <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
+        <css>/static/3rdparty/webui-popover/jquery.webui-popover.css</css>
+        <css>/static/3rdparty/zTree/css/bootstrapStyle/bootstrapStyle.css</css>
+        <css>/static/3rdparty/bootstrap-fileinput/css/fileinput.min.css</css>
+        <css>/static/3rdparty/bootstrap-fileinput/themes/explorer-fa/theme.min.css</css>
+        <css>/static/3rdparty/select2/css/select2.css</css>
+        <css>/static/3rdparty/select2/css/select2-bootstrap.css</css>
+        <css>/static/3rdparty/bootstrap-duallistbox/bootstrap-duallistbox.min.css</css>
+        <css>/static/3rdparty/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css</css>
+        <css>/static/skins/mds.css</css>
+        <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
+		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
+        <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
+        <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-TW.min.js</js>
+        <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
+        <js>/static/3rdparty/bootstrap-fileinput/js/plugins/piexif.min.js</js>
+        <js>/static/3rdparty/bootstrap-fileinput/js/plugins/sortable.min.js</js>
+        <js>/static/3rdparty/bootstrap-fileinput/js/plugins/purify.min.js</js>
+        <js>/static/3rdparty/bootstrap-fileinput/js/fileinput.min.js</js>
+        <js>/static/3rdparty/bootstrap-fileinput/themes/explorer-fa/theme.min.js</js>
+        <js>/static/3rdparty/bootstrap-fileinput/themes/fa/theme.min.js</js>
+        <js>/static/3rdparty/bootstrap-datetimepicker/js/moment.min.js</js>
+        <js>/static/3rdparty/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js</js>
+        <js>/static/3rdparty/select2/js/select2.full.js</js>
+        <js>/static/3rdparty/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js</js>
+        <js>/static/3rdparty/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js</js>
+        <js>/static/3rdparty/bootstrap-table/extensions/select2-filter/bootstrap-table-select2-filter.min.js</js>
+        <js>/static/3rdparty/zTree/js/jquery.ztree.all.js</js>
+        <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
+        <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
+        <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/3rdparty/webui-popover/jquery.webui-popover.js</js>
+        <js>/static/scripts/mds.js</js>
+        <js>/static/scripts/boostraptable-init.js</js>
+        <js>/static/scripts/mainframe.js</js>
+        <js>/static/scripts/app-dialog.js</js>
+        <js>/static/scripts/tree.common.js</js>
+        <js>/static/scripts/script.js</js>
+    </group>
+</groups>

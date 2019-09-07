@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<form-validation>
+    <global>
+        <constant>
+            <constant-name>phone</constant-name>
+            <constant-value>^\(?(\d{3})\)?[-| ]?(\d{3})[-| ]?(\d{4})$</constant-value>
+        </constant>
+        <constant>
+            <constant-name>zip</constant-name>
+            <constant-value>^\d{5}\d*$</constant-value>
+        </constant>
+        <constant>
+            <constant-name>currency</constant-name>
+            <constant-value>^\d{1,3}(,?\d{1,3})*\.?(\d{1,2})?$</constant-value>
+        </constant>
+    </global>
+    <formset>
+        <form name="fileUpload">
+            <field property="name" depends="required">
+                <arg key="uploadForm.name"/>
+            </field>
+            <!-- Client-side Javascript won't catch this in IE, but server-side will -->
+            <field property="file" depends="required">
+                <arg key="uploadForm.file"/>
+            </field>
+        </form>
+        <form name="user">
+            <field property="username" depends="required">
+                <arg key="user.username"/>
+            </field>
+            <field property="firstName" depends="required">
+                <arg key="user.firstName"/>
+            </field>
+            <field property="lastName" depends="required">
+                <arg key="user.lastName"/>
+            </field>
+            <field property="email" depends="required,email">
+                <arg key="user.email"/>
+            </field>
+            <!-- <field property="passwordHint" depends="required">
+                <arg key="user.passwordHint"/>
+            </field> -->
+        </form>
+        <form name="signup" extends="user">
+            <field property="password" depends="required">
+                <arg key="user.password"/>
+            </field>
+        </form>
+        
+        <!--Module-START-->
+        <form name="module">
+            <!-- <field property="moduleFlag" depends="required">
+                <arg key="module.moduleFlag"/>
+            </field>
+            <field property="moduleGroup" depends="required">
+                <arg key="module.moduleGroup"/>
+            </field>
+            <field property="moduleName" depends="required">
+                <arg key="module.moduleName"/>
+            </field>
+            <field property="moduleType" depends="required">
+                <arg key="module.moduleType"/>
+            </field> -->
+        </form>
+        <!--Module-END-->
+        <!--Banner-START-->
+        <form name="banner">
+            <field property="HLColor" depends="required">
+                <arg key="banner.HLColor"/>
+            </field>
+            <field property="bg" depends="required">
+                <arg key="banner.bg"/>
+            </field>
+            <field property="contentName" depends="required">
+                <arg key="banner.contentName"/>
+            </field>
+            <field property="fontBold" depends="required">
+                <arg key="banner.fontBold"/>
+            </field>
+            <field property="fontItalic" depends="required">
+                <arg key="banner.fontItalic"/>
+            </field>
+            <field property="fontUnderline" depends="required">
+                <arg key="banner.fontUnderline"/>
+            </field>
+            <field property="halign" depends="required">
+                <arg key="banner.halign"/>
+            </field>
+            <field property="scrollAmount" depends="required">
+                <arg key="banner.scrollAmount"/>
+            </field>
+            <field property="strikethrough" depends="required">
+                <arg key="banner.strikethrough"/>
+            </field>
+            <field property="textBKColor" depends="required">
+                <arg key="banner.textBKColor"/>
+            </field>
+            <field property="textFGColor" depends="required">
+                <arg key="banner.textFGColor"/>
+            </field>
+            <field property="textHLColor" depends="required">
+                <arg key="banner.textHLColor"/>
+            </field>
+            <field property="valignString" depends="required">
+                <arg key="banner.valignString"/>
+            </field>
+        </form>
+        <!--Banner-END-->
+        
+        
+        
+        <!--Catalogue-START-->
+        <form name="catalogue">
+            <field property="BGColor" depends="required">
+                <arg key="catalogue.BGColor"/>
+            </field>
+            <field property="BGMusic" depends="required">
+                <arg key="catalogue.BGMusic"/>
+            </field>
+            <field property="bgType" depends="required">
+                <arg key="catalogue.bgType"/>
+            </field>
+            <field property="btnAlign" depends="required">
+                <arg key="catalogue.btnAlign"/>
+            </field>
+            <field property="btnLng" depends="required">
+                <arg key="catalogue.btnLng"/>
+            </field>
+            <field property="btnStyle" depends="required">
+                <arg key="catalogue.btnStyle"/>
+            </field>
+            <field property="catalogueDesc" depends="required">
+                <arg key="catalogue.catalogueDesc"/>
+            </field>
+            <field property="catalogueName" depends="required">
+                <arg key="catalogue.catalogueName"/>
+            </field>
+            <field property="fontBold" depends="required">
+                <arg key="catalogue.fontBold"/>
+            </field>
+            <field property="fontColor" depends="required">
+                <arg key="catalogue.fontColor"/>
+            </field>
+            <field property="fontItalic" depends="required">
+                <arg key="catalogue.fontItalic"/>
+            </field>
+            <field property="fontName" depends="required">
+                <arg key="catalogue.fontName"/>
+            </field>
+            <field property="fontSize" depends="required">
+                <arg key="catalogue.fontSize"/>
+            </field>
+            <field property="fontUnderline" depends="required">
+                <arg key="catalogue.fontUnderline"/>
+            </field>
+            <field property="imageFile" depends="required">
+                <arg key="catalogue.imageFile"/>
+            </field>
+            <field property="interactive" depends="required">
+                <arg key="catalogue.interactive"/>
+            </field>
+            <field property="layoutName" depends="required">
+                <arg key="catalogue.layoutName"/>
+            </field>
+            <field property="musicFile" depends="required">
+                <arg key="catalogue.musicFile"/>
+            </field>
+            <field property="quantity" depends="required">
+                <arg key="catalogue.quantity"/>
+            </field>
+            <field property="screenType" depends="required">
+                <arg key="catalogue.screenType"/>
+            </field>
+            <field property="skin" depends="required">
+                <arg key="catalogue.skin"/>
+            </field>
+            <field property="skinCode" depends="required">
+                <arg key="catalogue.skinCode"/>
+            </field>
+            <field property="createdBy" depends="required">
+                <arg key="catalogue.createdBy"/>
+            </field>
+        </form>
+        <!--Catalogue-END-->
+        <!--Product-START-->
+        <form name="product">
+            <field property="productIndex" depends="required">
+                <arg key="product.productIndex"/>
+            </field>
+            <field property="productName" depends="required">
+                <arg key="product.productName"/>
+            </field>
+        </form>
+        <!--Product-END-->
+        <!--Channel-START-->
+        <form name="channel">
+            <field property="BAllContent" depends="required">
+                <arg key="channel.BAllContent"/>
+            </field>
+            <field property="BImm" depends="required">
+                <arg key="channel.BImm"/>
+            </field>
+            <field property="BIncludeToday" depends="required">
+                <arg key="channel.BIncludeToday"/>
+            </field>
+            <field property="channelDesc" depends="required">
+                <arg key="channel.channelDesc"/>
+            </field>
+            <field property="channelName" depends="required">
+                <arg key="channel.channelName"/>
+            </field>
+            <field property="period" depends="required">
+                <arg key="channel.period"/>
+            </field>
+        </form>
+        <!--Channel-END-->
+        <!--Calendar-START-->
+        <form name="calendar">
+            <field property="approvalLevel" depends="required">
+                <arg key="calendar.approvalLevel"/>
+            </field>
+            <field property="approvalStatus" depends="required">
+                <arg key="calendar.approvalStatus"/>
+            </field>
+            <field property="day" depends="required">
+                <arg key="calendar.day"/>
+            </field>
+            <field property="playMeth" depends="required">
+                <arg key="calendar.playMeth"/>
+            </field>
+        </form>
+        <!--Calendar-END-->
+        <!--Area-START-->
+        <form name="area">
+        	<field property="code" depends="required">
+                <arg key="area.code"/>
+            </field>
+        </form>
+        <!--Area-END-->
+        <!--Organization-START-->
+        <form name="organization">
+        	<field property="code" depends="required">
+                <arg key="organization.code"/>
+            </field>
+            <field property="preferredlanguage" depends="required">
+                <arg key="organization.preferredlanguage"/>
+            </field>
+            <field property="area" depends="required">
+                <arg key="organization.area"/>
+            </field>
+        </form>
+        <!--Organization-END-->
+        <!--Menu-START-->
+        <form name="menuFunction">
+        	<field property="code" depends="required">
+                <arg key="menuFunction.code"/>
+            </field>
+        </form>
+        <!--Menu-END-->
+        <!--Role-START-->
+        <form name="role">
+        	<field property="name" depends="required">
+                <arg key="role.name"/>
+            </field>
+        </form>
+        <!--Role-END-->
+        <!--Permission-START-->
+        <form name="permission">
+        	<field property="name" depends="required">
+                <arg key="permission.name"/>
+            </field>
+            <field property="permission" depends="required">
+                <arg key="permission.permission"/>
+            </field>
+        </form>
+        <!--Permission-END-->
+        <!--MenuPermission-START-->
+        <form name="menuFunctionPermission">
+        </form>
+        <!--MenuPermission-END-->
+        <!--Gallery-START-->
+        <form name="gallery">
+            <field property="name" depends="required">
+                <arg key="gallery.name"/>
+            </field>
+        </form>
+        <!--Gallery-END-->
+        <!--GalleryMapping-START-->
+        <form name="galleryMapping">
+        </form>
+        <!--GalleryMapping-END-->
+        <!--Zone-START-->
+        <form name="zone">
+            <field property="BAlpha" depends="required">
+                <arg key="zone.BAlpha"/>
+            </field>
+            <field property="chkZone" depends="required">
+                <arg key="zone.chkZone"/>
+            </field>
+            <field property="zoneBGColor" depends="required">
+                <arg key="zone.zoneBGColor"/>
+            </field>
+            <field property="zoneFile" depends="required">
+                <arg key="zone.zoneFile"/>
+            </field>
+            <field property="zoneIndex" depends="required">
+                <arg key="zone.zoneIndex"/>
+            </field>
+            <field property="zoneSelectBgPic" depends="required">
+                <arg key="zone.zoneSelectBgPic"/>
+            </field>
+            <field property="zoneType" depends="required">
+                <arg key="zone.zoneType"/>
+            </field>
+        </form>
+        <!--Zone-END-->
+        <!--LayoutMst-START-->
+        <form name="layoutMst">
+        </form>
+        <!--LayoutMst-END-->
+        <!--LayoutDtl-START-->
+        <form name="layoutDtl">
+        </form>
+        <!--LayoutDtl-END-->
+        <!--PlayerTuner-START-->
+        <form name="playerTuner">
+            <field property="channel" depends="required">
+                <arg key="playerTuner.channel"/>
+            </field>
+            <field property="output" depends="required">
+                <arg key="playerTuner.output"/>
+            </field>
+            <field property="startTime" depends="required">
+                <arg key="playerTuner.startTime"/>
+            </field>
+        </form>
+        <!--PlayerTuner-END-->
+        <!--PlayerGroup-START-->
+        <form name="playerGroup">
+            <field property="code" depends="required">
+                <arg key="playerGroup.code"/>
+            </field>
+        </form>
+        <!--PlayerGroup-END-->
+        <!--Player-START-->
+        <form name="player">
+            <field property="MACAddress" depends="required">
+                <arg key="player.MACAddress"/>
+            </field>
+            <field property="MACAddress1" depends="required">
+                <arg key="player.MACAddress1"/>
+            </field>
+            <field property="MACID" depends="required">
+                <arg key="player.MACID"/>
+            </field>
+            <field property="beforeDay" depends="required">
+                <arg key="player.beforeDay"/>
+            </field>
+            <field property="binary" depends="required">
+                <arg key="player.binary"/>
+            </field>
+            <field property="connectionTimeout" depends="required">
+                <arg key="player.connectionTimeout"/>
+            </field>
+            <field property="dbLimit" depends="required">
+                <arg key="player.dbLimit"/>
+            </field>
+            <field property="deviceID" depends="required">
+                <arg key="player.deviceID"/>
+            </field>
+            <field property="diskSerial" depends="required">
+                <arg key="player.diskSerial"/>
+            </field>
+            <field property="ftpContent" depends="required">
+                <arg key="player.ftpContent"/>
+            </field>
+            <field property="ftpPeriod" depends="required">
+                <arg key="player.ftpPeriod"/>
+            </field>
+            <field property="lastSyncTime" depends="required">
+                <arg key="player.lastSyncTime"/>
+            </field>
+            <field property="localAddress" depends="required">
+                <arg key="player.localAddress"/>
+            </field>
+            <field property="localLogin" depends="required">
+                <arg key="player.localLogin"/>
+            </field>
+            <field property="localPassword" depends="required">
+                <arg key="player.localPassword"/>
+            </field>
+            <field property="localPort" depends="required">
+                <arg key="player.localPort"/>
+            </field>
+            <field property="login" depends="required">
+                <arg key="player.login"/>
+            </field>
+            <field property="online" depends="required">
+                <arg key="player.online"/>
+            </field>
+            <field property="password" depends="required">
+                <arg key="player.password"/>
+            </field>
+            <field property="phoneNumber" depends="required">
+                <arg key="player.phoneNumber"/>
+            </field>
+            <field property="phoneNumberServer" depends="required">
+                <arg key="player.phoneNumberServer"/>
+            </field>
+            <field property="playerName" depends="required">
+                <arg key="player.playerName"/>
+            </field>
+            <field property="port" depends="required">
+                <arg key="player.port"/>
+            </field>
+            <field property="publicIP" depends="required">
+                <arg key="player.publicIP"/>
+            </field>
+            <field property="replaceFile" depends="required">
+                <arg key="player.replaceFile"/>
+            </field>
+            <field property="retries" depends="required">
+                <arg key="player.retries"/>
+            </field>
+            <field property="retryDelay" depends="required">
+                <arg key="player.retryDelay"/>
+            </field>
+            <field property="serverAddress" depends="required">
+                <arg key="player.serverAddress"/>
+            </field>
+            <field property="shutdown" depends="required">
+                <arg key="player.shutdown"/>
+            </field>
+            <field property="startup" depends="required">
+                <arg key="player.startup"/>
+            </field>
+            <field property="timeOuts" depends="required">
+                <arg key="player.timeOuts"/>
+            </field>
+            <field property="uniqueName" depends="required">
+                <arg key="player.uniqueName"/>
+            </field>
+            <field property="useFirewall" depends="required">
+                <arg key="player.useFirewall"/>
+            </field>
+            <field property="usePASVMode" depends="required">
+                <arg key="player.usePASVMode"/>
+            </field>
+        </form>
+        <!--Player-END-->
+        <!--PlayerOutput-START-->
+        <form name="playerOutput">
+            <field property="output" depends="required">
+                <arg key="playerOutput.output"/>
+            </field>
+        </form>
+        <!--PlayerOutput-END-->
+        <!--PlayerMapping-START-->
+        <form name="playerMapping">
+        </form>
+        <!--PlayerMapping-END-->
+        <!--Culture-START-->
+        <form name="culture">
+        	<field property="cultureCode" depends="required">
+                <arg key="culture.cultureCode"/>
+            </field>
+        </form>
+        <!--Culture-END-->
+        <!--LocalizedResource-START-->
+        <form name="localizedResource">
+        </form>
+        <!--LocalizedResource-END-->
+        <!--NeutralResource-START-->
+        <form name="neutralResource">
+        	<field property="resourceClass" depends="required">
+                <arg key="neutralResource.resourceClass"/>
+            </field>
+            <field property="resourceKey" depends="required">
+                <arg key="neutralResource.resourceKey"/>
+            </field>
+        </form>
+        <!--NeutralResource-END-->
+        <!--MyCalendar-START-->
+        <form name="myCalendar">
+        	<field property="startDate" depends="required">
+                <arg key="myCalendar.startDate"/>
+            </field>
+        </form>
+        <!--MyCalendar-END-->
+        <!--TaskDefinition-START-->
+        <form name="taskDefinition">
+            <field property="name" depends="required">
+                <arg key="taskDefinition.name"/>
+            </field>
+        </form>
+        <!--TaskDefinition-END-->
+        <!--MyMessage-START-->
+        <form name="myMessage">
+        </form>
+        <!--MyMessage-END-->
+        <!--MyMessageContent-START-->
+        <form name="myMessageContent">
+        </form>
+        <!--MyMessageContent-END-->
+        <!--MyMessageRecipient-START-->
+        <form name="myMessageRecipient">
+        </form>
+        <!--MyMessageRecipient-END-->
+        <!--Notification-START-->
+        <form name="notification">
+        </form>
+        <!--Notification-END-->
+        <!--NotificationTemplate-START-->
+        <form name="notificationTemplate">
+            <field property="name" depends="required">
+                <arg key="notificationTemplate.name"/>
+            </field>
+        </form>
+        <!--NotificationTemplate-END-->
+        <!--AppSetting-START-->
+        <form name="appSetting">
+            <field property="settingName" depends="required">
+                <arg key="appSetting.settingName"/>
+            </field>
+            <field property="settingValue" depends="required">
+                <arg key="appSetting.settingValue"/>
+            </field>
+        </form>
+        <!--AppSetting-END-->
+        <!--Album-START-->
+        <form name="album">
+            <!-- <field property="isPrivate" depends="required">
+                <arg key="album.isPrivate"/>
+            </field> -->
+            <field property="name" depends="required">
+                <arg key="album.name"/>
+            </field>
+            <!-- <field property="ownedBy" depends="required">
+                <arg key="album.ownedBy"/>
+            </field>
+            <field property="ownerRoleName" depends="required">
+                <arg key="album.ownerRoleName"/>
+            </field>
+            <field property="seq" depends="required">
+                <arg key="album.seq"/>
+            </field>
+            <field property="sortAscending" depends="required">
+                <arg key="album.sortAscending"/>
+            </field>
+            <field property="sortByMetaName" depends="required">
+                <arg key="album.sortByMetaName"/>
+            </field> -->
+        </form>
+        <!--Album-END-->
+         <!--DailyList-START-->
+        <form name="dailyList">
+            <field property="contentName" depends="required">
+                <arg key="dailyList.contentName"/>
+            </field>
+            <field property="date" depends="required">
+                <arg key="dailyList.date"/>
+            </field>
+        </form>
+        <!--DailyList-END-->
+        <!--Activity-START-->
+        <form name="activity">
+        	<field property="code" depends="required">
+                <arg key="activity.code"/>
+            </field>
+        </form>
+        <!--Activity-END-->
+        <!--OrganizationWorkflowType-START-->
+        <form name="organizationWorkflowType">
+        	<field property="workflowType" depends="required">
+                <arg key="organizationWorkflowType.workflowType"/>
+            </field>
+        </form>
+        <!--OrganizationWorkflowType-END-->
+        <!--Workflow-START-->
+        <form name="workflow">
+        	<field property="workflowName" depends="required">
+                <arg key="workflow.workflowName"/>
+            </field>
+            <field property="workflowType" depends="required">
+                <arg key="workflow.workflowType"/>
+            </field>
+        </form>
+        <!--Workflow-END-->
+    </formset>
+</form-validation>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%p [%t] %c{1}.%M(%L) | %m%n"/>
+        </Console>
+        <RollingFile name="RollingFile" fileName="${log.dir}/mds.log"
+             filePattern="${log.dir}/$${date:yyyy-MM}/mds-%d{MM-dd-yyyy}-%i.log.gz">
+             <PatternLayout pattern="[%-5p] %d %c - %m%n" />
+             <Policies>
+                    <TimeBasedTriggeringPolicy />
+                    <SizeBasedTriggeringPolicy size="1024 KB" />
+             </Policies>
+             <DefaultRolloverStrategy max="20"/>
+       </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="net.sf.ehcache" level="error"/>
+        <!-- Suppress success logging from InteractiveAuthenticationSuccessEvent -->
+        <Logger name="org.springframework.security" level="error"/>
+        <Logger name="org.apache" level="error"/>
+        <Logger name="org.apache.velocity" level="fatal"/>
+        <!-- Suppress invalid warning messages from JSF -->
+        <Logger name="org.apache.myfaces" level="error"/>
+        <!-- Suppress warnings from Struts -->
+        <Logger name="org.apache.struts2.util.TextProviderHelper" level="error"/>
+        <Logger name="com.opensymphony.xwork2.util.OgnlUtil" level="error"/>
+        <Logger name="com.opensymphony.xwork2.ognl.OgnlValueStack" level="error"/>
+        <Logger name="org.dbunit" level="warn"/>
+        <Logger name="org.hibernate" level="warn"/>
+        <Logger name="org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory" level="error" />
+        <!-- Uncomment if you want to see Hibernate's SQL -->
+        <!--<Logger name="org.hibernate.SQL" level="debug"/>-->
+        <Logger name="org.springframework" level="warn"/>
+        <Logger name="com.mds" level="debug"/>
+        <Logger name="com.mds.tool" level="info"/>
+
+        <Root level="warn">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile" />
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<!--Culture-START-->
+    <table name="sys_tenant">
+        <column>id</column>
+        <column>organization_id</column>
+    <row>
+        <value description="id">212aab68-7fb3-11e9-bc42-526af7764f64</value>
+    </row>
+    </table>
+</dataset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

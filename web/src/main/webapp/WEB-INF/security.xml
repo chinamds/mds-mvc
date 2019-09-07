@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <http pattern="/static/**" security="none"/>
+    <http pattern="/assets/**" security="none"/>
+    <!-- <http pattern="/services/**" security="none"/> -->
+    <http pattern="/app/login*" security="none"/>
+    <http pattern="/login*" security="none"/>
+    <http pattern="/login.jsp*" security="none"/>
+    <http pattern="/index.jsp*" security="none"/>
+    <!-- <http pattern="/jcaptcha*" security="none"/> -->
+
+    <http use-expressions="true" entry-point-ref="loginEntryPoint">
+    	<csrf disabled="true" />
+    	<headers>
+	        <frame-options policy="SAMEORIGIN"/>
+	    </headers>
+		<!-- 替换默认的LoginFilter -->
+		<custom-filter ref="mdsLoginFilter" position="FORM_LOGIN_FILTER" />
+		<!-- 替换默认的LogoutFilter -->
+		<!-- <custom-filter ref="mdsLogoutFilter" position="LOGOUT_FILTER" /> -->
+        <intercept-url pattern="/app/sys/passwordHint/**" access="permitAll"/>
+        <intercept-url pattern="/app/sys/requestRecoveryToken/**" access="permitAll" />
+        <intercept-url pattern="/app/sys/updatePassword*" access="permitAll" />
+        <intercept-url pattern="/app/sys/signup*" access="permitAll"/>
+        <intercept-url pattern="/app/cm/galleryview*" access="permitAll"/>
+       <!--  <intercept-url pattern="/login.jsp*" access="permitAll"/> -->
+        <intercept-url pattern="/app/jcaptcha-validate*" access="permitAll"/>
+        <intercept-url pattern="/app/**" access="isAuthenticated()"/>
+        <!-- <form-login login-page="/login" authentication-failure-url="/login?error=true" login-processing-url="/j_security_check"/> -->
+        <remember-me user-service-ref="userDao" key="e37f4b31-0c45-11dd-bd0b-0800200c9a66"/>
+        
+        <!--JCaptcha Filtering-->
+    	<custom-filter ref="captchaCaptureFilter" before="FORM_LOGIN_FILTER"/>
+    </http>
+    
+    <!-- For capturing CAPTCHA fields -->
+	<beans:bean id="captchaCaptureFilter" class="com.mds.common.webapp.security.CaptchaCaptureFilter" >
+		<beans:property name="jcaptchaEnabled" value="${spring.security.jcaptchaEnabled}" />
+	</beans:bean>
+
+    <authentication-manager alias="authenticationManager">
+        <!-- <authentication-provider user-service-ref="userDao">
+            <password-encoder ref="passwordEncoder"/>
+        </authentication-provider> -->
+        <authentication-provider ref="mdsAuthenticationProvider"/>
+    </authentication-manager>
+    
+	<beans:bean id="mdsAuthenticationProvider" class="com.mds.common.webapp.security.MdsAuthenticationProvider" p:captchaCaptureFilter-ref="captchaCaptureFilter" >
+  		  <beans:property name="userDetailsService" ref="userDao"/>
+  		  <beans:property name="passwordEncoder" ref="passwordEncoder"/>
+	</beans:bean>
+
+	<beans:bean id="loginEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<!-- 默认登录页的url -->
+		<beans:constructor-arg value="/login" />
+	</beans:bean>
+	
+	<!--Authentication filter for login, override "org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter-->
+	<beans:bean id="mdsLoginFilter" class="com.mds.common.webapp.security.MdsLoginFilter">
+		<!-- 校验登录是否有效的虚拟url -->
+		<beans:property name="filterProcessesUrl" value="/j_security_check" />
+		<!--Custom MDS authentication manager, will handle the actual login-->
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="usernameParameter" value="username" />
+		<beans:property name="passwordParameter" value="password" />
+		<beans:property name="jcaptchaCodeParameter" value="jcaptchaCode" />
+		<beans:property name="mobileDeviceParameter" value="mobileDevice" />
+		<beans:property name="jcaptchaEnabled" value="${spring.security.jcaptchaEnabled}" />
+		<beans:property name="authenticationSuccessHandler">
+			<beans:bean class="com.mds.common.webapp.security.MdsLoginHandler">
+				<beans:property name="defaultTargetUrl" value="/home" />
+			</beans:bean>
+		</beans:property>
+		<beans:property name="authenticationFailureHandler">
+			<beans:bean
+				class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+				<!-- 登录失败后的默认Url -->
+				<beans:property name="defaultFailureUrl" value="/login?error=true" />
+			</beans:bean>
+		</beans:property>
+	</beans:bean>
+
+	<!-- <beans:bean id="mdsLogoutFilter" class="com.mds.common.webapp.security.MdsLogoutFilter">
+		处理退出的虚拟url
+		<beans:property name="filterProcessesUrl" value="/logout" />
+		退出处理成功后的默认显示url
+		<beans:constructor-arg index="0" value="/login?logout" />
+		<beans:constructor-arg index="1">
+			退出成功后的handler列表
+			<beans:array>
+				<beans:bean id="securityContextLogoutHandler"
+					class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+				加入了开发人员自定义的退出成功处理
+				<beans:bean id="mdsLogoutSuccessHandler" class="com.mds.common.webapp.security.MdsLogoutHandler" />
+			</beans:array>
+		</beans:constructor-arg>
+	</beans:bean> -->
+
+
+    <!-- Override the default password-encoder (BCrypt) by uncommenting the following and changing the class -->
+    <!-- <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/> -->
+
+    <!-- <global-method-security>
+        <protect-pointcut expression="execution(* *..service.UserManager.getUsers(..))" access="ROLE_ADMIN"/>
+        <protect-pointcut expression="execution(* *..service.UserManager.removeUser(..))" access="ROLE_ADMIN"/>
+    </global-method-security> -->
+</beans:beans>

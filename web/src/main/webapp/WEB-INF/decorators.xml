@@ -1,0 +1,16 @@
+<decorators defaultdir="/decorators">
+    <excludes>
+    	<pattern>/pages/home.jsp</pattern>
+    	<pattern>/pages/cm/galleries/main.jsp</pattern>
+        <pattern>/40*.jsp</pattern>
+        <pattern>/*ajax=true*</pattern>
+        <pattern>/struts/*</pattern>
+        <pattern>/resources/*</pattern>
+        <pattern>/static/*</pattern>
+    </excludes> 
+    <decorator name="default" page="default.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+    <decorator name="default_login" page="default_login.jsp" />
+    <decorator name="default_dlg" page="default_dlg.jsp" />
+</decorators>

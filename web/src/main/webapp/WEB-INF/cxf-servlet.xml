@@ -1,0 +1,87 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:cxf="http://cxf.apache.org/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+            http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+            http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+            http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
+            
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+
+    <bean id="jacksonMapper" class="com.fasterxml.jackson.databind.ObjectMapper"/>
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+	    <property name="targetObject" ref="jacksonMapper" />
+	    <property name="targetMethod" value="configure" />
+	    <property name="arguments">
+	        <list>
+	            <value type="com.fasterxml.jackson.databind.DeserializationFeature">FAIL_ON_UNKNOWN_PROPERTIES</value>
+	            <value>false</value>
+	        </list>
+	    </property>
+	</bean>
+    <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider">
+	    <property name="mapper" ref="jacksonMapper" />
+	</bean>
+    <bean id="rssMDSProvider" class="com.mds.cm.util.AlbumSyndicationFeedFormatter"/>
+
+	<!-- <jaxws:endpoint id="userService" implementor="#userManager" address="/UserService"/> -->
+	<jaxws:endpoint id="areaService" implementor="#areaManager" address="/AreaService"/>
+	<!-- <jaxws:endpoint id="menuFunctionService" implementor="#menuFunctionManager" address="/MenuFunctionService"/> -->
+	<!-- <jaxws:endpoint id="organizationService" implementor="#organizationManager" address="/OrganizationService"/> -->
+	<!-- <jaxws:endpoint id="roleService" implementor="#roleManager" address="/RoleService"/> -->
+	<!-- <jaxws:endpoint id="permissionService" implementor="#permissionManager" address="/PermissionService"/> -->
+	<jaxws:endpoint id="myMessageService" implementor="#myMessageManager" address="/MyMessageService"/>
+	<jaxws:endpoint id="cultureService" implementor="#cultureManager" address="/CultureService"/>
+	<!-- <jaxws:endpoint id="bannerService" implementor="#bannerManager" address="/BannerService"/> -->
+    <!-- Add new endpoints for additional services you'd like to expose -->
+
+    <jaxrs:server address="/api">
+        <jaxrs:features>
+            <cxf:logging/>
+        </jaxrs:features>
+        <jaxrs:serviceBeans>
+            <ref bean="userManager"/>
+            <ref bean="areaManager"/>
+            <ref bean="menuFunctionManager"/>
+            <ref bean="organizationManager"/>
+            <ref bean="roleManager"/>
+            <ref bean="permissionManager"/>
+            <ref bean="myMessageManager"/>
+            <ref bean="notificationManager"/>
+            <ref bean="cultureManager"/>
+            <ref bean="neutralResourceManager"/>
+            <ref bean="localizedResourceManager"/>
+            <ref bean="dictManager"/>
+            <ref bean="galleryManager"/>
+            <ref bean="albumManager"/>
+            <ref bean="albumsManager"/>
+            <ref bean="contentItemsManager"/>
+            <ref bean="taskManager"/>
+            <ref bean="feedManager"/>
+            <ref bean="contentMetaManager"/>
+            <ref bean="metaManager"/>
+            <ref bean="dailyListManager"/>
+            <ref bean="playerManager"/>
+            <ref bean="playerGroupManager"/>
+            <ref bean="organizationWorkflowTypeManager"/>
+            <ref bean="activityManager"/>
+            <ref bean="workflowManager"/>
+            
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <ref bean="jsonProvider"/>
+            <ref bean="rssMDSProvider"/>
+        </jaxrs:providers>
+        <jaxrs:extensionMappings>
+            <entry key="json" value="application/json"/>
+            <entry key="xml" value="application/xml"/>
+            <entry key="feed" value="application/atom+xml"/>
+        </jaxrs:extensionMappings>
+    </jaxrs:server>
+
+</beans>

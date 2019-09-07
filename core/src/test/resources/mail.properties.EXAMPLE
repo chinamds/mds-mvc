@@ -1,0 +1,11 @@
+# This properties file is used to configure mail settings in 
+# /WEB-INF/applicationContext-service.xml.
+
+mail.default.from=chinamds <chinamds@mmdsplus.com>
+mail.debug=false
+mail.transport.protocol=smtp
+mail.host=smtp.mmdsplus.com
+mail.port=25
+mail.username=
+mail.password=
+mail.smtp.auth=true
