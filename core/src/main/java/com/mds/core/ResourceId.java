@@ -21,10 +21,10 @@ public enum ResourceId {
 	sys_permissions,
 	sys_eventLogs,
 	
-	sys_mymessages,
-	sys_mycalendars,
+	sys_myMessages,
+	sys_myCalendars,
 	sys_notifications_list,
-	sys_myprofiles,
+	sys_myProfiles,
 	
 	cm_albums,
 	cm_galleries,

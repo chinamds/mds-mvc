@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * LicenseKey
- * @author s2001
+ * @author mmdsplus
  * @version 2013-8-23
  */
 @SuppressWarnings("rawtypes")

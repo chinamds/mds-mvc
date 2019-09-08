@@ -1919,7 +1919,7 @@ public class GallerySettings implements Comparable<GallerySettings>{
 		}
 		
 		/// <summary>
-		/// Specifies the IP address or name of the SMTP domail(exchange server only) used to send emails. (Examples: s2001.com, 
+		/// Specifies the IP address or name of the SMTP domail(exchange server only) used to send emails. (Examples: mmdsplus.com, 
 		/// Godzilla, mail.yourisp.com) This value will override the SMTP domail setting that may be in the 
 		/// system.net mailSettings section of the web.config file (either explicitly or inherited from a 
 		/// parent web.config file). Leave this setting blank to use the value in web.config or if you are 

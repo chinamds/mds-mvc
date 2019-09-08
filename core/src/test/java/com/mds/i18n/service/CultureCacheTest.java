@@ -28,7 +28,7 @@ public class CultureCacheTest extends BaseManagerTestCase {
     	List<Culture> found1 = mgr.getCultures();
     	log.debug("cultures found: " + found1.size());
     	/*User user = mgr.getUserByUsername("john");
-        user.setWebsite("www.s2001.com");
+        user.setWebsite("www.mmdsplus.com");
         user = mgr.saveUser(user);
         
         log.debug("saving culture with updated website: " + user);

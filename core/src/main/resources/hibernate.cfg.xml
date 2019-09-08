@@ -124,35 +124,5 @@
         <mapping class="com.mds.msg.model.Message"/>
         <mapping class="com.mds.msg.model.MessageZone"/>
         <mapping class="com.mds.msg.model.MsgSending"/>
-        
-        <mapping class="com.mds.content.model.MDSObject"/>
-        <mapping class="com.mds.content.model.Bitstream"/>
-        <mapping class="com.mds.content.model.BitstreamFormat"/>
-        <mapping class="com.mds.content.model.Bundle"/>
-        <mapping class="com.mds.content.model.Collection"/>
-        <mapping class="com.mds.content.model.Community"/>
-        <mapping class="com.mds.content.model.Item"/>
-        <mapping class="com.mds.content.model.MetadataField"/>
-        <mapping class="com.mds.content.model.MetadataSchema"/>
-        <mapping class="com.mds.content.model.MetadataValue"/>
-        <mapping class="com.mds.content.model.Site"/>
-        <mapping class="com.mds.content.model.WorkspaceItem"/>
-        
-        <mapping class="com.mds.handle.model.Handle"/>
-        
-        <mapping class="com.mds.eperson.model.EPerson"/>
-        <mapping class="com.mds.eperson.model.Group"/>
-        <mapping class="com.mds.eperson.model.Group2GroupCache"/>
-        <mapping class="com.mds.eperson.model.RegistrationData"/>
-        <mapping class="com.mds.eperson.model.Subscription"/>
-        
-        <mapping class="com.mds.checker.model.ChecksumHistory"/>
-        <mapping class="com.mds.checker.model.ChecksumResult"/>
-        <mapping class="com.mds.checker.model.MostRecentChecksum"/>
-        
-        <mapping class="com.mds.authorize.model.ResourcePolicy"/>
-        
-        <mapping class="com.mds.app.util.model.WebApp"/>
-        <mapping class="com.mds.app.requestitem.model.RequestItem"/>
     </session-factory>
 </hibernate-configuration>

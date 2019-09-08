@@ -92,7 +92,7 @@ public class UserManagerTest extends BaseManagerTestCase {
     	List<User> found1 = mgr.getUsers();
     	log.debug("Users found: " + found1.size());
     	User user = mgr.getUserByUsername("john");
-        user.setWebsite("www.s2001.com");
+        user.setWebsite("www.mmdsplus.com");
         user = mgr.saveUser(user);
         
         log.debug("saving user with updated website: " + user);

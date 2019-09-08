@@ -13,6 +13,8 @@ import com.mds.sys.util.UserUtils;
 import com.mds.sys.exception.UserExistsException;
 import com.mds.common.webapp.controller.BaseFormController;
 import com.mds.common.webapp.util.RequestUtil;
+import com.mds.security.model.MdsAuthenticationToken;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.security.access.AccessDeniedException;
@@ -103,7 +105,11 @@ public class SignupController extends BaseFormController {
 
         // log user in automatically
         final String mobileDevice = request.getParameter("mobileDevice");
-        UserUtils.login(user, password, false, (mobileDevice != null && mobileDevice.equalsIgnoreCase("true")));
+        //UserUtils.login(user, password, false, (mobileDevice != null && mobileDevice.equalsIgnoreCase("true")));
+        // log user in automatically
+        MdsAuthenticationToken auth = new MdsAuthenticationToken(user.getUsername(), password, true, (mobileDevice != null && mobileDevice.equalsIgnoreCase("true")));
+        auth.setDetails(UserUtils.toUserAccount(user)); 
+		SecurityContextHolder.getContext().setAuthentication(auth);
 
         // Send user an e-mail
         if (log.isDebugEnabled()) {
@@ -119,6 +125,6 @@ public class SignupController extends BaseFormController {
             saveError(request, me.getMostSpecificCause().getMessage());
         }
 
-        return UserUtils.getHomePage(request);
+        return "redirect:/cm/galleryview";// + UserUtils.getHomePage(request);
     }
 }
