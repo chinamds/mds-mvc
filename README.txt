@@ -31,7 +31,9 @@
 		Java 1.8 or higher.
 
 		Tomcat 9 
-
 		(http://tomcat.apache.org/tomcat-9.0-doc/index.html)
+		
+		You can find all details on the [official website](http://www.mmdsplus.com/).
+		![alt tag](http://www.mmdsplus.com/cm/galleryview?moid=111)
 
 
