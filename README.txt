@@ -34,6 +34,6 @@
 		(http://tomcat.apache.org/tomcat-9.0-doc/index.html)
 		
 		You can find all details on the [official website](http://www.mmdsplus.com/).
-		![alt tag](http://www.mmdsplus.com/cm/galleryview?moid=111)
+		![alt tag](http://www.mmdsplus.com/services/api/contentitems/getmedia?moid=111&dt=Optimized&g=2)
 
 
