@@ -6,6 +6,11 @@
 <div class="collapse navbar-collapse" id="navbar">
 <ul class="nav navbar-nav mr-auto">
     <c:if test="${empty pageContext.request.remoteUser}">
+        <c:if test="${not empty fns:getFilingNo()}">
+	        <li class="nav-item">
+	            <a class="nav-link" href="http://beian.miit.gov.cn"  target="_blank">${fns:getFilingNo()}</a>
+	        </li>
+        </c:if>
         <li class="nav-item active">
             <a class="nav-link" href="<c:url value="/login"/>"><fmt:message key="login.title"/></a>
         </li>

@@ -24,3 +24,5 @@ logs/
 mds/mmrepo/
 mds/App_Data/
 bin/
+/mds/config/mds.properties
+/README.txt

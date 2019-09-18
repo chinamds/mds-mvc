@@ -47,7 +47,10 @@
 	        </c:if>
         </span>
         <span class="col-sm-6 text-right">
-            &copy; <fmt:message key="copyright.year"/> <a href="<fmt:message key="webapp.url"/>"><fmt:message key="webapp.company"/></a>
+            &copy; <fmt:message key="copyright.year"/> <a href="<fmt:message key="webapp.url"/>"><fmt:message key="webapp.company"/></a> 
+            <c:if test="${not empty fns:getFilingNo()}">
+               <a href="http://beian.miit.gov.cn"  target="_blank">${fns:getFilingNo()}</a>
+            </c:if>
         </span>
     </div>
 <t:assets type="js"/>

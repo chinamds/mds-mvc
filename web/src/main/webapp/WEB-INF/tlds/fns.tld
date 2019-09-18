@@ -14,28 +14,35 @@
   <function>
     <description>get administrator path</description>
     <name>getAdminPath</name>
-    <function-class>com.mds.common.webapp.config.Global</function-class>
+    <function-class>com.mds.common.webapp.util.Global</function-class>
     <function-signature>java.lang.String getAdminPath()</function-signature>
     <example>${fns:getAdminPath()}</example>
   </function>
   <function>
     <description>get website path</description>
     <name>getFrontPath</name>
-    <function-class>com.mds.common.webapp.config.Global</function-class>
+    <function-class>com.mds.common.webapp.util.Global</function-class>
     <function-signature>java.lang.String getFrontPath()</function-signature>
     <example>${fns:getFrontPath()}</example>
   </function>
   <function>
     <description>get website URL suffix</description>
     <name>getUrlSuffix</name>
-    <function-class>com.mds.common.webapp.config.Global</function-class>
+    <function-class>com.mds.common.webapp.util.Global</function-class>
     <function-signature>java.lang.String getUrlSuffix()</function-signature>
     <example>${fns:getUrlSuffix()}</example>
   </function>
   <function>
+    <description>get filing No.</description>
+    <name>getFilingNo</name>
+    <function-class>com.mds.common.webapp.util.Global</function-class>
+    <function-signature>java.lang.String getFilingNo()</function-signature>
+    <example>${fns:getFilingNo()}</example>  
+  </function>
+  <function>
     <description>get website configuration</description>
     <name>getConfig</name>
-    <function-class>com.mds.common.webapp.config.Global</function-class>
+    <function-class>com.mds.common.webapp.util.Global</function-class>
     <function-signature>java.lang.String getConfig(java.lang.String)</function-signature>
     <example>${fns:getConfig(key)}</example>
   </function>
@@ -216,7 +223,7 @@
     <function-signature>java.lang.String getSkinnedUrl(javax.servlet.http.HttpServletRequest, java.lang.String)</function-signature>
     <example>${fns:getSkinnedUrl(request, resource)}</example>  
   </function>
-    
+      
   <!-- Encodes -->
   <function>
     <description>URL Encode</description>

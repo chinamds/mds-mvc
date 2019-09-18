@@ -6,8 +6,13 @@
     <meta name="menu" content="Login"/>
 </head>
 <body id="login">
-
+    
 <div class="col">
+    <div class="jumbotron">
+	     <h2><fmt:message key="login.welcome"/></h2>   
+	     <label class="text-danger"><fmt:message key="login.warning"/></label>
+	     <!-- hack to close the jumbotron div before -->
+	</div>
 	<form method="post" id="loginForm" action="<c:url value='/j_security_check'/>"
 		onsubmit="saveUsername(this);return validateForm(this)" class="form-signin" autocomplete="off">
 		<security:csrfInput />

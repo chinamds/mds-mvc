@@ -25,6 +25,7 @@ import org.apache.commons.text.RandomStringGenerator;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.google.common.collect.Lists;
 import com.mds.common.Constants;
@@ -65,10 +66,17 @@ public final class Utils{
 	private static String galleryResourcesPath;
 	private static String skinPath;
 	private static String webConfigFilePath;
+	
+	/*@Value("${mds.filingNo}")
+    private static String filingNo;*/
 
 	//#endregion
 
 	//#region Public Static Properties
+	
+	/*public static String getFilingNo(){
+		return filingNo;
+	}*/
 	
 	/// <summary>
 	/// Gets or sets the name of the current user. This property becomes available immediately after a user logs in, even within

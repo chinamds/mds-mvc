@@ -94,7 +94,7 @@ public class LocalizedResource extends IdEntity implements Serializable {
 	@JsonProperty(value = "resourceKey")
     @Transient
     @Field
-    public String getResourcekey(){
+    public String getResourceKey(){
     	if (this.neutralResource != null)
     		return this.neutralResource.getResourceKey();
     	
