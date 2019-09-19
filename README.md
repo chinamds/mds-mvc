@@ -4,11 +4,11 @@ MDSPlus:
 
 You can find all details on the [official website](http://www.mmdsplus.com/).
 
-![alt tag](http://www.mmdsplus.com/services/api/contentitems/getmedia?moid=118&dt=Original&g=2)
+![alt tag](http://www.mmdsplus.com/services/api/contentitems/getmedia?moid=121&dt=Optimized&g=2)
 
-![alt tag](http://www.mmdsplus.com/services/api/contentitems/getmedia?moid=119&dt=Original&g=2)
+![alt tag](http://www.mmdsplus.com/services/api/contentitems/getmedia?moid=123&dt=Optimized&g=2)
 
-![alt tag](http://www.mmdsplus.com/services/api/contentitems/getmedia?moid=120&dt=Original&g=2)
+![alt tag](http://www.mmdsplus.com/services/api/contentitems/getmedia?moid=122&dt=Optimized&g=2)
 
 
 1.	About MDSPlus:
