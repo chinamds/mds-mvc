@@ -1,6 +1,8 @@
 MDSPlus:
 
-	You can find all details on the [official website](http://www.mmdsplus.com/).
+	MDSPlus is a web(SSH) based software product, that lets you manage your multi media on your own website.
+
+You can find all details on the [official website](http://www.mmdsplus.com/).
 
 ![alt tag](http://www.mmdsplus.com/services/api/contentitems/getmedia?moid=118&dt=Original&g=2)
 
