@@ -886,10 +886,10 @@ public class AppSettings{
 
 		//this.dotNetFrameworkVersion = GetDotNetFrameworkVersion();
 
-		String ffmpegPath = FilenameUtils.concat(this.homePath, "bin\\ffmpeg.exe");
+		String ffmpegPath = FilenameUtils.concat(this.homePath, "bin" + File.separator + "ffmpeg.exe");
 		this.ffmpegPath = (FileMisc.fileExists(ffmpegPath) ? ffmpegPath : StringUtils.EMPTY);
 
-		String imageMagickConvertPath = FilenameUtils.concat(this.homePath, "bin\\convert.exe");
+		String imageMagickConvertPath = FilenameUtils.concat(this.homePath, "bin" + File.separator + "convert.exe");
 		this.imageMagickConvertPath = (FileMisc.fileExists(imageMagickConvertPath) ? imageMagickConvertPath : StringUtils.EMPTY);
 
 		this.isInitialized = true;

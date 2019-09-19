@@ -75,6 +75,7 @@ public class ImageOptimizedCreator extends DisplayObjectCreator{
 		}
 
 		if (!imageCreated){
+			log.info("ImageOptimizedCreator - generateAndSaveFile - generateImageUsingImageMagick failed, try generateImageUsingDotNet");
 			size = generateImageUsingDotNet(newFilePath, gallerySetting.getMaxOptimizedLength(), gallerySetting.getOptimizedImageJpegQuality());
 		}
 

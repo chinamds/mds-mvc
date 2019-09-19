@@ -232,13 +232,13 @@
 			},
 
 			getAlbumUrl: function (albumId, preserveTags) {
-				// Gets URL to album. Ex: http://localhost/default.aspx?tag=desert, http://localhost/default.aspx?aid=44
+				// Gets URL to album. Ex: http://localhost/cm/galleryview?tag=desert, http://localhost/cm/galleryview?aid=44
 				// When preserveTags=true, the qs parms tag, people, and search are included if present; otherwise they are stripped
 				return Mds.GetAlbumUrl(albumId, preserveTags);
 			},
 
 			getContentItemUrl: function (contentItem, preserveTags) {
-				// Generate URL to the page containing the specified gallery item. Ex: http://localhost/default.aspx?aid=44, http://localhost/default.aspx?tag=desert&moid=23
+				// Generate URL to the page containing the specified gallery item. Ex: http://localhost/cm/galleryview?aid=44, http://localhost/cm/galleryview?tag=desert&moid=23
 				// When preserveTags=true, the qs parms title, tag, people, search, latest & filter are included if present; otherwise they are stripped
 				var qs = { aid: contentItem.IsAlbum ? contentItem.Id : null, moid: contentItem.IsAlbum ? null : contentItem.Id };
 
@@ -259,7 +259,7 @@
 			},
 
 			getContentUrl: function (mediaId, preserveTags) {
-				// Generate URL to the page containing the specified media item. Ex: http://localhost/default.aspx?tag=desert&moid=23
+				// Generate URL to the page containing the specified media item. Ex: http://localhost/cm/galleryview?tag=desert&moid=23
 				// When preserveTags=true, the qs parms tag, people, and search are included if present; otherwise they are stripped
 				var qs = { aid: null, moid: mediaId };
 
@@ -280,13 +280,13 @@
 			},
 
 			getDownloadUrl: function (albumId) {
-				// Gets URL to page where album objects can be downloaded. Ex: http://localhost/default.aspx?g=task_downloadobjects&aid=45
+				// Gets URL to page where album objects can be downloaded. Ex: http://localhost/cm/galleryview?g=task_downloadobjects&aid=45
 				//return Mds.GetUrl(window.location.href, { g: 'task_downloadobjects', moid: null, aid: albumId });
 				return Mds.GetUrl(window.Mds.AppRoot + "/cm/galleryview", {  g: 'cm_downloadobjects', moid: null, aid: albumId });
 			},
 
 			getAddUrl: function (galleryData) {
-				// Gets URL to add objects page for current album. Ex: http://localhost/default.aspx?g=task_addobjects&aid=45
+				// Gets URL to add objects page for current album. Ex: http://localhost/cm/galleryview?g=task_addobjects&aid=45
 				//return Mds.GetUrl(window.location.href, { g: 'task_addobjects', aid: galleryData.Album.Id });
 				return Mds.GetUrl(window.Mds.AppRoot + "/cm/galleryview", { g: 'cm_addobjects', aid: galleryData.Album.Id });
 			}
@@ -583,7 +583,7 @@
 		checkedAlbumIdsHiddenFieldClientId: '', // The client ID of the hidden input field that stores a comma-separated list of the album IDs of currently checked nodes
 		theme: 'mds', // Used to generate the CSS class name that is applied to the HTML DOM element that contains the treeview. Ex: "mds" is rendered as CSS class "jstree-mds"
 		requiredSecurityPermissions: 1, //ViewAlbumOrContentObject
-		navigateUrl: '', // The URL to the current page without query string parms. Used during lazy load ajax call. Example: "/dev/ds/gallery.aspx"
+		navigateUrl: '', // The URL to the current page without query string parms. Used during lazy load ajax call. Example: "/dev/cm/galleryview"
 		enableCheckboxPlugin: false, // Indicates whether a checkbox is to be rendered for each node
 		treeDataUrl: '' // The URL for retrieving tree data. Ignored when tree data is passed via data parameter
 	};
@@ -811,7 +811,8 @@
 				return nxtMi ? self.getPermalink(nxtMi.Id) : Mds.GetAlbumUrl(self.Data.Album.Id, true);
 			},
 			getEmbedCode: function () {
-				var url = Mds.GetUrl(self.Data.App.AppUrl + '/' + self.Data.App.GalleryResourcesPath + '/embed.aspx' + location.search, { aid: null, moid: self.Data.MediaItem.Id });
+				//var url = Mds.GetUrl(self.Data.App.AppUrl + '/' + self.Data.App.GalleryResourcesPath + '/galleryview' + location.search, { aid: null, moid: self.Data.MediaItem.Id });
+				var url = Mds.GetUrl(self.Data.App.AppUrl + '/cm/galleryview' + location.search, { aid: null, moid: self.Data.MediaItem.Id });
 
 				return "<iframe allowtransparency='true' frameborder='0' sandbox='allow-same-origin allow-forms allow-scripts' scrolling='auto' src='"
 					+ url + "' style='width:100%;height:100%'></iframe>";

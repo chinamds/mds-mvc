@@ -492,12 +492,14 @@ public class ImageHelper {
 
 	private static void saveJpgImageToDisk(BufferedImage image, String newFilepath, float jpegQuality)	{
 		FileOutputStream out;
+		ImageWriter imageWriter = null;
+		ImageOutputStream ios =  null;
 		try {
 			out = new FileOutputStream(newFilepath);
 			
 			//JPEGImageWriter imageWriter = (JPEGImageWriter) ImageIO.getImageWritersBySuffix("jpg").next();
-			ImageWriter imageWriter = ImageIO.getImageWritersBySuffix("jpeg").next();
-			ImageOutputStream ios = ImageIO.createImageOutputStream(out);
+			imageWriter = ImageIO.getImageWritersBySuffix("jpeg").next();
+			ios = ImageIO.createImageOutputStream(out);
 			imageWriter.setOutput(ios);
 			// and metadata
 			IIOMetadata imageMetaData = imageWriter.getDefaultImageMetadata(new ImageTypeSpecifier(image), null);
@@ -517,6 +519,10 @@ public class ImageHelper {
 			// jfif.setAttribute("Ydensity", Integer.toString(dpi));
 			//
 			// }
+			if (jpegQuality > 1f) {
+				jpegQuality = jpegQuality / 100.0f;
+			}
+			
 			if (jpegQuality >= 0 && jpegQuality <= 1f) {
 				// old compression
 				// jpegEncodeParam.setQuality(JPEGcompression,false);
@@ -528,10 +534,7 @@ public class ImageHelper {
 			// old write and clean
 			// jpegEncoder.encode(image_to_save, jpegEncodeParam);
 			// new Write and clean up
-			imageWriter.write(imageMetaData, new IIOImage(image, null, null), null);
-			ios.close();
-			imageWriter.dispose();
-			
+			imageWriter.write(imageMetaData, new IIOImage(image, null, null), null);			
 			/*JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
 			JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(image);
 			param.setQuality(jpegQuality, true);
@@ -540,6 +543,17 @@ public class ImageHelper {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			if (imageWriter != null)
+				imageWriter.dispose();
+			if (ios != null) {
+				try {
+					ios.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 

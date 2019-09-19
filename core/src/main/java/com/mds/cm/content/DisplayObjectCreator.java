@@ -36,6 +36,8 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.im4java.core.ConvertCmd;
 import org.im4java.core.IM4JavaException;
 import org.im4java.core.IMOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mds.cm.exception.InvalidGalleryException;
 import com.mds.cm.exception.UnsupportedImageTypeException;
@@ -63,6 +65,7 @@ import org.apache.commons.io.FilenameUtils;
 ///   Provides base functionality for creating and saving the files associated with <see cref="ContentObjectBo" /> objects.
 /// </summary>
 public abstract class DisplayObjectCreator{
+	protected static final Logger log = LoggerFactory.getLogger(DisplayObjectCreator.class);
 	protected ContentObjectBo contentObject;
 	protected DisplayObject parent;
 	
@@ -277,6 +280,7 @@ public abstract class DisplayObjectCreator{
 		}
 
 		if (FileMisc.fileExists(tmpImagePath))	{
+			log.info("DisplayObjectCreator - generateImageUsingImageMagick - ImageMagick.generateImage failed, try generateImageUsingWpf");
 			// Save the path so it can be used later by the optimized image creator.
 			getContentObject().getOriginal().setTempFilePath(tmpImagePath);
 
