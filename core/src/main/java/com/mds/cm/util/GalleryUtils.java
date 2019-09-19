@@ -875,7 +875,7 @@ public final class GalleryUtils implements GalleryCreatedListener {
 
 		user.GalleryId = galleryId;
 
-		/*if (UserUtils.MembershipDcm.GetType().toString() == Constants.ActiveDirectoryMembershipProviderName)
+		/*if (UserUtils.MembershipMds.GetType().toString() == Constants.ActiveDirectoryMembershipProviderName)
 		{
 			return CreateActiveDirectoryAdministrator(user);
 		}
@@ -902,9 +902,9 @@ public final class GalleryUtils implements GalleryCreatedListener {
 		if (user == null)
 			throw new ArgumentNullException();
 
-		/*if (UserUtils.MembershipDcm.GetType().toString() != Constants.ActiveDirectoryMembershipProviderName)
+		/*if (UserUtils.MembershipMds.GetType().toString() != Constants.ActiveDirectoryMembershipProviderName)
 		{
-			throw new UnsupportedOperationException(MessageFormat.format("The function CreateActiveDirectoryAdministrator should be called only when using ActiveDirectoryMembershipProvider. Instead, {0} was detected.", UserUtils.MembershipDcm.GetType()));
+			throw new UnsupportedOperationException(MessageFormat.format("The function CreateActiveDirectoryAdministrator should be called only when using ActiveDirectoryMembershipProvider. Instead, {0} was detected.", UserUtils.MembershipMds.GetType()));
 		}*/
 
 		String sysAdminRole = RoleUtils.validateSysAdminRole();
@@ -950,7 +950,7 @@ public final class GalleryUtils implements GalleryCreatedListener {
 		UserAccount userAccount = UserUtils.getUserAccount(user.UserName, false);
 
 		if (userAccount != null){
-			/*if (!UserUtils.MembershipDcm.ValidateUser(user.UserName, user.Password)){
+			/*if (!UserUtils.MembershipMds.ValidateUser(user.UserName, user.Password)){
 				// Password doesn't match. Try to update.
 				if (!UserUtils.EnablePasswordRetrieval)	{
 					throw new Exception(MessageFormat.format("Cannot change password because the membership's password retrieval setting is disabled. The password specified in {0} does not match the existing password for user {1}, so an attempt was made to change it. However, the membership provider does not allow it. Things you can try: (1) Specify a different username in the text file. (2) Enter the correct password for the user in the text file. (3) Edit web.config to allow password retrieval: Set enablePasswordRetrieval=\"true\" in the membership section.", UserUtils.installFilePath, user.UserName));

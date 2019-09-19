@@ -411,23 +411,23 @@
 	        	}
         	}
         	if (self.ThumbPickerOptions.showWarningMsg && el.warningMsg.length > 0){
-        		thumbhtml.push('	        <p id="p2" class="dcm_msgwarning">'+ el.warningMsg + '</p>');
+        		thumbhtml.push('	        <p id="p2" class="mds_msgwarning">'+ el.warningMsg + '</p>');
         	}
         	if (self.ThumbPickerOptions.showFileSize){
         		if (el.id.startsWith('a')){
 	        		if (el.sc && (self.ThumbPickerOptions.thumbPickerType=='album' || self.ThumbPickerOptions.thumbPickerType=='all')){
-	        			thumbhtml.push("	        <p id='p3' class='dcm_em'><div class='checkbox'><label><input type='checkbox' id='chk",  el.id, "' value='"
+	        			thumbhtml.push("	        <p id='p3' class='mds_em'><div class='checkbox'><label><input type='checkbox' id='chk",  el.id, "' value='"
 	        					,  el.id, "'>", el.savings, "</label></div></p>");
 	        		}else{
-	        			thumbhtml.push("	        <p id='p3' class='dcm_em'><div class='checkbox'><label><input type='checkbox' id='chk",  el.id, "' value='"
+	        			thumbhtml.push("	        <p id='p3' class='mds_em'><div class='checkbox'><label><input type='checkbox' id='chk",  el.id, "' value='"
 	        					,  el.id, "' class='hidden d-none'>", el.savings, "</label></div></p>");
 	        		}
 	        	}else{
 	        		if (el.sc && (self.ThumbPickerOptions.thumbPickerType=='contentobject' || self.ThumbPickerOptions.thumbPickerType=='all')){
-	        			thumbhtml.push("	        <p id='p3' class='dcm_em'><div class='checkbox'><label><input type='checkbox' id='chk",  el.id, "' value='"
+	        			thumbhtml.push("	        <p id='p3' class='mds_em'><div class='checkbox'><label><input type='checkbox' id='chk",  el.id, "' value='"
 	        					,  el.id, "'>", el.savings, "</label></p>");
 	        		}else{
-	        			thumbhtml.push("	        <p id='p3' class='dcm_em'><div class='checkbox'><label><input type='checkbox' id='chk",  el.id, "' value='"
+	        			thumbhtml.push("	        <p id='p3' class='mds_em'><div class='checkbox'><label><input type='checkbox' id='chk",  el.id, "' value='"
 	        					,  el.id, "' class='hidden d-none'>", el.savings, "</label></div></p>");
 	        		}
 	        	}

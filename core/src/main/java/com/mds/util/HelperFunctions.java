@@ -876,12 +876,12 @@ public class HelperFunctions{
 	/// Append the String to the url as a query String parameter. If the <paramref name="url" /> already contains the
 	/// specified query String parameter, it is replaced with the new one.
 	/// Example:
-	/// Url = "www.dcmplayer.com/index.aspx?aid=5&amp;msg=3"
+	/// Url = "www.aiotplayer.com/index.aspx?aid=5&amp;msg=3"
 	/// QueryStringParameterNameValue = "moid=27"
 	/// Return value: www.MDS.com/index.aspx?aid=5&amp;msg=3&amp;moid=27
 	/// </summary>
 	/// <param name="url">The Url to which the query String parameter should be added
-	/// (e.g. www.dcmplayer.com/index.aspx?aid=5&amp;msg=3).</param>
+	/// (e.g. www.aiotplayer.com/index.aspx?aid=5&amp;msg=3).</param>
 	/// <param name="queryStringParameterNameValue">The query String parameter and value to add to the Url
 	/// (e.g. "moid=27").</param>
 	/// <returns>Returns a new Url containing the specified query String parameter.</returns>
@@ -910,11 +910,11 @@ public class HelperFunctions{
 	/// <summary>
 	/// Remove all query String parameters from the url.
 	/// Example:
-	/// Url = "www.dcmplayer.com/index.aspx?aid=5&amp;msg=3&amp;moid=27"
-	/// Return value: www.dcmplayer.com/index.aspx
+	/// Url = "www.aiotplayer.com/index.aspx?aid=5&amp;msg=3&amp;moid=27"
+	/// Return value: www.aiotplayer.com/index.aspx
 	/// </summary>
 	/// <param name="url">The Url containing the query String parameters to remove
-	/// (e.g. www.dcmplayer.com/index.aspx?aid=5&amp;msg=3&amp;moid=27).</param>
+	/// (e.g. www.aiotplayer.com/index.aspx?aid=5&amp;msg=3&amp;moid=27).</param>
 	/// <returns>Returns a new Url with all query String parameters removed.</returns>
 	public static String removeQueryStringParameter(String url)	{
 		return removeQueryStringParameter(url, StringUtils.EMPTY);
@@ -924,12 +924,12 @@ public class HelperFunctions{
 	/// Remove the specified query String parameter from the url. Specify <see cref="StringUtils.EMPTY" /> for the
 	/// <paramref name="queryStringParameterName" /> parameter to remove the entire set of parameters.
 	/// Example:
-	/// Url = "www.dcmplayer.com/index.aspx?aid=5&amp;msg=3&amp;moid=27"
+	/// Url = "www.aiotplayer.com/index.aspx?aid=5&amp;msg=3&amp;moid=27"
 	/// QueryStringParameterName = "msg"
-	/// Return value: www.dcmplayer.com/index.aspx?aid=5&amp;moid=27
+	/// Return value: www.aiotplayer.com/index.aspx?aid=5&amp;moid=27
 	/// </summary>
 	/// <param name="url">The Url containing the query String parameter to remove
-	/// (e.g. www.dcmplayer.com/index.aspx?aid=5&amp;msg=3&amp;moid=27).</param>
+	/// (e.g. www.aiotplayer.com/index.aspx?aid=5&amp;msg=3&amp;moid=27).</param>
 	/// <param name="queryStringParameterName">The query String parameter name to remove from the Url
 	/// (e.g. "msg"). Specify <see cref="StringUtils.EMPTY" /> to remove the entire set of parameters.</param>
 	/// <returns>Returns a new Url with the specified query String parameter removed.</returns>
@@ -948,7 +948,7 @@ public class HelperFunctions{
 		}else{
 			// We have a query String to remove. Separate the base url from the query String, and process the query String.
 
-			// Get the base url (e.g. "www.dcmplayer.com/index.aspx")
+			// Get the base url (e.g. "www.aiotplayer.com/index.aspx")
 			newUrl = url.substring(0, separator);
 
 			if (StringUtils.isBlank(queryStringParameterName)){

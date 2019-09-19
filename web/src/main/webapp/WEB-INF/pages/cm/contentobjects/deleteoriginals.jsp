@@ -33,14 +33,14 @@
 	
 	<ts:taskheader taskHeader="${taskHeader }" taskBody="${ taskBody}" task_Ok_Button_Text="${task_Ok_Button_Text}" />
 	<input type="hidden" id="hdnCheckedContentObjectIds" name="hdnCheckedContentObjectIds" value="<c:out value="${hdnCheckedContentObjectIds}"/>" />
-	<div class="dcm_addleftpadding1">
-		<p class="dcm_textcol dcm_msgwarning" style="border-bottom: #369 1px solid;">
+	<div class="mds_addleftpadding1">
+		<p class="mds_textcol mds_msgwarning" style="border-bottom: #369 1px solid;">
 			<fmt:message key="task.deleteOriginal.Warning"/>
 		</p>
-		<p class="dcm_h3">
+		<p class="mds_h3">
 			<fmt:message key="task.deleteOriginal.Potential_Savings_Text"><fmt:param value="${totalFileSizeKbAllOriginalFiles}"/><fmt:param value="${totalFileSizeKbAllOriginalFiles/1024}"/></fmt:message>
 		</p>
-		<p class="dcm_textcol">
+		<p class="mds_textcol">
 			<fmt:message key="task.deleteOriginal.Potential_Savings_Hdr"/>
 		</p>
 	</div>

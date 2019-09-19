@@ -1,6 +1,6 @@
 
 // Contains javascript required for read-only browsing of a gallery
-//#region DCM System javascript
+//#region MDS System javascript
 ; (function ($, window, document, undefined) {
 	//#region Gallery-wide functions
 

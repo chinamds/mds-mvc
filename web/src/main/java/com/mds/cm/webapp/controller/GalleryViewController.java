@@ -520,7 +520,7 @@ public class GalleryViewController extends AbstractBaseController<Gallery, Long>
 	private SettingsRest getSettingsEntity(AlbumBo album, GallerySettings gallerySettings){
 		SettingsRest settings = new SettingsRest();
 		settings.setGalleryId(gallerySettings.getGalleryId());
-		settings.setClientId("DcmClientId");
+		settings.setClientId("MdsClientId");
 		settings.setContentClientId(StringUtils.join(settings.getClientId(), "_mediaHtml"));
 		settings.setContentTmplName(StringUtils.join(settings.getClientId(), "_media_tmpl"));
 		settings.setHeaderClientId(StringUtils.join(settings.getClientId(), "_gHdrHtml"));

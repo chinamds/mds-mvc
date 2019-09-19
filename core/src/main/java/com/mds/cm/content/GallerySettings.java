@@ -1796,10 +1796,10 @@ public class GallerySettings implements Comparable<GallerySettings>{
 
 	/// <summary>
 	/// Gets or sets a value indicating whether to allow external calls to the synchronize web service. When true, two web service
-	/// methods can be invoked by an anonymous user to begin a synchronization: <see cref="Dcm.Gallery.SyncAllGalleries(String)" /> and 
-	/// <see cref="Dcm.Gallery.SyncAlbum(int, String)" />. Each method must include the password specified in 
+	/// methods can be invoked by an anonymous user to begin a synchronization: <see cref="Mds.Gallery.SyncAllGalleries(String)" /> and 
+	/// <see cref="Mds.Gallery.SyncAlbum(int, String)" />. Each method must include the password specified in 
 	/// <see cref="IGallerySettings.RemoteAccessPassword" />. This setting does not affect the third web service method to start a synch
-	/// (<see cref="Dcm.Gallery.Synchronize" />), as that method requires that it be invoked by a logged-on user with 
+	/// (<see cref="Mds.Gallery.Synchronize" />), as that method requires that it be invoked by a logged-on user with 
 	/// permission to execute synchronizations, and as such it is always available (it is also the method used by the 
 	/// Synchronize page to start a sync).
 	/// </summary>
@@ -1815,7 +1815,7 @@ public class GallerySettings implements Comparable<GallerySettings>{
 	/// <summary>
 	/// Gets or sets the password that is passed to the remote synchronization web service methods. This password prevents
 	/// malicious users from starting unauthorized synchronizations. The following web service methods require this password:
-	/// <see cref="Dcm.Gallery.SyncAllGalleries(String)" /> and <see cref="Dcm.Gallery.SyncAlbum(int, String)" />.
+	/// <see cref="Mds.Gallery.SyncAllGalleries(String)" /> and <see cref="Mds.Gallery.SyncAlbum(int, String)" />.
 	/// </summary>
 	/// <value>The remote sync password.</value>
 	public String getRemoteAccessPassword()	{
@@ -1851,7 +1851,7 @@ public class GallerySettings implements Comparable<GallerySettings>{
 	}
 	
 	/// <summary>
-		/// The name associated with the <see cref="EmailFromAddress" /> email address. Emails sent from DCM System
+		/// The name associated with the <see cref="EmailFromAddress" /> email address. Emails sent from MDS System
 		/// will appear to be sent from this person.
 		/// </summary>
 		/// <value>The name of the email from.</value>
@@ -1864,7 +1864,7 @@ public class GallerySettings implements Comparable<GallerySettings>{
 		}
 
 		/// <summary>
-		/// The email address associated with <see cref="EmailFromName" />. Emails sent from DCM System
+		/// The email address associated with <see cref="EmailFromName" />. Emails sent from MDS System
 		/// will appear to be sent from this email address.
 		/// </summary>
 		/// <value>The email from address.</value>

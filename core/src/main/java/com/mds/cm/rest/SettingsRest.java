@@ -23,7 +23,7 @@ public class SettingsRest{
 	/// <summary>
 	/// Gets the client ID for the current Gallery control. An HTML element having this ID will
 	/// be present in the web page and can be used by javascript to scope all actions to the 
-	/// intended control instance. Example: "dcm_g"
+	/// intended control instance. Example: "mds_g"
 	/// </summary>
 	private String clientId;
 	@JsonProperty(value = "ClientId")
@@ -37,7 +37,7 @@ public class SettingsRest{
 
 	/// <summary>
 	/// Gets the client ID for the DOM element that is to receive the contents of the media
-	/// object. Ex: "dcm_g_mediaHtml"
+	/// object. Ex: "mds_g_mediaHtml"
 	/// </summary>
 	private String contentClientId;
 	@JsonProperty(value = "ContentClientId")
@@ -51,7 +51,7 @@ public class SettingsRest{
 
 	/// <summary>
 	/// Gets the name of the compiled jsRender template for the content object.
-	/// Ex: "dcm_g_media_tmpl"
+	/// Ex: "mds_g_media_tmpl"
 	/// </summary>
 	private String contentTmplName;
 	@JsonProperty(value = "ContentTmplName")
@@ -65,7 +65,7 @@ public class SettingsRest{
 
 	/// <summary>
 	/// Gets the client ID for the DOM element that is to receive the contents of the gallery
-	/// header. Ex: "dcm_g_gHdrHtml"
+	/// header. Ex: "mds_g_gHdrHtml"
 	/// </summary>
 	private String headerClientId;
 	@JsonProperty(value = "HeaderClientId")
@@ -78,7 +78,7 @@ public class SettingsRest{
 	}
 
 	/// <summary>
-	/// Gets the name of the compiled jsRender template for the header. Ex: "dcm_g_gallery_header_tmpl"
+	/// Gets the name of the compiled jsRender template for the header. Ex: "mds_g_gallery_header_tmpl"
 	/// </summary>
 	private String headerTmplName;
 	@JsonProperty(value = "HeaderTmplName")
@@ -92,7 +92,7 @@ public class SettingsRest{
 
 	/// <summary>
 	/// Gets the client ID for the DOM element that is to receive the contents of album thumbnail 
-	/// images. Ex: "dcm_g_thmbHtml"
+	/// images. Ex: "mds_g_thmbHtml"
 	/// </summary>
 	private String thumbnailClientId;
 	@JsonProperty(value = "ThumbnailClientId")
@@ -106,7 +106,7 @@ public class SettingsRest{
 
 	/// <summary>
 	/// Gets the name of the compiled jsRender template for the album thumbnail images.
-	/// Ex: "dcm_g_thumbnail_tmpl"
+	/// Ex: "mds_g_thumbnail_tmpl"
 	/// </summary>
 	private String thumbnailTmplName;
 	@JsonProperty(value = "ThumbnailTmplName")
@@ -120,7 +120,7 @@ public class SettingsRest{
 
 	/// <summary>
 	/// Gets the client ID for the DOM element that is to receive the contents of the left pane
-	/// of the media view page. Ex: "dcm_g_lpHtml"
+	/// of the media view page. Ex: "mds_g_lpHtml"
 	/// </summary>
 	private String leftPaneClientId;
 	@JsonProperty(value = "LeftPaneClientId")
@@ -134,7 +134,7 @@ public class SettingsRest{
 
 	/// <summary>
 	/// Gets the name of the compiled jsRender template for the left pane of the media view page.
-	/// Ex: "dcm_g_lp_tmpl"
+	/// Ex: "mds_g_lp_tmpl"
 	/// </summary>
 	private String leftPaneTmplName;
 	@JsonProperty(value = "LeftPaneTmplName")
@@ -148,7 +148,7 @@ public class SettingsRest{
 
 	/// <summary>
 	/// Gets the client ID for the DOM element that is to receive the contents of the right pane
-	/// of the media view page. Ex: "dcm_g_rpHtml"
+	/// of the media view page. Ex: "mds_g_rpHtml"
 	/// </summary>
 	private String rightPaneClientId;
 	@JsonProperty(value = "RightPaneClientId")
@@ -162,7 +162,7 @@ public class SettingsRest{
 
 	/// <summary>
 	/// Gets the name of the compiled jsRender template for the right pane of the media view page.
-	/// Ex: "dcm_g_rp_tmpl"
+	/// Ex: "mds_g_rp_tmpl"
 	/// </summary>
 	private String rightPaneTmplName;
 	@JsonProperty(value = "RightPaneTmplName")

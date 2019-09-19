@@ -672,10 +672,10 @@ public class DailyListManagerImpl extends GenericManagerImpl<DailyList, Long> im
 	
 	/// <summary>
 	/// Gets the gallery data for the current content object, if one exists, or the current album.
-	/// <see cref="Entity.DCMData.Settings" /> is assigned, unlike when this object is retrieved
+	/// <see cref="Entity.MDSData.Settings" /> is assigned, unlike when this object is retrieved
 	/// through the web service (since the control-specific settings can't be determined in that case).
 	/// </summary>
-	/// <returns>Returns an instance of <see cref="Entity.DCMData" />.</returns>
+	/// <returns>Returns an instance of <see cref="Entity.MDSData" />.</returns>
 	public CMData getContentPreviewData(String contentObjectId, String dailyListId, HttpServletRequest request) throws UnsupportedContentObjectTypeException, UnsupportedImageTypeException, InvalidContentObjectException, InvalidMDSRoleException, GallerySecurityException, IOException, InvalidGalleryException, WebException, InvalidAlbumException, Exception{
 		ContentObjectBo mo = null;
 		if(!StringUtils.isBlank(contentObjectId)) {
@@ -703,13 +703,13 @@ public class DailyListManagerImpl extends GenericManagerImpl<DailyList, Long> im
 		
 				
 		AlbumBo album = ContentObjectUtils.getContentObjectsForPreview(mo.getGalleryId(), contentObjects);
-		CMData dcmData = GalleryUtils.getCMDataForContentPreview(mo, album
+		CMData mdsData = GalleryUtils.getCMDataForContentPreview(mo, album
 				, new CMDataLoadOptions(false, true, ContentObjectType.ContentObject, ApprovalStatus.All), request);
 		
 		UiTemplateBo uiTemplate = CMUtils.loadUiTemplates().get(UiTemplateType.ContentObject, album);
-		dcmData.setSettings(getSettingsEntity(mo.getGalleryId(), uiTemplate, contentObjects.size() > 1, contentObjects.size() > 1, false));
+		mdsData.setSettings(getSettingsEntity(mo.getGalleryId(), uiTemplate, contentObjects.size() > 1, contentObjects.size() > 1, false));
 
-		return dcmData;
+		return mdsData;
 	}
 	
 	/// <summary>
@@ -722,7 +722,7 @@ public class DailyListManagerImpl extends GenericManagerImpl<DailyList, Long> im
 		settings.setGalleryId(galleryId);
 		settings.setContentTmplName(uiTemplate.HtmlTemplate);
 		settings.setHeaderTmplName(uiTemplate.ScriptTemplate);
-		/*settings.setClientId(getDcmClientId());
+		/*settings.setClientId(getMdsClientId());
 		settings.setContentClientId(getContentClientId());
 		settings.setContentTmplName(getContentTmplName());*/
 		/*settings.setHeaderClientId(getHeaderClientId());

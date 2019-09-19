@@ -70,11 +70,11 @@ public class FileUploadController extends BaseFormController {
         CommonsMultipartFile file = (CommonsMultipartFile) multipartRequest.getFile("file");
 
         // the directory to upload to
-        String uploadDir = getServletContext().getRealPath("/dcmrepo");
+        String uploadDir = getServletContext().getRealPath("/mdsrepo");
 
         // The following seems to happen when running jetty:run
         if (uploadDir == null) {
-            uploadDir = new File("src/main/webapp/dcmrepo").getAbsolutePath();
+            uploadDir = new File("src/main/webapp/mdsrepo").getAbsolutePath();
         }
         uploadDir += File.separatorChar + request.getRemoteUser() + File.separatorChar;
 

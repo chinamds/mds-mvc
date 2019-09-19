@@ -41,7 +41,7 @@ import com.mds.core.exception.ApplicationNotInitializedException;
 /// <summary>
 /// Contains application level settings used by MDS System. This class must be initialized by the calling assembly early in the 
 /// application life cycle. It is initialized by calling <see cref="Initialize" />. In the case of the Gallery 
-/// Server Pro web application, <see cref="Initialize" /> is called from the static constructor of the DcmPage base page.
+/// Server Pro web application, <see cref="Initialize" /> is called from the static constructor of the MdsPage base page.
 /// </summary>
 public class AppSettings{
 	

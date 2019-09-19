@@ -16,7 +16,7 @@ import com.mds.util.HelperFunctions;
 import com.mds.cm.util.CMUtils;
 
 /// <summary>
-	/// Represents a organization within DCM System.
+	/// Represents a organization within MDS System.
 	/// </summary>
 public class OrganizationBo implements Comparable<OrganizationBo>{
 	////#region Private Fields

@@ -15,7 +15,7 @@ public class AppRest{
 
 	/// <summary>
 	/// Gets the path, relative to the current application, to the directory containing the MDS System
-	/// skin resources for the currently selected skin. Examples: "ds/skins/simple-grey", "/dev/gallery/dcm/skins/simple-grey"
+	/// skin resources for the currently selected skin. Examples: "ds/skins/simple-grey", "/dev/gallery/mds/skins/simple-grey"
 	/// </summary>
 	/// <value>The skin path.</value>
 	public String SkinPath;

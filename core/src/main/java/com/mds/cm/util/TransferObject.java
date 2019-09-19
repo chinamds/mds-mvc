@@ -44,7 +44,7 @@ public final class TransferObject {
 		else if (qsValue.equals("copy"))
 			_transferType = TransferType.Copy;
 		//else
-		//  throw new DCM.EventLogs.CustomExceptions.UnexpectedQueryStringException();
+		//  throw new MDS.EventLogs.CustomExceptions.UnexpectedQueryStringException();
 
 		return _transferType;
 	}
@@ -83,7 +83,7 @@ public final class TransferObject {
 			// Show all galleries the current user can administer. This allows them to move/copy objects between galleries.
 			// We could have tried to show galleries where user has add album permission but that would have complicated things.
 			// Simpler for the rule to be "Users can transfer to other galleries only where they are admins for both galleries."
-			tvUC.RootAlbumPrefix = String.Concat(Resources.DCM.Site_Gallery_Text, " '{GalleryDescription}': ");
+			tvUC.RootAlbumPrefix = String.Concat(Resources.MDS.Site_Gallery_Text, " '{GalleryDescription}': ");
 			tvUC.Galleries = UserController.GetGalleriesCurrentUserCanAdminister();
 		}
 
@@ -107,9 +107,9 @@ public final class TransferObject {
 	/// Move or copy the objects. An exception is thrown if the user does not have the required permission or is 
 	/// trying to transfer an object to itself.
 	/// </summary>
-	/// <exception cref="DCM.EventLogs.CustomExceptions.GallerySecurityException">Thrown when the logged on 
+	/// <exception cref="MDS.EventLogs.CustomExceptions.GallerySecurityException">Thrown when the logged on 
 	/// user does not belong to a role that authorizes the moving or copying.</exception>
-	/// <exception cref="DCM.EventLogs.CustomExceptions.CannotTransferAlbumToNestedDirectoryException">
+	/// <exception cref="MDS.EventLogs.CustomExceptions.CannotTransferAlbumToNestedDirectoryException">
 	/// Thrown when the user tries to move or copy an album to one of its children albums.</exception>
 	public static void transferObjects(String[] contentObjectIds, long gid, AlbumBo destAlbum, TransferType transferType) throws Exception	{
 		//#region Get list of objects to move or copy
@@ -183,9 +183,9 @@ public final class TransferObject {
 	/// such as lack of user permission or trying to move/copy objects to itself.
 	/// </summary>
 	/// <param name="objectsToMoveOrCopy">The albums or content objects to move or copy.</param>
-	/// <exception cref="DCM.EventLogs.CustomExceptions.GallerySecurityException">Thrown when the logged on 
+	/// <exception cref="MDS.EventLogs.CustomExceptions.GallerySecurityException">Thrown when the logged on 
 	/// user does not belong to a role that authorizes the moving or copying.</exception>
-	/// <exception cref="DCM.EventLogs.CustomExceptions.CannotTransferAlbumToNestedDirectoryException">
+	/// <exception cref="MDS.EventLogs.CustomExceptions.CannotTransferAlbumToNestedDirectoryException">
 	/// Thrown when the user tries to move or copy an album to one of its children albums.</exception>
 	private static void validateObjectsCanBeMovedOrCopied(ContentObjectBoCollection objectsToMoveOrCopy, long galleryId, AlbumBo destAlbum, TransferType transferType) throws GallerySecurityException, UnsupportedContentObjectTypeException, InvalidAlbumException, InvalidGalleryException, CannotTransferAlbumToNestedDirectoryException, InvalidMDSRoleException{
 		boolean movingOrCopyingAtLeastOneAlbum = false;
@@ -260,13 +260,13 @@ public final class TransferObject {
 	/// Throw exception if user does not have permission to move the specified gallery object out of the current album.
 	/// Moving an album or content object means we are essentially deleting it from the source album, so make sure user has 
 	/// the appropriate delete permission for the current album. Does not validate user has permission to add objects to 
-	/// destination album. Assumes each gallery object is contained in the current album as retrieved by DcmPage.GetAlbum().
+	/// destination album. Assumes each gallery object is contained in the current album as retrieved by MdsPage.GetAlbum().
 	/// No validation is performed if we are copying since no special permissions are needed for copying (except a check 
 	/// on the destination album, which we do elsewhere).
 	/// </summary>
 	/// <param name="contentObjectToMoveOrCopy">The album or content object to move or copy.</param>
 	/// <param name="securityActions">The security permission to validate.</param>
-	/// <exception cref="DCM.EventLogs.CustomExceptions.GallerySecurityException">Thrown when the logged on 
+	/// <exception cref="MDS.EventLogs.CustomExceptions.GallerySecurityException">Thrown when the logged on 
 	/// user does not belong to a role that authorizes the specified security action.</exception>
 	private static void validateSecurityForAlbumOrContentObject(ContentObjectBo contentObjectToMoveOrCopy, long galleryId, SecurityActions securityActions, TransferType transferType) throws UnsupportedContentObjectTypeException, InvalidAlbumException, InvalidGalleryException, GallerySecurityException, InvalidMDSRoleException	{
 		if (transferType == TransferType.Move)	{
@@ -288,7 +288,7 @@ public final class TransferObject {
 	/// Throw exception if user is trying to move or copy an album to one of its children albums.
 	/// </summary>
 	/// <param name="albumToMoveOrCopy">The album to move or copy.</param>
-	/// <exception cref="DCM.EventLogs.CustomExceptions.CannotTransferAlbumToNestedDirectoryException">
+	/// <exception cref="MDS.EventLogs.CustomExceptions.CannotTransferAlbumToNestedDirectoryException">
 	/// Thrown when the user tries to move or copy an album to one of its children albums.</exception>
 	private static void validateAlbumCanBeMovedOrCopied(AlbumBo albumToMoveOrCopy, AlbumBo destAlbum) throws CannotTransferAlbumToNestedDirectoryException	{
 		AlbumBo albumParent = destAlbum;
@@ -322,7 +322,7 @@ public final class TransferObject {
 	///// <param name="movedAlbum">The album that has just been moved to a new destination album.</param>
 	//private void UpdateRoleSecurityForMovedAlbum(AlbumBo movedAlbum)
 	//{
-	//  foreach (IDCMSystemRole role in this.GetDCMSystemRoles())
+	//  foreach (IMDSSystemRole role in this.GetMDSSystemRoles())
 	//  {
 	//    if (role.AllAlbumIds.Contains(movedAlbum.Id))
 	//    {
@@ -379,7 +379,7 @@ public final class TransferObject {
 	///// <param name="copiedAlbum">The album that was just copied.</param>
 	//private void UpdateRoleSecurityForCopiedAlbum(int sourceAlbumId, ContentObjectBo copiedAlbum)
 	//{
-	//  foreach (IDCMSystemRole role in this.GetDCMSystemRoles())
+	//  foreach (IMDSSystemRole role in this.GetMDSSystemRoles())
 	//  {
 	//    if (role.AllAlbumIds.Contains(sourceAlbumId))
 	//    {

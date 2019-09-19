@@ -35,11 +35,11 @@
 		                    var ctrlId = idPrefix + '_' + name + '_' + uniqueIndex;
 		                    // Create a span as a container
 		                    var ctrl = document.createElement('div');
-		                    //$(ctrl).addClass("dcm_ns").appendTo(parent);
+		                    //$(ctrl).addClass("mds_ns").appendTo(parent);
 		                    //ctrl = document.createElement('ui');
 		                  
 		                    // Set the ID and name to container and append it to parent control which is a table cell
-		                    $(ctrl).attr({ id: ctrlId, name: ctrlId }).addClass("dcm_ns").appendTo(parent);
+		                    $(ctrl).attr({ id: ctrlId, name: ctrlId }).addClass("mds_ns").appendTo(parent);
 	
 		                    // Finally, return the container control	 		              	
 		                    return ctrl;
@@ -366,25 +366,25 @@
  					contentpreview_a_tmpl_script : data.Settings.HeaderTmplName
  				});
 
- 				data.Settings.ClientId='dcm_dl';
+ 				data.Settings.ClientId='mds_dl';
  				data.Settings.HeaderTmplName = 'contentpreview_a_tmpl_html';
-				data.Settings.HeaderClientId = 'dcm_dl_mediaHtml';
+				data.Settings.HeaderClientId = 'mds_dl_mediaHtml';
 				data.Settings.ThumbnailTmplName = 'contentpreview_a_tmpl_html';
-				data.Settings.ThumbnailClientId = 'dcm_dl_mediaHtml';
+				data.Settings.ThumbnailClientId = 'mds_dl_mediaHtml';
 				data.Settings.ContentTmplName = 'contentpreview_a_tmpl_html';
-				data.Settings.ContentClientId = 'dcm_dl_mediaHtml';
+				data.Settings.ContentClientId = 'mds_dl_mediaHtml';
 				data.Settings.LeftPaneTmplName = 'contentpreview_a_tmpl_html';
-				data.Settings.LeftPaneClientId = 'dcm_dl_mediaHtml';
+				data.Settings.LeftPaneClientId = 'mds_dl_mediaHtml';
 				data.Settings.RightPaneTmplName = 'contentpreview_a_tmpl_html';
-				data.Settings.RightPaneClientId = 'dcm_dl_mediaHtml';
+				data.Settings.RightPaneClientId = 'mds_dl_mediaHtml';
 				
-				window.dcm_dl = {};
-				window.dcm_dl.p = function(){return $('#dcm_dl');};
-				window.dcm_dl.dcmData = data;
+				window.mds_dl = {};
+				window.mds_dl.p = function(){return $('#mds_dl');};
+				window.mds_dl.mdsData = data;
 
  				// Pass the script template to the renderer and then execute. It is expected the script contains code for
  				// rendering the HTML template.
- 				var script = $.render["contentpreview_a_tmpl_script"](window.dcm_dl.dcmData);
+ 				var script = $.render["contentpreview_a_tmpl_script"](window.mds_dl.mdsData);
  				if (console) console.log(script); // Send to console (useful for debugging)
  				(new Function(script))(); // Execute the script
  				if (!contentPreview){
@@ -392,7 +392,7 @@
  					   console.log(event.type); // show.onoffcanvas
  					 }).on('hide.onoffcanvas',(event)=>{
  					   //console.log(event.target); // <div class="onoffcanvas ...
- 						$('#dcm_dl').find('.dcm_mvContentView').remove();
+ 						$('#mds_dl').find('.mds_mvContentView').remove();
  					 });
  				}
  				contentPreview.show();
@@ -406,10 +406,10 @@
         
     ;(function($, window, undefined) {
     	    	
-    	//#region dcmTreePicker plug-in
-    	$.fn.dcmTreePicker = function (data, options) {
+    	//#region mdsTreePicker plug-in
+    	$.fn.mdsTreePicker = function (data, options) {
     		var self = this;
-    		var settings = $.extend({}, $.fn.dcmTreePicker.defaults, options);
+    		var settings = $.extend({}, $.fn.mdsTreePicker.defaults, options);
     	
     		var getTreeDataAndRender = function () {
     			$.ajax({
@@ -417,14 +417,14 @@
     				url: options.treeDataUrl,
     				contentType: "application/json; charset=utf-8",
     				complete: function () {
-    					self.removeClass('dcm_wait');
+    					self.removeClass('mds_wait');
     				},
     				success: function (tagTreeJson) {
-    					var tv = new DcmTreePicker(self, $.parseJSON(tagTreeJson), settings);
+    					var tv = new MdsTreePicker(self, $.parseJSON(tagTreeJson), settings);
     					tv.render();
     				},
     				error: function (response) {
-    					$.dcmShowMsg("Action Aborted", response.responseText, { msgType: 'error', autoCloseDelay: 0 });
+    					$.mdsShowMsg("Action Aborted", response.responseText, { msgType: 'error', autoCloseDelay: 0 });
     				}
     			});
     		};
@@ -432,20 +432,20 @@
     		if (data == null) {
     			getTreeDataAndRender();
     		} else {
-    			var dcmTv = new DcmTreePicker(this, data, settings);
-    			dcmTv.render();
+    			var mdsTv = new MdsTreePicker(this, data, settings);
+    			mdsTv.render();
     		}
     	
     		return this;
     	};
     	
-    	$.fn.dcmTreePicker.defaults = {
+    	$.fn.mdsTreePicker.defaults = {
     		clientId: '', // 
     		allowMultiSelect: false, // Indicates whether more than one node can be selected at a time
     		albumIdsToSelect: null, // An array of the album IDs of any nodes to be selected during rendering
     		checkedAlbumIdsHiddenFieldClientId: '', // The client ID of the hidden input field that stores a comma-separated list of the album IDs of currently checked nodes
     		checkedAlbumNamesFieldClientId: '', // The client ID of the hidden input field that stores a comma-separated list of the album IDs of currently checked nodes
-    		theme: 'default', // Used to generate the CSS class name that is applied to the HTML DOM element that contains the treeview. Ex: "dcm" is rendered as CSS class "jstree-dcm"
+    		theme: 'default', // Used to generate the CSS class name that is applied to the HTML DOM element that contains the treeview. Ex: "mds" is rendered as CSS class "jstree-mds"
     		requiredSecurityPermissions: 1, //ViewAlbumOrContentObject
     		navigateUrl: '', // The URL to the current page without query string parms. Used during lazy load ajax call. Example: "/dev/ds/gallery.aspx"
     		enableCheckboxPlugin: false, // Indicates whether a checkbox is to be rendered for each node
@@ -453,13 +453,13 @@
     		treeDataUrl: '' // The URL for retrieving tree data. Ignored when tree data is passed via data parameter
     	};
     	
-    	window.DcmTreePicker = function (target, data, options) {
+    	window.MdsTreePicker = function (target, data, options) {
     		this.$target = target; // A jQuery object to receive the rendered treeview.
     		this.TreeViewOptions = options;
     		this.Data = data;
     	};
     	
-    	DcmTreePicker.prototype.render = function () {
+    	MdsTreePicker.prototype.render = function () {
     		var self = this;
     		
     		this._updateNodeDataWithAlbumIdsToSelect();
@@ -472,7 +472,7 @@
     					}
     	
     					$.ajax({
-    						url: window.Dcm.AppRoot + '/services/api/albumrests/gettreeview',
+    						url: window.Mds.AppRoot + '/services/api/albumrests/gettreeview',
     						data: {
     							// Query string parms to be added to the AJAX request
     							id: node.li_attr['data-id'],
@@ -522,7 +522,7 @@
     			});
     	};
     	
-    	DcmTreePicker.prototype._fullName = function (data, node) {
+    	MdsTreePicker.prototype._fullName = function (data, node) {
     		var node = data.instance.get_node(node ? node : data.node);
             var names = node.text;
             if (node.parent === '#'){
@@ -541,7 +541,7 @@
             return names;
         };
     	
-    	DcmTreePicker.prototype._storeSelectedNodesInHiddenFormField = function (data) {
+    	MdsTreePicker.prototype._storeSelectedNodesInHiddenFormField = function (data) {
     		// Grab the data-id values from the top selected nodes, concatenate them and store them in a hidden
     		// form field. This can later be retrieved by server side code to determine what was selected.
     		if (this.TreeViewOptions.checkedAlbumIdsHiddenFieldClientId == null || this.TreeViewOptions.checkedAlbumIdsHiddenFieldClientId.length == 0)
@@ -553,12 +553,12 @@
     		}).join();
     	
     		$('#' + this.TreeViewOptions.checkedAlbumIdsHiddenFieldClientId).val(albumIds);
-    		if (!Dcm.isNullOrEmpty(this.TreeViewOptions.selectChanged)){
+    		if (!Mds.isNullOrEmpty(this.TreeViewOptions.selectChanged)){
 				this.TreeViewOptions.selectChanged(albumIds);
 			}
     	};
     	
-    	DcmTreePicker.prototype._storeSelectedNamesInFormField = function (data) {
+    	MdsTreePicker.prototype._storeSelectedNamesInFormField = function (data) {
     		// Grab the data-id values from the top selected nodes, concatenate them and store them in a hidden
     		// form field. This can later be retrieved by server side code to determine what was selected.
     		if (this.TreeViewOptions.checkedAlbumNamesFieldClientId == null || this.TreeViewOptions.checkedAlbumNamesFieldClientId.length == 0)
@@ -577,15 +577,15 @@
     		$('#' + this.TreeViewOptions.checkedAlbumNamesFieldClientId).val(albumNames);
     	};
     	
-    	DcmTreePicker.prototype._updateNodeDataWithAlbumIdsToSelect = function () {
+    	MdsTreePicker.prototype._updateNodeDataWithAlbumIdsToSelect = function () {
     		// Process the albumIdsToSelect array - find the matching node in the data and change state.selected to true
     		// Note that in many cases the nodes are pre-selected in server side code. This function isn't needed in those cases.
-    		if (Dcm.isNullOrEmpty(this.TreeViewOptions.albumIdsToSelect))
+    		if (Mds.isNullOrEmpty(this.TreeViewOptions.albumIdsToSelect))
     			return;
     	
     		var findMatch = function (nodeArray, dataId) {
     			// Search nodeArray for a node having data-id=dataId, acting recursively
-    			if (Dcm.isNullOrEmpty(nodeArray))
+    			if (Mds.isNullOrEmpty(nodeArray))
     				return null;
     	
     			var matchingNode = $.grep(nodeArray, function (n) { return n.li_attr['data-id'] === dataId; })[0] || null;
@@ -638,7 +638,7 @@
     		$('#' + this.TreeViewOptions.checkedAlbumNamesFieldClientId).val(albumNames);
     	};
     	
-    	DcmTreePicker.prototype.onChangeState = function (e, data) {
+    	MdsTreePicker.prototype.onChangeState = function (e, data) {
     		if (data.action == 'select_node') {
     			var url = data.instance.get_node(data.node, true).children('a').attr('href');
     	
@@ -661,14 +661,14 @@
     		}
     	};
     	
-    	DcmTreePicker.prototype.onDeselectNode = function (e, data) {
+    	MdsTreePicker.prototype.onDeselectNode = function (e, data) {
     		// Don't let user deselect the only selected node when allowMultiSelect=false
     		if (!this.TreeViewOptions.allowMultiSelect && data.instance.get_selected().length == 0) {
     			data.instance.select_node(data.node);
     		}
     	};
     	
-    	DcmTreePicker.prototype.onLoaded = function (e, data) {
+    	MdsTreePicker.prototype.onLoaded = function (e, data) {
     		this._storeSelectedNodesInHiddenFormField(data);
     		this._storeSelectedNamesInFormField(data);
 
@@ -683,13 +683,13 @@
     		});
     	};
     	
-    	//#endregion dcmTreePicker plug-in
+    	//#endregion mdsTreePicker plug-in
     	
-    	//#region dcmThumbPicker plug-in
+    	//#region mdsThumbPicker plug-in
 
-    	$.fn.dcmThumbPicker = function (data, options) {
+    	$.fn.mdsThumbPicker = function (data, options) {
     		var self = this;
-    		var settings = $.extend({}, $.fn.dcmThumbPicker.defaults, options);
+    		var settings = $.extend({}, $.fn.mdsThumbPicker.defaults, options);
 
     		var getThumbDataAndRender = function () {
     			$.ajax({
@@ -704,14 +704,14 @@
 					},
 					dataType: "json",
     				complete: function () {
-    					self.removeClass('dcm_wait');
+    					self.removeClass('mds_wait');
     				},
     				success: function (contentItems) {
-    					var tc = new DcmThumbPicker(self, contentItems, settings);
+    					var tc = new MdsThumbPicker(self, contentItems, settings);
     					tc.render();
     				},
     				error: function (response) {
-    					$.dcmShowMsg("Action Aborted", response.responseText, { msgType: 'error', autoCloseDelay: 0 });
+    					$.mdsShowMsg("Action Aborted", response.responseText, { msgType: 'error', autoCloseDelay: 0 });
     				}
     			});
     		};
@@ -719,14 +719,14 @@
     		if (data == null) {
     			getThumbDataAndRender();
     		} else {
-    			var dcmTc = new DcmThumbPicker(this, data, settings);
-    			dcmTc.render();
+    			var mdsTc = new MdsThumbPicker(this, data, settings);
+    			mdsTc.render();
     		}
 
     		return this;
     	};
 
-    	$.fn.dcmThumbPicker.defaults = {
+    	$.fn.mdsThumbPicker.defaults = {
     		clientId: '',
     		thumbPickerType: 'contentobject', // 'album' or 'contentobject' or 'all'
     		thumbPickerUrl: '', // The URL for retrieving thumb data. Ignored when tag data is passed via data parameter
@@ -735,13 +735,13 @@
     		requiredSecurityPermissions: 1, //ViewAlbumOrContentObject    			
     	};
 
-    	window.DcmThumbPicker = function (target, data, options) {
+    	window.MdsThumbPicker = function (target, data, options) {
     		this.$target = target; // A jQuery object to receive the tag cloud.
     		this.ThumbPickerOptions = options;
     		this.Data = data;
     	};
 
-    	DcmThumbPicker.prototype.render = function () {
+    	MdsThumbPicker.prototype.render = function () {
     		var self = this;   		
     		
     		var thumbhtml = [];
@@ -751,7 +751,7 @@
             	thumbhtml.push("	    <div class='thumb insides'>");
             	thumbhtml.push(el.thumbnailHtml); 	
             	thumbhtml.push("	      <div class='test'>"); 	
-            	thumbhtml.push("	        <p><label class='checkbox dcm_go_t' style='max-width:", el.titleWidth, "px;'><input type='checkbox' id='chk",  el.id, "'>", el.text, "</label></p>"); 	
+            	thumbhtml.push("	        <p><label class='checkbox mds_go_t' style='max-width:", el.titleWidth, "px;'><input type='checkbox' id='chk",  el.id, "'>", el.text, "</label></p>"); 	
             	thumbhtml.push("	      </div>");
             	thumbhtml.push("	    </div>");	
             	thumbhtml.push("	  </div>");*/
@@ -759,29 +759,29 @@
             	thumbhtml.push(el.thumbnailHtml);
             	if (el.id.startsWith('a')){
             		if (self.ThumbPickerOptions.thumbPickerType=='album' || self.ThumbPickerOptions.thumbPickerType=='all'){
-            			thumbhtml.push("	        <p><label class='checkbox dcm_go_t' style='width:", el.titleWidth, "px;'><input type='checkbox' id='chk",  el.id, "' value='",  el.id, "'>", el.text, "</label></p>");
+            			thumbhtml.push("	        <p><label class='checkbox mds_go_t' style='width:", el.titleWidth, "px;'><input type='checkbox' id='chk",  el.id, "' value='",  el.id, "'>", el.text, "</label></p>");
             		}else{
-            			thumbhtml.push("	        <p><label class='checkbox dcm_go_t' style='width:", el.titleWidth, "px;'><input type='checkbox' id='chk",  el.id, "' value='",  el.id, "' class='hidden d-none'>", el.text, "</label></p>");
+            			thumbhtml.push("	        <p><label class='checkbox mds_go_t' style='width:", el.titleWidth, "px;'><input type='checkbox' id='chk",  el.id, "' value='",  el.id, "' class='hidden d-none'>", el.text, "</label></p>");
             		}
             	}else{
             		if (self.ThumbPickerOptions.thumbPickerType=='contentobject' || self.ThumbPickerOptions.thumbPickerType=='all'){
-            			thumbhtml.push("	        <p><label class='checkbox dcm_go_t' style='width:", el.titleWidth, "px;'><input type='checkbox' id='chk",  el.id, "' value='",  el.id, "'>", el.text, "</label></p>");
+            			thumbhtml.push("	        <p><label class='checkbox mds_go_t' style='width:", el.titleWidth, "px;'><input type='checkbox' id='chk",  el.id, "' value='",  el.id, "'>", el.text, "</label></p>");
             		}else{
-            			thumbhtml.push("	        <p><label class='checkbox dcm_go_t' style='width:", el.titleWidth, "px;'><input type='checkbox' id='chk",  el.id, "' value='",  el.id, "' class='hidden d-none'>", el.text, "</label></p>");
+            			thumbhtml.push("	        <p><label class='checkbox mds_go_t' style='width:", el.titleWidth, "px;'><input type='checkbox' id='chk",  el.id, "' value='",  el.id, "' class='hidden d-none'>", el.text, "</label></p>");
             		}
             	}
             	thumbhtml.push("	    </li>");	
             });
             //thumbhtml.push("	  </div>\n");
             self.$target.html(thumbhtml.join(''));
-            /*$('.dcm_i_c', self.$target).each(function() {
+            /*$('.mds_i_c', self.$target).each(function() {
             	$(this).css({
-            		width: $('.dcm_thmb_img', this).width(),
-       			 	height: $('.dcm_thmb_img', this).height()
+            		width: $('.mds_thmb_img', this).width(),
+       			 	height: $('.mds_thmb_img', this).height()
             	});
             });*/
             $('.thmb', self.$target).equalSize(); // Make all thumbnail tags the same width & height
-            $('.dcm_go_t', self.$target).css('width', '').css('display', '');// Remove the width that was initially set, allowing title to take the full width of thumbnail
+            $('.mds_go_t', self.$target).css('width', '').css('display', '');// Remove the width that was initially set, allowing title to take the full width of thumbnail
     	};
 
     	//#endregion

@@ -250,7 +250,7 @@ $.zTree = {
                   (config.onlyDisplayShow ? "&search.show_eq=true" : "");
 
             config.treeId = treeSelect;
-            window.Dcm.initAutocomplete(config.autocomplete);
+            window.Mds.initAutocomplete(config.autocomplete);
         }
 
         return treeSelect;
@@ -456,7 +456,7 @@ $.zTree = {
                        (config.onlyDisplayShow ? "&search.show_eq=true" : "");
 
                 config.treeId = treeSelect;
-                window.Dcm.initAutocomplete(config.autocomplete);
+                window.Mds.initAutocomplete(config.autocomplete);
             }
         };
         var initialize = false;

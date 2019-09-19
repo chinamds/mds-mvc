@@ -77,7 +77,7 @@
     } 
     
     function thumbnailFormatter(value) {
-    	var title = '<div class="dcm_ns">'; 
+    	var title = '<div class="mds_ns">'; 
     	title += value;
     	title += '</div>';
 
@@ -140,25 +140,25 @@
  					contentpreview_a_tmpl_script : data.Settings.HeaderTmplName
  				});
 
- 				data.Settings.ClientId='dcm_dl';
+ 				data.Settings.ClientId='mds_dl';
  				data.Settings.HeaderTmplName = 'contentpreview_a_tmpl_html';
-				data.Settings.HeaderClientId = 'dcm_dl_mediaHtml';
+				data.Settings.HeaderClientId = 'mds_dl_mediaHtml';
 				data.Settings.ThumbnailTmplName = 'contentpreview_a_tmpl_html';
-				data.Settings.ThumbnailClientId = 'dcm_dl_mediaHtml';
+				data.Settings.ThumbnailClientId = 'mds_dl_mediaHtml';
 				data.Settings.ContentTmplName = 'contentpreview_a_tmpl_html';
-				data.Settings.ContentClientId = 'dcm_dl_mediaHtml';
+				data.Settings.ContentClientId = 'mds_dl_mediaHtml';
 				data.Settings.LeftPaneTmplName = 'contentpreview_a_tmpl_html';
-				data.Settings.LeftPaneClientId = 'dcm_dl_mediaHtml';
+				data.Settings.LeftPaneClientId = 'mds_dl_mediaHtml';
 				data.Settings.RightPaneTmplName = 'contentpreview_a_tmpl_html';
-				data.Settings.RightPaneClientId = 'dcm_dl_mediaHtml';
+				data.Settings.RightPaneClientId = 'mds_dl_mediaHtml';
 				
-				window.dcm_dl = {};
-				window.dcm_dl.p = function(){return $('#dcm_dl');};
-				window.dcm_dl.dcmData = data;
+				window.mds_dl = {};
+				window.mds_dl.p = function(){return $('#mds_dl');};
+				window.mds_dl.mdsData = data;
 
  				// Pass the script template to the renderer and then execute. It is expected the script contains code for
  				// rendering the HTML template.
- 				var script = $.render["contentpreview_a_tmpl_script"](window.dcm_dl.dcmData);
+ 				var script = $.render["contentpreview_a_tmpl_script"](window.mds_dl.mdsData);
  				if (console) console.log(script); // Send to console (useful for debugging)
  				(new Function(script))(); // Execute the script
  				if (!contentPreview){
@@ -166,7 +166,7 @@
  					   console.log(event.type); // show.onoffcanvas
  					 }).on('hide.onoffcanvas',(event)=>{
  					   //console.log(event.target); // <div class="onoffcanvas ...
- 						$('#dcm_dl').find('.dcm_mvContentView').remove();
+ 						$('#mds_dl').find('.mds_mvContentView').remove();
  					 });
  				}
  				contentPreview.show();

@@ -68,7 +68,7 @@
     	
     	for(y in node.nodes){
     		var nodeChildren = getChildNodes(node.nodes[y]);
-    		if (!window.Dcm.isNullOrEmpty(nodeChildren))
+    		if (!window.Mds.isNullOrEmpty(nodeChildren))
     			children = children.concat(nodeChildren);
     	}
     	
@@ -81,8 +81,8 @@
 		var children = [];
 		for(x in allNodes){
 			var node = allNodes[x];
-			//var tags = window.Dcm.isNullOrEmpty(allNodes[x].tags);
-			//var state = window.Dcm.isNullOrEmpty(allNodes[x].state);
+			//var tags = window.Mds.isNullOrEmpty(allNodes[x].tags);
+			//var state = window.Mds.isNullOrEmpty(allNodes[x].state);
 			//var checked = allNodes[x].state.checked;
 			if (allNodes[x].state.checked){
 				children.push(allNodes[x].id);

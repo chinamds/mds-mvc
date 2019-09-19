@@ -246,7 +246,7 @@ public class AlbumTreePickerBuilder{
 	public static String getFullThumbnailHtml(ContentObjectBo contentObject, ContentObjectHtmlBuilderOptions moBuilderOptions, HttpServletRequest request) throws Exception{
 		ContentObjectHtmlBuilder moBuilder = new ContentObjectHtmlBuilder(moBuilderOptions);
 
-		return "<ul class='dcm_floatcontainer'>" + // style='padding-left:0px;' 
+		return "<ul class='mds_floatcontainer'>" + // style='padding-left:0px;' 
 		    "<li class='" + getThumbnailCssClass(contentObject) + "'>" +
 		    moBuilder.getThumbnailHtml() +
 		    "<p>" + contentObject.getTitle() + "</p>" +

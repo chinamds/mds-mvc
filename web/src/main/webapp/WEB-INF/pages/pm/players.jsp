@@ -95,7 +95,7 @@
 	        <th data-field="lastSyncTime" data-formatter="dateTimeFormatter"><fmt:message key="player.lastSyncTime"/></th>
 	        <th data-field="startup" data-formatter="dateTimeFormatter"><fmt:message key="player.startup"/></th>
 	        <th data-field="shutdown" data-formatter="dateTimeFormatter"><fmt:message key="player.shutdown"/></th>
-	        <th data-field="DCMVersion"><fmt:message key="player.DCMVersion"/></th>
+	        <th data-field="MDSVersion"><fmt:message key="player.MDSVersion"/></th>
 	        <th data-field="localAddress"><fmt:message key="player.localAddress"/></th>
 	        <th data-field="MACAddress"><fmt:message key="player.MACAddress"/></th>
 	        <th data-field="description"><fmt:message key="player.description"/></th>

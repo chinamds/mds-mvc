@@ -25,7 +25,7 @@
 <form:hidden path="dateAdded"/>
 <form:hidden path="lastModifiedBy"/>
 <form:hidden path="dateLastModified"/>
-<form:hidden path="DCMVersion"/>
+<form:hidden path="MDSVersion"/>
 <form:hidden path="MACAddress"/>
 <form:hidden path="MACAddress1"/>
 <form:hidden path="MACID"/>

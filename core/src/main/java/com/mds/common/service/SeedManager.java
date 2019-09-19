@@ -690,7 +690,7 @@ public class SeedManager
 				InsertGallerySetting(new GallerySetting(gallery, "SlideshowInterval", "4000"));
 				InsertGallerySetting(new GallerySetting(gallery, "AllowUnspecifiedMimeTypes", "False"));
 				InsertGallerySetting(new GallerySetting(gallery, "ImageTypesStandardBrowsersCanDisplay", ".jpg,.jpeg,.gif,.png"));
-				InsertGallerySetting(new GallerySetting(gallery, "ImageMagickFileTypes", ".pdf,.txt,.eps,.psd,.tif,.tiff"));
+				InsertGallerySetting(new GallerySetting(gallery, "ImageMagickFileTypes", ".pdf,.txt,.eps,.psd,.tif,.tiff,.png"));
 				InsertGallerySetting(new GallerySetting(gallery, "AllowAnonymousRating", "True"));
 				InsertGallerySetting(new GallerySetting(gallery, "ExtractMetadata", "True"));
 				InsertGallerySetting(new GallerySetting(gallery, "ExtractMetadataUsingWpf", "True"));

@@ -1417,7 +1417,7 @@ public class UserUtils {
 	/// <param name="userName">The name of the user to delete.</param>
 	/// <returns><c>true</c> if the user was successfully deleted; otherwise, <c>false</c>.</returns>
 	public static boolean deleteUser(String userName){
-		//return MembershipDcm.DeleteUser(userName, true);
+		//return MembershipMds.DeleteUser(userName, true);
 		//User user = userManager.getUserByUsername(userName);
 		//userManager.removeUser(user);
 		UserManager userManager = SpringContextHolder.getBean(UserManager.class);
@@ -1956,7 +1956,7 @@ public class UserUtils {
 		// This function is a re-implementation of the System.Web.Security.Membership.CreateUser method. We can't call it directly
 		// because it uses the default provider, and we might be using a named provider.
 		/*MembershipCreateStatus status;
-		MembershipUser user = MembershipDcm.CreateUser(userName, password, email, null, null, true, null, out status);
+		MembershipUser user = MembershipMds.CreateUser(userName, password, email, null, null, true, null, out status);
 		if (user == null)
 		{
 			throw new MembershipCreateUserException(status);
@@ -2210,7 +2210,7 @@ public class UserUtils {
 		user.setIsApproved(userEntity.IsApproved);
 		user.setIsLockedOut(userEntity.IsLockedOut);
 
-/*		if (MembershipDcm.getType().ToString() == GlobalConstants.ActiveDirectoryMembershipProviderName)
+/*		if (MembershipMds.getType().ToString() == GlobalConstants.ActiveDirectoryMembershipProviderName)
 		{
 			// The AD provider will throw an ArgumentException during the UpdateUser method if the comment is empty,
 			// so add a single space if necessary.
@@ -2225,7 +2225,7 @@ public class UserUtils {
 		if (user == null)
 			return null;
 
-		/*if (MembershipDcm.getType().ToString() == GlobalConstants.ActiveDirectoryMembershipProviderName)
+		/*if (MembershipMds.getType().ToString() == GlobalConstants.ActiveDirectoryMembershipProviderName)
 		{
 			// The AD provider does not support a few properties so substitute default values for them.
 			return new UserAccount(u.Comment, u.CreationDate, u.Email, u.IsApproved, u.IsLockedOut, false,
@@ -2284,7 +2284,7 @@ public class UserUtils {
 	/// </summary>
 	/// <param name="userToSave">A <see cref="UserAccount"/> object that represents the user to update and the updated information for the user.</param>
 	private static void updateUser(UserAccount userToSave){
-		/*var userInDb = MembershipDcm.getUser(userToSave.getUserName(), false);
+		/*var userInDb = MembershipMds.getUser(userToSave.getUserName(), false);
 
 		if (userInDb == null)
 			return;
@@ -2301,7 +2301,7 @@ public class UserUtils {
 
 			UpdateMembershipUser(userInDb, userToSave);
 
-			MembershipDcm.UpdateUser(userInDb);
+			MembershipMds.UpdateUser(userInDb);
 
 			if (userIsBeingApproved)
 			{

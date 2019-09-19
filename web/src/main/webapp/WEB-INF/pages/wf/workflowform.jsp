@@ -60,7 +60,7 @@
 	    </div> --%>
 		
 		<div class="form-group">
-		    <div class="dcm_floatcontainer">
+		    <div class="mds_floatcontainer">
 			    <div class="table-responsive">
 			    	<table id="tblAppendGrid" class="table table-condensed" style="margin-top: 10px;"></table>
 			    </div>

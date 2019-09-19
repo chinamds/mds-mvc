@@ -99,7 +99,7 @@ public class TransferObjectController extends BaseFormController {
 			}catch (CannotTransferAlbumToNestedDirectoryException ce) {
 				// User tried to move or copy an album to one of its own subdirectories. This cannot be done.
 				saveError(request, getText("task.transferObjects.Cannot_Transfer_To_Nested_Album_Msg_Dtl", request.getLocale()));
-				//String msg = String.Format(CultureInfo.CurrentCulture, "<p class='dcm_msgwarning'><span class='dcm_bold'>{0} </span>{1}</p>", Resources.DCM.Task_Transfer_Objects_Cannot_Transfer_To_Nested_Album_Msg_Hdr, Resources.DCM.Task_Transfer_Objects_Cannot_Transfer_To_Nested_Album_Msg_Dtl);
+				//String msg = String.Format(CultureInfo.CurrentCulture, "<p class='mds_msgwarning'><span class='mds_bold'>{0} </span>{1}</p>", Resources.MDS.Task_Transfer_Objects_Cannot_Transfer_To_Nested_Album_Msg_Hdr, Resources.MDS.Task_Transfer_Objects_Cannot_Transfer_To_Nested_Album_Msg_Dtl);
 				//phMsg.Controls.Clear();
 				//phMsg.Controls.Add(new System.Web.UI.LiteralControl(msg));
 			}

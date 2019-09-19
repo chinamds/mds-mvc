@@ -54,7 +54,7 @@
     } 
     
     function thumbnailFormatter(value) {
-    	var title = '<div class="dcm_ns">'; 
+    	var title = '<div class="mds_ns">'; 
     	title += value;
     	title += '</div>';
 

@@ -146,7 +146,7 @@ public interface OrganizationService {
      *
      * @return HashMap
      * @throws InvalidMDSRoleException 
-     * @throws InvalidDCMSystemRoleException 
+     * @throws InvalidMDSSystemRoleException 
      */
     @GET
     @Path("/organization/treeView")

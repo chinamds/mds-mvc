@@ -85,12 +85,12 @@ public final class RoleUtils{
 	public static final String CACHE_ROLE_LIST = "roleList";
 
 	// RegEx pattern to match "_{PortalId}" portion of MDS role name. Not used in stand-alone version of MDS.
-	//private static readonly System.Text.RegularExpressions.Regex _dcmRoleNameSuffixRegEx = new System.Text.RegularExpressions.Regex(@"_\d+$", System.Text.RegularExpressions.RegexOptions.Compiled);
+	//private static readonly System.Text.RegularExpressions.Regex _mdsRoleNameSuffixRegEx = new System.Text.RegularExpressions.Regex(@"_\d+$", System.Text.RegularExpressions.RegexOptions.Compiled);
 
 	// RegEx pattern to match the album owner role template name. The gallery ID is assigned the group name "galleryId".
 	// Ex: Given "_Album Owner Template (Gallery ID 723: My gallery)", match will be a success and group name "galleryId" will contain "723"
-	private static final String _dcmAlbumOwnerTemplateRoleNameRegExPattern = StringUtils.join(Constants.AlbumOwnerRoleTemplateName, " \\(Gallery ID (?<galleryId>\\d+): .*\\)$");
-	private static final Pattern _dcmAlbumOwnerTemplateRoleNameRegEx = Pattern.compile(_dcmAlbumOwnerTemplateRoleNameRegExPattern);
+	private static final String _mdsAlbumOwnerTemplateRoleNameRegExPattern = StringUtils.join(Constants.AlbumOwnerRoleTemplateName, " \\(Gallery ID (?<galleryId>\\d+): .*\\)$");
+	private static final Pattern _mdsAlbumOwnerTemplateRoleNameRegEx = Pattern.compile(_mdsAlbumOwnerTemplateRoleNameRegExPattern);
 
 	//#endregion
 
@@ -526,7 +526,7 @@ public final class RoleUtils{
 	/// <param name="roleNames">The roles to add the specified user name to.</param>
 	public static void addUserToRoles(String userName, String[] roleNames){
 		if (!StringUtils.isBlank(userName) && (roleNames != null) && (roleNames.length > 0)){
-			//RoleDcm.AddUsersToRoles(new String[] { userName.Trim() }, roleNames);
+			//RoleMds.AddUsersToRoles(new String[] { userName.Trim() }, roleNames);
 		}
 	}
 
@@ -548,7 +548,7 @@ public final class RoleUtils{
 	/// <param name="roleNames">The roles to remove the specified user from.</param>
 	public static void removeUserFromRoles(String userName, String[] roleNames) throws InvalidMDSRoleException, InvalidAlbumException, UnsupportedContentObjectTypeException, IOException, UnsupportedImageTypeException, InvalidContentObjectException, GallerySecurityException, InvalidGalleryException, WebException{
 		if (!StringUtils.isBlank(userName) && (roleNames != null) && (roleNames.length > 0)){
-			//RoleDcm.removeUsersFromRoles(new String[] { userName.Trim() }, roleNames);
+			//RoleMds.removeUsersFromRoles(new String[] { userName.Trim() }, roleNames);
 		}
 
 		validateRemoveUserFromRole(userName, Arrays.asList(roleNames), Long.MIN_VALUE);
@@ -623,14 +623,14 @@ public final class RoleUtils{
 	/// </summary>
 	/// <returns>A list of all the ASP.NET roles for the current application.</returns>
 	public static String[] getAllRoles(){
-		//return RoleDcm.GetAllRoles();
+		//return RoleMds.GetAllRoles();
 		RoleManager roleManager = SpringContextHolder.getBean(RoleManager.class);
 		
 		return roleManager.getAll().stream().map(r->r.getName()).toArray(String[]::new);
 	}
 	
 	public static Long[] getAllRoleIds(){
-		//return RoleDcm.GetAllRoles();
+		//return RoleMds.GetAllRoles();
 		RoleManager roleManager = SpringContextHolder.getBean(RoleManager.class);
 		
 		return roleManager.getPrimaryKeys(null).toArray(new Long[0]);
@@ -645,7 +645,7 @@ public final class RoleUtils{
 		if (StringUtils.isBlank(userName))
 			return new String[] { };
 
-		//return RoleDcm.GetRolesForUser(userName.Trim());
+		//return RoleMds.GetRolesForUser(userName.Trim());
 		return UserUtils.getUser(userName).getRoles().stream().map(r->r.getName()).toArray(String[]::new);
 	}
 	
@@ -653,7 +653,7 @@ public final class RoleUtils{
 		if (StringUtils.isBlank(userName))
 			return new Long[] { };
 
-		//return RoleDcm.GetRolesForUser(userName.Trim());
+		//return RoleMds.GetRolesForUser(userName.Trim());
 		return UserUtils.getUser(userName).getRoles().stream().map(r->r.getId()).toArray(Long[]::new);
 	}
 
@@ -667,7 +667,7 @@ public final class RoleUtils{
 			return new String[] { };
 
 		RoleManager roleManager = SpringContextHolder.getBean(RoleManager.class);
-		//return RoleDcm.GetUsersInRole(roleId.Trim());
+		//return RoleMds.GetUsersInRole(roleId.Trim());
 		Role role = roleManager.getRole(roleName, oId);
 		return role.getUsers().stream().map(u->u.getUsername()).toArray(String[]::new);
 	}
@@ -677,7 +677,7 @@ public final class RoleUtils{
 			return new String[] { };
 
 		RoleManager roleManager = SpringContextHolder.getBean(RoleManager.class);
-		//return RoleDcm.GetUsersInRole(roleId.Trim());
+		//return RoleMds.GetUsersInRole(roleId.Trim());
 		Role role = roleManager.get(roleId);
 		return role.getUsers().stream().map(u->u.getUsername()).toArray(String[]::new);
 	}
@@ -693,7 +693,7 @@ public final class RoleUtils{
 
 		synchronized (_sharedLock){
 			if (!roleExists(roleId)){
-				//RoleDcm.CreateRole(roleName.Trim());
+				//RoleMds.CreateRole(roleName.Trim());
 			}
 		}
 	}
@@ -704,7 +704,7 @@ public final class RoleUtils{
 
 		synchronized (_sharedLock){
 			if (!roleExists(roleName, oId)){
-				//RoleDcm.CreateRole(roleName.Trim());
+				//RoleMds.CreateRole(roleName.Trim());
 			}
 		}
 	}
@@ -722,7 +722,7 @@ public final class RoleUtils{
 		
 		roleManager.removeRole(roleManager.getRole(roleName, oId));
 
-		//RoleDcm.DeleteRole(roleName.Trim(), false);
+		//RoleMds.DeleteRole(roleName.Trim(), false);
 	}
 	
 	private static void deleteRole(long roleId)	{
@@ -733,7 +733,7 @@ public final class RoleUtils{
 		
 		roleManager.remove(roleId);
 
-		//RoleDcm.DeleteRole(roleName.Trim(), false);
+		//RoleMds.DeleteRole(roleName.Trim(), false);
 	}
 
 	/// <summary>
@@ -785,7 +785,7 @@ public final class RoleUtils{
 
 		RoleManager roleManager = SpringContextHolder.getBean(RoleManager.class);
 		
-		//return RoleDcm.IsUserInRole(userName.Trim(), roleName.Trim());
+		//return RoleMds.IsUserInRole(userName.Trim(), roleName.Trim());
 		Role role = roleManager.getRole(roleName);
 		return role.getUsers().stream().anyMatch(u->u.getUsername() == userName.trim());
 	}
@@ -799,7 +799,7 @@ public final class RoleUtils{
 
 		RoleManager roleManager = SpringContextHolder.getBean(RoleManager.class);
 		
-		//return RoleDcm.IsUserInRole(userName.Trim(), roleName.Trim());
+		//return RoleMds.IsUserInRole(userName.Trim(), roleName.Trim());
 		Role role = roleManager.get(roleId);
 		return role.getUsers().stream().anyMatch(u->u.getUsername() == userName.trim());
 	}
@@ -1292,7 +1292,7 @@ public final class RoleUtils{
 	/// 	<c>true</c> if <paramref name="roleName"/> is a role that serves as an album owner template role; otherwise, <c>false</c>.
 	/// </returns>
 	public static boolean isRoleAnAlbumOwnerTemplateRole(String roleName){
-		return _dcmAlbumOwnerTemplateRoleNameRegEx.matcher(roleName).matches();
+		return _mdsAlbumOwnerTemplateRoleNameRegEx.matcher(roleName).matches();
 	}
 
 	/// <summary>
@@ -1346,14 +1346,14 @@ public final class RoleUtils{
 	/// <returns>Returns a copy of the <paramref name="roleNames" /> parameter with the "_{GalleryID}" portion removed from each 
 	/// role name.</returns>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="" /> is null.</exception>
-	public static String[] parseRoleNameFromDcmRoleNames(String[] roleNames){
+	public static String[] parseRoleNameFromMdsRoleNames(String[] roleNames){
 		if (roleNames == null)
 			throw new ArgumentNullException("roleNames");
 
 		String[] roleNamesCopy = new String[roleNames.length];
 
 		for (int i = 0; i < roleNames.length; i++)	{
-			roleNamesCopy[i] = parseRoleNameFromDcmRoleName(roleNames[i]);
+			roleNamesCopy[i] = parseRoleNameFromMdsRoleName(roleNames[i]);
 		}
 
 		return roleNamesCopy;
@@ -1369,9 +1369,9 @@ public final class RoleUtils{
 	/// </summary>
 	/// <param name="roleName">Name of the role. Example: "Administrators_0"</param>
 	/// <returns>Returns the role name with the "_{GalleryID}" portion removed.</returns>
-	public static String parseRoleNameFromDcmRoleName(String roleName){
+	public static String parseRoleNameFromMdsRoleName(String roleName){
 		return roleName;
-		//return _dcmRoleNameSuffixRegEx.Replace(roleName, StringUtils.EMPTY); // DotNetNuke only
+		//return _mdsRoleNameSuffixRegEx.Replace(roleName, StringUtils.EMPTY); // DotNetNuke only
 	}
 
 	//#endregion
@@ -1848,7 +1848,7 @@ public final class RoleUtils{
 			galleryDescription = StringUtils.join(galleryDescription.substring(0, 100), "...");
 		}
 
-		// Note: If you change this, be sure to update _dcmAlbumOwnerTemplateRoleNameRegExPattern to that it will match!
+		// Note: If you change this, be sure to update _mdsAlbumOwnerTemplateRoleNameRegExPattern to that it will match!
 		return makeRoleNameUnique(MessageFormat.format("{0} (Gallery ID {1}: '{2}')", Constants.AlbumOwnerRoleTemplateName, galleryId, galleryDescription));
 	}
 
@@ -2061,7 +2061,7 @@ public final class RoleUtils{
 	/// associated gallery; otherwise returns <c>false</c>.
 	/// </returns>
 	private static boolean isUserGalleryAdminForAlbumOwnerTemplateRole(MDSRole role) throws InvalidMDSRoleException{
-		Matcher  match = _dcmAlbumOwnerTemplateRoleNameRegEx.matcher(role.getRoleName());
+		Matcher  match = _mdsAlbumOwnerTemplateRoleNameRegEx.matcher(role.getRoleName());
 		if (match.matches()){
 			// Parse out the gallery ID from the role name. Ex: "_Album Owner Template (Gallery ID 723: My gallery)" yields "723"
 			long galleryId = StringUtils.toLong(match.group(1)); //match.["galleryId"].Value

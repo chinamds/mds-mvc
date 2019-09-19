@@ -45,10 +45,10 @@
 <p><fmt:message key="contentListList.message"/></p>
 
 <div class="onoffcanvas is-fixed is-center p-3 bg-white rounded" id="onoffcanvas-dialog">
-    <div id="dcm_dl" class='dcm_ns'>
+    <div id="mds_dl" class='mds_ns'>
 	    <a href="#onoffcanvas-dialog" class="onoffcanvas-toggler pull-right bg-danger" data-toggle="onoffcanvas"></a>
 		<hr>
-    	<div id="dcm_dl_mediaHtml"></div>
+    	<div id="mds_dl_mediaHtml"></div>
     </div>
 </div>
 

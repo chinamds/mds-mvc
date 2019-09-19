@@ -27,7 +27,7 @@ public class GalleryControlSettings{
 	/// </summary>
 	/// <param name="id">The value that uniquely identifies the gallery control setting.</param>
 	/// <param name="controlId">The value that uniquely identifies the Gallery control. This is a concatenation of the relative
-	/// path to the control and its client ID. For example: "\default.aspx|dcm"</param>
+	/// path to the control and its client ID. For example: "\default.aspx|mds"</param>
 	public GalleryControlSettings(long id, String controlId){
 	  this.galleryControlSettingId = id;
 	  this.controlId = controlId;
@@ -52,7 +52,7 @@ public class GalleryControlSettings{
 	
 	/// <summary>
 	/// Gets or sets the value that uniquely identifies the Gallery control. This is a concatenation of the full physical
-	/// path to the control and its client ID. For example: "~/Default.aspx|dcm"
+	/// path to the control and its client ID. For example: "~/Default.aspx|mds"
 	/// </summary>
 	/// <value>The value that uniquely identifies the Gallery control.</value>
 	private String controlId;

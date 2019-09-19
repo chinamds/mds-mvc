@@ -36,7 +36,7 @@ public enum CacheItem
 	sys_menufunctionpermissions,
 		
 	/// <summary>
-	/// A System.Collections.Concurrent.ConcurrentDictionary&lt;<see cref="string" />, <see cref="com.dcm.Interfaces.IMDSRoleCollection" />&gt;
+	/// A System.Collections.Concurrent.ConcurrentDictionary&lt;<see cref="string" />, <see cref="com.mds.Interfaces.IMDSRoleCollection" />&gt;
 	/// stored in cache. The key is a concatenation of the user's session ID and user name. The corresponding value stores the roles that 
 	/// user belongs to. The first item in the dictionary will have a key = "AllRoles", and its dictionary entry holds all 
 	/// roles used in the current gallery.
@@ -47,7 +47,7 @@ public enum CacheItem
 	/// </summary>
 	sys_users,
 	/// <summary>
-	/// A System.Collections.Concurrent.ConcurrentDictionary&lt;<see cref="string" />, <see cref="com.dcm.Interfaces.IUserAccountCollection" />&gt;
+	/// A System.Collections.Concurrent.ConcurrentDictionary&lt;<see cref="string" />, <see cref="com.mds.Interfaces.IUserAccountCollection" />&gt;
 	/// stored in cache. The key is a concatenation of the user's session ID and user name. The corresponding value stores the users that 
 	/// the current user has permission to view.
 	/// </summary>
@@ -66,7 +66,7 @@ public enum CacheItem
 	Users,
 			
 	/// <summary>
-	/// A System.Collections.Concurrent.ConcurrentDictionary&lt;<see cref="int" />, <see cref="com.dcm.Interfaces.IAlbum" />&gt; 
+	/// A System.Collections.Concurrent.ConcurrentDictionary&lt;<see cref="int" />, <see cref="com.mds.Interfaces.IAlbum" />&gt; 
 	/// stored in cache. The key specifies the ID of the album stored in the dictionary entry.
 	/// </summary>
 	sys_gallerySettings,
@@ -76,29 +76,29 @@ public enum CacheItem
 	cm_contenttypes,
 
 	/// <summary>
-	/// A System.Collections.Concurrent.ConcurrentDictionary&lt;<see cref="int" />, <see cref="com.dcm.Interfaces.IGalleryObject" />&gt; 
+	/// A System.Collections.Concurrent.ConcurrentDictionary&lt;<see cref="int" />, <see cref="com.mds.Interfaces.IGalleryObject" />&gt; 
 	/// stored in cache. The key specifies the ID of the content object stored in the dictionary entry.
 	/// </summary>
 	cm_contentobjects,
 	/// <summary>
-	/// An <see cref="com.dcm.Interfaces.IEventLogCollection" /> stored in cache.
+	/// An <see cref="com.mds.Interfaces.IEventLogCollection" /> stored in cache.
 	/// </summary>
 	AppEvents,
 	/// <summary>
-	/// A System.Collections.Concurrent.ConcurrentDictionary&lt;<see cref="string" />, <see cref="com.dcm.Interfaces.IUserProfile" />&gt; 
+	/// A System.Collections.Concurrent.ConcurrentDictionary&lt;<see cref="string" />, <see cref="com.mds.Interfaces.IUserProfile" />&gt; 
 	/// stored in cache. The key specifies the username of the profile stored in the dictionary entry.
 	/// </summary>
 	cm_profiles,
 	/// <summary>
-	/// An <see cref="com.dcm.Interfaces.IUiTemplateCollection" /> stored in cache.
+	/// An <see cref="com.mds.Interfaces.IUiTemplateCollection" /> stored in cache.
 	/// </summary>
 	cm_uitemplates,
 	/// <summary>
-	/// An <see cref="com.dcm.Interfaces.IContentTemplateCollection" /> stored in cache.
+	/// An <see cref="com.mds.Interfaces.IContentTemplateCollection" /> stored in cache.
 	/// </summary>
 	cm_contenttemplates,
 	/// <summary>
-	/// A System.Collections.Concurrent.ConcurrentDictionary&lt;<see cref="int" />, <see cref="com.dcm.Interfaces.IMimeTypeCollection" />&gt; 
+	/// A System.Collections.Concurrent.ConcurrentDictionary&lt;<see cref="int" />, <see cref="com.mds.Interfaces.IMimeTypeCollection" />&gt; 
 	/// stored in cache. The key specifies the gallery ID of the MIME types stored in the dictionary entry.
 	/// </summary>
 	cm_mimetypes,

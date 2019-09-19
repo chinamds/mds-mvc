@@ -664,7 +664,7 @@ public class ZipUtility{
 		for (String directoryNameFromZip : directoryNames){
 			String shortenedDirName = getPreviouslyCreatedTruncatedAlbumName(albumFullPhysicalPath, directoryNameFromZip);
 
-			// Ex: c:\inetpub\wwwroot\dcmsystem\mypics\2006\album1
+			// Ex: c:\inetpub\wwwroot\mdssystem\mypics\2006\album1
 			albumFullPhysicalPath = FilenameUtils.concat(albumFullPhysicalPath, shortenedDirName);
 
 			AlbumBo newAlbum = null;
