@@ -1,6 +1,6 @@
 MDSPlus:
 
-	MDSPlus is a web(SSH) based software product, that lets you manage your multi media on your own website.
+	MDSPlus is a web(SSH) based with Multi-tenant software product, that lets you manage your multi media on your own website.
 
 You can find all details on the [official website](http://www.mmdsplus.com/).
 
@@ -13,7 +13,7 @@ You can find all details on the [official website](http://www.mmdsplus.com/).
 
 1.	About MDSPlus:
 	
-	Basic on Spring Framework, Spring MVC, Hibernate.
+	Basic on Spring Framework, Spring MVC, Hibernate. supports Multi database types: MySQL, MSSQL, PostgreSQL or Oracle
 
 
 	a.	Services module

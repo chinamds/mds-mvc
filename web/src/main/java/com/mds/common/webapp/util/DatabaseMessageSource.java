@@ -20,12 +20,10 @@ public class DatabaseMessageSource extends AbstractMessageSource implements Reso
     }
 	
     protected MessageFormat resolveCode(String code, Locale locale) {
-
         return createMessageFormat(getText(code, locale), locale);
     }
 
     protected String resolveCodeWithoutArguments(String code, Locale locale) {
-
         return getText(code, locale);
     }
     
