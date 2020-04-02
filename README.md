@@ -2,13 +2,13 @@ MDSPlus:
 
 	MDSPlus is a web(SSH) based with Multi-tenant software product, that lets you manage your multi media on your own website.
 
-You can find all details on the [official website](http://www.mmdsplus.com/).
+You can find all details on the [official website](http://www.mmdsplus.com/mds-web).
 
-![alt tag](http://www.mmdsplus.com/services/api/contentitems/getmedia?moid=121&dt=Optimized&g=2)
+![alt tag](http://www.mmdsplus.com/mds-web/services/api/contentitems/getmedia?moid=4&dt=Optimized&g=1)
 
-![alt tag](http://www.mmdsplus.com/services/api/contentitems/getmedia?moid=123&dt=Optimized&g=2)
+![alt tag](http://www.mmdsplus.com/mds-web/services/api/contentitems/getmedia?moid=5&dt=Optimized&g=1)
 
-![alt tag](http://www.mmdsplus.com/services/api/contentitems/getmedia?moid=122&dt=Optimized&g=2)
+![alt tag](http://www.mmdsplus.com/mds-web/services/api/contentitems/getmedia?moid=6&dt=Optimized&g=1)
 
 
 1.	About MDSPlus:

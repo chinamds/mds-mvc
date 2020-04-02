@@ -693,7 +693,7 @@ public final class MetadataUtils {
 
 				if (metaDef.IsEditable && contentObject.metadataDefinitionApplies(metaDef)){
 					ContentObjectMetadataItemCollection metaItems = CMUtils.createMetadataCollection();
-					metaItems.add(CMUtils.createMetadataItem(Integer.MIN_VALUE, contentObject, null, contentItemMeta.getMetaItem().Value, true, metaDef));
+					metaItems.add(CMUtils.createMetadataItem(Long.MIN_VALUE, contentObject, null, contentItemMeta.getMetaItem().Value, true, metaDef));
 					contentObject.addMeta(metaItems);
 
 					ContentObjectUtils.saveContentObject(contentObject);
@@ -903,7 +903,7 @@ public final class MetadataUtils {
 
 					if (contentObject.metadataDefinitionApplies(metaDefApproval)){
 						ContentObjectMetadataItemCollection metaItems = CMUtils.createMetadataCollection();
-						ContentObjectMetadataItem newApprovalItem = CMUtils.createMetadataItem(Integer.MIN_VALUE, contentObject, null, strApprovalDate, true, metaDefApproval);
+						ContentObjectMetadataItem newApprovalItem = CMUtils.createMetadataItem(Long.MIN_VALUE, contentObject, null, strApprovalDate, true, metaDefApproval);
 						metaItems.add(newApprovalItem);
 						contentObject.addMeta(metaItems);
 					}
@@ -1048,7 +1048,7 @@ public final class MetadataUtils {
 
 				if (metaDefRating.IsEditable && contentObject.metadataDefinitionApplies(metaDefRating)){
 					ContentObjectMetadataItemCollection metaItems = CMUtils.createMetadataCollection();
-					ContentObjectMetadataItem newRatingItem = CMUtils.createMetadataItem(Integer.MIN_VALUE, contentObject, null, contentItemMeta.getMetaItem().Value, true, metaDefRating);
+					ContentObjectMetadataItem newRatingItem = CMUtils.createMetadataItem(Long.MIN_VALUE, contentObject, null, contentItemMeta.getMetaItem().Value, true, metaDefRating);
 					metaItems.add(newRatingItem);
 					contentObject.addMeta(metaItems);
 

@@ -14,7 +14,7 @@
 <ul class="nav nav-tabs">
     <c:if test="${op eq MessageOperate.drafts}">
         <li class="nav-item active" role="presentation">
-            <a class="nav-link" href="${ctx}/sys/myMessages/draft/${m.id}/send?BackURL=<sys:BackURL/>">
+            <a class="nav-link" href="${ctx}/sys/myMessages/draft/${m.id}/send?BackURL=<comm:BackURL/>">
                 <i class="${op.icon}"></i>
                 <fmt:message key="${op.info}"/>
             </a>
@@ -22,7 +22,7 @@
     </c:if>
     <c:if test="${op eq MessageOperate.newmessage}">
         <li class="nav-item active" role="presentation">
-            <a class="nav-link" href="${ctx}/sys/myMessages/send?BackURL=<sys:BackURL/>">
+            <a class="nav-link" href="${ctx}/sys/myMessages/send?BackURL=<comm:BackURL/>">
                 <i class="${op.icon}"></i>
                 <fmt:message key="${op.info}"/>
             </a>
@@ -30,7 +30,7 @@
     </c:if>
     <c:if test="${op eq MessageOperate.reply}">
         <li class="nav-item active" role="presentation">
-            <a class="nav-link" href="${ctx}/sys/myMessages/${original.id}/reply?BackURL=<sys:BackURL/>">
+            <a class="nav-link" href="${ctx}/sys/myMessages/${original.id}/reply?BackURL=<comm:BackURL/>">
                 <i class="${op.icon}"></i>
                 <fmt:message key="${op.info}"/>
             </a>
@@ -38,14 +38,14 @@
     </c:if>
     <c:if test="${op eq MessageOperate.forward}">
         <li class="nav-item active" role="presentation">
-            <a class="nav-link" href="${ctx}/sys/myMessages/${original.id}/forward?BackURL=<sys:BackURL/>">
+            <a class="nav-link" href="${ctx}/sys/myMessages/${original.id}/forward?BackURL=<comm:BackURL/>">
                 <i class="${op.icon}"></i>
                     <fmt:message key="${op.info}"/>
             </a>
         </li>
     </c:if>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" href="<sys:BackURL/>" class="btn btn-link">
+        <a class="nav-link" href="<comm:BackURL/>" class="btn btn-link">
             <i class="fa fa-reply"></i>
             <fmt:message key="button.done"/>
         </a>
@@ -54,7 +54,7 @@
 
 <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>   
 <form:form id="myMessageForm" method="post" modelAttribute="m" cssClass="form-horizontal" onsubmit="return validateMyMessage(this)">
- <sys:BackURL hiddenInput="true"/>
+ <comm:BackURL hiddenInput="true"/>
 
  <sys:showGlobalError modelAttribute="m"/>
 

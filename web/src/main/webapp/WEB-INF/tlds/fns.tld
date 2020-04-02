@@ -90,7 +90,7 @@
     <description>Determine whether login by mobile device</description>
     <name>isMobileDevice</name>
     <function-class>com.mds.sys.util.UserUtils</function-class>
-    <function-signature>boolean isMobileDevice()</function-signature>
+    <function-signature>boolean isMobileDevice(javax.servlet.http.HttpServletRequest)</function-signature>
     <example>${fns:isMobileDevice()}</example>  
   </function>
   

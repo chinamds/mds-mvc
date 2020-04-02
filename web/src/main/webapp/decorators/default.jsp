@@ -50,7 +50,7 @@
 	    </div>
     </c:if>
 	
-	<%-- <c:if test="${fns:isMobileDevice() and currentContainer ne 'galleryView'}"> --%>
+	<%-- <c:if test="${fns:isMobileDevice(pageContext.request) and currentContainer ne 'galleryView'}"> --%>
 	<c:if test="${currentContainer ne 'galleryView'}">
 		<div id="footer" class="container fixed-bottom navbar-fixed-bottom d-sm-none">
 	        <span class="col-sm-6 text-left"><fmt:message key="webapp.fullname"/>&nbsp;<fmt:message key="webapp.version"/>
@@ -90,7 +90,7 @@
 	}
 		
 </script>
-<%-- <c:if test="${fns:isMobileDevice()}">
+<%-- <c:if test="${fns:isMobileDevice(pageContext.request)}">
 <script type="text/javascript">
 	$('body').css("padding-top", "50px");
 </script>

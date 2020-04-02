@@ -13,13 +13,13 @@
 <div class="col">
     <ul class="nav nav-tabs">
          <li role="presentation" class="nav-item active">
-             <a class="nav-link" href="${ctx}/sys/myMessages/${m.id}?BackURL=<sys:BackURL/>">
+             <a class="nav-link" href="${ctx}/sys/myMessages/${m.id}?BackURL=<comm:BackURL/>">
                  <i class="fa fa-eye-open"></i>
                  <fmt:message key="myMessage.messageoperate.viewmessage"/>
              </a>
          </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link" href="<sys:BackURL/>" class="btn btn-link">
+            <a class="nav-link" href="<comm:BackURL/>" class="btn btn-link">
                 <i class="fa fa-reply"></i>
                 <fmt:message key="button.done"/>
             </a>

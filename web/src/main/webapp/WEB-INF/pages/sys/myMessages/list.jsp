@@ -106,7 +106,7 @@
 		</c:if>        
     </c:if>
 
-	<c:if test="${state ne MessageFolder.inbox or (state eq MessageFolder.inbox and not fns:isMobileDevice())}">
+	<c:if test="${state ne MessageFolder.inbox or (state eq MessageFolder.inbox and not fns:isMobileDevice(pageContext.request))}">
 	    <a role="button" class="btn btn-sm no-disabled btn-clear">
 	        <i class="fa fa-eraser"></i>
 	        <fmt:message key="myMessage.messageoperate.emptyfolder"/><%-- ${state.info} --%>

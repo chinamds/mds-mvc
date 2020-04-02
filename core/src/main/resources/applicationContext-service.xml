@@ -15,7 +15,7 @@
     <!-- AOP: Configuration and Aspects                                      -->
     <!-- =================================================================== -->
     <!-- <aop:config expose-proxy="true" proxy-target-class="true"> //Resolved @cacheable not work problem 19/03/2018-->
-    <aop:config>
+    <aop:config expose-proxy="true">
         <aop:advisor id="userManagerTx" advice-ref="userManagerTxAdvice" pointcut="execution(* *..sys.service.*Manager.*(..))" order="0"/>
         <!-- <aop:advisor id="userManagerSecurity" advice-ref="userSecurityAdvice" pointcut="execution(* *..service.UserManager.saveUser(..))" order="1"/>-->
         <aop:advisor id="managerTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Manager.*(..)) or execution(* *..service.task.*Task.*(..))" order="1"/>
@@ -25,8 +25,8 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!-- Enable @AspectJ support -->
-    <!-- <aop:aspectj-autoproxy expose-proxy="true"/> //Resolved @cacheable not work problem 19/03/2018-->
-    <aop:aspectj-autoproxy/>
+    <aop:aspectj-autoproxy expose-proxy="true"/> <!-- Resolved @cacheable not work problem 19/03/2018 -->
+    <!-- <aop:aspectj-autoproxy/> -->
 
     <!-- Activates scanning of @Autowired -->
     <context:annotation-config/>

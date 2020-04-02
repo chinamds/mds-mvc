@@ -54,7 +54,7 @@ public class LocaleFilter extends OncePerRequestFilter {
             
             if (preferredLocale != null){
                 session.setAttribute(Constants.PREFERRED_LOCALE_KEY, preferredLocale);
-                Config.set(session, Config.FMT_LOCALE, preferredLocale);
+                //Config.set(session, Config.FMT_LOCALE, preferredLocale);
             }
             
             if (preferredLocale != null && !(request instanceof LocaleRequestWrapper)) {
@@ -66,6 +66,9 @@ public class LocaleFilter extends OncePerRequestFilter {
         }
         
         if (preferredLocale != null){
+        	if (session != null) {
+        		javax.servlet.jsp.jstl.core.Config.set( session, Config.FMT_LOCALE, preferredLocale);
+        	}
         	String languageTag = preferredLocale.getLanguage();
         	if (StringUtils.isNotBlank(preferredLocale.getCountry())){
         		languageTag =  languageTag + "_" + preferredLocale.getCountry();
@@ -74,6 +77,9 @@ public class LocaleFilter extends OncePerRequestFilter {
             javax.servlet.jsp.jstl.core.Config.set(request, Config.FMT_LOCALIZATION_CONTEXT, new LocalizationContext(bundle, preferredLocale));
         }else{
         	preferredLocale = new Locale("en");
+        	if (session != null) {
+        		javax.servlet.jsp.jstl.core.Config.set( session, Config.FMT_LOCALE, preferredLocale);
+        	}
         	ResourceBundle bundle = ResourceBundle.getBundle("ApplicationResources", preferredLocale, DbResourceBundle.getDBControl("en")); //"ApplicationResources_" + languageTag
             javax.servlet.jsp.jstl.core.Config.set(request, Config.FMT_LOCALIZATION_CONTEXT, new LocalizationContext(bundle, preferredLocale));
         }
