@@ -34,7 +34,7 @@
         <js>/static/3rdparty/jquery.fileDownload/jquery.fileDownload.js</js>
         <js>/static/3rdparty/select2/js/select2.full.js</js>
         <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
-        <js>/static/3rdparty/bootstrap-waitingfor/bootstrap-waitingfor.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/mainframe.js</js>
@@ -58,6 +58,7 @@
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
         <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
         <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/app-dialog.js</js>
@@ -93,7 +94,7 @@
         <js>/static/3rdparty/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js</js>
         <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
         <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
-        <js>/static/3rdparty/bootstrap-waitingfor/bootstrap-waitingfor.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/mainframe.js</js>
@@ -142,6 +143,7 @@
         <js>/static/3rdparty/webui-popover/jquery.webui-popover.js</js>
         <js>/static/3rdparty/bootstrap-tabs-x/js/bootstrap-tabs-x.js</js>
         <js>/static/3rdparty/bootstrap-treeview/bootstrap-treeview.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/app-dialog.js</js>
@@ -191,6 +193,7 @@
         <!-- <js>/static/3rdparty/jquery-ui/jquery-ui.min.js</js> -->
 		<js>/static/3rdparty/jquery.appendGrid/jquery-ui-1.12.1.min.js</js>
         <js>/static/3rdparty/jquery.appendGrid/jquery.appendGrid-1.7.1.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <!-- <js>/static/scripts/mds.js</js> -->
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/app-dialog.js</js>
@@ -239,7 +242,7 @@
         <js>/static/3rdparty/scrolling-tabs/jquery.scrolling-tabs.js</js>
         <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
         <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
-        <js>/static/3rdparty/bootstrap-waitingfor/bootstrap-waitingfor.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <!-- <js>/static/scripts/mds.js</js> -->
         <js>/static/scripts/mainframe.js</js>
         <js>/static/scripts/app-dialog.js</js>
@@ -285,6 +288,7 @@
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
         <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
         <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/app-dialog.js</js>
@@ -316,6 +320,7 @@
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
         <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
         <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/app-dialog.js</js>
@@ -342,6 +347,7 @@
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
         <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
         <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/mainframe.js</js>
@@ -372,6 +378,7 @@
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
         <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
         <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/mainframe.js</js>
@@ -396,6 +403,7 @@
         <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
         <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
         <js>/static/3rdparty/plupload/plupload.full.min.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/script.js</js>
@@ -423,6 +431,7 @@
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
         <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
         <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/mainframe.js</js>
@@ -453,6 +462,7 @@
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
         <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
         <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/mainframe.js</js>
@@ -488,6 +498,7 @@
         <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
         <js>/static/3rdparty/select2/js/select2.full.js</js>
         <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/mainframe.js</js>
@@ -523,6 +534,7 @@
         <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
         <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
         <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/mainframe.js</js>
@@ -579,6 +591,7 @@
         <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
         <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
         <js>/static/3rdparty/webui-popover/jquery.webui-popover.js</js>
+        <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
         <js>/static/scripts/mainframe.js</js>

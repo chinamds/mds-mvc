@@ -5,6 +5,10 @@
             autoPositionUpdate:true,
             scroll:false
         });*/
+    	$(document).ready(function() {
+            $("input[type='text']:visible:enabled:first", document.forms['editForm']).focus();
+        });
+    	
     	$.extend(true, $.fn.datetimepicker.defaults, {
     	    icons: {
     	      time: 'far fa-clock',

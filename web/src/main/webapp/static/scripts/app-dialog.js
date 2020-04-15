@@ -860,8 +860,14 @@ $.mdsDialog = {
         if(!message) {
             message = "Loading...";
         }
+        
+        $.LoadingOverlay("show", {
+            image       : "",
+            text        : message,
+            fontawesome : "fa fa-cog fa-spin"
+        });
 
-        message = '<img src="' + window.Mds.AppRoot + '/static/images/loading.gif" '+ (sizeSmall ? "width='20px'" : "") +'/> ' + message;
+        /*message = '<img src="' + window.Mds.AppRoot + '/static/images/loading.gif" '+ (sizeSmall ? "width='20px'" : "") +'/> ' + message;
         if(!sizeSmall) {
             message = "<h4>"+message+"</h4>";
         }
@@ -884,11 +890,12 @@ $.mdsDialog = {
         $.mdsDialog._bootstrapDialog.realize();
         $.mdsDialog._bootstrapDialog.getModalHeader().hide();
         $.mdsDialog._bootstrapDialog.getModalBody().css('textAlign', 'center');
-        $.mdsDialog._bootstrapDialog.open();
+        $.mdsDialog._bootstrapDialog.open();*/
     },
     
     waitingOver: function () {
-    	console.log('try to close _bootstrapDialog');
+    	$.LoadingOverlay("hide");
+    	/*console.log('try to close _bootstrapDialog');
     	if ($.mdsDialog._bootstrapDialog){
     		console.log('close _bootstrapDialog');
     		setTimeout(function() {
@@ -896,7 +903,7 @@ $.mdsDialog = {
         		$.mdsDialog._bootstrapDialog.setCloseByBackdrop(true);
     			$.mdsDialog._bootstrapDialog.close();
             }, 200);
-    	}
+    	}*/
     }
     ,
     /**

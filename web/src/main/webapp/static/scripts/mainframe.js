@@ -436,7 +436,6 @@ $.mainframe = {
         	if (!isMicrosoftEdge()){
         		$.mdsDialog.waiting(loadingMessage);
         	}
-        	//waitingDialog.show('');
         	
             if(!iframe.length) {
                 iframe = $("iframe[tabs=true]:last").clone(true);
@@ -449,7 +448,6 @@ $.mainframe = {
 	                
 	                //console.log('waitingOver');
 	                $.mdsDialog.waitingOver();
-	                //waitingDialog.hide();
 	            });
             }else{
             	iframe.prop("src", url);
@@ -460,10 +458,8 @@ $.mainframe = {
             /*iframe.onreadystatechange =  function(){
 				if(iframe[0].readyState == "complete" || iframe[0].readyState == "loaded"){
 					$.mainframe.activeIframe(panelId, iframe);                        
-					waitingDialog.hide();
 				}
 				$.mainframe.activeIframe(panelId, iframe);                        
-				waitingDialog.hide();
             };*/
         } else {
             $.mainframe.activeIframe(panelId, iframe);
