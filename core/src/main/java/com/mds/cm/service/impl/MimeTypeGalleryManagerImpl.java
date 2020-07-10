@@ -10,6 +10,7 @@ import com.mds.common.model.search.SearchOperator;
 import com.mds.common.model.search.Searchable;
 import com.mds.common.service.impl.GenericManagerImpl;
 import com.mds.util.ConvertUtil;
+import com.mds.util.StringUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,7 +78,7 @@ public class MimeTypeGalleryManagerImpl extends GenericManagerImpl<MimeTypeGalle
   	public MimeTypeGallery saveMimeTypeGallery(MimeTypeBo mimeType ){
   		if ((mimeType.getGalleryId() == Long.MIN_VALUE) || (mimeType.getMimeTypeGalleryId() == Long.MIN_VALUE))
   		{
-  			throw new UnsupportedOperationException(String.format("Cannot save. This MIME type instance is an application-level MIME type and cannot be persisted to the data store. Only gallery-specific MIME types can be saved. (GalleryId={0}, MimeTypeId={1}, MimeTypeGalleryId={2}, FileExtension={3}"
+  			throw new UnsupportedOperationException(StringUtils.format("Cannot save. This MIME type instance is an application-level MIME type and cannot be persisted to the data store. Only gallery-specific MIME types can be saved. (GalleryId={0}, MimeTypeId={1}, MimeTypeGalleryId={2}, FileExtension={3}"
   					, mimeType.getGalleryId(), mimeType.getMimeTypeId(), mimeType.getMimeTypeGalleryId(), mimeType.getExtension()));
   		}
 

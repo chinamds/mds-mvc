@@ -8,12 +8,12 @@ jdbc.validationQuery=${jdbc.validationQuery}
 jdbc.pool.minIdle=3
 jdbc.pool.maxActive=20
 
-mds.jdbc.url=jdbc:mysql://127.0.0.1/mdsplus-dev?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true
+mds.jdbc.url=jdbc:mysql://127.0.0.1/mdsplus-dev?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true
 mds.jdbc.username=root
 mds.jdbc.password=root
-mds.jdbc.driverClassName=com.mysql.jdbc.Driver
+mds.jdbc.driverClassName=com.mysql.cj.jdbc.Driver
 mds.jdbc.validationQuery=SELECT 1 + 1
-mds.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+mds.hibernate.dialect=org.hibernate.dialect.MySQL57Dialect
 
 hibernate.dialect=${hibernate.dialect}
 #default batch_size=30 and fetch_size=50

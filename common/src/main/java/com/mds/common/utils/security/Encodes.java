@@ -19,9 +19,9 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
-//import org.apache.commons.lang3.StringEscapeUtils;
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
+//
 import com.mds.common.exception.EncryptDecryptException;
 import com.mds.common.exception.Exceptions;
 

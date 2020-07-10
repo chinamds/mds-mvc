@@ -2,7 +2,6 @@
 
  <!-- display menu for mobile device, handle by MenuRepositoryFilter 10/12/2017 -->
 <!-- display menu for desktop device -->
-<menu:useMenuDisplayer name="Velocity" config="navbarMenu.vm" repository="userMenuRepository" permissions="rolesAdapter">
 <div class="collapse navbar-collapse" id="navbar">
 <ul class="nav navbar-nav mr-auto">
     <c:if test="${empty pageContext.request.remoteUser}">
@@ -17,7 +16,7 @@
     </c:if>
 	<c:if test="${userMenuRepository != null}">
 	    <c:forEach items="${userMenuRepository.topMenus}" var="menu">
-	    	<menu:displayMenu name="${menu.name}" />
+	    	<comm:navbarMenu menu="${menu}" />
 	    </c:forEach>
     </c:if>
 </ul>
@@ -112,13 +111,14 @@
 			   </a>
 			   <ul class="dropdown-menu dropdown-menu-right">
 				    <c:forEach items="${fns:getCultures()}" var="culture">
-				    <li>
-				    <a class="dropdown-item" href="#" onclick="location='<c:url value='/?locale=${culture.cultureCode}'/>'">${culture.cultureName}</a></li></c:forEach>
+					    <li>
+					       <a class="dropdown-item" href="#" onclick="location='<c:url value='/?locale=${culture.cultureCode}'/>'">${culture.cultureName}</a>
+					    </li>
+				    </c:forEach>
 			   </ul>
 		  </li>
 		</ul>
     </div>
 </form>
 </div>
-</menu:useMenuDisplayer>
 

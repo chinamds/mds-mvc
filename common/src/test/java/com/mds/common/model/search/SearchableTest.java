@@ -68,14 +68,14 @@ public class SearchableTest {
         Searchable searchable2 = Searchable.newSearchable(
                 null,
                 PageRequest.of(0, 1),
-                new Sort(Sort.Direction.DESC, "uuid"));
+                Sort.by(Sort.Direction.DESC, "uuid"));
 
         Assert.assertTrue(searchable2.hasPageable());
         Assert.assertTrue(searchable2.hashSort());
 
         Searchable searchable3 = Searchable.newSearchable(
                 null,
-                PageRequest.of(0, 1, new Sort(Sort.Direction.DESC, "uuid")));
+                PageRequest.of(0, 1, Sort.by(Sort.Direction.DESC, "uuid")));
 
         Assert.assertTrue(searchable3.hasPageable());
         Assert.assertTrue(searchable3.hashSort());

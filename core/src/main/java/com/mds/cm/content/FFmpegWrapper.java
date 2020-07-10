@@ -218,7 +218,7 @@ public class FFmpegWrapper {
 	public static int parseOutputVideoWidth(String ffmpegOutput){
 		Pattern re = Pattern.compile(VideoDimensionsRegExPattern);
 		Matcher m = re.matcher(ffmpegOutput);
-		if (m.find() && m.find()){
+		if (m.find()){
 			return StringUtils.toInteger(m.group(1), Integer.MIN_VALUE);
 		}
 
@@ -258,7 +258,7 @@ public class FFmpegWrapper {
 	public static int parseOutputVideoHeight(String ffmpegOutput){
 		Pattern re = Pattern.compile(VideoDimensionsRegExPattern);
 		Matcher m = re.matcher(ffmpegOutput);
-		if (m.find() && m.find()){
+		if (m.find()){
 			return StringUtils.toInteger(m.group(2), Integer.MIN_VALUE);
 		}
 

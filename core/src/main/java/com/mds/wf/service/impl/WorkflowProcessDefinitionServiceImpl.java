@@ -2,6 +2,7 @@ package com.mds.wf.service.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.zip.ZipInputStream;
 
 import org.activiti.engine.HistoryService;
@@ -105,11 +106,11 @@ public class WorkflowProcessDefinitionServiceImpl implements WorkflowProcessDefi
 			 */
 			if (ArrayUtils.isNotEmpty(processKey)) {
 				if (ArrayUtils.contains(processKey, loopProcessKey)) {
-					logger.debug("hit module of" + (Object[])processKey);
+					logger.debug("hit module of {}",  (Object[])processKey);
 					deploySingleProcess(resourceLoader, loopProcessKey);
 				} else {
 					logger.debug("module: "+ loopProcessKey + " not equals process key: {}, ignore and continue find next." + 
-							processKey);
+							Arrays.toString(processKey));
 				}
 			} else {
 				/*

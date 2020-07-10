@@ -71,7 +71,7 @@ import java.util.*;
  */
 public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
 
-    private static final Pageable DEFAULT_PAGE_REQUEST = new PageRequest(0, 10);
+    private static final Pageable DEFAULT_PAGE_REQUEST = PageRequest.of(0, 10);
     private static final String DEFAULT_PAGE_PREFIX = "page";
     private static final String DEFAULT_SORT_PREFIX = "sort";
 
@@ -144,13 +144,13 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
 
         Sort sort = getSort(sortNamePrefix, sortMap, defaultPageRequest, webRequest);
         if (pageableMap.size() == 0) {
-            return new PageRequest(defaultPageRequest.getPageNumber(), defaultPageRequest.getPageSize(), sort == null ? defaultPageRequest.getSort() : sort);
+            return PageRequest.of(defaultPageRequest.getPageNumber(), defaultPageRequest.getPageSize(), sort == null ? defaultPageRequest.getSort() : sort);
         }
 
         int pn = getPn(pageableMap, defaultPageRequest);
         int pageSize = getPageSize(pageableMap, defaultPageRequest);
 
-        return new PageRequest(pn - 1, pageSize, sort);
+        return PageRequest.of(pn - 1, pageSize, sort);
 
     }
 
@@ -180,7 +180,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
 
         Collections.sort(orderedSortList);
         for (OrderedSort orderedSort : orderedSortList) {
-            Sort newSort = new Sort(orderedSort.direction, orderedSort.property);
+            Sort newSort = Sort.by(orderedSort.direction, orderedSort.property);
             if (sort == null) {
                 sort = newSort;
             } else {
@@ -315,7 +315,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
 
         for (String sortStr : sortStrArray) {
             String[] sortStrPair = sortStr.split("=");
-            Sort newSort = new Sort(Sort.Direction.fromString(sortStrPair[1]), sortStrPair[0]);
+            Sort newSort = Sort.by(Sort.Direction.fromString(sortStrPair[1]), sortStrPair[0]);
             if (sort == null) {
                 sort = newSort;
             } else {

@@ -293,7 +293,7 @@ public class MoveServiceIT extends BaseIT {
 
         moveService.reweight();
 
-        List<Move> moves = moveService.findAll(new Sort(Sort.Direction.ASC, "weight"));
+        List<Move> moves = moveService.findAll(Sort.by(Sort.Direction.ASC, "weight"));
 
         assertEquals(moveService.getStepLength(), moves.get(0).getWeight());
         assertEquals(Integer.valueOf(moveService.getStepLength() * 2), moves.get(1).getWeight());

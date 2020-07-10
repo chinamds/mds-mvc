@@ -58,39 +58,41 @@ public class MultiPartFileSenderService {
     private static final int DEFAULT_BUFFER_SIZE = 20480; // ..bytes = 20KB.
     private static final long DEFAULT_EXPIRE_TIME = 604800000L; // ..ms = 1 week.
 
-    final TikaMimeTypeService mimeTypeService;
-
-    @Autowired MultiPartFileSenderService(TikaMimeTypeService mimeTypeService) {
-        this.mimeTypeService = mimeTypeService;
+	
+	/*
+	 * final TikaMimeTypeService mimeTypeService;
+	 * 
+	 * @Autowired MultiPartFileSenderService(TikaMimeTypeService mimeTypeService) {
+	 * this.mimeTypeService = mimeTypeService; }
+	 * 
+	 * public MultiPartFileSenderImpl fromPath(Path path) { return new
+	 * MultiPartFileSenderImpl(mimeTypeService).setFilepath(path); }
+	 * 
+	 * public MultiPartFileSenderImpl fromFile(File file) { return new
+	 * MultiPartFileSenderImpl(mimeTypeService).setFilepath(file.toPath()); } public
+	 * MultiPartFileSenderImpl fromURIString(String uri) { return new
+	 * MultiPartFileSenderImpl(mimeTypeService).setFilepath(Paths.get(uri)); }
+	 */
+	  
+    public MultiPartFileSenderImpl fromMediaSourceBuilder(MediaSourceBuilder mediaSourceBuilder) { 
+    	return new MultiPartFileSenderImpl().setMediaSourceBuilder(mediaSourceBuilder); 
     }
-
-    public MultiPartFileSenderImpl fromPath(Path path) {
-        return new MultiPartFileSenderImpl(mimeTypeService).setFilepath(path);
-    }
-    
-    public MultiPartFileSenderImpl fromMediaSourceBuilder(MediaSourceBuilder mediaSourceBuilder) {
-        return new MultiPartFileSenderImpl(mimeTypeService).setMediaSourceBuilder(mediaSourceBuilder);
-    }
-    
-    public MultiPartFileSenderImpl fromFile(File file) {
-        return new MultiPartFileSenderImpl(mimeTypeService).setFilepath(file.toPath());
-    }
-    public MultiPartFileSenderImpl fromURIString(String uri) {
-        return new MultiPartFileSenderImpl(mimeTypeService).setFilepath(Paths.get(uri));
-    }
-
+	 
     public static class MultiPartFileSenderImpl {
 
-    	TikaMimeTypeService mimeTypeService;
+    	//TikaMimeTypeService mimeTypeService;
         Path filepath;
         MediaSourceBuilder mediaSourceBuilder;
         HttpServletRequest request;
         HttpServletResponse response;
         String disposition = CONTENT_DISPOSITION_INLINE;
 
-        public MultiPartFileSenderImpl(TikaMimeTypeService mimeTypeService) {
-            this.mimeTypeService = mimeTypeService;
-        }
+		/*
+		 * public MultiPartFileSenderImpl(TikaMimeTypeService mimeTypeService) {
+		 * this.mimeTypeService = mimeTypeService; }
+		 */
+        public MultiPartFileSenderImpl() {
+   		}
 
         public MultiPartFileSenderImpl with(HttpServletRequest httpRequest) {
             request = httpRequest;
@@ -146,7 +148,8 @@ public class MultiPartFileSenderService {
 	            length = Files.size(filepath);
 	            fileName = filepath.getFileName().toString();
 	            lastModified = Files.getLastModifiedTime(filepath).toMillis();
-	            contentType = mimeTypeService.probeContentType(filepath);
+	            //contentType = mimeTypeService.probeContentType(filepath);
+	            contentType = fileName;
             }else {
             	if (!mediaSourceBuilder.isUserAuthorized()) {
             		//response.setHeader("Content-Type", "text/html");

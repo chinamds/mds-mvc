@@ -74,7 +74,7 @@ public class SearchableMethodArgumentResolverTest {
         assertEquals(pn - 1, searchable.getPage().getPageNumber());
         assertEquals(pageSize, searchable.getPage().getPageSize());
 
-        Sort expectedSort = new Sort(Sort.Direction.ASC, "baseInfo.realname").and(new Sort(Sort.Direction.DESC, "id"));
+        Sort expectedSort = Sort.by(Sort.Direction.ASC, "baseInfo.realname").and(Sort.by(Sort.Direction.DESC, "id"));
         assertEquals(expectedSort, searchable.getSort());
 
 
@@ -125,7 +125,7 @@ public class SearchableMethodArgumentResolverTest {
 
         assertEquals(null, searchable.getPage());
 
-        Sort expectedSort = new Sort(Sort.Direction.ASC, "baseInfo.realname").and(new Sort(Sort.Direction.DESC, "id"));
+        Sort expectedSort = Sort.by(Sort.Direction.ASC, "baseInfo.realname").and(Sort.by(Sort.Direction.DESC, "id"));
         assertEquals(expectedSort, searchable.getSort());
 
 
@@ -180,7 +180,7 @@ public class SearchableMethodArgumentResolverTest {
         assertEquals(pn - 1, searchable.getPage().getPageNumber());
         assertEquals(pageSize, searchable.getPage().getPageSize());
 
-        Sort expectedSort = new Sort(Sort.Direction.ASC, "baseInfo.realname").and(new Sort(Sort.Direction.DESC, "id"));
+        Sort expectedSort = Sort.by(Sort.Direction.ASC, "baseInfo.realname").and(Sort.by(Sort.Direction.DESC, "id"));
         assertEquals(expectedSort, searchable.getSort());
 
 
@@ -207,7 +207,7 @@ public class SearchableMethodArgumentResolverTest {
         assertEquals(pn - 1, searchable.getPage().getPageNumber());
         assertEquals(pageSize, searchable.getPage().getPageSize());
 
-        Sort expectedSort = new Sort(Sort.Direction.ASC, "baseInfo.realname").and(new Sort(Sort.Direction.DESC, "id"));
+        Sort expectedSort = Sort.by(Sort.Direction.ASC, "baseInfo.realname").and(Sort.by(Sort.Direction.DESC, "id"));
         assertEquals(expectedSort, searchable.getSort());
 
 
@@ -239,7 +239,7 @@ public class SearchableMethodArgumentResolverTest {
         assertEquals(pn - 1, searchable.getPage().getPageNumber());
         assertEquals(pageSize, searchable.getPage().getPageSize());
 
-        Sort expectedSort = new Sort(Sort.Direction.ASC, "baseInfo.realname").and(new Sort(Sort.Direction.DESC, "id"));
+        Sort expectedSort = Sort.by(Sort.Direction.ASC, "baseInfo.realname").and(Sort.by(Sort.Direction.DESC, "id"));
         assertEquals(expectedSort, searchable.getSort());
 
         assertContainsSearchFilter(SearchFilterHelper.newCondition("baseInfo.realname", SearchOperator.like, "zhang"), searchable);
@@ -270,7 +270,7 @@ public class SearchableMethodArgumentResolverTest {
         assertEquals(pn - 1, searchable.getPage().getPageNumber());
         assertEquals(pageSize, searchable.getPage().getPageSize());
 
-        Sort expectedSort = new Sort(Sort.Direction.ASC, "baseInfo.realname").and(new Sort(Sort.Direction.DESC, "id"));
+        Sort expectedSort = Sort.by(Sort.Direction.ASC, "baseInfo.realname").and(Sort.by(Sort.Direction.DESC, "id"));
         assertEquals(expectedSort, searchable.getSort());
 
         assertContainsSearchFilter(SearchFilterHelper.newCondition("baseInfo.realname", SearchOperator.like, "zhang"), searchable);

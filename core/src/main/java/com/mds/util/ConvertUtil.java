@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
-import com.mds.common.model.LabelValue;
 
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -44,22 +43,6 @@ public final class ConvertUtil {
         while (keys.hasMoreElements()) {
             String key = keys.nextElement();
             map.put(key, rb.getString(key));
-        }
-
-        return map;
-    }
-
-    /**
-     * Convert a java.util.List of LabelValue objects to a LinkedHashMap.
-     *
-     * @param list the list to convert
-     * @return the populated map with the label as the key
-     */
-    public static Map<String, String> convertListToMap(List<LabelValue> list) {
-        Map<String, String> map = new LinkedHashMap<String, String>();
-
-        for (LabelValue option : list) {
-            map.put(option.getLabel(), option.getValue());
         }
 
         return map;

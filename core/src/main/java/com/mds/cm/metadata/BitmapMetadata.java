@@ -5,15 +5,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.tika.exception.TikaException;
+/*import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
-import org.apache.tika.sax.BodyContentHandler;
+import org.apache.tika.sax.BodyContentHandler;*/
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xml.sax.SAXException;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
@@ -112,37 +111,31 @@ public class BitmapMetadata{
 		} 
 		
 		//Assume that boy.jpg is in your current directory
-	    File file = new File(query);
+	    //File file = new File(query);
 
 	      //Parser method parameters
-	      AutoDetectParser parser = new AutoDetectParser();
-	      BodyContentHandler handler = new BodyContentHandler();
-	      
-	      
-	      try {
-	    	  Metadata metadata = new Metadata();
-		      FileInputStream inputstream = new FileInputStream(file);
-		      //ParseContext context = new ParseContext();
-		      
-		      //parser.parse(inputstream, handler, metadata, context);
-		      parser.parse(inputstream, handler, metadata);
-		      inputstream.close();
-		      
-		      System.out.println(handler.toString());
-		      log.info(handler.toString());
-
-		      //getting the list of all meta data elements 
-		      String[] metadataNames = metadata.names();
-
-		      for(String name : metadataNames) {		        
-		         //System.out.println(name + ": " + metadata.get(name));
-		         log.info(name + ": " + metadata.get(name));
-		      }
-		      
-		} catch (IOException | SAXException | TikaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * AutoDetectParser parser = new AutoDetectParser(); BodyContentHandler handler
+		 * = new BodyContentHandler();
+		 * 
+		 * 
+		 * try { Metadata metadata = new Metadata(); FileInputStream inputstream = new
+		 * FileInputStream(file); //ParseContext context = new ParseContext();
+		 * 
+		 * //parser.parse(inputstream, handler, metadata, context);
+		 * parser.parse(inputstream, handler, metadata); inputstream.close();
+		 * 
+		 * System.out.println(handler.toString()); log.info(handler.toString());
+		 * 
+		 * //getting the list of all meta data elements String[] metadataNames =
+		 * metadata.names();
+		 * 
+		 * for(String name : metadataNames) { //System.out.println(name + ": " +
+		 * metadata.get(name)); log.info(name + ": " + metadata.get(name)); }
+		 * 
+		 * } catch (IOException | SAXException | TikaException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); }
+		 */
 	      
 
 		 

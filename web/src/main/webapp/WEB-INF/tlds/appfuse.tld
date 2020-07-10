@@ -47,32 +47,7 @@
         <attribute>
             <name>var</name>
         </attribute>
-    </tag>
-    <tag>
-        <name>country</name>
-        <tag-class>com.mds.common.webapp.taglib.CountryTag</tag-class>
-        <body-content>empty</body-content>
-        <attribute>
-            <name>name</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>prompt</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>default</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>toScope</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
+    </tag>  
     <tag>
         <description>
             Tag surrounds JSP code in which EL expressions should not be XML-escaped.

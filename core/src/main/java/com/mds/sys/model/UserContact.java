@@ -56,7 +56,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
 import com.mds.cm.model.GalleryMapping;
 import com.mds.common.model.Address;
-import com.mds.common.model.LabelValue;
 import com.mds.sys.model.Role;
 import com.mds.common.model.DataEntity;
 import com.mds.hrm.model.Staff;

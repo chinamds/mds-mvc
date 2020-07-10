@@ -14,7 +14,6 @@
 <%@ attribute name="thumbnailScriptTmplId" type="java.lang.String" required="true"%>
 <%@ attribute name="thumbnailTmplName" type="java.lang.String" required="true"%>
 
- <%-- <%=getMediaTemplate(request, uiTemplate, id, contentHtmlTmplId, contentScriptTmplId, contentTmplName)%> --%>
  <div id='${id}'></div>
  <%
  	//out.write(getthumbnailTemplates());

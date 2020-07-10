@@ -117,8 +117,8 @@ public class UserServiceTest extends BaseUserIT {
             user = userService.save(createUser());
         }
 
-        Sort sortDesc = new Sort(Sort.Direction.DESC, "id");
-        Sort sortAsc = new Sort(Sort.Direction.ASC, "id");
+        Sort sortDesc = Sort.by(Sort.Direction.DESC, "id");
+        Sort sortAsc = Sort.by(Sort.Direction.ASC, "id");
         List<User> userDescList = userService.findAll(sortDesc);
         List<User> userAscList = userService.findAll(sortAsc);
 
@@ -140,7 +140,7 @@ public class UserServiceTest extends BaseUserIT {
             lastUser = userService.save(createUser());
         }
 
-        Sort sortDesc = new Sort(Sort.Direction.DESC, "id");
+        Sort sortDesc = Sort.by(Sort.Direction.DESC, "id");
         Pageable pageable = PageRequest.of(0, 5, sortDesc);
         Page<User> userPage = userService.findAll(pageable);
 
@@ -157,7 +157,7 @@ public class UserServiceTest extends BaseUserIT {
             lastUser = userService.save(createUser());
         }
 
-        Sort sortAsc = new Sort(Sort.Direction.ASC, "id");
+        Sort sortAsc = Sort.by(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(0, 5, sortAsc);
         Page<User> userPage = userService.findAll(pageable);
 
@@ -199,7 +199,7 @@ public class UserServiceTest extends BaseUserIT {
 
         Map<String, Object> searchParams = new HashMap<String, Object>();
         searchParams.put("username_like", "zhang");
-        Sort sortDesc = new Sort(Sort.Direction.DESC, "id");
+        Sort sortDesc = Sort.by(Sort.Direction.DESC, "id");
         Searchable search = Searchable.newSearchable(searchParams).addSort(sortDesc);
 
         List<User> userList = userService.findAllWithSort(search);
@@ -217,7 +217,7 @@ public class UserServiceTest extends BaseUserIT {
             lastUser = userService.save(createUser());
         }
 
-        Sort sortAsc = new Sort(Sort.Direction.ASC, "id");
+        Sort sortAsc = Sort.by(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(0, 5, sortAsc);
         Map<String, Object> searchParams = new HashMap<String, Object>();
         searchParams.put("username_like", "zhang");

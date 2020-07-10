@@ -2,7 +2,6 @@ package com.mds.cm.metadata;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.math.Fraction;
-import org.apache.tika.metadata.Property;
 
 import com.mds.core.exception.ArgumentNullException;
 import com.mds.core.exception.BusinessException;

@@ -59,9 +59,11 @@ public class FeedManagerImpl implements FeedService{
 	
 	public AlbumBo getById(long id, String sortByMetaNameId, boolean sortAscending, String destinationUrl, HttpServletRequest request){
 		AlbumBo album = null;
+		Long validateGalleryId = null;
 		try	{
 			album = CMUtils.loadAlbumInstance(id, true);
 			SecurityGuard.throwIfUserNotAuthorized(SecurityActions.ViewAlbumOrContentObject, RoleUtils.getMDSRolesForUser(), album.getId(), album.getGalleryId(), UserUtils.isAuthenticated(), album.getIsPrivate(), album.getIsVirtualAlbum());
+			validateGalleryId = (album != null ? album.getGalleryId() : null);
 
 			album.setFeedFormatterOptions(new FeedFormatterOptions(
 					MetadataItemName.valueOf(sortByMetaNameId),
@@ -76,7 +78,7 @@ public class FeedManagerImpl implements FeedService{
 		}catch (GallerySecurityException ge){
 			throw new WebApplicationException(Response.Status.FORBIDDEN);
 		}catch (Exception ex){
-			AppEventLogUtils.LogError(ex, (album != null ? album.getGalleryId() : null));
+			AppEventLogUtils.LogError(ex, validateGalleryId);
 
 			throw new WebApplicationException(HelperFunctions.getExStringContent(ex));
 		}
@@ -104,8 +106,10 @@ public class FeedManagerImpl implements FeedService{
 	
 	public AlbumBo getByTitle(String q, String sortByMetaNameId, boolean sortAscending, String destinationUrl, String filter, long galleryId, HttpServletRequest request){
 		AlbumBo album = null;
+		Long validateGalleryId = null;
 		try	{
 			album = ContentObjectUtils.getContentObjectsHavingTitleOrCaption(Utils.toArray(q), ContentObjectType.parse(filter, ContentObjectType.All), ApprovalStatus.All, validateGallery(galleryId));
+			validateGalleryId = (album != null ? album.getGalleryId() : null);
 
 			album.setFeedFormatterOptions(new FeedFormatterOptions(
 					MetadataItemName.valueOf(sortByMetaNameId),
@@ -117,7 +121,7 @@ public class FeedManagerImpl implements FeedService{
 		}catch (GallerySecurityException ge){
 			throw new WebApplicationException(Response.Status.FORBIDDEN);
 		}catch (Exception ex){
-			AppEventLogUtils.LogError(ex, (album != null ? album.getGalleryId() : null));
+			AppEventLogUtils.LogError(ex, validateGalleryId);
 
 			throw new WebApplicationException(HelperFunctions.getExStringContent(ex));
 		}
@@ -145,8 +149,10 @@ public class FeedManagerImpl implements FeedService{
 	
 	public AlbumBo getBySearch(String q, String sortByMetaNameId, boolean sortAscending, String destinationUrl, String filter, long galleryId, HttpServletRequest request){
 		AlbumBo album = null;
+		Long validateGalleryId = null;
 		try	{
 			album = ContentObjectUtils.getContentObjectsHavingSearchString(Utils.toArray(q), ContentObjectType.parse(filter, ContentObjectType.All), ApprovalStatus.All, validateGallery(galleryId));
+			validateGalleryId = (album != null ? album.getGalleryId() : null);
 
 			album.setFeedFormatterOptions(new FeedFormatterOptions(
 					MetadataItemName.valueOf(sortByMetaNameId),
@@ -158,7 +164,7 @@ public class FeedManagerImpl implements FeedService{
 		}catch (GallerySecurityException ge){
 			throw new WebApplicationException(Response.Status.FORBIDDEN);
 		}catch (Exception ex){
-			AppEventLogUtils.LogError(ex, (album != null ? album.getGalleryId() : null));
+			AppEventLogUtils.LogError(ex, validateGalleryId);
 
 			throw new WebApplicationException(HelperFunctions.getExStringContent(ex));
 		}
@@ -186,8 +192,10 @@ public class FeedManagerImpl implements FeedService{
 	
 	public AlbumBo getByTag(String q, String sortByMetaNameId, boolean sortAscending, String destinationUrl, String filter, long galleryId, HttpServletRequest request)	{
 		AlbumBo album = null;
+		Long validateGalleryId = null;
 		try	{
 			album = ContentObjectUtils.getContentObjectsHavingTags(Utils.toArray(q), null, ContentObjectType.parse(filter, ContentObjectType.All), ApprovalStatus.All, validateGallery(galleryId));
+			validateGalleryId = album != null ? album.getGalleryId() : null;
 
 			album.setFeedFormatterOptions(new FeedFormatterOptions(
 					MetadataItemName.valueOf(sortByMetaNameId),
@@ -199,7 +207,7 @@ public class FeedManagerImpl implements FeedService{
 		}catch (GallerySecurityException ge){
 			throw new WebApplicationException(Response.Status.FORBIDDEN);
 		}catch (Exception ex){
-			AppEventLogUtils.LogError(ex, (album != null ? album.getGalleryId() : null));
+			AppEventLogUtils.LogError(ex, validateGalleryId);
 
 			throw new WebApplicationException(HelperFunctions.getExStringContent(ex));
 		}
@@ -227,8 +235,10 @@ public class FeedManagerImpl implements FeedService{
 	
 	public AlbumBo getByPeople(String q, String sortByMetaNameId, boolean sortAscending, String destinationUrl, String filter/* = "all"*/, long galleryId, HttpServletRequest request){
 		AlbumBo album = null;
+		Long validateGalleryId = null;
 		try	{
 			album = ContentObjectUtils.getContentObjectsHavingTags(null, Utils.toArray(q), ContentObjectType.parse(filter, ContentObjectType.All), ApprovalStatus.All, validateGallery(galleryId));
+			validateGalleryId = (album != null ? album.getGalleryId() : null);
 
 			album.setFeedFormatterOptions(new FeedFormatterOptions(
 					MetadataItemName.valueOf(sortByMetaNameId),
@@ -240,7 +250,7 @@ public class FeedManagerImpl implements FeedService{
 		}catch (GallerySecurityException ge){
 			throw new WebApplicationException(Response.Status.FORBIDDEN);
 		}catch (Exception ex){
-			AppEventLogUtils.LogError(ex, (album != null ? album.getGalleryId() : null));
+			AppEventLogUtils.LogError(ex, validateGalleryId);
 
 			throw new WebApplicationException(HelperFunctions.getExStringContent(ex));
 		}
@@ -269,8 +279,10 @@ public class FeedManagerImpl implements FeedService{
 	
 	public AlbumBo getLatest(int top/* = 50*/, String sortByMetaNameId/* = (int)MetadataItemName.DateAdded*/, boolean sortAscending/* = false*/, String destinationUrl, String filter/* = "contentobject"*/, long galleryId, HttpServletRequest request){
 		AlbumBo album = null;
+		Long validateGalleryId = null;
 		try{
 			album = ContentObjectUtils.getMostRecentlyAddedContentObjects(top, validateGallery(galleryId), ContentObjectType.parse(filter, ContentObjectType.ContentObject), ApprovalStatus.All);
+			validateGalleryId = (album != null ? album.getGalleryId() : null);
 
 			album.setFeedFormatterOptions(new FeedFormatterOptions(
 					MetadataItemName.valueOf(sortByMetaNameId),
@@ -282,7 +294,7 @@ public class FeedManagerImpl implements FeedService{
 		}catch (GallerySecurityException ge){
 			throw new WebApplicationException(Response.Status.FORBIDDEN);
 		}catch (Exception ex){
-			AppEventLogUtils.LogError(ex, (album != null ? album.getGalleryId() : null));
+			AppEventLogUtils.LogError(ex, validateGalleryId);
 
 			throw new WebApplicationException(HelperFunctions.getExStringContent(ex));
 		}
@@ -312,8 +324,10 @@ public class FeedManagerImpl implements FeedService{
 	/// <exception cref="System.Web.Http.WebApplicationException">Thrown when an error occurs.</exception>
 	public AlbumBo getByRating(String rating, int top/* = 50*/, String sortByMetaNameId/* = (int)MetadataItemName.DateAdded*/, boolean sortAscending/* = false*/, String destinationUrl, String filter/* = "contentobject"*/, long galleryId, HttpServletRequest request){
 		AlbumBo album = null;
+		Long validateGalleryId = null;
 		try	{
 			album = ContentObjectUtils.getRatedContentObjects(rating, top, validateGallery(galleryId), ContentObjectType.parse(filter, ContentObjectType.ContentObject), ApprovalStatus.All);
+			validateGalleryId = (album != null ? album.getGalleryId() : null);
 
 			album.setFeedFormatterOptions(new FeedFormatterOptions(
 					MetadataItemName.valueOf(sortByMetaNameId),
@@ -325,7 +339,7 @@ public class FeedManagerImpl implements FeedService{
 		}catch (GallerySecurityException ge){
 			throw new WebApplicationException(Response.Status.FORBIDDEN);
 		}catch (Exception ex){
-			AppEventLogUtils.LogError(ex, (album != null ? album.getGalleryId() : null));
+			AppEventLogUtils.LogError(ex, validateGalleryId);
 
 			throw new WebApplicationException(HelperFunctions.getExStringContent(ex));
 		}

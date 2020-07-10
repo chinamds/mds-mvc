@@ -2231,7 +2231,7 @@ public class ImageMetadataReadWriter extends MediaObjectMetadataReadWriter{
     void displayMetadata(List<String> propertyItems, Node node, int level) {
         // print open tag of element
     	log.info("Current Item Name: " + node.getNodeName());
-        NamedNodeMap map = node.getAttributes();
+    	NamedNodeMap map = node.getAttributes();
         if (map != null) {
             // print attribute values
             int length = map.getLength();

@@ -7,9 +7,9 @@
     	//$(".table").bootstrapTable({pageNumber: 1, pageSize: 10, pageList: [10, 20, 50, 100, 200], pagination: true});
     	//$.table.initTable($(this));
         
-    	$.mdsTable.initTable("table", '${ctx}/services/api/myMessages/<shiro:principal property="id"/>/${state}/table', {q: $("#query").val()});
+    	$.mdsTable.initTable("table", '${ctx}/services/api/myMessages/${fns:getUser().id}/${state}/table', {q: $("#query").val()});
     	$("#buttonSearch").click(function(){
-			$.mdsTable.initTable("table", '${ctx}/services/api/myMessages/<shiro:principal property="id"/>/${state}/table', {q: $("#query").val()});
+			$.mdsTable.initTable("table", '${ctx}/services/api/myMessages/${fns:getUser().id}/${state}/table', {q: $("#query").val()});
 		});
     	
     	$(".btn-archive,.btn-recycle-or-delete,.btn-clear,.btn-mark-read").click(function() {
@@ -50,7 +50,7 @@
     			$.ajax({
          			type: "put",
          			async: true,
-         			url: '${ctx}/services/api/myMessages/archive/<shiro:principal property="id"/>/' + ids,
+         			url: '${ctx}/services/api/myMessages/archive/${fns:getUser().id}/' + ids,
          			success: function () {
          				$.mdsDialog.waitingOver();
          				$.mdsDialog.alert("<fmt:message key="myMessage.archived"/>");
@@ -66,7 +66,7 @@
     			$.ajax({
          			type: "put",
          			async: true,
-         			url: '${ctx}/services/api/myMessages/markread/<shiro:principal property="id"/>/' + ids,
+         			url: '${ctx}/services/api/myMessages/markread/${fns:getUser().id}/' + ids,
          			success: function () {
          				$.mdsDialog.waitingOver();
          				$.mdsDialog.alert("<fmt:message key="myMessage.markasread"/>");

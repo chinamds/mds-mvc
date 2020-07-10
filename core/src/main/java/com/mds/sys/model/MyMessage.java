@@ -246,7 +246,7 @@ public class MyMessage extends DataEntity {
 	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	@JsonIgnore
 	public List<MyMessageReFw> getReplies() {
-		return replies;
+		return this.replies;
 	}
 
 	public void setReplies(List<MyMessageReFw> replies) {
@@ -260,10 +260,10 @@ public class MyMessage extends DataEntity {
      */
 	@Transient
     public void addReplies(List<MyMessageReFw> replies) {
-    	if (replies == null)
-    		replies = Lists.newArrayList();
+    	if (this.replies == null)
+    		this.replies = Lists.newArrayList();
     	
-    	replies.addAll(replies);
+    	this.replies.addAll(replies);
     }
 
     @Column(name = "message_folder", nullable = false, length = 10)

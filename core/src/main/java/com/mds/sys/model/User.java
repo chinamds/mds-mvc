@@ -57,7 +57,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
 import com.mds.cm.model.GalleryMapping;
 import com.mds.common.model.Address;
-import com.mds.common.model.LabelValue;
 import com.mds.common.model.TenantSupport;
 import com.mds.sys.model.Role;
 import com.mds.common.model.DataEntity;
@@ -411,26 +410,6 @@ public class User extends DataEntity implements TenantSupport, Serializable {
 		return roles;
 	}
 	
-	/**
-     * Convert user roles to LabelValue objects for convenience.
-     *
-     * @return a list of LabelValue objects with role information
-     */
-    @Transient
-    @JsonIgnore
-    public List<LabelValue> getRoleList() {
-        List<LabelValue> userRoles = new ArrayList<LabelValue>();
-
-        if (this.roles != null) {
-            for (Role role : roles) {
-                // convert the user's roles to LabelValue Objects
-                userRoles.add(new LabelValue(role.getName(), role.getName()));
-            }
-        }
-
-        return userRoles;
-    }
-
     /**
      * Adds a role for the user
      *

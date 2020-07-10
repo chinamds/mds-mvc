@@ -54,7 +54,7 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <plugin>
+            <!-- <plugin>
                 <groupId>de.juplo</groupId>
                 <artifactId>hibernate-maven-plugin</artifactId>
                 <configuration>
@@ -64,7 +64,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>dbunit-maven-plugin</artifactId>
-            </plugin>
+            </plugin> -->
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
@@ -102,48 +102,86 @@
     </build>
 
     <dependencies>
-     	<!-- spring jpa -->
+       
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>5.2.5.RELEASE</version>
+		</dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.springframework.ldap/spring-ldap-core -->
+        <dependency>
+            <groupId>org.springframework.ldap</groupId>
+            <artifactId>spring-ldap-core</artifactId>
+            <version>2.3.2.RELEASE</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>jcl-over-slf4j</artifactId>
                     <groupId>org.slf4j</groupId>
+                    <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-ldap -->
         <dependency>
-            <groupId>org.appfuse</groupId>
-            <artifactId>appfuse-data-common</artifactId>
-            <version>${appfuse.version}</version>
-            <type>pom</type>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-ldap</artifactId>
+            <version>${spring-security.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.appfuse</groupId>
-            <artifactId>appfuse-service</artifactId>
-            <version>${appfuse.version}</version>
-            <type>pom</type>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.appfuse</groupId>
-                    <artifactId>appfuse-hibernate</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.appfuse</groupId>
-            <artifactId>appfuse-${dao.framework}</artifactId>
-            <version>${appfuse.version}</version>
-            <type>pom</type>
-        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>${spring-security.version}</version>
+		</dependency>
+        
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
             <artifactId>mds-common</artifactId>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>${project.parent.groupId}</groupId>
             <artifactId>mds-services</artifactId>
+        </dependency> -->
+        
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.xml.soap</groupId>
+            <artifactId>javax.xml.soap-api</artifactId>
+        </dependency>
+            
+        <!-- CXF Dependencies -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        </dependency>
+        <!-- JSON Parser -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+        </dependency>
+<!--         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
         </dependency>
         <dependency>
 		    <groupId>org.springframework</groupId>
@@ -152,14 +190,55 @@
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-web</artifactId>
-		</dependency>
+		</dependency> -->
+		
+		<!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+        <!-- <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+        </dependency> -->
+        
+        <!-- JAXB API and implementation (no longer bundled as of Java 11) -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.xml.ws/jaxws-api -->
+        <!-- <dependency>
+            <groupId>javax.xml.ws</groupId>
+            <artifactId>jaxws-api</artifactId>
+            <version>2.3.1</version>
+        </dependency> -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<groupId>org.jvnet.staxex</groupId>
+            		<artifactId>stax-ex</artifactId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/javax.jws/javax.jws-api -->
+        <dependency>
+            <groupId>javax.jws</groupId>
+            <artifactId>javax.jws-api</artifactId>
+            <version>1.1</version>
+        </dependency>
 		
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        
+                
         <dependency>
             <groupId>com.coverity.security</groupId>
             <artifactId>coverity-escapers</artifactId>
@@ -242,6 +321,17 @@
             <artifactId>commons-validator</artifactId>
         </dependency>
         
+       <!--  <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>xom</artifactId>
+                    <groupId>xom</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency> -->
+        
         <dependency>
             <groupId>org.jdom</groupId>
             <artifactId>jdom</artifactId>
@@ -303,10 +393,36 @@
         </dependency> -->
         
         <dependency>
-            <groupId>xalan</groupId>
-            <artifactId>xalan</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+        <!-- <dependency>
+            <groupId>xalan</groupId>
+            <artifactId>xalan</artifactId>
+        </dependency> -->
+        <!-- <dependency>
             <groupId>xerces</groupId>
             <artifactId>xercesImpl</artifactId>
             <exclusions>
@@ -319,41 +435,11 @@
         <dependency>
             <groupId>xml-apis</groupId>
             <artifactId>xml-apis</artifactId>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
-        </dependency>
-        
-        <dependency>
-            <groupId>gr.ekt.bte</groupId>
-            <artifactId>bte-core</artifactId>
-            <version>0.9.3.5</version>
-            <exclusions>
-                <!-- A more recent version is retrieved from another dependency -->
-                <exclusion>
-                    <groupId>org.mockito</groupId>
-                    <artifactId>mockito-core</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>gr.ekt.bte</groupId>
-            <artifactId>bte-io</artifactId>
-            <version>0.9.3.5</version>
-            <exclusions>
-                <!-- A more recent version is retrieved from another dependency -->
-                <exclusion>
-                    <groupId>org.apache.commons</groupId>
-                    <artifactId>commons-lang3</artifactId>
-                </exclusion>
-                <!-- A more recent version is retrieved from another dependency -->
-                <exclusion>
-                    <groupId>org.mockito</groupId>
-                    <artifactId>mockito-core</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+        </dependency>       
         
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -363,7 +449,7 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>org.apache.solr</groupId>
             <artifactId>solr-solrj</artifactId>
             <exclusions>
@@ -376,7 +462,7 @@
                     <artifactId>slf4j-api</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency> -->
                 
         <dependency>
             <groupId>jdbm</groupId>
@@ -465,6 +551,16 @@
                     <artifactId>jackson-databind</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+        	<groupId>com.rometools</groupId>
+        	<artifactId>rome-propono</artifactId>
+        	<exclusions>
+        		<exclusion>
+        			<groupId>xml-apis</groupId>
+        			<artifactId>xml-apis</artifactId>
+        		</exclusion>
+        	</exclusions>
         </dependency>
     </dependencies>
 </project>

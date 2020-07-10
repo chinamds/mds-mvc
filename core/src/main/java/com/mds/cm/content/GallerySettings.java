@@ -2064,7 +2064,7 @@ public class GallerySettings implements Comparable<GallerySettings>{
 	/// <returns>Returns the <paramref name="array" /> with each element converted to a lower case invariant.</returns>
 	private static String[] ToLowerInvariant(String[] array){
 		List<String> list =  Arrays.asList(array);
-		list.forEach(item->item.toLowerCase());
+		list.forEach(item->item = item.toLowerCase());
 		
 		return list.toArray(new String[0]);
 	}

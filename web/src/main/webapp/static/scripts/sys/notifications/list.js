@@ -1,9 +1,9 @@
 <script type="text/javascript">
 	var ctx = '${ctx}';
     $(function() {        
-    	$.mdsTable.initTable("table", '${ctx}/services/api/notifications/<shiro:principal property="id"/>/table', {q: $("#query").val()});
+    	$.mdsTable.initTable("table", '${ctx}/services/api/notifications/${fns:getUser().id}/table', {q: $("#query").val()});
     	$("#buttonSearch").click(function(){
-			$.mdsTable.initTable("table", '${ctx}/services/api/notifications/<shiro:principal property="id"/>/table', {q: $("#query").val()});
+			$.mdsTable.initTable("table", '${ctx}/services/api/notifications/${fns:getUser().id}/table', {q: $("#query").val()});
 		});
     	
     	$(".btn-archive,.btn-recycle-or-delete,.btn-clear,.btn-mark-read").click(function() {
@@ -44,7 +44,7 @@
     			$.ajax({
          			type: "put",
          			async: true,
-         			url: '${ctx}/services/api/notifications/archive/<shiro:principal property="id"/>/' + ids,
+         			url: '${ctx}/services/api/notifications/archive/${fns:getUser().id}/' + ids,
          			success: function () {
          				$.mdsDialog.waitingOver();
          				$.mdsDialog.alert("<fmt:message key="notification.archived"/>");
@@ -60,7 +60,7 @@
     			$.ajax({
          			type: "put",
          			async: true,
-         			url: '${ctx}/services/api/notifications/markread/<shiro:principal property="id"/>/' + ids,
+         			url: '${ctx}/services/api/notifications/markread/${fns:getUser().id}/' + ids,
          			success: function () {
          				$.mdsDialog.waitingOver();
          				$.mdsDialog.alert("<fmt:message key="notification.markasread"/>");

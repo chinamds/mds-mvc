@@ -122,7 +122,7 @@ public abstract class BaseMovableService<M extends BaseEntity & Movable, ID exte
         }
 
         if (Math.abs(newWeight - toWeight) <= 1) {
-            throw new IllegalStateException(String.format("up error, no enough weight :fromId:%d, toId:%d", fromId, toId));
+            throw new IllegalStateException(String.format("up error, no enough weight :fromId:%s, toId:%s", fromId, toId));
         }
         from.setWeight(newWeight);
 
@@ -196,14 +196,14 @@ public abstract class BaseMovableService<M extends BaseEntity & Movable, ID exte
         }
 
         if (Math.abs(newWeight - toWeight) <= 1) {
-            throw new IllegalStateException(String.format("down error, no enough weight :fromId:%d, toId:%d", fromId, toId));
+            throw new IllegalStateException(String.format("down error, no enough weight :fromId:%s, toId:%s", fromId, toId));
         }
         from.setWeight(newWeight);
     }
 
     public void reweight() {
         int batchSize = 100;
-        Sort sort = new Sort(Sort.Direction.DESC, "weight");
+        Sort sort = Sort.by(Sort.Direction.DESC, "weight");
         Pageable pageable = PageRequest.of(0, batchSize, sort);
         Page<M> page = findAll(pageable);
         do {
@@ -252,7 +252,7 @@ public abstract class BaseMovableService<M extends BaseEntity & Movable, ID exte
         Pageable pageable = PageRequest.of(0, 1);
         Map<String, Object> searchParams = Maps.newHashMap();
         searchParams.put("weight_lt", weight);
-        Sort sort = new Sort(Sort.Direction.DESC, "weight");
+        Sort sort = Sort.by(Sort.Direction.DESC, "weight");
         Page<M> page = findAll(Searchable.newSearchable(searchParams).addSort(sort).setPage(pageable));
 
         if (page.hasContent()) {
@@ -266,7 +266,7 @@ public abstract class BaseMovableService<M extends BaseEntity & Movable, ID exte
 
         Map<String, Object> searchParams = Maps.newHashMap();
         searchParams.put("weight_gt", weight);
-        Sort sort = new Sort(Sort.Direction.ASC, "weight");
+        Sort sort = Sort.by(Sort.Direction.ASC, "weight");
         Page<M> page = findAll(Searchable.newSearchable(searchParams).addSort(sort).setPage(pageable));
 
         if (page.hasContent()) {
@@ -297,7 +297,7 @@ public abstract class BaseMovableService<M extends BaseEntity & Movable, ID exte
         searchParams.put("weight_gte", minWeight);
         searchParams.put("weight_lte", maxWeight);
 
-        Sort sort = new Sort(Sort.Direction.DESC, "weight");
+        Sort sort = Sort.by(Sort.Direction.DESC, "weight");
         return findAllWithSort(Searchable.newSearchable(searchParams).addSort(sort));
     }
 

@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import com.mds.cm.util.GalleryUtils;
 import com.mds.common.Constants;
 import com.mds.common.service.GenericManager;
-import com.mds.sys.service.LookupManager;
 
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
@@ -157,11 +156,6 @@ public class StartupListener implements ServletContextListener {
      */
     public static void setupContext(ServletContext context) {
         ApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(context);
-        LookupManager mgr = (LookupManager) ctx.getBean("lookupManager");
-
-        // get list of possible roles
-        context.setAttribute(Constants.AVAILABLE_ROLES, mgr.getAllRoles());
-        log.debug("Drop-down initialization complete [OK]");
 
         // Any manager extending GenericManager will do:
         GenericManager manager = (GenericManager) ctx.getBean("userManager");

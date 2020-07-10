@@ -18,16 +18,17 @@ package org.springframework.ui.velocity;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
 import java.util.Arrays;
 
-import org.apache.commons.collections.ExtendedProperties;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.velocity.runtime.resource.Resource;
 import org.apache.velocity.runtime.resource.loader.ResourceLoader;
-
+import org.apache.velocity.util.ExtProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
+
 
 /**
  * Velocity ResourceLoader adapter that loads via a Spring ResourceLoader.
@@ -61,15 +62,24 @@ public class SpringResourceLoader extends ResourceLoader {
 	public static final String SPRING_RESOURCE_LOADER_PATH = "spring.resource.loader.path";
 
 
-	protected final Log logger = LogFactory.getLog(getClass());
+	protected static Logger logger = LoggerFactory.getLogger(SpringResourceLoader.class);
 
 	private org.springframework.core.io.ResourceLoader resourceLoader;
 
 	private String[] resourceLoaderPaths;
 
+	@Override
+	public boolean isSourceModified(Resource resource) {
+		return false;
+	}
 
 	@Override
-	public void init(ExtendedProperties configuration) {
+	public long getLastModified(Resource resource) {
+		return 0;
+	}
+
+	@Override
+	public void init(ExtProperties configuration) {
 		this.resourceLoader = (org.springframework.core.io.ResourceLoader)
 				this.rsvc.getApplicationAttribute(SPRING_RESOURCE_LOADER);
 		String resourceLoaderPath = (String) this.rsvc.getApplicationAttribute(SPRING_RESOURCE_LOADER_PATH);
@@ -92,18 +102,20 @@ public class SpringResourceLoader extends ResourceLoader {
 			logger.info("SpringResourceLoader for Velocity: using resource loader [" + this.resourceLoader +
 					"] and resource loader paths " + Arrays.asList(this.resourceLoaderPaths));
 		}
+		
 	}
 
 	@Override
-	public InputStream getResourceStream(String source) throws ResourceNotFoundException {
+	public Reader getResourceReader(String source, String encoding) throws ResourceNotFoundException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Looking for Velocity resource with name [" + source + "]");
 		}
+		
 		for (String resourceLoaderPath : this.resourceLoaderPaths) {
 			org.springframework.core.io.Resource resource =
 					this.resourceLoader.getResource(resourceLoaderPath + source);
 			try {
-				return resource.getInputStream();
+				return buildReader(resource.getInputStream(), encoding);
 			}
 			catch (IOException ex) {
 				if (logger.isDebugEnabled()) {
@@ -111,18 +123,9 @@ public class SpringResourceLoader extends ResourceLoader {
 				}
 			}
 		}
+		
 		throw new ResourceNotFoundException(
 				"Could not find resource [" + source + "] in Spring resource loader path");
-	}
-
-	@Override
-	public boolean isSourceModified(Resource resource) {
-		return false;
-	}
-
-	@Override
-	public long getLastModified(Resource resource) {
-		return 0;
 	}
 
 }

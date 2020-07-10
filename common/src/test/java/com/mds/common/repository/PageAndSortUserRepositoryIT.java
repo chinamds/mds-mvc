@@ -69,7 +69,7 @@ public class PageAndSortUserRepositoryIT extends BaseUserIT {
         }
         Sort.Order idAsc = new Sort.Order(Sort.Direction.ASC, "id");
         Sort.Order usernameDesc = new Sort.Order(Sort.Direction.DESC, "username");
-        Sort sort = new Sort(idAsc, usernameDesc);
+        Sort sort = Sort.by(idAsc, usernameDesc);
 
         List<User> userList = userRepository.findAll(sort);
 
@@ -85,7 +85,7 @@ public class PageAndSortUserRepositoryIT extends BaseUserIT {
         }
         Sort.Order idAsc = new Sort.Order(Sort.Direction.ASC, "id");
         Sort.Order usernameDesc = new Sort.Order(Sort.Direction.DESC, "username");
-        Sort sort = new Sort(idAsc, usernameDesc);
+        Sort sort = Sort.by(idAsc, usernameDesc);
 
         List<User> userList = userRepository.findByBaseInfoSex(Sex.male, sort);
 
@@ -102,7 +102,7 @@ public class PageAndSortUserRepositoryIT extends BaseUserIT {
 
         Sort.Order idAsc = new Sort.Order(Sort.Direction.ASC, "id");
         Sort.Order usernameDesc = new Sort.Order(Sort.Direction.DESC, "username");
-        Sort sort = new Sort(idAsc, usernameDesc);
+        Sort sort = Sort.by(idAsc, usernameDesc);
 
         PageRequest pageRequest = PageRequest.of(1, 5, sort);
         Page<User> page = userRepository.findAll(pageRequest);

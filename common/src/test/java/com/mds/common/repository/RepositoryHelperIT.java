@@ -155,7 +155,7 @@ public class RepositoryHelperIT extends BaseUserIT {
         String ql = "select o from User o";
 
 
-        List<User> list = repositoryHelper.findAll(ql, new Sort(Sort.Direction.DESC, "id"));
+        List<User> list = repositoryHelper.findAll(ql, Sort.by(Sort.Direction.DESC, "id"));
 
         Assert.assertEquals(4, list.size());
 
@@ -180,7 +180,7 @@ public class RepositoryHelperIT extends BaseUserIT {
         String ql = "select o from User o";
 
 
-        List<User> list = repositoryHelper.findAll(ql, PageRequest.of(0, 2, new Sort(Sort.Direction.DESC, "id")));
+        List<User> list = repositoryHelper.findAll(ql, PageRequest.of(0, 2, Sort.by(Sort.Direction.DESC, "id")));
 
         Assert.assertEquals(2, list.size());
 

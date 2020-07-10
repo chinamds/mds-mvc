@@ -69,9 +69,11 @@ public class AlbumsManagerImpl implements AlbumsManager, AlbumsService{
 	/// <exception cref="System.Web.Http.WebApplicationException"></exception>
 	public AlbumRest get(long id, HttpServletRequest request){
 	  AlbumBo album = null;
+	  Long galleryId = null;
 	  try
 	  {
 		album = AlbumUtils.loadAlbumInstance(id, true);
+		galleryId = (album != null ? album.getGalleryId() : null);
 		SecurityGuard.throwIfUserNotAuthorized(SecurityActions.ViewAlbumOrContentObject, RoleUtils.getMDSRolesForUser(), album.getId(), album.getGalleryId(), UserUtils.isAuthenticated(), album.getIsPrivate(), album.getIsVirtualAlbum());
 		PermissionsRest permissionsEntity = new PermissionsRest();
 	
@@ -84,7 +86,7 @@ public class AlbumsManagerImpl implements AlbumsManager, AlbumsService{
 	  }
 	  catch (Exception ex)
 	  {
-		AppEventLogUtils.LogError(ex, (album != null ? album.getGalleryId() : null));
+		AppEventLogUtils.LogError(ex, galleryId);
 	
 		throw new WebApplicationException(HelperFunctions.getExStringContent(ex));
 	  }
@@ -105,9 +107,11 @@ public class AlbumsManagerImpl implements AlbumsManager, AlbumsService{
 	public CMData getInflatedAlbum(long id, int top, int skip, HttpServletRequest request){
 	  // GET /api/albums/12/inflated // Return data for album # 12
 	  AlbumBo album = null;
+	  Long galleryId = null;
 	  try
 	  {
 		  album = CMUtils.loadAlbumInstance(id, true);
+		  galleryId = (album != null ? album.getGalleryId() : null);
 		  CMDataLoadOptions loadOptions = new CMDataLoadOptions();
 		  loadOptions.LoadContentItems = true;
 		  loadOptions.NumContentItemsToRetrieve = top;
@@ -120,7 +124,7 @@ public class AlbumsManagerImpl implements AlbumsManager, AlbumsService{
 	  }catch (GallerySecurityException ge){
 			throw new WebApplicationException(Response.Status.FORBIDDEN);
 	  } catch (Exception ex) {
-		AppEventLogUtils.LogError(ex, (album != null ? album.getGalleryId() : null));
+		AppEventLogUtils.LogError(ex, galleryId);
 	
 		throw new WebApplicationException(HelperFunctions.getExStringContent(ex));
 	  }

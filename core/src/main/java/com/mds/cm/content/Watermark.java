@@ -126,7 +126,7 @@ public class Watermark implements AutoCloseable{
     public void setTextHeightPixels(int _textHeightPixels){
     	if ((_textHeightPixels < 0) || (_textHeightPixels > 10000))
         {
-          throw new ArgumentOutOfRangeException(String.format("TextHeightPixels must be an integer between 0 and 10000. The value {0} is invalid.", _textHeightPixels));
+          throw new ArgumentOutOfRangeException(StringUtils.format("TextHeightPixels must be an integer between 0 and 10000. The value {0} is invalid.", _textHeightPixels));
         }
     	
         this._textHeightPixels = _textHeightPixels;
@@ -148,7 +148,7 @@ public class Watermark implements AutoCloseable{
     public void setTextWidthPercent(int _textWidthPercent) {
         if ((_textWidthPercent < 0) || (_textWidthPercent > 100))
         {
-          throw new ArgumentOutOfRangeException(String.format("TextWidthPercent must be an integer between 0 and 100. The value {0} is invalid.", _textWidthPercent));
+          throw new ArgumentOutOfRangeException(StringUtils.format("TextWidthPercent must be an integer between 0 and 100. The value {0} is invalid.", _textWidthPercent));
         }
 
         this._textWidthPercent = _textWidthPercent;
@@ -384,7 +384,7 @@ public class Watermark implements AutoCloseable{
 	/// <returns>Returns a <see cref="Watermark" /> instance for the specified <paramref name="galleryId" />.</returns>
 	public static Watermark getWatermarkInstance(long galleryId, HttpServletRequest request) throws IOException, UnsupportedContentObjectTypeException, InvalidGalleryException{
 		if (galleryId == Long.MIN_VALUE){
-			throw new ArgumentOutOfRangeException("galleryId", String.format("The gallery ID must be a valid ID. Instead, the value passed was {0}.", galleryId));
+			throw new ArgumentOutOfRangeException("galleryId", StringUtils.format("The gallery ID must be a valid ID. Instead, the value passed was {0}.", galleryId));
 		}
 
 		Watermark watermark = _watermarks.get(galleryId);

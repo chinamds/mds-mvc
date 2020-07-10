@@ -605,7 +605,7 @@ public class MDSRole implements Comparable<MDSRole>, LongCollectionListener{
 		boolean roleHasMissingAlbumId = false;
 
 		for (long albumId : rootAlbumIds){
-			if (!rootAlbumIds.contains(albumId)){
+			if (!this.rootAlbumIds.contains(albumId)){
 				roleHasMissingAlbumId = true;
 				break;
 			}
@@ -613,8 +613,8 @@ public class MDSRole implements Comparable<MDSRole>, LongCollectionListener{
 
 		if (rootAlbumsCountIsDifferent || roleHasMissingAlbumId){
 			// Step 3: When the list is different, update the list assigned to the role.
-			rootAlbumIds.clear();
-			rootAlbumIds.addAll(rootAlbumIds);
+			this.rootAlbumIds.clear();
+			this.rootAlbumIds.addAll(rootAlbumIds);
 			hasChanges = true;
 		}
 

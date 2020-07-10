@@ -237,7 +237,7 @@ public final class SearchRequest extends Searchable {
 
     @Override
     public Searchable addSort(final Sort.Direction direction, final String...property) {
-        merge(new Sort(direction, property), page);
+        merge(Sort.by(direction, property), page);
         return this;
     }
 

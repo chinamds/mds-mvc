@@ -14,13 +14,17 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import javax.mail.internet.AddressException;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -34,6 +38,7 @@ import org.springframework.security.authentication.RememberMeAuthenticationToken
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.ldap.userdetails.LdapUserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
@@ -99,7 +104,6 @@ import eu.bitwalker.useragentutils.UserAgent;
 import com.mds.i18n.util.I18nUtils;
 import com.mds.security.Digests;
 import com.mds.security.model.MdsAuthenticationToken;
-import com.mds.services.model.Session;
 import com.mds.sys.exception.InvalidUserException;
 import com.mds.sys.model.Area;
 import com.mds.sys.model.MenuFunction;
@@ -428,6 +432,113 @@ public class UserUtils {
 		return menuFunctionList;
 	}
 	
+	private static List<Long> createSubMenu(HttpServletRequest request, UserAccount cud, MenuRepository repository, List list, List<Long> parentIds)
+    {
+       List<Long> subIds = Lists.newArrayList(); 
+       for (int i=0; i < list.size(); i++)    
+	   {
+		   MenuFunction menu=(MenuFunction) list.get(i);
+		   
+	       if (menu.getParent() != null && parentIds.contains(menu.getParent().getId()))
+	       {
+	    	   String parentName = (String) menu.getParent().getCode();
+	           MenuComponent parentMenu = repository.getMenu(parentName);
+	           if (parentMenu != null)    
+	           {     
+	               repository.addMenu(createMenuComponent(request, cud, menu, parentMenu));  
+	               subIds.add(menu.getId());
+	           }     
+	       }
+	   }   
+       
+       return subIds;
+    } 
+    
+    private static MenuComponent createMenuComponent(HttpServletRequest request, UserAccount cud, MenuFunction menu, MenuComponent parentMenu)    
+    {   
+       MenuComponent mc = new MenuComponent();   
+       mc.setName(menu.getCode());    
+       mc.setTitle(I18nUtils.getString(menu.getTitle(), request.getLocale()));
+       //mc.setTitle(menu.getTitle());
+       /*if (!StringUtils.isBlank(menu.getHref())){
+	       if (UserUtils.isMobileDevice())
+	    	   mc.setLocation(getServletContext().getContextPath() + menu.getHref());
+	       else
+	    	   mc.setLocation("javascript:top.$.navmenus.NavMenuInTab(this, '" + I18nUtils.getString(menu.getTitle(), request.getLocale())+ "', '"  + getServletContext().getContextPath() + menu.getHref() + "');");
+       }*/
+       String url = getMenuUrl(request, menu);       
+       if (cud.isSysUser() && !UserUtils.isMobileDevice(request)) {
+    	   mc.setLocation("javascript:top.$.navmenus.NavMenuInTab(this, '" 
+    			   + mc.getTitle() + "', '"  + url + "');");
+       }else{
+    	   mc.setLocation(url);
+       }
+       mc.setUrl(url);
+       mc.setAction(menu.getAction());   
+       mc.setTarget(menu.getTargetWindow());               
+       mc.setDescription(I18nUtils.getString(menu.getDescription(), request.getLocale()));
+       if (!StringUtils.isBlank(menu.getIcon()))
+    	   mc.setImage(menu.getIcon());
+       //mc.setRoles(menu.getPermission()); 
+       if (parentMenu != null)
+    	   mc.setParent(parentMenu);
+   
+       return mc;
+    }
+    
+    private static String getMenuUrl(HttpServletRequest request, MenuFunction menu) {
+		String url = menu.getHref();
+        if(StringUtils.startsWithIgnoreCase(url, "http")) {
+            return url;
+        }
+        if (menu.getResourceId() != null && menu.getResourceId() != ResourceId.none) {
+     	   url = UserUtils.getResourceUrl(menu.getResourceId());
+        }
+
+        String ctx = request.getContextPath();
+        if(url.startsWith(ctx) || url.startsWith("/" + ctx  )) {
+            return url;
+        }
+
+        if(!url.startsWith("/")) {
+            url = "/" + url;
+        }
+        
+        return ctx + url;
+    }
+    
+    /**  
+     * load user menu   
+     * @throws InvalidMDSRoleException 
+     */  
+    public static MenuRepository createMenuRepository(UserAccount cud, HttpServletRequest request) throws InvalidMDSRoleException    
+    {   
+  	   MenuRepository repository = new MenuRepository();   
+	   if (cud != null) {
+		   List list = UserUtils.getMenuFunctionList(cud, true);
+		   if (list != null)
+		   {
+			   List<Long> menuIds = Lists.newArrayList();
+			   for (int i=0; i < list.size(); i++)    
+			   {
+				   MenuFunction menu=(MenuFunction) list.get(i);
+				   if (menu.isTop())
+				   {
+					   repository.addMenu(createMenuComponent(request, cud, menu, null));
+					   menuIds.add(menu.getId());
+				   }
+			   }
+			   
+			   while(menuIds.size() > 0)
+			   {
+				   menuIds = createSubMenu(request, cud, repository, list, menuIds);
+			   }
+		   }
+	   }
+	   
+	   return repository;
+    }
+		
 	public static List<MenuFunction> getMenuFunctionByIds(List<Long> menuFunctionIds){
 		List<MenuFunction> menuFunctions = Lists.newArrayList();
 		List<MenuFunction> allMenuFunctions = getMenuFunctions();

@@ -13,8 +13,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author mmdsplus
  * @version 2013-8-23
  */
-@SuppressWarnings("rawtypes")
-public class LicenseKey implements Comparable, Serializable {
+//@SuppressWarnings("rawtypes")
+public class LicenseKey implements Comparable<LicenseKey>, Serializable {
 	
 	/**
 	 * 
@@ -103,7 +103,7 @@ public class LicenseKey implements Comparable, Serializable {
      * @param o LicenseKey object to compare to
      * @return 0 if labels match for compared objects
      */
-    public int compareTo(Object o) {
+    public int compareTo(LicenseKey o) {
         // Implicitly tests for the correct type, throwing
         // ClassCastException as required by interface
         String otherLabel = ((LicenseKey) o).getLicenseKey();

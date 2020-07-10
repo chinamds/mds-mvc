@@ -46,7 +46,7 @@ public class JsonMapUserType implements UserType, Serializable {
         if (o == o1) {
             return true;
         }
-        if (o == null || o == null) {
+        if (o == null || o1 == null) {
             return false;
         }
 

@@ -1,9 +1,12 @@
 package com.mds.common.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.velocity.Template;
+import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.VelocityException;
+import org.apache.velocity.runtime.resource.loader.StringResourceLoader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
@@ -14,7 +17,9 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Class for sending e-mail messages based on Velocity templates
@@ -27,7 +32,7 @@ public class MailEngine {
     private MailSender mailSender;
     private VelocityEngine velocityEngine;
     private String defaultFrom;
-
+    
     public void setMailSender(MailSender mailSender) {
         this.mailSender = mailSender;
     }
@@ -53,7 +58,7 @@ public class MailEngine {
     @SuppressWarnings("unchecked")
     public void sendMessage(SimpleMailMessage msg, String templateName, Map model) {
         String result = null;
-
+        
         try {
             result =
                 VelocityEngineUtils.mergeTemplateIntoString(velocityEngine,

@@ -22,13 +22,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.VelocityException;
 import org.apache.velocity.runtime.RuntimeConstants;
-import org.apache.velocity.runtime.log.CommonsLogLogChute;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -72,7 +70,7 @@ import org.springframework.util.StringUtils;
  */
 public class VelocityEngineFactory {
 
-	protected final Log logger = LogFactory.getLog(getClass());
+	protected static Logger logger = LoggerFactory.getLogger(VelocityEngineFactory.class);
 
 	private Resource configLocation;
 
@@ -234,9 +232,11 @@ public class VelocityEngineFactory {
 		}
 
 		// Log via Commons Logging?
-		if (this.overrideLogging) {
-			velocityEngine.setProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM, new CommonsLogLogChute());
-		}
+		/*
+		 * if (this.overrideLogging) {
+		 * velocityEngine.setProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM, new
+		 * CommonsLogLogChute()); }
+		 */
 
 		// Apply properties to VelocityEngine.
 		for (Map.Entry<String, Object> entry : props.entrySet()) {

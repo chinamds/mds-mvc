@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.OrderedIterator;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.math.NumberUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -813,7 +814,7 @@ public class ContentConversionQueue {
 			data = new HashMap<String, String>();
 			data.put("FFmpeg args", settings.FFmpegArgs);
 			data.put("FFmpeg output", settings.FFmpegOutput);
-			data.put("StackTrace", Thread.currentThread().getStackTrace().toString()); //new Throwable().getStackTrace() 
+			data.put("StackTrace", ArrayUtils.toString(Thread.currentThread().getStackTrace())); //new Throwable().getStackTrace() 
 		}
 
 		//EventLogs.EventLogController.recordEvent(msg, EventType.Info, galleryId, CMUtils.LoadGallerySettings(), AppSetting.Instance, data);

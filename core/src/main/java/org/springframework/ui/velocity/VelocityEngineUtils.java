@@ -50,7 +50,7 @@ public abstract class VelocityEngineUtils {
 			throws VelocityException {
 
 		VelocityContext velocityContext = new VelocityContext(model);
-		velocityEngine.mergeTemplate(templateLocation, velocityContext, writer);
+		velocityEngine.mergeTemplate(templateLocation, "UTF-8", velocityContext, writer);
 	}
 
 	/**

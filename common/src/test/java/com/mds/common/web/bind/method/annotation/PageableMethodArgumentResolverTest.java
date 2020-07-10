@@ -80,7 +80,7 @@ public class PageableMethodArgumentResolverTest {
         //内部会自动-1，从0开始
         assertEquals(pn - 1, pageable.getPageNumber());
         assertEquals(pageSize, pageable.getPageSize());
-        Sort expectedSort = new Sort(Sort.Direction.ASC, "baseInfo.realname").and(new Sort(Sort.Direction.DESC, "id"));
+        Sort expectedSort = Sort.by(Sort.Direction.ASC, "baseInfo.realname").and(Sort.by(Sort.Direction.DESC, "id"));
         assertEquals(expectedSort, pageable.getSort());
     }
 
@@ -102,7 +102,7 @@ public class PageableMethodArgumentResolverTest {
         //内部会自动-1，从0开始
         assertEquals(pn - 1, pageable.getPageNumber());
         assertEquals(pageSize, pageable.getPageSize());
-        Sort expectedSort = new Sort(Sort.Direction.ASC, "baseInfo.realname").and(new Sort(Sort.Direction.DESC, "id"));
+        Sort expectedSort = Sort.by(Sort.Direction.ASC, "baseInfo.realname").and(Sort.by(Sort.Direction.DESC, "id"));
         assertEquals(expectedSort, pageable.getSort());
     }
 
@@ -116,7 +116,7 @@ public class PageableMethodArgumentResolverTest {
         assertEquals(Controller.DEFAULT_PAGENUMBER, pageable.getPageNumber());
         assertEquals(Controller.DEFAULT_PAGESIZE, pageable.getPageSize());
 
-        Sort expectedSort = new Sort(Sort.Direction.DESC, "id").and(new Sort(Sort.Direction.ASC, "name"));
+        Sort expectedSort = Sort.by(Sort.Direction.DESC, "id").and(Sort.by(Sort.Direction.ASC, "name"));
         assertEquals(expectedSort, pageable.getSort());
     }
 
@@ -129,7 +129,7 @@ public class PageableMethodArgumentResolverTest {
 
         assertEquals(Controller.DEFAULT_PAGENUMBER, pageable.getPageNumber());
         assertEquals(Controller.DEFAULT_PAGESIZE, pageable.getPageSize());
-        Sort expectedSort = new Sort(Sort.Direction.DESC, "id").and(new Sort(Sort.Direction.ASC, "name"));
+        Sort expectedSort = Sort.by(Sort.Direction.DESC, "id").and(Sort.by(Sort.Direction.ASC, "name"));
         assertEquals(expectedSort, pageable.getSort());
 
     }
@@ -147,7 +147,7 @@ public class PageableMethodArgumentResolverTest {
 
         assertEquals(Controller.DEFAULT_PAGENUMBER, pageable.getPageNumber());
         assertEquals(Controller.DEFAULT_PAGESIZE, pageable.getPageSize());
-        Sort expectedSort = new Sort(Sort.Direction.ASC, "baseInfo.realname").and(new Sort(Sort.Direction.DESC, "id"));
+        Sort expectedSort = Sort.by(Sort.Direction.ASC, "baseInfo.realname").and(Sort.by(Sort.Direction.DESC, "id"));
         assertEquals(expectedSort, pageable.getSort());
     }
 
@@ -168,7 +168,7 @@ public class PageableMethodArgumentResolverTest {
         //内部会自动-1，从0开始
         assertEquals(pn - 1, pageable.getPageNumber());
         assertEquals(pageSize, pageable.getPageSize());
-        Sort expectedSort = new Sort(Sort.Direction.ASC, "baseInfo.realname").and(new Sort(Sort.Direction.DESC, "id"));
+        Sort expectedSort = Sort.by(Sort.Direction.ASC, "baseInfo.realname").and(Sort.by(Sort.Direction.DESC, "id"));
         assertEquals(expectedSort, pageable.getSort());
     }
 

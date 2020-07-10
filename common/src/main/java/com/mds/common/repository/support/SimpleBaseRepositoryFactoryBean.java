@@ -17,8 +17,8 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean;
 import org.springframework.data.repository.core.RepositoryInformation;
 import org.springframework.data.repository.core.RepositoryMetadata;
 import org.springframework.data.repository.core.support.RepositoryFactorySupport;
-import org.springframework.data.repository.query.EvaluationContextProvider;
 import org.springframework.data.repository.query.QueryLookupStrategy;
+import org.springframework.data.repository.query.QueryMethodEvaluationContextProvider;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
@@ -97,7 +97,7 @@ class SimpleBaseRepositoryFactory<M, ID extends Serializable> extends JpaReposit
     }
 
     @Override
-    protected Optional<QueryLookupStrategy> getQueryLookupStrategy(QueryLookupStrategy.Key key, EvaluationContextProvider evaluationContextProvider) {
+    protected Optional<QueryLookupStrategy> getQueryLookupStrategy(QueryLookupStrategy.Key key, QueryMethodEvaluationContextProvider evaluationContextProvider) {
         return super.getQueryLookupStrategy(key, evaluationContextProvider);
     }
 }

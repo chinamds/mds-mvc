@@ -141,8 +141,8 @@ $.mainframe = {
 
         messageBtn.click(function() {
             clearInterval(messageBtnInterval);
-            //$($.find("#menu a:contains(" + $.mainframe.options.i18n.mymessage + ")")).dblclick();
-            $($.find("#menu a[href='" + window.Mds.AppRoot + "/sys/myMessages']")).dblclick();
+            //$($.find("#treemenu a:contains(" + $.mainframe.options.i18n.mymessage + ")")).dblclick();
+            $($.find("#treemenu a[href='" + window.Mds.AppRoot + "/sys/myMessages']")).dblclick();
             messageBtn.removeClass("unread");
             messageBtn.find(".icon-count").remove();
             icon.removeClass("fa fa-envelope").addClass("far fa-envelope");
@@ -213,7 +213,7 @@ $.mainframe = {
         }
                 
         var viewAllNotification = function() {
-            $($.find("#menu a[href='" + window.Mds.AppRoot + "/sys/notifications']")).dblclick();
+            $($.find("#treemenu a[href='" + window.Mds.AppRoot + "/sys/notifications']")).dblclick();
             hideNotification();
             return false;
         };
@@ -731,7 +731,7 @@ $.mainframe = {
     }
     ,
     /**
-     * 异步化form表单或a标签
+     * Asynchronous form or a href
      * @param $form
      * @param containerId
      */
@@ -757,7 +757,7 @@ $.mainframe = {
                 return false;
             });
         } else {
-            $.mdsDialog.alert("该标签不支持异步加载，支持的标签有form、a");
+            $.mdsDialog.alert("The html tag does not support asynchronous loading, supported tags have form, a");
         }
 
     },
@@ -775,7 +775,7 @@ $.mainframe = {
     ,
 
     /**
-     * 将$("N").val() ----> [1,2,3]
+                   * 将$("N").val() ----> [1,2,3]
      */
     joinVar : function(elem, separator) {
         if(!separator) {
@@ -790,7 +790,7 @@ $.mainframe = {
     },
 
     /**
-     * 异步加载table子内容(父子表格)
+     *   Asynchronous loading table sub-content (parent-child table)
      * @param toggleEle
      * @param tableEle
      * @param asyncLoadURL
@@ -900,7 +900,7 @@ $.layouts = {
 $.menus = {
     /**Initialize menu*/
     initMenu: function () {
-        var menus = $("#menu");
+        var menus = $("#treemenu");
         menus.metisMenu();
 
         menus.find("a").each(function () {
@@ -913,15 +913,18 @@ $.menus = {
             }
 
             var active = function(a, forceRefresh) {
-                /*menus.find("a").closest("li > .li-wrapper").removeClass("active");
+                /*menus.find("a").closest("li >.li-wrapper").removeClass("active");
                 a.closest("li > .li-wrapper").addClass("active");*/
-            	a.addClass("active");
+            	a.addClass("active"); 
                 var oldPanelIndex = a.data("panelIndex");
                 var activeMenuCallback = function(panelIndex) {
-                    if(!a.data("panelIndex")) {
+                    /*alert(a.data("panelIndex"));
+                    if(!a.data("panelIndex") || a.data("panelIndex") == '') {
                         a.data("panelIndex", panelIndex);
-                        a.attr("id", "menu-" + panelIndex);
-                    }
+                        a.attr("id", "treemenu-" + panelIndex);
+                    }*/
+                    a.data("panelIndex", panelIndex);
+                    a.attr("id", "treemenu-" + panelIndex);
                 }
                 $.tabs.activeTab(oldPanelIndex, title, href, forceRefresh, activeMenuCallback);
 
@@ -941,7 +944,7 @@ $.menus = {
 }
 
 $.navmenus = {
-    /**Initialize header menu*/
+    /** Initialize header menu */
     initMenu: function () {
         var navmenus = $("#navmenu");
         navmenus.find("a").each(function () {
@@ -955,9 +958,9 @@ $.navmenus = {
             var active = function(a, forceRefresh) {
             	var oldPanelIndex = a.data("panelIndex");
                 var activeMenuCallback = function(panelIndex) {
-                    if(!a.data("panelIndex")) {
+                    if(!a.data("panelIndex") || a.data("panelIndex") == '') {
                         a.data("panelIndex", panelIndex);
-                        a.attr("id", "menu-" + panelIndex);
+                        a.attr("id", "treemenu-" + panelIndex);
                     }
                 }
                 $.tabs.activeTab(oldPanelIndex, title, href, forceRefresh, activeMenuCallback);
@@ -982,13 +985,13 @@ $.navmenus = {
         var activeMenuCallback = function(panelIndex) {
             if(!$(a).data("panelIndex")) {
             	$(a).data("panelIndex", panelIndex);
-            	$(a).attr("id", "menu-" + panelIndex);
+            	$(a).attr("id", "treemenu-" + panelIndex);
             }
         }
         $.tabs.activeTab(oldPanelIndex, title, href, false, activeMenuCallback);*/
-		//$($.find("#menu a:contains(" + title + ")")).dblclick();
-		$($.find("#menu a[href='" + href + "']")).dblclick();
-        //$.tabs.activeMenu($.find("#menu a:contains(" + title + ")").data("panelIndex"));
+		//$($.find("#treemenu a:contains(" + title + ")")).dblclick();
+		$($.find("#treemenu a[href='" + href + "']")).dblclick();
+        //$.tabs.activeMenu($.find("#treemenu a:contains(" + title + ")").data("panelIndex"));
         //return false;
 	}
 }
@@ -1093,40 +1096,46 @@ $.tabs = {
         $.tabs.initTabContextMenu();
     },
     activeMenu : function(tabPanelId) {
-    	var currentMenu = $("#menu-" + tabPanelId.replace("tabs-", ""));
+        $('#treemenu').metisMenu('dispose');
+    	var currentMenu = $("#treemenu-" + tabPanelId.replace("tabs-", ""));
     	if(currentMenu.length) {
 	    	if ( currentMenu.hasClass("active") && currentMenu.closest("li").parents("li").hasClass("mm-active")){
-	    		$("#menu .nav-link.active").removeClass("active");
+	    		$("#treemenu .nav-link.active").removeClass("active");
 	    		currentMenu.addClass("active");
+                $('#treemenu').metisMenu();
 	    		
 	    		return;
 	    	}
     	}
     	
-        $("#menu .nav-item.mm-active").removeClass("mm-active");
-        $("#menu .nav-link.active").removeClass("active");
-        $("#menu").find("ul").siblings("a").attr("aria-expanded", false);
-        $("#menu").find("ul").removeClass("mm-show in");
+        $("#treemenu .nav-link.active").removeClass("active");
+        $("#treemenu").find("ul").siblings("a").attr("aria-expanded", false);
+        $("#treemenu").find("ul").removeClass("mm-show in");
+        $("#treemenu .nav-item.mm-active").removeClass("mm-active");
 
         if(currentMenu.length) {
             //expand parent menu
-        	currentMenu.parents("ul.submenu").addClass("mm-show in");
-            currentMenu.parents("ul").siblings("a").attr("aria-expanded", true);
             currentMenu.closest("li").parents("li").addClass("mm-active");
+        	currentMenu.parents("ul.submenu").addClass("mm-show in");
+            currentMenu.parents("ul.submenu").attr("style", "");
+            currentMenu.parents("ul").siblings("a").attr("aria-expanded", true);
             currentMenu.addClass("active");
         }else{
-        	$("#menu").find("ul.submenu:first").addClass("mm-show in");
-        	$("#menu").find("ul:first").siblings("a").attr("aria-expanded", true);
-        	/*$("#menu .nav-item.active:first").addClass("active");
-            $("#menu .nav-link.active:first").addClass("active");*/
+            $("#treemenu").find("li:first").addClass("mm-active");
+        	$("#treemenu").find("ul.submenu:first").addClass("mm-show in");
+            $("#treemenu").find("ul.submenu:first").attr("style", "");
+        	$("#treemenu").find("ul:first").siblings("a").attr("aria-expanded", true);
+        	/*$("#treemenu .nav-item.active:first").addClass("active");
+            $("#treemenu .nav-link.active:first").addClass("active"); */
         }
+        $('#treemenu').metisMenu();
     },
     removeTab : function(panelId) {
         var tabs = $.tabs.tabs;
         var panel = $("#" + panelId);
         var iframe = $("#iframe-" + panelId);
 
-        var currentMenu = $("#menu-" + panelId.replace("tabs-", ""));
+        var currentMenu = $("#treemenu-" + panelId.replace("tabs-", ""));
         if(currentMenu.length) {
             currentMenu.attr("id", "");
             currentMenu.attr("panelIndex", "");
@@ -1274,7 +1283,7 @@ $.tabs = {
         setTimeout(function() {
             $.mainframe.loadingToCenterIframe(currentTabPanel, url, null, forceRefresh);
             tabs.scrollingTabs('refresh', {
-                forceActiveTab: true // make our new tab active
+                forceActiveTab: true //make our new tab active
             });
             tabs.find(".menu").removeClass("d-table-cell").addClass("d-none");
             tabs.find(".nav-item.active").find(".menu").removeClass("d-none").addClass("d-table-cell");

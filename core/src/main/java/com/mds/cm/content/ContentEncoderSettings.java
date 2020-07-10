@@ -5,6 +5,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import com.google.common.collect.Lists;
 import com.mds.cm.exception.InvalidGalleryException;
 import com.mds.cm.util.CMUtils;
+import com.mds.util.StringUtils;
 import com.mds.cm.exception.UnsupportedContentObjectTypeException;
 
 /// <summary>
@@ -42,11 +43,11 @@ public class ContentEncoderSettings implements Comparable<ContentEncoderSettings
 	/// a file type not recognized by the application.</exception>
 	public void validate() throws UnsupportedContentObjectTypeException, InvalidGalleryException	{
 		if ((shouldValidate(this.sourceFileExtension)) && CMUtils.loadMimeType(this.sourceFileExtension) == null){
-			throw new UnsupportedContentObjectTypeException(String.format("The media encoder setting references a file extension ({0}) not recognized by the application.", this.sourceFileExtension));
+			throw new UnsupportedContentObjectTypeException(StringUtils.format("The media encoder setting references a file extension ({0}) not recognized by the application.", this.sourceFileExtension));
 		}
 
 		if ((shouldValidate(this.destinationFileExtension)) && CMUtils.loadMimeType(this.destinationFileExtension) == null)	{
-			throw new UnsupportedContentObjectTypeException(String.format("The media encoder setting references a file extension ({0}) not recognized by the application.", this.destinationFileExtension));
+			throw new UnsupportedContentObjectTypeException(StringUtils.format("The media encoder setting references a file extension ({0}) not recognized by the application.", this.destinationFileExtension));
 		}
 	}
 

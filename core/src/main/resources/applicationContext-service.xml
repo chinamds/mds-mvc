@@ -96,9 +96,9 @@
         <property name="from" value="${mail.default.from}"/>
     </bean>
     
-    <bean id="tikaProbeContentType" class="com.mds.common.service.TikaMimeTypeService.TikaProbeContentType"/>
+    <!-- <bean id="tikaProbeContentType" class="com.mds.common.service.TikaMimeTypeService.TikaProbeContentType"/>
 	
-	<bean id="tika" class="org.apache.tika.Tika"/>
+	<bean id="tika" class="org.apache.tika.Tika"/> -->
 	
 	<bean id="tenantResolver" class="com.mds.common.service.impl.TenantContext"/>
 

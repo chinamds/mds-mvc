@@ -30,22 +30,6 @@
 	<div class="index-panel"> 
 	
     	<div class="tabs-bar tabs-fix-top"></div>
-	          <%-- <ul class="nav nav-tabs" role="tablist">
-	              <li class="nav-item active">
-	              <!-- <div class="btn-group d-flex" role="group"> -->
-	              <div class="d-table">
-	                  <a class="nav-link" href="#tabs-0"><fmt:message key="home.heading"/></a>
-	                  <div class="d-table-cell">
-	                  <span class='menu d-table-row' role='presentation' style="display:inline-block; width: 14px; height: 14px"></span>
-	                  <span class='menu fa fa-sync d-table-row' role='presentation' title='<fmt:message key="menu.refresh"/>'></span>
-	                  </div>
-	              </div>
-	              </li>
-	          </ul>
-	
-		<div class="tab-content">
-	       	<div id="tabs-0" data-index="0" data-url="${ctx}/welcome"></div>
-	       </div> --%>
 	
 	   <iframe id="iframe-tabs-0" tabs="true" class="ui-layout-center"
 	            frameborder="0" scrolling="auto" src="${ctx}/welcome"></iframe>

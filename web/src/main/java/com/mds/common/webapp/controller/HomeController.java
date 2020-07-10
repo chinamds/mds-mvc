@@ -65,7 +65,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/{home:home;?.*}")
     public String home(Model model, final HttpServletRequest request) throws InvalidMDSRoleException {
-		List list = UserUtils.getMenuFunctionList(true);
+		//List list = UserUtils.getMenuFunctionList(true);
 		/*List topmenulist = Lists.newArrayList();
 		for (int i=0; i < list.size(); i++)    
 	   {
@@ -75,7 +75,8 @@ public class HomeController {
 			   topmenulist.add(menu);
 		   }
 	   }*/
-		model.addAttribute("menus", list);
+		//model.addAttribute("menus", list);
+		model.addAttribute("userMenuRepository", UserUtils.createMenuRepository(UserUtils.getUser(), request));
 				
 		//model.addAttribute("i18n", JsonMapper.toJsonString(I18nUtils.getStrings(null, request.getLocale())));
 		//log.debug("home 'home' method...");

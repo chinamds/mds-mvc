@@ -321,7 +321,7 @@
 				}
 			}
 			if (ids.length>0){
-				top.$.mdsForm.confirm("<fmt:message key="table.message.deleteconfirm" />","<fmt:message key="albumList.album" />", {ok: function(){
+				top.$.mdsForm.confirm('<fmt:message key="table.message.deleteconfirm" />','<fmt:message key="albumList.album" />', {ok: function(){
 					$.ajax({
 		                url: '${ctx}/services/api/dailylists/' + ids,
 		                type: 'DELETE',
@@ -430,9 +430,9 @@
                 	 			async: true,
                 	 			url: "${ctx}/services/api/dailyLists/gendaylistitems",//
                 	 			data: {
-           						// Query string parms to be added to the AJAX request
-           						ids: chkIds.join(',')
-           					},
+	           						// Query string parms to be added to the AJAX request
+	           						ids: chkIds.join(',')
+	           					},
                 	 			contentType : 'application/json',
                 	            dataType : "json",
                 	 			success: function (data) {

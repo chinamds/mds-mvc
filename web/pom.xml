@@ -16,10 +16,13 @@
 
     <build>
         <plugins>
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>dbunit-maven-plugin</artifactId>
-            </plugin>
+                <configuration>
+                    <src>../../data/common/src/test/resources/sample-data.xml</src>
+                </configuration>
+            </plugin> -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>native2ascii-maven-plugin</artifactId>
@@ -38,6 +41,77 @@
                                 <include>displaytag_el*.properties</include>
                                 <include>displaytag_zh*.properties</include>
                             </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <webApp>
+                        <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
+                            <resourcesAsCSV>
+                                ${basedir}/src/main/webapp,
+                                ${basedir}/../common/src/main/webapp,
+                            </resourcesAsCSV>
+                        </baseResource>
+                    </webApp>
+                </configuration>
+            </plugin>
+            <!-- Used to package MDSPlus WARs -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <attachClasses>true</attachClasses>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <!-- Filter the web.xml (needed for IDE compatibility/debugging) -->
+                    <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-resource</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>../common/src/main/resources</directory>
+                                    <excludes>
+                                        <exclude>jdbc.properties</exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>../common/src/test/resources</source>
+                            </sources>
                         </configuration>
                     </execution>
                 </executions>
@@ -85,35 +159,153 @@
                 </exclusion>
             </exclusions>
 		</dependency>
-		<dependency>
-        <groupId>struts-menu</groupId>
-        <artifactId>struts-menu</artifactId>
-	        <exclusions>
-	          <exclusion>
-	            <artifactId>xml-apis</artifactId>
-	            <groupId>xml-apis</groupId>
-	          </exclusion>
-	          <exclusion>
-	            <artifactId>*</artifactId>
-	            <groupId>velocity</groupId>
-	          </exclusion>
-	          <exclusion>
-	            <artifactId>*</artifactId>
-	            <groupId>velocity-tools</groupId>
-	          </exclusion>
-	        </exclusions>
-	      </dependency>
         <dependency>
-            <groupId>org.appfuse</groupId>
-            <artifactId>appfuse-spring</artifactId>
-            <version>${appfuse.version}</version>
-            <type>pom</type>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.subethamail</groupId>
+            <artifactId>subethasmtp-wiser</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <!-- <dependency>
+            <groupId>struts-menu</groupId>
+            <artifactId>struts-menu</artifactId>
+            <scope>runtime</scope>
+        </dependency> -->
+        <!-- <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-tools</artifactId>
+        </dependency> -->
+        <dependency>
+            <groupId>opensymphony</groupId>
+            <artifactId>sitemesh</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+        </dependency> -->
+        <!-- Add in Spring Security for AuthN and AuthZ -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.ldap/spring-ldap-core -->
+        <dependency>
+            <groupId>org.springframework.ldap</groupId>
+            <artifactId>spring-ldap-core</artifactId>
+            <version>2.3.2.RELEASE</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-ldap -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-ldap</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>${spring-security.version}</version>
+		</dependency>
+                
+        <!-- Add in log4j support by excluding default logging, and
+         using starter-log4j -->
+        <!-- See:  http://docs.spring.io/spring-boot/docs/current/reference
+         /html/howto-logging.html#howto-configure-log4j-for-logging -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${spring-boot.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>org.appfuse</groupId>
-                    <artifactId>*</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        
+        <!-- Needed to load CXF for all web frameworks -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>displaytag</groupId>
+            <artifactId>displaytag</artifactId>
+        </dependency>
+         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
+        <!-- <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency> -->
+        
+        <dependency>
+            <groupId>org.tuckey</groupId>
+            <artifactId>urlrewritefilter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ro.isdc.wro4j</groupId>
+            <artifactId>wro4j-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <exclusions>
+              <exclusion>
+                <artifactId>jquery</artifactId>
+                <groupId>org.webjars</groupId>
+              </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap-datepicker</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bowergithub.thomaspark</groupId>
+            <artifactId>bootswatch</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>font-awesome</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bowergithub.wenzhixin</groupId>
+            <artifactId>bootstrap-table</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
@@ -134,11 +326,10 @@
 		<dependency>
 		    <groupId>org.apache.poi</groupId>
 		    <artifactId>poi-ooxml</artifactId>
-		    </dependency>
+		</dependency>
 		<dependency>
 		    <groupId>org.apache.poi</groupId>
 		    <artifactId>poi-ooxml-schemas</artifactId>
-		    <version>${poi.version}</version>
 		</dependency>
 		
 		<dependency>
@@ -178,15 +369,53 @@
 	        </exclusions>
 		</dependency>
 		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>fancybox</artifactId>
-		    <version>2.1.5</version>
-		</dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>fancybox</artifactId>
+            <version>2.1.5</version>
+            <exclusions>
+              <exclusion>
+                <artifactId>jquery</artifactId>
+                <groupId>org.webjars</groupId>
+              </exclusion>
+            </exclusions>
+        </dependency>
 		<dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>json2</artifactId>
 		    <version>20140204</version>
 		</dependency>
+		
+		<!-- TEST DEPENDENCIES -->
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <!-- <scope>test</scope> -->
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path-assert</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <profiles>

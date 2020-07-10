@@ -15,6 +15,8 @@
 </head>
 
 <body<decorator:getProperty property="body.id" writeEntireProperty="true"/><decorator:getProperty property="body.class" writeEntireProperty="true"/>>
+    <c:set var="currentMenu" scope="request"><decorator:getProperty property="meta.menu"/></c:set>
+
 	<c:set var="currentContainer" scope="request"><decorator:getProperty property="meta.container"/></c:set>
     <c:set var="mdsClientId" scope="request"><decorator:getProperty property="meta.mdsClientId"/></c:set>
     <c:set var="mdsShowAlbumMenu" scope="request"><decorator:getProperty property="meta.mdsShowAlbumMenu" default="true"/></c:set>
@@ -25,7 +27,6 @@
            </button>
 
         <%@ include file="/common/menu.jsp" %>
-        <%-- <%@ include file="/common/userinfo.jsp" %> --%>
     </div>    
     
 	<c:if test="${empty currentContainer}">

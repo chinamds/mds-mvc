@@ -622,8 +622,8 @@ public final class Utils{
 		// Convert back slash (\) to forward slash, if present.
 		resource = resource.replace(File.separatorChar, '/');
 		String path = StringUtils.join(request.getServletContext().getRealPath("/"), getUrl(request, resource));
-		path.replace('/', File.separatorChar);
-		path.replace('\\', File.separatorChar);
+		path = path.replace('/', File.separatorChar);
+		path = path.replace('\\', File.separatorChar);
 
 		return path;
 	}
