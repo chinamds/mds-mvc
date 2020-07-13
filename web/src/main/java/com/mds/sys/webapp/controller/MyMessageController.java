@@ -57,17 +57,14 @@ public class MyMessageController extends BaseController<MyMessage, Long>{
     
     @RequestMapping(value = "", method = RequestMethod.GET)
     @PageableDefaults(sort = "id=desc")
-    public String listDefault(@CurrentUser User user,
-                              Pageable pageable,
+    public String listDefault(Pageable pageable,
                               Model model) {
-        return list(user, MessageFolder.inbox, pageable, model);
+        return list(MessageFolder.inbox, pageable, model);
     }
 
     @RequestMapping(value = "{state}/list", method = RequestMethod.GET)
     @PageableDefaults(sort = "id=desc")
-    public String list(
-            @CurrentUser User user,
-            @PathVariable("state") MessageFolder state,
+    public String list(@PathVariable("state") MessageFolder state,
             Pageable pageable,
             Model model) {
 
@@ -86,20 +83,18 @@ public class MyMessageController extends BaseController<MyMessage, Long>{
      */
     @RequestMapping(value = "", method = RequestMethod.GET, headers = "table=true")
     @PageableDefaults(sort = "id=desc")
-    public String listTableDefault(@CurrentUser User user,
-                            Pageable pageable,
+    public String listTableDefault(Pageable pageable,
                             Model model) {
-        list(user, MessageFolder.inbox, pageable, model);
+        list(MessageFolder.inbox, pageable, model);
         return viewName("listTable");
     }
     
     @RequestMapping(value = "{state}/list", method = RequestMethod.GET, headers = "table=true")
     @PageableDefaults(sort = "id=desc")
-    public String listTable(@CurrentUser User user,
-                            @PathVariable("state") MessageFolder state,
+    public String listTable(@PathVariable("state") MessageFolder state,
                             Pageable pageable,
                             Model model) {
-        list(user, state, pageable, model);
+        list(state, pageable, model);
         return viewName("listTable");
     }
 

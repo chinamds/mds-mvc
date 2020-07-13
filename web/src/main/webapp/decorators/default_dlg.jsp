@@ -14,7 +14,7 @@
 </head>
 
 <body<decorator:getProperty property="body.id" writeEntireProperty="true"/><decorator:getProperty property="body.class" writeEntireProperty="true"/>>
-<div class="bootstrap-dialog-body" id="bootstrap-dialog-content">
+<div class="bootstrap-dialog-body" id="bootstrap-dialog-content" style="margin-top: 8px;">
         <%@ include file="/common/messages.jsp" %>
         <div class="row">
             <decorator:body/>

@@ -74,6 +74,17 @@ public class MyCalendar extends DataEntity {
     private String backgroundColor;
 
     private String textColor;
+    
+    public MyCalendar(){
+    	super();
+    }
+    
+    public MyCalendar(Date start, Date end){
+    	this();
+    	
+    	this.startTime = start;
+    	this.endTime = end;
+    }
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -111,7 +122,7 @@ public class MyCalendar extends DataEntity {
 
     //@DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonSerialize(using = JsonDateSerializer.class)
-    @DateTimeFormat(iso=ISO.DATE)
+    //@DateTimeFormat(iso=ISO.DATE)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start_date")
     public Date getStartDate() {
@@ -135,7 +146,7 @@ public class MyCalendar extends DataEntity {
         this.duration = duration;
     }
 
-    @DateTimeFormat(pattern = "HH:mm:ss")
+    //@DateTimeFormat(pattern = "HH:mm:ss")
     //@DateTimeFormat(iso=ISO.TIME)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start_time")
@@ -147,7 +158,7 @@ public class MyCalendar extends DataEntity {
         this.startTime = startTime;
     }
 
-    @DateTimeFormat(pattern = "HH:mm:ss")
+    //@DateTimeFormat(pattern = "HH:mm:ss")
     //@DateTimeFormat(iso=ISO.TIME)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "end_time")

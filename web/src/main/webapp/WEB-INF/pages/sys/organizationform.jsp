@@ -165,7 +165,8 @@
             </div>
             <div class="form-group">
                 <appfuse:label styleClass="control-label" key="organization.address.country"/>
-                <appfuse:country name="address.country" prompt="" default="${organization.address.country}"/>
+                <form:input cssClass="form-control" path="address.country" id="address.country"/>
+                <%-- <appfuse:country name="address.country" prompt="" default="${organization.address.country}"/> --%>
             </div>
         </div>
     </div>

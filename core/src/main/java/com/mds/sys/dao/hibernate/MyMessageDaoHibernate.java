@@ -38,7 +38,7 @@ public class MyMessageDaoHibernate extends GenericDaoHibernate<MyMessage, Long> 
      */
     @Override
     public int changeMessageFolder(Long senderId, MessageFolder oldFolder, MessageFolder newFolder, Date changeDate){
-    	return update("update MyMessage set sendFolder=:p1, sentDate=:p2  where (user.id=:p3 and sendFolder=:p4)"
+    	return update("update MyMessage set sendFolder=:p1, messageFolder=:p2  where (user.id=:p3 and messageFolder=:p4)"
     			, new Parameter(newFolder, changeDate, senderId, oldFolder));
     }
 
@@ -47,7 +47,7 @@ public class MyMessageDaoHibernate extends GenericDaoHibernate<MyMessage, Long> 
      */
     @Override
     public int changeMessageFolder(ArrayList<MessageFolder> states, MessageFolder newFolder, Date changeDate, Date expireDate){
-    	return update("update MyMessage set sendFolder=:p1, sentDate=:p2  where (sentDate<:p3 and sendFolder in (:p4))"
+    	return update("update MyMessage set messageFolder=:p1, sentDate=:p2  where (sentDate<:p3 and messageFolder in (:p4))"
     			, new Parameter(newFolder, changeDate, expireDate, states));
     }
 

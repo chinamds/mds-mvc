@@ -46,7 +46,7 @@ public class MyCalendarFormController extends BaseFormController {
         String id = request.getParameter("id");
 
         if (!StringUtils.isBlank(id)) {
-            return myCalendarManager.get(new Long(id));
+            return myCalendarManager.get(Long.valueOf(id));
         }
 
         return new MyCalendar();
@@ -80,7 +80,7 @@ public class MyCalendarFormController extends BaseFormController {
         } else {
         	if (myCalendar.getUser() == null){
         		if (!StringUtils.isBlank(request.getParameter("user_id"))) {
-        			myCalendar.setUser(getUserManager().get(new Long(request.getParameter("user_id"))));
+        			myCalendar.setUser(getUserManager().get(Long.valueOf(request.getParameter("user_id"))));
         		}else{
         			myCalendar.setUser(getUserManager().get(UserUtils.getUserId()));
         		}

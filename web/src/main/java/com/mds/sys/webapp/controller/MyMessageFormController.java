@@ -125,7 +125,7 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
     }
     
     @RequestMapping("{id}") //:\\d+
-    public String view(@CurrentUser User user, @PathVariable("id") Long id, Model model, HttpServletRequest request) {
+    public String view(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
     	MyMessage m = myMessageManager.get(id);
         if (m == null) {
         	saveError(request, I18nUtils.getString("myMessage.missing", request.getLocale()));
@@ -134,7 +134,7 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
         }
 
         model.addAttribute("m", m);
-        myMessageManager.markRead(user.getId(), m.getId());
+        myMessageManager.markRead(UserUtils.getUserId(), m.getId());
         
         //get all reply message and orignal message
         List<MyMessage> messages = myMessageManager.findAncestorsAndDescendants(m);
@@ -144,8 +144,8 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
     }
 
     @RequestMapping("{id}/content")
-    public String viewContent(@CurrentUser User user, @PathVariable("id") Long id, Model model, HttpServletRequest request) {
-    	myMessageManager.markRead(user.getId(), id);
+    public String viewContent(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
+    	myMessageManager.markRead(UserUtils.getUserId(), id);
 
         return viewName("viewContent");
     }
@@ -162,7 +162,6 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
 
     @RequestMapping(value = "/send", method = RequestMethod.POST)
     public String send(
-            @CurrentUser User user,
             @ModelAttribute("m") MyMessage message,
             BindingResult result,
             @RequestParam(value = "recipients", required = false) String[] recipients,
@@ -217,7 +216,9 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
             return showSendForm(model);
         }
         message.getMyMessageRecipients().add(new MyMessageRecipient(message, recipient));*/
-    	message.setCurrentUser(user.getUsername());
+    	var userAccount = UserUtils.getUser();
+    	message.setCurrentUser(userAccount.getUsername());
+    	var user = getUserManager().get(userAccount.getId());
         message.setUser(user);
         message.setSender(user);
         if (request.getParameter("draft") != null) {
@@ -266,7 +267,6 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
 
     @RequestMapping(value = "/{id}/reply", method = RequestMethod.POST)
     public String reply(
-            @CurrentUser User user,
             @PathVariable("id") Long id,
             @ModelAttribute("m") MyMessage m, BindingResult result,
             @RequestParam(value = "recipients", required = false) String[] recipients,
@@ -293,6 +293,7 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
             }
         }
 
+    	var user = getUserManager().get(UserUtils.getUser().getId());
         m.setCurrentUser(user.getUsername());
         m.setUser(user);
         m.setSender(user);
@@ -334,7 +335,6 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
 
     @RequestMapping(value = "/{id}/forward", method = RequestMethod.POST)
     public String forward(
-            @CurrentUser User user,
             @RequestParam(value = "username", required = false) String username,
             @PathVariable("id") Long id,
             @ModelAttribute("m") MyMessage m, BindingResult result,
@@ -345,6 +345,7 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
             result.rejectValue("recipientId", "recipient.not.exists");
         }
 
+        var user = getUserManager().get(UserUtils.getUser().getId());
         if (recipient.equals(user)) {
             result.rejectValue("recipientId", "recipient.not.self");
         }
@@ -368,11 +369,11 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
 
     @RequestMapping(value = "draft/save", method = RequestMethod.POST)
     public String saveDraft(
-            @CurrentUser User user,
             @RequestParam(value = "username", required = false) String username,
             @ModelAttribute("m") MyMessage m,
             final HttpServletRequest request) {
 
+    	var user = getUserManager().get(UserUtils.getUserId());
         User recipient = getUserManager().getUserByUsername(username);
         if (recipient != null) {
             m.getMyMessageRecipients().add(new MyMessageRecipient(m, recipient));
@@ -404,7 +405,6 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
 
     @RequestMapping(value = "draft/{m}/send", method = RequestMethod.POST)
     public String resendDraft(
-            @CurrentUser User user,
             @ModelAttribute("m") MyMessage m,
             BindingResult result,
             @RequestParam(value = "username", required = false) String username,
@@ -412,14 +412,13 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
             Model model, RedirectAttributes redirectAttributes,
             final HttpServletRequest request) {
 
-        String viewName = send(user, m, result, new String[] {username}, contents, model, redirectAttributes, request);
+        String viewName = send(m, result, new String[] {username}, contents, model, redirectAttributes, request);
         model.addAttribute(Constants.OP_NAME, MessageOperate.drafts);
         return viewName;
     }
     
     @RequestMapping(value = "draft/{m}/discard", method = RequestMethod.POST)
     public String discardDraft(
-            @CurrentUser User user,
             @ModelAttribute("m") MyMessage m,
             BindingResult result,
             @RequestParam(value = "username", required = false) String username,
@@ -427,18 +426,18 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
             Model model, RedirectAttributes redirectAttributes,
             final HttpServletRequest request) {
 
-        String viewName = send(user, m, result, new String[] {username}, contents, model, redirectAttributes, request);
+        String viewName = send(m, result, new String[] {username}, contents, model, redirectAttributes, request);
         model.addAttribute(Constants.OP_NAME, MessageOperate.drafts);
         return viewName;
     }
 
     @RequestMapping("batch/archive")
     public String batchStore(
-            @CurrentUser User user,
             @RequestParam(value = "ids", required = false) Long[] ids,
             final HttpServletRequest request) {
 
-    	myMessageManager.archive(user.getId(), ids);
+    	//var user = getUserManager().get(UserUtils.getUserId());
+    	myMessageManager.archive(UserUtils.getUserId(), ids);
         saveMessage(request, getText("myMessage.archived", request.getLocale()));
         
         return redirectToUrl(viewName(MessageFolder.archive + "/list"));
@@ -446,11 +445,10 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
 
     @RequestMapping("batch/move")
     public String batchMove(
-            @CurrentUser User user,
             @RequestParam(value = "ids", required = false) Long[] ids,
             final HttpServletRequest request) {
 
-        messageApi.recycle(user.getId(), ids);
+        messageApi.recycle(UserUtils.getUserId(), ids);
 
         //redirectAttributes.addFlashAttribute(Constants.MESSAGES_KEY, "移动到垃圾箱成功！");
         saveMessage(request, getText("myMessage.deleted", request.getLocale()));
@@ -460,11 +458,10 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
 
     @RequestMapping("batch/delete")
     public String batchDelete(
-            @CurrentUser User user,
             @RequestParam(value = "ids", required = false) Long[] ids,
             final HttpServletRequest request) {
 
-        messageApi.delete(user.getId(), ids);
+        messageApi.delete(UserUtils.getUserId(), ids);
 
         //redirectAttributes.addFlashAttribute(Constants.MESSAGES_KEY, "删除成功！");
         saveMessage(request, getText("myMessage.deleted", request.getLocale()));
@@ -475,11 +472,10 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
 
     @RequestMapping("clear/{state}")
     public String clear(
-            @CurrentUser User user,
             @PathVariable("state") MessageFolder state,
             final HttpServletRequest request) {
 
-        messageApi.clearBox(user.getId(), state);
+        messageApi.clearBox(UserUtils.getUserId(), state);
 
         //redirectAttributes.addFlashAttribute(Constants.MESSAGES_KEY, String.format("清空%s成功！", state.getInfo()));
         saveMessage(request, I18nUtils.getString("myMessage.emptiedfolder", request.getLocale(), state.getInfo()));
@@ -489,12 +485,11 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
 
     @RequestMapping("markRead")
     public String markRead(
-            @CurrentUser User user,
             @RequestParam(value = "ids", required = false) Long[] ids,
             @RequestParam("BackURL") String backURL,
             final HttpServletRequest request) {
 
-        messageApi.markRead(user.getId(), ids);
+        messageApi.markRead(UserUtils.getUserId(), ids);
 
         //redirectAttributes.addFlashAttribute(Constants.MESSAGES_KEY, "成功标记为已读！");
         saveMessage(request, getText("myMessage.markasread", request.getLocale()));
@@ -506,7 +501,7 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
 
     @RequestMapping(value = "/unreadCount")
     @ResponseBody
-    public String unreadCount(@CurrentUser User user) {
-        return String.valueOf(messageApi.countUnread(user.getId()));
+    public String unreadCount() {
+        return String.valueOf(messageApi.countUnread(UserUtils.getUserId()));
     }
 }

@@ -12,6 +12,7 @@ $.mainframe = {
 			addevent:'Add Event',
 			ok:'OK',
 			suretodelete:'Are you sure to delete this event?',
+            discardchanges:'Are you sure to discard the changes?',
 			viewevent:'View Event',
 		},
 	},
@@ -534,34 +535,89 @@ $.mainframe = {
                 url = url + "?start=" + start + "&end=" + end;
             }
             
-            var okTitle = '"' + $.mainframe.options.i18n.ok + '"';
-            /*top.$.fancybox.open({
-                href: url,
-                type: 'iframe',
-            	afterClose: function () {
-                	var iframe1 = $(".fancybox-iframe");                   
-               	 	var form = iframe1.contents().find("#editForm");
-                	var url = window.Mds.AppRoot + "/sys/myCalendars/new";
-	                $.post(url, form.serialize(), function(result) {
-	                	if(result && result.status == 200){
-	                		calendar.fullCalendar("refetchEvents");
-	                	}
-	                }, 'json'); 
-	            },
-                beforeClose: function () { 
-                	 var iframe1 = $(".fancybox-iframe");                   
-                	 var form = iframe1.contents().find("#editForm");
-                     if(!validateMyCalendar(form.get(0))) {
-                     	form.find(".form-group").addClass('error');
-                     	
-                         return false;
-                     } 
-                     
-                     return true;
-                }
-            });*/
-            
-            $.mdsDialog.modalDialog($.mainframe.options.i18n.addevent, "iframe:" + url, { //
+            var okTitle = '"' + $.mainframe.options.i18n.ok + '"';           
+            jsPanel.create({
+                position:    "center",
+                panelSize: "auto 480",
+                //contentFetch: url,
+                contentFetch: {
+                    resource: url,
+                    done: (panel, response) => {
+                        panel.content.innerHTML = response;
+                        var form =$(panel.content).find("#editForm");
+                        form.find("#cancel").click(function(){
+                            if (confirm($.mainframe.options.i18n.discardchanges)){
+                                panel.close();
+                            }
+                        });
+                        form.find("#save").click(function() {
+                            var form =$(panel.content).find("#editForm");
+                            if(!validateMyCalendar(form.get(0))) {
+                                form.find(".form-group").addClass('error');
+                                
+                                return;
+                            }
+                            
+                            var url = window.Mds.AppRoot + "/sys/myCalendars/new";
+                            $.post(url, form.serialize(), function(result) {
+                                if(result && result.status == 200){
+                                    panel.close();
+                                    calendar.fullCalendar("refetchEvents");
+                                }
+                            }, 'json');
+                        });
+                    }
+                },
+                headerTitle: $.mainframe.options.i18n.addevent,
+                theme:       "rebeccapurple",
+                /*callback:    function (panel) {
+                    var form =$(panel.content).find("#editForm");
+                    form.find("#cancel").click(function(){
+                        panel.close();
+                    });
+                    form.find("#save").click(function() {
+                        var form =$(panel.content).find("#editForm");
+                        if(!validateMyCalendar(form.get(0))) {
+                            form.find(".form-group").addClass('error');
+                            
+                            return;
+                        }
+                        
+                        var url = window.Mds.AppRoot + "/sys/myCalendars/new";
+                        $.post(url, form.serialize(), function(result) {
+                            if(result && result.status == 200){
+                                calendar.fullCalendar("refetchEvents");
+                            }
+                        }, 'json');
+                    });
+                },*/
+                onbeforeclose: function(panel, status, closedByUser) {
+                    if (closedByUser)
+                        return confirm($.mainframe.options.i18n.discardchanges);
+    
+                    return true;                
+                    /*var form =$(panel.content).find("#editForm");
+                    if(!validateMyCalendar(form.get(0))) {
+                        form.find(".form-group").addClass('error');
+                        
+                        return false;
+                    }
+                    
+                    return true;*/
+                }/*,
+                onclosed: function(panel, closedByUser) {
+                    //form.attr("action", window.Mds.AppRoot + "/sys/myCalendars/new").submit();
+                    var form =$(panel.content).find("#editForm");
+                    var url = window.Mds.AppRoot + "/sys/myCalendars/new";
+                    $.post(url, form.serialize(), function(result) {
+                        if(result && result.status == 200){
+                            calendar.fullCalendar("refetchEvents");
+                        }
+                    }, 'json');
+                }*/
+            });
+                        
+            /*$.mdsDialog.modalDialog($.mainframe.options.i18n.addevent, "iframe:" + url, { //
                 draggable: true,
                 height:480,
                 width:640,
@@ -587,7 +643,7 @@ $.mainframe = {
 
                     return true;
                 }
-            });
+            });*/
         }
 
         function moveCalendar(event) {
@@ -626,51 +682,60 @@ $.mainframe = {
 
         function viewCalendar(event) {
             var url = window.Mds.AppRoot + "/sys/myCalendars/view/" + event.id;
-            $.mdsDialog.modalDialog($.mainframe.options.i18n.viewevent, "iframe:" + url, {
+            jsPanel.create({
+                position:    "center",
+                panelSize: "auto 480",
+                ContentSize: "480 480",
+                //contentFetch: url,
+                contentFetch: {
+                    resource: url,
+                    done: (panel, response) => {
+                        panel.content.innerHTML = response;
+                        var form =$(panel.content).find("form");
+                        form.find("#cancel").click(function(){
+                            panel.close();
+                        });
+                        form.find("#delete").click(function() {
+                            var deleted = false;
+                            if (confirm($.mainframe.options.i18n.suretodelete)){
+                                var url = window.Mds.AppRoot + "/sys/myCalendars/delete?id=" + event.id;
+                                $.ajax({
+                                    type: "POST",
+                                    async: false,
+                                    url: url,
+                                    dataType : "json",
+                                    success: function (result) {
+                                        if(result && result.status == 200){
+                                            deleted = true;
+                                            panel.close();
+                                        }
+                                    },
+                                    error: function (response) {
+                                        alert(response.responseText);
+                                        deleted=false;
+                                    }
+                                });
+                            }
+                            
+                            if (deleted){
+                                calendar.fullCalendar("refetchEvents");
+                            }
+                        });
+                    }
+                },
+                headerTitle: $.mainframe.options.i18n.viewevent,
+                theme:       "rebeccapurple"
+            });
+            
+            /*$.mdsDialog.modalDialog($.mainframe.options.i18n.viewevent, "iframe:" + url, {
                 draggable: true,
                 height:480,
                 width:640,
                 maxHeight:600,
                 maxWidth:800,
                 iframeScrolling:'no',
-                ok : function(modal) {
-                	/*var needRefresh = deleteCalendar(event.id);
-                	if (needRefresh){
-                    	calendar.fullCalendar("refetchEvents");
-                    }
-                	
-               		return needRefresh;*/
+                ok : function(modal) {               	
                 	var deleted = false;
-                	/*$.mdsDialog.confirm($.mainframe.options.i18n.suretodelete, $.mainframe.options.i18n.suretodelete, {
-                		draggable: true,
-                        ok : function() {
-                        	var url = window.Mds.AppRoot + "/sys/myCalendars/delete?id=" + eventId;
-                        	$.ajax({
-                    			type: "POST",
-                    			async: false,
-                    			url: url,
-                    			dataType : "json",
-                    			success: function (result) {
-                    				if(result && result.status == 200){
-                                		deleted = true;
-                                	}
-                    			},
-                    			error: function (response) {
-                    				alert(response.responseText);
-                    				deleted=false;
-                    			}
-                    		});
-                            $.post(url, function(result) {
-                            	if(result && result.status == 200){
-                            		alert("delete1")
-                            		deleted = true;
-                            	}
-                            }, 'json');
-                            //alert("delete2")
-                            
-                            return true;
-                        },
-                	});*/
                 	if (confirm($.mainframe.options.i18n.suretodelete)){
                 		var url = window.Mds.AppRoot + "/sys/myCalendars/delete?id=" + event.id;
                 		$.ajax({
@@ -703,7 +768,7 @@ $.mainframe = {
                 	}, {
                     cssClass : 'btn-primary',
                 }]
-            });
+            });*/
         }
         
         $("body").on("click", ".btn-delete-calendar", function() {

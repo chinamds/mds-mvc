@@ -296,7 +296,7 @@
             <artifactId>bootstrap-datepicker</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.webjars.bowergithub.thomaspark</groupId>
+            <groupId>org.webjars.npm</groupId>
             <artifactId>bootswatch</artifactId>
         </dependency>
         <dependency>
@@ -368,17 +368,6 @@
 	          </exclusion>
 	        </exclusions>
 		</dependency>
-		<dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>fancybox</artifactId>
-            <version>2.1.5</version>
-            <exclusions>
-              <exclusion>
-                <artifactId>jquery</artifactId>
-                <groupId>org.webjars</groupId>
-              </exclusion>
-            </exclusions>
-        </dependency>
 		<dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>json2</artifactId>

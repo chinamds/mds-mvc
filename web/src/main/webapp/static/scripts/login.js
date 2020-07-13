@@ -22,7 +22,7 @@
     });
     
     function saveUsername(theForm) {
-        $.cookie("username",theForm.username.value, { expires: 30, path: "<c:url value="/"/>"});
+        $.cookie("username",theForm.username.value, { expires: 30, path: '<c:url value="/"/>'});
     }
     
     function validateForm(form) {                                                               
@@ -39,7 +39,7 @@
 			success: function (data) {
 				//alert(data);
 				if (!data || data.length < 2 || data[1] == 0){
-					alert("<fmt:message key="login.verificationcode.error"/>");
+					alert('<fmt:message key="login.verificationcode.error"/>');
 					valid=false;
 				}
 			},
@@ -57,17 +57,17 @@
 
     function passwordHint() {
         if ($("#username").val().length == 0) {
-            alert("<fmt:message key="errors.required"><fmt:param><fmt:message key="label.username"/></fmt:param></fmt:message>");
+            alert('<fmt:message key="errors.required"><fmt:param><fmt:message key="label.username"/></fmt:param></fmt:message>');
             $("#username").focus();
         } else {
-            //location.href="<c:url value="/sys/passwordHint"/>?username=" + $("#username").val();
+            //location.href='<c:url value="/sys/passwordHint"/>?username=" + $("#username").val();
         	$.ajax({
      			type: "post",
      			async: true,
      			url: "${ctx}/sys/passwordHint/send?username="  + $("#username").val(),
      			dataType : "json",
      			success: function (data) {
-   					$.mdsShowResult(data, "<fmt:message key="login.passwordRetrieval"/>");
+   					$.mdsShowResult(data, '<fmt:message key="login.passwordRetrieval"/>');
      			},
      			error: function (response) {
      				alert(response.responseText);
@@ -78,13 +78,13 @@
     
     function requestRecoveryToken() {
         if ($("#username").val().length == 0) {
-            alert("<fmt:message key="errors.required"><fmt:param><fmt:message key="label.username"/></fmt:param></fmt:message>");
+            alert('<fmt:message key="errors.required"><fmt:param><fmt:message key="label.username"/></fmt:param></fmt:message>');
             $("#username").focus();
         } else {
-            //location.href="<c:url value="/sys/requestRecoveryToken"/>?username=" + $("#username").val();
+            //location.href='<c:url value="/sys/requestRecoveryToken"/>?username=" + $("#username").val();
         	/*var url = "${ctx}/sys/requestRecoveryToken/send?username="  + $("#username").val();
         	$.post(url, function(result) {
-        		$.mdsShowResult(result, "<fmt:message key="login.passwordRetrieval"/>");
+        		$.mdsShowResult(result, '<fmt:message key="login.passwordRetrieval"/>');
             }, 'json');*/
         	$.ajax({
      			type: "post",
@@ -92,7 +92,7 @@
      			url: "${ctx}/sys/requestRecoveryToken/send?username="  + $("#username").val(),
      			dataType : "json",
      			success: function (data) {
-   					$.mdsShowResult(data, "<fmt:message key="login.passwordRetrieval"/>");
+   					$.mdsShowResult(data, '<fmt:message key="login.passwordRetrieval"/>');
      			},
      			error: function (response) {
      				alert(response.responseText);
@@ -102,10 +102,10 @@
     }    
     
     function required () { 
-        this.aa = new Array("username", "<fmt:message key="errors.required"><fmt:param><fmt:message key="label.username"/></fmt:param></fmt:message>", new Function ("varName", " return this[varName];"));
-        this.ab = new Array("password", "<fmt:message key="errors.required"><fmt:param><fmt:message key="label.password"/></fmt:param></fmt:message>", new Function ("varName", " return this[varName];"));
+        this.aa = new Array("username", '<fmt:message key="errors.required"><fmt:param><fmt:message key="label.username"/></fmt:param></fmt:message>', new Function ("varName", " return this[varName];"));
+        this.ab = new Array("password", '<fmt:message key="errors.required"><fmt:param><fmt:message key="label.password"/></fmt:param></fmt:message>', new Function ("varName", " return this[varName];"));
         <c:if test="${jcaptchaEnabled}">        
-        this.ac = new Array("jcaptchaCode", "<fmt:message key="errors.required"><fmt:param><fmt:message key="label.verificationcode"/></fmt:param></fmt:message>", new Function ("varName", " return this[varName];"));
+        this.ac = new Array("jcaptchaCode", '<fmt:message key="errors.required"><fmt:param><fmt:message key="label.verificationcode"/></fmt:param></fmt:message>', new Function ("varName", " return this[varName];"));
         </c:if> 
     } 
 </script>

@@ -128,6 +128,11 @@ public class MyCalendarController extends BaseController<MyCalendar, Long>{
     public Map<String,Object> newCalendar(@ModelAttribute("calendar") MyCalendar calendar, final HttpServletRequest request) {
     	Map<String,Object> resultMap = new LinkedHashMap<String, Object>();
     	User loginUser = userManager.get(UserUtils.getUserId());
+    	String startTime = request.getParameter("startTimeStr");
+    	String endTime = request.getParameter("endTimeStr");
+        calendar.setStartTime(DateUtils.mergeTimeFrom(calendar.getStartDate(), startTime));
+        calendar.setEndTime(DateUtils.mergeTimeFrom(calendar.getStartDate(), endTime));
+        
         calendar.setUser(loginUser);
         calendar.setCurrentUser(loginUser.getUsername());
         myCalendarManager.save(calendar);
@@ -199,6 +204,9 @@ public class MyCalendarController extends BaseController<MyCalendar, Long>{
 
         MyCalendar calendar = new MyCalendar();
         calendar.setDuration(1);
+        var now = DateUtils.Now();
+        calendar.setStartTime(DateUtils.getDateStart(now));
+        calendar.setEndTime(DateUtils.getDateEnd(now));
         if(start != null) {
             calendar.setStartDate(start);
             calendar.setDuration((int)Math.ceil(1.0 * (end.getTime() - start.getTime()) / oneDayMillis));

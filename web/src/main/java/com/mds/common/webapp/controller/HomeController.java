@@ -90,7 +90,8 @@ public class HomeController {
 		
 		pushApi.offline(UserUtils.getUserId());
 
-        return UserUtils.isMobileDevice(request) ? "common/welcome" : "home";
+        //return UserUtils.isMobileDevice(request) ? "common/welcome" : "home";
+		return "home";
     }
 	
     @RequestMapping(value = "/welcome")

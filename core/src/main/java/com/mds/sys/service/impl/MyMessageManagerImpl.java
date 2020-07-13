@@ -524,7 +524,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
 
     public Response clearInbox(String userId) {
     	log.debug("clear inbox folder for user: " + userId);
-    	clearInbox(new Long(userId));
+    	clearInbox(Long.valueOf(userId));
         
         log.info("message(inbox folder for user=" + userId + ") was successfully clear.");
         return Response.ok().build();
@@ -532,7 +532,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
 
     public Response clearOutbox(String userId) {
     	log.debug("clear outbox folder for user: " + userId);
-    	clearOutbox(new Long(userId));
+    	clearOutbox(Long.valueOf(userId));
         
         log.info("message(outbox folder for user=" + userId + ") was successfully clear.");
         return Response.ok().build();
@@ -540,7 +540,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
 
     public Response clearArchive(String userId) {
     	log.debug("clear archive folder for user: " + userId);
-    	clearArchive(new Long(userId));
+    	clearArchive(Long.valueOf(userId));
         
         log.info("message(archive folder for user=" + userId + ") was successfully clear.");
         return Response.ok().build();
@@ -548,7 +548,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
 
     public Response clearJunk(String userId) {
     	log.debug("clear junk folder for user: " + userId);
-    	clearJunk(new Long(userId));
+    	clearJunk(Long.valueOf(userId));
         
         log.info("message(junk folder for user=" + userId + ") was successfully clear.");
         return Response.ok().build();
@@ -556,7 +556,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
 
     public Long countUnread(String userId, String messageFolder) {
     	log.debug("count unread message with folder: " + messageFolder + "  for user: " + userId);
-    	Long count = countUnread(new Long(userId), MessageFolder.valueOf(messageFolder));
+    	Long count = countUnread(Long.valueOf(userId), MessageFolder.valueOf(messageFolder));
         
         log.info("unread message(messageFolder=" + messageFolder + ") was successfully count.");
         
@@ -570,7 +570,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
      */
     @Override
     public MyMessage getMyMessage(final String myMessageId) {
-        return myMessageDao.get(new Long(myMessageId));
+        return myMessageDao.get(Long.valueOf(myMessageId));
     }
 
     /**

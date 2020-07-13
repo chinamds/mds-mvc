@@ -7,7 +7,7 @@
     <!-- zh CN Start      -->
     <!-- zh CN Start      -->
     <group name="main_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
@@ -15,12 +15,11 @@
         <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
         <css>/static/3rdparty/select2/css/select2.css</css>
         <css>/static/3rdparty/select2/css/select2-bootstrap.css</css>
-        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
         <css>/static/skins/mds.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>
@@ -33,7 +32,6 @@
         <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
         <js>/static/3rdparty/jquery.fileDownload/jquery.fileDownload.js</js>
         <js>/static/3rdparty/select2/js/select2.full.js</js>
-        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
         <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
@@ -42,7 +40,7 @@
         <js>/static/scripts/script.js</js>
     </group>
     <group name="grp_calendar_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
@@ -50,8 +48,8 @@
         <css>/static/3rdparty/calendar/css/calendar.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>
@@ -68,32 +66,37 @@
         <js>/static/3rdparty/calendar/js/calendar.js</js>       
     </group>
     <group name="grp_fullcalendar_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
         <css>/static/3rdparty/bootstrap-colorpicker/css/bootstrap-colorpicker.css</css>
         <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
         <css>/static/3rdparty/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css</css>
-        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
+        <css>/static/3rdparty/jsPanel/jspanel.css</css>
         <css>/static/skins/mds.css</css>
         <css>/static/3rdparty/fullcalendar/fullcalendar.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>
         <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
         <js>/static/3rdparty/bootstrap-colorpicker/js/bootstrap-colorpicker.js</js>
+        <js>/static/3rdparty/jsPanel/jspanel.js</js>
+        <js>/static/3rdparty/jsPanel/extensions/contextmenu/jspanel.contextmenu.js</js>
+        <js>/static/3rdparty/jsPanel/extensions/hint/jspanel.hint.js</js>
+        <js>/static/3rdparty/jsPanel/extensions/modal/jspanel.modal.js</js>
+        <js>/static/3rdparty/jsPanel/extensions/tooltip/jspanel.tooltip.js</js>
+        <js>/static/3rdparty/jsPanel/extensions/dock/jspanel.dock.js</js>
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
         <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
         <js>/static/3rdparty/pnotify/umd/PNotifyButtons.js</js>
         <js>/static/3rdparty/fullcalendar/lib/moment.min.js</js>
         <js>/static/3rdparty/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js</js>
         <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
-        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
         <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <js>/static/scripts/mds.js</js>
         <js>/static/scripts/boostraptable-init.js</js>
@@ -106,7 +109,7 @@
     </group>
     
     <group name="grp_bootstrap-tabs-x_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
         <css>/static/3rdparty/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css</css>
@@ -122,10 +125,9 @@
         <css>/static/3rdparty/bootstrap-treeview/bootstrap-treeview.css</css>
         <css>/static/skins/mds.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
-        <js>/static/3rdparty/jquery/jquery-migrate-3.0.0.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
         <js>/static/3rdparty/popper.js/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
@@ -152,7 +154,7 @@
     </group>
     
     <group name="grp_appendgrid_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
         <css>/static/3rdparty/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css</css>
@@ -173,7 +175,7 @@
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
         <js>/static/3rdparty/popper.js/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
@@ -206,7 +208,7 @@
     </group>
     
     <group name="grp_layout_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
@@ -216,16 +218,14 @@
         <css>/static/3rdparty/jstree/themes/default/style.css</css>
         <css>/static/3rdparty/metismenu/metisMenu.min.css</css>
         <css>/static/3rdparty/scrolling-tabs/jquery.scrolling-tabs.min.css</css>
-        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
         <css>/static/skins/light/styles/jquery-ui.css</css>
         <css>/static/3rdparty/layout-default-latest.css</css>
         <css>/static/skins/mds.css</css>
         <css>/static/skins/light/styles/gallery.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
-        <js>/static/3rdparty/jquery/jquery-migrate-3.0.0.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>
@@ -241,7 +241,6 @@
         <js>/static/3rdparty/metismenu/metisMenu.js</js>
         <js>/static/3rdparty/scrolling-tabs/jquery.scrolling-tabs.js</js>
         <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
-        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
         <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
         <!-- <js>/static/scripts/mds.js</js> -->
         <js>/static/scripts/mainframe.js</js>
@@ -259,11 +258,10 @@
     </group>
     
     <group name="grp_treeview_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
-        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
         <css>/static/3rdparty/zTree/css/bootstrapStyle/bootstrapStyle.css</css>
         <css>/static/3rdparty/bootstrap-iconpicker/icon-fonts/elusive-icons-2.0.0/css/elusive-icons.min.css</css>
         <css>/static/3rdparty/bootstrap-iconpicker/icon-fonts/map-icons-2.1.0/css/map-icons.min.css</css>
@@ -278,12 +276,11 @@
         <css>/static/skins/ztreepicker-widget.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>
-        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
         <js>/static/3rdparty/zTree/js/jquery.ztree.all.js</js>
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
         <js>/static/3rdparty/pnotify/umd/PNotify.js</js>
@@ -298,22 +295,20 @@
         <js>/static/scripts/script.js</js>
     </group>
     <group name="grp_boostrap_treeview_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
-        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
         <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
         <css>/static/3rdparty/bootstrap-treeview/bootstrap-treeview.css</css>
         <css>/static/skins/mds.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>
-        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
         <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
         <js>/static/3rdparty/bootstrap-treeview/bootstrap-treeview.js</js>
         <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
@@ -327,7 +322,7 @@
         <js>/static/scripts/script.js</js>
     </group>
     <group name="grp_treetable_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
@@ -336,8 +331,8 @@
         <css>/static/skins/mds.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>
@@ -356,23 +351,21 @@
     </group>
         
     <group name="grp_dialog_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
         <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
-        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
         <css>/static/3rdparty/webui-popover/jquery.webui-popover.css</css>
         <css>/static/skins/mds.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>
         <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
-        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
         <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
         <js>/static/3rdparty/webui-popover/jquery.webui-popover.js</js>
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
@@ -386,21 +379,19 @@
         <js>/static/scripts/script.js</js>
     </group>
     <group name="grp_fileupload_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
-        <css>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.css</css>
         <css>/static/skins/mds.css</css>
         <css>/static/skins/skins/light/styles/mds.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>
-        <js>classpath:META-INF/resources/webjars/fancybox/2.1.5/jquery.fancybox.js</js>
         <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
         <js>/static/3rdparty/plupload/plupload.full.min.js</js>
         <js>/static/3rdparty/jquery-loading-overlay/loadingoverlay.js</js>
@@ -410,7 +401,7 @@
     </group>
     
     <group name="grp_personal_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
@@ -419,8 +410,8 @@
         <css>/static/skins/mds.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>
@@ -440,7 +431,7 @@
     </group>
     
     <group name="grp_boostrap_table_treegrid_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <!-- <css>/static/3rdparty/pnotify/pnotify.custom.css</css> -->
@@ -449,8 +440,8 @@
         <css>/static/skins/mds.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>
@@ -471,7 +462,7 @@
     </group>
     
     <group name="grp_editor_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
@@ -484,8 +475,8 @@
         <css>/static/skins/mds.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>
@@ -507,7 +498,7 @@
     </group>
     
     <group name="grp_contenteditor_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
@@ -521,8 +512,8 @@
         <css>/static/skins/contenteditor/css/slider.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>
@@ -551,7 +542,7 @@
     </group>
     
     <group name="grp_form_zh_CN">
-        <css>classpath:META-INF/resources/webjars/bootswatch/dist/spacelab/bootstrap.min.css</css>
+        <css>classpath:META-INF/resources/webjars/bootswatch/4.3.1/dist/spacelab/bootstrap.min.css</css>
         <css>classpath:META-INF/resources/webjars/font-awesome/5.1.0/css/all.css</css>
         <css>/static/3rdparty/bootstrap-table/bootstrap-table.min.css</css>
         <css>/static/3rdparty/bootstrap-dialog/css/bootstrap-dialog.css</css>
@@ -568,8 +559,8 @@
         <css>/static/skins/mds.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
-		<js>classpath:META-INF/resources/webjars/popper.js/1.14.1/umd/popper.min.js</js>
-        <js>classpath:META-INF/resources/webjars/bootstrap/4.1.1/js/bootstrap.min.js</js>
+		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-zh-CN.min.js</js>

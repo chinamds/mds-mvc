@@ -10,9 +10,12 @@
 	<%@ include file="/static/scripts/sys/myCalendars/newForm.js"%>
 </c:set>
 
+<div class="col-sm-1">
+</div>
+
 <div class="col-sm-10">
 	<form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
-    <form:form id="editForm" action="editForm" method="post" modelAttribute="myCalendar" cssClass="form-horizontal"  onsubmit="return validateForm(this)">
+    <form:form id="editForm" action="editForm" method="post" modelAttribute="myCalendar" onsubmit="return validateForm(this)">
     <form:hidden path="id"/>  
         <spring:bind path="myCalendar.title">
 	    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''} row">
@@ -64,8 +67,10 @@
         	<appfuse:label key="myCalendar.startTime" styleClass="col-sm-4 control-label"/>
             <%-- <form:label path="startTime" cssStyle="width: 60px;text-align: right;"><fmt:message key="myCalendar.startTime" data-format="HH:mm:ss"/></form:label> --%>
             <div class="col-sm-8">
+                <form:hidden path="startTime"/>
 	            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-		            <form:input path="startTime" cssClass="form-control datetimepicker-input" data-target="#datetimepicker1" data-position="bottom-left" data-format="HH:mm"/>
+		            <%-- <form:input path="startTime" cssClass="form-control datetimepicker-input" data-target="#datetimepicker1" data-position="bottom-left" data-format="HH:mm"/> --%>
+		            <input type="text" class="form-control datetimepicker-input" name="startTimeStr" id="startTimeStr"  data-target="#datetimepicker1" data-position="bottom-left" data-format="HH:mm" />
 		            <div class="input-group-append input-group-addon" data-target="#datetimepicker1" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-clock icon-calendar"></i></div>
                     </div>
@@ -80,8 +85,10 @@
         	<appfuse:label key="myCalendar.endTime" styleClass="col-sm-4 control-label"/>
             <%-- <form:label path="endTime"  cssStyle="width: 60px;text-align: right;"><fmt:message key="myCalendar.endTime"/></form:label> --%>
             <div class="col-sm-8">
+                <form:hidden path="endTime"/>
 	            <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-	                <form:input path="endTime" cssClass="form-control datetimepicker-input" data-target="#datetimepicker2" data-position="bottom-left" data-format="HH:mm"/>
+	                <%-- <form:input path="endTime" cssClass="form-control datetimepicker-input" data-target="#datetimepicker2" data-position="bottom-left" data-format="HH:mm"/> --%>
+	                <input type="text" class="form-control datetimepicker-input" name="endTimeStr" id="endTimeStr"  data-target="#datetimepicker2" data-position="bottom-left" data-format="HH:mm" />
 	                <div class="input-group-append input-group-addon" data-target="#datetimepicker2" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-clock icon-calendar"></i></div>
                     </div>
@@ -120,6 +127,14 @@
             <%--<form:label path="textColor" cssStyle="width: 60px;text-align: right;"><fmt:message key="myCalendar.textColor"/></form:label>--%>
             <%--<form:input path="textColor" cssClass="input-small"/>--%>
         </div>
+        <div class="form-group">
+	        <button type="button" class="btn btn-primary" id="save" name="save" onclick="bCancel=false">
+	            <i class="fa fa-check icon-white"></i> <fmt:message key="button.save"/>
+	        </button>
+	        <button type="button" class="btn btn-default" id="cancel" name="cancel" onclick="bCancel=true">
+	            <i class="fa fa-times"></i> <fmt:message key="button.cancel"/>
+	        </button>
+	    </div>
     </form:form>
 </div>
 

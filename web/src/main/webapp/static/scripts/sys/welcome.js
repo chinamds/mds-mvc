@@ -12,6 +12,7 @@
     				viewevent:'<fmt:message key="myCalendar.viewevent" />',
     				deleteevent:'<fmt:message key="myCalendar.deleteevent" />',
     				suretodelete:'<fmt:message key="myCalendar.suretodelete" />',
+                    discardchanges:'<fmt:message key="discardChanges.confirm" />',
     			},
     		};
     	    	

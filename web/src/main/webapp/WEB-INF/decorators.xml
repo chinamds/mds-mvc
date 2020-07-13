@@ -3,6 +3,8 @@
     <excludes>
     	<pattern>/home</pattern>
     	<pattern>/login</pattern>
+    	<pattern>/sys/myCalendars/new*</pattern>
+    	<pattern>/sys/myCalendars/view*</pattern>
         <pattern>/40*.jsp</pattern>
         <pattern>/*ajax=true*</pattern>
         <pattern>/struts/*</pattern>

@@ -52,17 +52,18 @@ public class LoginUserController extends AbstractBaseController<User, Long> {
     /*@Autowired
     public void setUserLastOnlineManager(UserLastOnlineManager userLastOnlineManager) {
         this.userLastOnlineManager = userLastOnlineManager;
-    }
+    }*/
 
     @RequestMapping("/viewInfo")
     public String viewInfo(Model model) {
         model.addAttribute(Constants.OP_NAME, "userProfile.viewprofile");
         User user = userManager.get(UserUtils.getUser().getId());
         model.addAttribute("user", user);
-        model.addAttribute("lastOnline", userLastOnlineManager.findByUserId(user.getId()));
+        //model.addAttribute("lastOnline", userLastOnlineManager.findByUserId(user.getId()));
+        //model.addAttribute("lastOnline", userLastOnlineManager.findByUserId(user.getId()));
         
         return viewName("editForm");
-    }*/
+    }
 
     @RequestMapping(value = "/updateInfo", method = RequestMethod.GET)
     public String updateInfoForm(Model model) {

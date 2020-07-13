@@ -1215,7 +1215,7 @@
                 <version>${bootstrap-datepicker.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.webjars.bowergithub.thomaspark</groupId>
+                <groupId>org.webjars.npm</groupId>
                 <artifactId>bootswatch</artifactId>
                 <version>${bootswatch.version}</version>
                 <exclusions>
@@ -2189,18 +2189,6 @@
 				<jdbc.password>mdsplus</jdbc.password>
 				<jdbc.validationQuery><![CDATA[SELECT 1 + 1]]></jdbc.validationQuery>
             </properties>
-            <build>
-                <plugins>
-                    <!-- Override location of data file for DbUnit to load (doesn't have negative keys) -->
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>dbunit-maven-plugin</artifactId>
-                        <configuration>
-                            <src>src/main/resources/default-data.xml</src>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
         <profile>
             <!--production environment-->
@@ -2306,9 +2294,9 @@
         <spring.version>5.2.5.RELEASE</spring.version>
         <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
         <spring-security.version>5.2.2.RELEASE</spring-security.version>
-        <bootstrap.version>4.1.1</bootstrap.version>
+        <bootstrap.version>4.3.1</bootstrap.version>
         <bootstrap-datepicker.version>1.8.0</bootstrap-datepicker.version>
-        <bootswatch.version>4.1.1</bootswatch.version>
+        <bootswatch.version>4.3.1</bootswatch.version>
         <font-awesome.version>5.1.0</font-awesome.version>
         <bootstrap-table.version>1.12.1</bootstrap-table.version>
         <cargo.version>1.6.7</cargo.version>

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 //import org.hibernate.Query;
 import org.hibernate.query.Query;
@@ -140,14 +141,6 @@ public interface GenericDao <T, PK extends Serializable> {
      */
     T addOrUpdate(T object, final Searchable searchable);
     
-    /**
-     * Create a new instance of this type in the database.
-     *
-     * @param t       type to be created.
-     * @return entity tracking the created instance.
-     */
-    T create(T t);
-
     /**
      * Generic method to delete an object
      * @param object the object to remove
@@ -483,4 +476,95 @@ public interface GenericDao <T, PK extends Serializable> {
     
     @SuppressWarnings("unchecked")
     <E extends ReloadableEntity> E reloadEntity(final E entity) throws SQLException;
+    
+    /**
+     * Create a new instance of this type in the database.
+     *
+     * @param t       type to be created.
+     * @return entity tracking the created instance.
+     * @throws SQLException
+     */
+    public T create(T t) throws SQLException;
+
+    /**
+     * Persist this instance in the database.
+     *
+     * @param context current DSpace context.
+     * @param t       type created here.
+     * @throws SQLException passed through.
+     */
+    //public void save(T t) throws SQLException;
+
+    /**
+     * Remove an instance from the database.
+     *
+     * @param context current DSpace context.
+     * @param t       type of the instance to be removed.
+     * @throws SQLException passed through.
+     */
+    public void delete(T t) throws SQLException;
+
+    /**
+     * Fetch all persisted instances of a given object type.
+     *
+     * @param context The relevant DSpace Context.
+     * @param clazz   the desired type.
+     * @return list of DAOs of the same type as clazz
+     * @throws SQLException if database error
+     */
+    public List<T> findAll(Class<T> clazz) throws SQLException;
+
+    /**
+     * Fetch all persisted instances of a given object type.
+     *
+     * @param context The relevant DSpace Context.
+     * @param clazz   the desired type.
+     * @param limit   paging limit
+     * @param offset  paging offset
+     * @return list of DAOs of the same type as clazz
+     * @throws SQLException if database error
+     */
+    List<T> findAll(Class<T> clazz, Integer limit, Integer offset) throws SQLException;
+
+    /**
+     * Execute a JPQL query returning a unique result.
+     *
+     * @param context The relevant DSpace Context.
+     * @param query   JPQL query string
+     * @return a DAO specified by the query string
+     * @throws SQLException if database error
+     */
+    public T findUnique(String query) throws SQLException;
+
+    /**
+     * Fetch the entity identified by its legacy database identifier.
+     *
+     * @param context current DSpace context.
+     * @param clazz   class of entity to be found.
+     * @param id      legacy database record ID.
+     * @return the found entity.
+     * @throws SQLException passed through.
+     */
+    public T findById(Class clazz, int id) throws SQLException;
+
+    /**
+     * Fetch the entity identified by its UUID primary key.
+     *
+     * @param context current DSpace context.
+     * @param clazz   class of entity to be found.
+     * @param id      primary key of the database record.
+     * @return the found entity.
+     * @throws SQLException
+     */
+    public T findById(Class clazz, UUID id) throws SQLException;
+
+    /**
+     * Execute a JPQL query and return a collection of results.
+     *
+     * @param context The relevant DSpace Context.
+     * @param query   JPQL query string
+     * @return list of DAOs specified by the query string
+     * @throws SQLException if database error
+     */
+    public List<T> findMany(String query) throws SQLException;
 }
