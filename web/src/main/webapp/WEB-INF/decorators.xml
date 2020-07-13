@@ -16,4 +16,5 @@
     </decorator>
     <decorator name="default_login" page="default_login.jsp" />
     <decorator name="default_dlg" page="default_dlg.jsp" />
+    <decorator name="default_panel" page="default_panel.jsp" />
 </decorators>

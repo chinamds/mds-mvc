@@ -538,7 +538,7 @@ $.mainframe = {
             var okTitle = '"' + $.mainframe.options.i18n.ok + '"';           
             jsPanel.create({
                 position:    "center",
-                panelSize: "auto 480",
+                contentSize: "auto 80vh",
                 //contentFetch: url,
                 contentFetch: {
                     resource: url,
@@ -685,7 +685,7 @@ $.mainframe = {
             jsPanel.create({
                 position:    "center",
                 panelSize: "auto 480",
-                ContentSize: "480 480",
+                //ContentSize: "480 480",
                 //contentFetch: url,
                 contentFetch: {
                     resource: url,
