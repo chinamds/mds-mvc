@@ -37,7 +37,7 @@ import com.mds.common.model.DataEntity;
 @XmlRootElement
 @DynamicInsert 
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class Log extends IdEntity {
 
 	private static final long serialVersionUID = 1L;

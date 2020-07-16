@@ -458,7 +458,7 @@ public class UserUtils {
     {   
        MenuComponent mc = new MenuComponent();   
        mc.setName(menu.getCode());    
-       mc.setTitle(I18nUtils.getString(menu.getTitle(), request.getLocale()));
+       mc.setTitle(I18nUtils.getString(menu.getTitle(), request));
        //mc.setTitle(menu.getTitle());
        /*if (!StringUtils.isBlank(menu.getHref())){
 	       if (UserUtils.isMobileDevice())

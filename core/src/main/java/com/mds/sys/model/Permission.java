@@ -211,7 +211,7 @@ public class Permission extends DataEntity {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<MenuFunctionPermission> getMenuFunctionPermissions() {
 		return menuFunctionPermissions;
 	}

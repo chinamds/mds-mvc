@@ -74,7 +74,7 @@ import com.mds.hrm.model.Department;
 })
 @DynamicInsert 
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 @FilterDef(name = "tenantFilter", parameters = {@ParamDef(name = "tenantId", type = "string")})
 @Filter(name = "tenantFilter", condition = "tenant_id = :tenantId")
 public class Role extends DataEntity implements Serializable {
@@ -152,7 +152,7 @@ public class Role extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	/**
 	 * @return the deparments
@@ -176,7 +176,7 @@ public class Role extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	/**
 	 * @return the galleries
@@ -238,7 +238,7 @@ public class Role extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public Set<User> getUsers() {
 		return users;
@@ -293,7 +293,7 @@ public class Role extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public List<MenuFunctionPermission> getMenuFunctionPermissions() {
 		return menuFunctionPermissions;
@@ -311,7 +311,7 @@ public class Role extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public List<Organization> getOrganizations() {
 		return organizations;
@@ -369,7 +369,7 @@ public class Role extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public List<Album> getAlbums() {
 		return albums;

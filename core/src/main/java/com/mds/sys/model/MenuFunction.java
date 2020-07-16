@@ -66,7 +66,7 @@ import com.mds.i18n.model.ResourceCategory;
 @XmlRootElement
 @DynamicInsert 
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class MenuFunction extends TreeEntity<MenuFunction> {
 
 	private static final long serialVersionUID = 1L;
@@ -400,7 +400,7 @@ public class MenuFunction extends TreeEntity<MenuFunction> {
 	@OrderBy(value="sort") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonManagedReference
 	@Override
 	public List<MenuFunction> getChildren() {
@@ -416,7 +416,7 @@ public class MenuFunction extends TreeEntity<MenuFunction> {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -429,7 +429,7 @@ public class MenuFunction extends TreeEntity<MenuFunction> {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public List<MenuFunctionPermission> getMenuFunctionPermissions() {
 		return menuFunctionPermissions;

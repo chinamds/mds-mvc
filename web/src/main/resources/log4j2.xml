@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration>
+<Configuration strict='true'
+               xmlns='http://logging.apache.org/log4j/2.0/config'>
+    <Properties>
+        <!-- Default log file directory for MDSPlus.
+             NOTE: The value of 'mds.home' will be replaced by its value in
+             your configuration when MDSPlus is installed. -->
+        <Property name='log.dir'>${log4j:configParentLocation}/../log</Property>
+    </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%p [%t] %c{1}.%M(%L) | %m%n"/>

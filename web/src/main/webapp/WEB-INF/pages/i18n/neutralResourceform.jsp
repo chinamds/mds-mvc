@@ -21,13 +21,14 @@
 <form:form modelAttribute="neutralResource" method="post" action="neutralResourceform" cssClass="well"
            id="neutralResourceForm" onsubmit="return validateNeutralResource(this)">
 <form:hidden path="id"/>
-    <spring:bind path="neutralResource.resourceClass">
+<form:hidden path="resourceClass"/>
+    <%-- <spring:bind path="neutralResource.resourceClass">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
         <appfuse:label key="neutralResource.resourceClass" styleClass="control-label"/>
         <form:input cssClass="form-control" path="resourceClass" id="resourceClass"  maxlength="100"/>
         <form:errors path="resourceClass" cssClass="help-block"/>
-    </div>
+    </div> --%>
     <spring:bind path="neutralResource.resourceKey">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
@@ -40,7 +41,7 @@
     </spring:bind>
         <appfuse:label key="neutralResource.value" styleClass="control-label"/>
         <%-- <form:input cssClass="form-control" path="value" id="value"  maxlength="255"/> --%>
-        <form:textarea path="value" id="value" row='3' cssClass="form-control"/>
+        <form:textarea path="value" id="value" row='10' cssClass="form-control"/>
         <form:errors path="value" cssClass="help-block"/>
     </div>
 

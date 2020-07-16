@@ -150,7 +150,7 @@ public class Gallery extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<GallerySetting> getGallerySettings() {
 		return gallerySettings;
 	}
@@ -163,7 +163,7 @@ public class Gallery extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<MimeTypeGallery> getMimeTypeGallerys() {
 		return mimeTypeGallerys;
 	}
@@ -176,7 +176,7 @@ public class Gallery extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
     public List<UiTemplate> getUiTemplates() {
 		return uiTemplates;
 	}
@@ -189,7 +189,7 @@ public class Gallery extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<UserGalleryProfile> getUserGalleryProfiles() {
 		return userGalleryProfiles;
 	}
@@ -205,7 +205,7 @@ public class Gallery extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<GalleryMapping> getGalleryMappings() {
 		return galleryMappings;
 	}
@@ -240,7 +240,7 @@ public class Gallery extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<Album> getAlbums() {
 		return albums;
 	}
@@ -256,7 +256,7 @@ public class Gallery extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -269,7 +269,7 @@ public class Gallery extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<DailyList> getDailyLists() {
 		return dailyLists;
 	}

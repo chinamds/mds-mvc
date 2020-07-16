@@ -187,7 +187,7 @@ public class Product extends IdEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<Zone> getZones() {
 		return zones;
 	}

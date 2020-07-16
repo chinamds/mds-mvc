@@ -686,7 +686,7 @@ public class Player extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<AHMessage> getAHMessages() {
 		return aHMessages;
 	}
@@ -702,7 +702,7 @@ public class Player extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<AHPlaylist> getAHPlaylists() {
 		return aHPlaylists;
 	}
@@ -718,7 +718,7 @@ public class Player extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<FileTransferTask> getFileTransferTasks() {
 		return fileTransferTask;
 	}
@@ -734,7 +734,7 @@ public class Player extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<PlayerTuner> getPlayerTuner() {
 		return playerTuner;
 	}
@@ -753,7 +753,7 @@ public class Player extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<PlayerOutput> getPlayerOutputs() {
 		return playerOutputs;
 	}
@@ -772,7 +772,7 @@ public class Player extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<PlayerStatus> getPlayerStatuses() {
 		return playerStatuses;
 	}
@@ -788,7 +788,7 @@ public class Player extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<PlayerTaskScheduler> getPlayerTaskSchedulers() {
 		return playerTaskSchedulers;
 	}

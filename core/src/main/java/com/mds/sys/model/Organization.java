@@ -66,7 +66,7 @@ import com.mds.common.utils.excel.annotation.ExcelField;
 @XmlRootElement
 @DynamicInsert 
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 @FilterDef(name = "tenantFilter", parameters = {@ParamDef(name = "tenantId", type = "string")})
 @Filter(name = "tenantFilter", condition = "tenant_id = :tenantId")
 public class Organization extends TreeEntity<Organization> implements TenantSupport, Serializable {
@@ -192,7 +192,7 @@ public class Organization extends TreeEntity<Organization> implements TenantSupp
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public List<Staff> getStaffs() {
 		return staffs;
@@ -209,7 +209,7 @@ public class Organization extends TreeEntity<Organization> implements TenantSupp
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public List<GalleryMapping> getGalleryMappings() {
 		return galleryMappings;
@@ -236,7 +236,7 @@ public class Organization extends TreeEntity<Organization> implements TenantSupp
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public List<User> getUsers() {
 		return users;
@@ -256,7 +256,7 @@ public class Organization extends TreeEntity<Organization> implements TenantSupp
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public List<Role> getRoles() {
 		return roles;
@@ -276,7 +276,7 @@ public class Organization extends TreeEntity<Organization> implements TenantSupp
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public List<Permission> getPermissions() {
 		return permissions;
@@ -286,7 +286,7 @@ public class Organization extends TreeEntity<Organization> implements TenantSupp
 	@OrderBy(value="code") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonManagedReference
 	@Override
 	public List<Organization> getChildren() {
@@ -472,7 +472,7 @@ public class Organization extends TreeEntity<Organization> implements TenantSupp
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public Set<OrganizationLogo> getOrganizationLogos() {
 		if(organizationLogos == null) {

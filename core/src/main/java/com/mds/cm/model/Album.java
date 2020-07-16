@@ -138,7 +138,7 @@ public class Album extends TreeEntity<Album> implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<Metadata> getMetadatas() {
 		return metadatas;
 	}
@@ -166,7 +166,7 @@ public class Album extends TreeEntity<Album> implements Serializable {
 	@OrderBy(value="seq") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<ContentObject> getContentObjects() {
 		return contentObjects;
 	}
@@ -328,7 +328,7 @@ public class Album extends TreeEntity<Album> implements Serializable {
 	@OrderBy(value="seq") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<Album> getChildren() {
 		return children;
 	}
@@ -341,7 +341,7 @@ public class Album extends TreeEntity<Album> implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -359,7 +359,7 @@ public class Album extends TreeEntity<Album> implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
     public List<UiTemplate> getUiTemplates() {
 		return uiTemplates;
 	}

@@ -103,7 +103,7 @@ public class Channel extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
     public List<Calendar> getCalendars() {
 		return calendars;
 	}
@@ -116,7 +116,7 @@ public class Channel extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<PlayerTuner> getPlayerTuner() {
 		return playerTuner;
 	}

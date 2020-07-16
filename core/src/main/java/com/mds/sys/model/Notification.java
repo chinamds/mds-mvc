@@ -36,8 +36,6 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Where;
 import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.FullTextFilterDef;
-import org.hibernate.search.annotations.FullTextFilterDefs;
 import org.hibernate.search.annotations.Indexed;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -61,10 +59,6 @@ import com.mds.common.model.DataEntity;
 @XmlRootElement
 @DynamicInsert
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@FullTextFilterDefs( {
-    @FullTextFilterDef(name = "notificationUser", impl = NotificationUserFilterFactory.class),
-})
 public class Notification extends IdEntity {
 
     /**

@@ -48,7 +48,7 @@ import com.mds.common.model.TreeEntity;
 @XmlRootElement
 @DynamicInsert 
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class MenuFunctionPermission extends DataEntity {
 
 	private static final long serialVersionUID = 1L;
@@ -87,7 +87,7 @@ public class MenuFunctionPermission extends DataEntity {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<Role> getRoles() {
 		return roles;
 	}

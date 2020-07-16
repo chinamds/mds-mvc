@@ -113,7 +113,7 @@ public class ContentObject extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<Metadata> getMetadatas() {
 		return metadatas;
 	}
@@ -126,7 +126,7 @@ public class ContentObject extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
     public List<ContentQueue> getContentQueues() {
 		return contentQueues;
 	}
@@ -139,7 +139,7 @@ public class ContentObject extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<ContentWorkflow> getContentWorkflows() {
 		return contentWorkflows;
 	}
@@ -152,7 +152,7 @@ public class ContentObject extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
     public List<DailyListZone> getDailyListZones() {
 		return dailyListZones;
 	}

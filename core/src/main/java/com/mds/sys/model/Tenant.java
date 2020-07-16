@@ -69,7 +69,7 @@ import com.mds.common.utils.excel.annotation.ExcelField;
 @XmlRootElement
 @DynamicInsert 
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class Tenant extends AbstractEntity<String> implements Serializable {
 
 	/**

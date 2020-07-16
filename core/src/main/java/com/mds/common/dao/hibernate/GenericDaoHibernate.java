@@ -7,9 +7,7 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.BooleanQuery;
-import org.apache.lucene.search.CachingWrapperFilter;
 import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.QueryWrapperFilter;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.TopDocs;
@@ -55,6 +53,7 @@ import org.hibernate.internal.CriteriaImpl;
 import org.hibernate.proxy.HibernateProxyHelper;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.hibernate.transform.ResultTransformer;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.BeanUtils;
@@ -209,20 +208,6 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
         return new org.apache.lucene.search.Sort(sortFields.toArray(new SortField[0]));
     }
     
-    public org.hibernate.search.FullTextQuery applyFilters(org.hibernate.search.FullTextQuery hibQuery, Searchable search) {
-        for (SearchFilter searchFilter : search.getSearchFilters()) {
-
-            if (searchFilter instanceof Condition) {
-                Condition condition = (Condition) searchFilter;
-                if (condition.getOperator() == SearchOperator.ftqFilter) {
-                	hibQuery.enableFullTextFilter(condition.getValue2().toString()).setParameter(condition.getSearchProperty(), condition.getValue());
-                }
-            }
-        }
-        
-        return hibQuery;
-	}
-
     /**
      * {@inheritDoc}
      */
@@ -277,8 +262,21 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
         FullTextSession txtSession = Search.getFullTextSession(sess);
 
         org.apache.lucene.search.Query qry;
-        try {
+        try {       			
             qry = HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, sess, defaultAnalyzer);
+            if (searchable.hasSearchFilter()) {
+            	QueryBuilder querybuilder = txtSession.getSearchFactory()
+            	        .buildQueryBuilder()
+            	        .forEntity(this.persistentClass )
+            	        .get();
+            	
+				/*
+				 * BooleanQuery.Builder bQuery = new BooleanQuery.Builder(); bQuery.add(qry,
+				 * Occur.MUST); bQuery.add(HibernateSearchTools.generateQuery(searchable),
+				 * Occur.FILTER); qry = bQuery.build();
+				 */           	
+				qry = HibernateSearchTools.generateQuery(querybuilder, searchable).must(qry).createQuery();
+            }
         } catch (ParseException ex) {
             throw new SearchException(ex);
         }
@@ -286,9 +284,9 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
         org.hibernate.search.FullTextQuery hibQuery = txtSession.createFullTextQuery(qry,
                 this.persistentClass);
         
-        if (searchable.hasSearchFilter()) {
-        	hibQuery = applyFilters(hibQuery, searchable);
-        }
+        /*if (searchable.hasSearchFilter()) {
+        	hibQuery.setFilter(new CachingWrapperFilter(new QueryWrapperFilter(HibernateSearchTools.generateQuery(searchable))));
+        }*/
         
         if (searchable.hashSort()) {
         	hibQuery.setSort(prepareOrder(searchable));
@@ -348,34 +346,50 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
         org.apache.lucene.search.Query qry;
         try {
             qry = HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, fnames, sess, defaultAnalyzer);
-            if (searchable.hasSearchFilter()) {
-            	BooleanQuery.Builder bQuery = new BooleanQuery.Builder();
-            	bQuery.add(qry, Occur.MUST);
-            	bQuery.add(HibernateSearchTools.generateQuery(searchable), Occur.FILTER);
-            	qry = bQuery.build();
-            }
+			if (searchable.hasSearchFilter()) { 
+				  /*BooleanQuery.Builder bQuery = new BooleanQuery.Builder(); 
+				  bQuery.add(qry, Occur.MUST);
+				  bQuery.add(HibernateSearchTools.generateQuery(searchable), Occur.FILTER); 
+				  qry =	  bQuery.build();*/
+				  QueryBuilder querybuilder = txtSession.getSearchFactory()
+            	        .buildQueryBuilder()
+            	        .forEntity(this.persistentClass )
+            	        .get();
+            	
+				  qry = HibernateSearchTools.generateQuery(querybuilder, searchable).must(qry).createQuery();
+			}
+			 
         } catch (ParseException ex) {
             throw new SearchException(ex);
         }
         
         org.hibernate.search.FullTextQuery hibQuery = txtSession.createFullTextQuery(qry,
                 this.persistentClass);
-                
+        
+        /*if (searchable.hasSearchFilter()) {
+        	hibQuery.setFilter(new CachingWrapperFilter(new QueryWrapperFilter(HibernateSearchTools.generateQuery(searchable))));
+        }*/
+                        
         if (searchable.hashSort()) {
         	hibQuery.setSort(prepareOrder(searchable));
         }
         
         int total = hibQuery.getResultSize();
         List<T> content = Collections.<T>emptyList();
+        boolean bGetPage = false;
         if (searchable.hasPageable()) {
-	        if (total > searchable.getPage().getOffset())
-	        {
+	        if (total > searchable.getPage().getOffset()) {
 		        hibQuery.setFirstResult((int)searchable.getPage().getOffset());
 		    	hibQuery.setMaxResults(searchable.getPage().getPageSize());
 		    	content = hibQuery.list();
+		    	bGetPage = true;
 	        }
         }
-      
+        
+        if (!bGetPage) {
+        	content = hibQuery.list();
+        }
+              
         return new PageImpl<T>(content, searchable.getPage(), total);   
     }
 

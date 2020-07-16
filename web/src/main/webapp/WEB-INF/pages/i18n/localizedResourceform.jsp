@@ -26,13 +26,22 @@
 <form:form modelAttribute="localizedResource" method="post" action="localizedResourceform" cssClass="well"
            id="localizedResourceForm" onsubmit="return validateLocalizedResource(this)">
 <form:hidden path="id"/>
-    <div class="form-group">
+    <%-- <div class="form-group">
         <appfuse:label key="localizedResource.resourceCategory" styleClass="control-label"/>
         <select id="resourceCategory" name="resourceCategory" class="form-control">
             <c:forEach items="${resourceCategories}" var="resourceCategory">
 	            <option value="${resourceCategory}"><fmt:message key="${resourceCategory.info}"/></option>
             </c:forEach>
         </select>
+    </div> --%>
+    <spring:bind path="localizedResource.culture">
+    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+    </spring:bind>
+        <appfuse:label key="localizedResource.culture" styleClass="control-label"/>
+        <select class="form-control" id="culture" name="culture">
+            <option selected="selected" value="${localizedResource.culture.id}">${localizedResource.culture.cultureName}</option>
+        </select>
+        <form:errors path="culture" cssClass="help-block"/>
     </div>
     
     <spring:bind path="localizedResource.neutralResource">
@@ -40,25 +49,17 @@
     </spring:bind>
         <appfuse:label key="localizedResource.neutralResource" styleClass="control-label"/>
         <select class="form-control" id="neutralResource" name="neutralResource">
-	    	<option selected="selected" value="${localizedResource.neutralResource.resourceKey}">${localizedResource.neutralResource.value}</option>
+	    	<option selected="selected" value="${localizedResource.neutralResource.id}">${localizedResource.neutralResource.value}</option>
 		</select>
         <form:errors path="neutralResource" cssClass="help-block"/>
-    </div>
-    <spring:bind path="localizedResource.culture">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="localizedResource.culture" styleClass="control-label"/>
-        <select class="form-control" id="culture" name="culture">
-	    	<option selected="selected" value="${localizedResource.culture.cultureCode}">${localizedResource.culture.cultureName}</option>
-		</select>
-        <form:errors path="culture" cssClass="help-block"/>
     </div>
 
     <spring:bind path="localizedResource.value">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
         <appfuse:label key="localizedResource.value" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="value" id="value"  maxlength="255"/>
+        <%-- <form:input cssClass="form-control" path="value" id="value"  maxlength="255"/> --%>
+        <form:textarea path="value" id="value" row='10' cssClass="form-control"/>
         <form:errors path="value" cssClass="help-block"/>
     </div>
 

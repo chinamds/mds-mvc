@@ -8,6 +8,8 @@ import com.mds.common.webapp.controller.BaseFormController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ExtendedModelMap;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,17 +34,23 @@ public class CultureFormController extends BaseFormController {
         setSuccessView("redirect:cultures");
     }
 
-    @ModelAttribute
+    //@ModelAttribute
     @RequestMapping(method = RequestMethod.GET)
-    protected Culture showForm(HttpServletRequest request)
+    protected Model showForm(HttpServletRequest request)
     throws Exception {
+    	Model model = new ExtendedModelMap();
         String id = request.getParameter("id");
 
+        Culture culture = new Culture();
         if (!StringUtils.isBlank(id)) {
-            return cultureManager.get(new Long(id));
+        	culture = cultureManager.get(Long.valueOf(id));
+        	var tags = StringUtils.split(culture.getCultureCode(), '_'); 
+        	model.addAttribute("locale", new Locale(tags[0], tags.length > 1 ? tags[1] : ""));
         }
+        
+        model.addAttribute("culture", culture);
 
-        return new Culture();
+        return model;
     }
 
     @RequestMapping(method = RequestMethod.POST)

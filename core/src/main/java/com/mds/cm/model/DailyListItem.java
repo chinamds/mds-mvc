@@ -93,7 +93,7 @@ public class DailyListItem extends IdEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
     public List<DailyListZone> getDailyListZones() {
 		return dailyListZones;
 	}

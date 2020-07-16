@@ -120,7 +120,7 @@ public class Position extends DataEntity {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<StaffPosition> getStaffPositions() {
 		return staffPositions;
 	}

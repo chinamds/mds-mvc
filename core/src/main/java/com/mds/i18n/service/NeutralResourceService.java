@@ -78,6 +78,17 @@ public interface NeutralResourceService {
             @QueryParam("offset") @DefaultValue("0") Integer offset);
     
     /**
+     * Retrieves a page of all neutralResources.
+     *
+     * @return List
+     */
+    @GET
+    @Path("/{culture}/notlocalized/select2")
+    @Produces({ MediaType.APPLICATION_JSON })
+    HashMap<String, Object> notLocalizedNeutralResourcesSelect2(@PathParam("culture") String culture, @QueryParam("q") String searchTerm, @QueryParam("limit") @DefaultValue("100") Integer limit,
+            @QueryParam("offset") @DefaultValue("0") Integer offset);
+    
+    /**
      * Retrieves a page of all neutralResources(boostrap table).
      *
      * @return List

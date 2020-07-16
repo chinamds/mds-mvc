@@ -324,7 +324,7 @@ public class AHMessage extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<Player> getPlayers() {
 		return players;
 	}
@@ -340,7 +340,7 @@ public class AHMessage extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<MessageZone> getMessageZones() {
 		return messageZones;
 	}

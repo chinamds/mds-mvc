@@ -95,7 +95,7 @@ public class DailyListWorkflow extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
     public List<DailyListActivity> getDailyListActivities() {
 		return dailyListActivities;
 	}

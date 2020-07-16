@@ -61,7 +61,7 @@ import com.mds.util.Collections3;
 @XmlRootElement
 @DynamicInsert 
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class UserPhoto extends IdEntity implements Serializable {
 
 

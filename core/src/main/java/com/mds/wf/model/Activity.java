@@ -79,7 +79,7 @@ public class Activity extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
     public List<WorkflowDetail> getWorkflowDetails() {
 		return workflowDetails;
 	}
@@ -178,7 +178,7 @@ public class Activity extends DataEntity implements Serializable {
  	@OrderBy(value="id") 
  	@Fetch(FetchMode.SUBSELECT)
  	@NotFound(action = NotFoundAction.IGNORE)
- 	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+ 	
  	public List<ActivityOrganizationUser> getActivityOrganizationUsers() {
  		return activityOrganizationUsers;
  	}

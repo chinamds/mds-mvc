@@ -50,7 +50,7 @@ import com.mds.common.model.DataEntity;
 @XmlRootElement
 @DynamicInsert
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class TaskDefinition extends DataEntity {
 
     

@@ -40,7 +40,7 @@ import org.hibernate.search.annotations.Indexed;
 @XmlRootElement
 @DynamicInsert
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class ZipCodeType extends DataEntity {
 	//
 	private String type;

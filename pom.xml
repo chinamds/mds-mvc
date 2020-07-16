@@ -956,11 +956,59 @@
                <artifactId>hibernate-search-mapper-orm</artifactId>
                <version>${hibernate-search.version}</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-engine -->
+			<dependency>
+			    <groupId>org.hibernate</groupId>
+			    <artifactId>hibernate-search-engine</artifactId>
+                <version>${hibernate-search.version}</version>
+			</dependency>
             <dependency>
                <groupId>org.hibernate.search</groupId>
                <artifactId>hibernate-search-backend-lucene</artifactId>
                <version>${hibernate-search.version}</version>
             </dependency>
+            
+<!--             https://mvnrepository.com/artifact/org.apache.lucene/lucene-core
+			<dependency>
+			    <groupId>org.apache.lucene</groupId>
+			    <artifactId>lucene-core</artifactId>
+			    <version>7.3.1</version>
+			</dependency>
+			
+			https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser
+			<dependency>
+			    <groupId>org.apache.lucene</groupId>
+			    <artifactId>lucene-queryparser</artifactId>
+			    <version>7.3.1</version>
+			</dependency>
+			
+			https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common
+			<dependency>
+			    <groupId>org.apache.lucene</groupId>
+			    <artifactId>lucene-analyzers-common</artifactId>
+			    <version>7.3.1</version>
+			</dependency>
+			
+			https://mvnrepository.com/artifact/org.apache.lucene/lucene-facet
+			<dependency>
+			    <groupId>org.apache.lucene</groupId>
+			    <artifactId>lucene-facet</artifactId>
+			    <version>7.3.1</version>
+			</dependency>
+			
+			https://mvnrepository.com/artifact/org.apache.lucene/lucene-misc
+			<dependency>
+			    <groupId>org.apache.lucene</groupId>
+			    <artifactId>lucene-misc</artifactId>
+			    <version>7.3.1</version>
+			</dependency>
+			
+			https://mvnrepository.com/artifact/org.apache.lucene/lucene-memory
+			<dependency>
+			    <groupId>org.apache.lucene</groupId>
+			    <artifactId>lucene-memory</artifactId>
+			    <version>7.3.1</version>
+			</dependency>	 -->	            
             
              <!-- https://mvnrepository.com/artifact/com.querydsl/querydsl-core -->
             <dependency>
@@ -2307,7 +2355,7 @@
         <fest.assert>1.4</fest.assert>
         <gin.version>2.1.2</gin.version>
         <hibernate.version>5.2.17.Final</hibernate.version>
-        <hibernate-search.version>5.9.1.Final</hibernate-search.version>
+        <hibernate-search.version>5.9.3.Final</hibernate-search.version>
         <hibernate-validator.version>6.0.9.Final</hibernate-validator.version>
         <querydsl.version>4.1.4</querydsl.version>
         <!-- <hibernate-search-analyzers.version>4.5.3.Final</hibernate-search-analyzers.version> -->
@@ -2383,7 +2431,7 @@
 		<oracle.driver.version>10.2.0.1.0</oracle.driver.version>
 		<mssql.driver.version>1.3.1</mssql.driver.version>
 		<mysql.driver.version>8.0.15</mysql.driver.version>
-		<postgresql.driver.version>42.2.1</postgresql.driver.version>
+		<postgresql.driver.version>42.2.9</postgresql.driver.version>
 		<installDir>${project.build.directory}/install</installDir>
 		<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
 		<!-- <cargo.port>8080</cargo.port>

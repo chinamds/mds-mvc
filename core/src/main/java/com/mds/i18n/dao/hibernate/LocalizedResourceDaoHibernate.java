@@ -25,6 +25,10 @@ public class LocalizedResourceDaoHibernate extends GenericDaoHibernate<Localized
     public List<Map<Long, Long>> findNeutralMap(Long cultureId){
     	return find("select new map(neutralResource.id as neutralResourceId, id) from LocalizedResource where culture.id = :p1", new Parameter(cultureId));
     }
+    
+    public List<Long> findNeutralIds(Long cultureId){
+    	return find("select neutralResource.id from LocalizedResource where culture.id = :p1", new Parameter(cultureId));
+    }
 
 	/**
      * {@inheritDoc}

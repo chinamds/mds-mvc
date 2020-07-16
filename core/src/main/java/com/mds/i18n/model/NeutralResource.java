@@ -66,9 +66,6 @@ import java.math.BigDecimal;
 @Table(name="i18n_neutral_resource" )
 @Indexed
 @XmlRootElement
-@FullTextFilterDefs( {
-    @FullTextFilterDef(name = "resourceClass", impl = NeutralResourceCategoryFilterFactory.class)
-})
 public class NeutralResource extends IdEntity implements Serializable {
     /**
 	 * 
@@ -82,25 +79,25 @@ public class NeutralResource extends IdEntity implements Serializable {
     public NeutralResource() {
 		super();
 	}
-    
+        
     /**
      * Create a new instance and set the resourceKey.
      *
      * @param resourceKey resourceKey of the NeutralResource.
      */
-    public NeutralResource(final String resourceKey) {
-    	this();
-        this.resourceKey = resourceKey;
-    }
+	/*
+	 * public NeutralResource(final String resourceKey) { this(); this.resourceKey =
+	 * resourceKey; }
+	 */
     
     /**
      * Create a new instance and set the id.
      *
      * @param id id of the NeutralResource.
      */
-    public NeutralResource(final Long id) {
+    public NeutralResource(final String id) {
     	this();
-        this.id = id;
+    	this.id = Long.valueOf(id);
     }
    
 	@JsonProperty(value = "resourceClass")
@@ -150,7 +147,6 @@ public class NeutralResource extends IdEntity implements Serializable {
     @OrderBy("id") 
     @Fetch(FetchMode.SUBSELECT)
     @NotFound(action = NotFoundAction.IGNORE)
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnore
     public List<LocalizedResource> getLocalizedResources() {
     	return localizedResources;

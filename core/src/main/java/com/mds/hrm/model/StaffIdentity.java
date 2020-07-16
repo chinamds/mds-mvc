@@ -49,7 +49,7 @@ import com.mds.common.model.JsonDateSerializer;
 @XmlRootElement
 @DynamicInsert
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class StaffIdentity extends DataEntity {
 
 	/**

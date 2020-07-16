@@ -70,9 +70,6 @@ import com.mds.util.Collections3;
 @Table(name = "sys_user_address")
 @Indexed
 @XmlRootElement
-@DynamicInsert 
-@DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class UserAddress extends DataEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;

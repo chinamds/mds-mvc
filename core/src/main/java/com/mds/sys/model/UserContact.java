@@ -72,7 +72,7 @@ import com.mds.util.Collections3;
 @XmlRootElement
 @DynamicInsert 
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class UserContact extends DataEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;

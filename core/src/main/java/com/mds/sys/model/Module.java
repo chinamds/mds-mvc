@@ -165,7 +165,7 @@ public class Module extends DataEntity implements Serializable {
 	@OrderBy(value="sort") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<MenuFunction> getMenuFunctions() {
 		return menuFunctions;
 	}

@@ -43,7 +43,7 @@ import com.mds.hrm.model.StaffIdentity;
 @XmlRootElement
 @DynamicInsert
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class Country extends DataEntity {
 	/**
 	 * 
@@ -96,7 +96,7 @@ public class Country extends DataEntity {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<StaffIdentity> getStaffIdentities() {
 		return staffIdentities;
 	}
@@ -115,7 +115,7 @@ public class Country extends DataEntity {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<State> getStates() {
 		return states;
 	}

@@ -71,7 +71,7 @@ public class Tag extends BaseObject implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
     public List<MetadataTag> getMeatadataTags() {
 		return meatadataTags;
 	}

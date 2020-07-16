@@ -1,6 +1,7 @@
 package com.mds.i18n.service;
 
 import javax.jws.WebService;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -9,6 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -63,6 +65,17 @@ public interface CultureService {
     @Produces({ MediaType.APPLICATION_JSON })
     HashMap<String, Object> culturesSelect2(@QueryParam("q") String searchTerm, @QueryParam("limit") @DefaultValue("100") Integer limit,
             @QueryParam("offset") @DefaultValue("0") Integer offset);
+    
+    /**
+     * Retrieves a page of all cultures.
+     *
+     * @return List
+     */
+    @GET
+    @Path("/available/select2")
+    @Produces({ MediaType.APPLICATION_JSON })
+    HashMap<String, Object> availableCulturesSelect2(@QueryParam("q") String searchTerm, @QueryParam("limit") @DefaultValue("100") Integer limit,
+            @QueryParam("offset") @DefaultValue("0") Integer offset, @Context HttpServletRequest request);
     
     /**
      * Retrieves a page of all cultures(boostrap table).

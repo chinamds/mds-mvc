@@ -36,7 +36,7 @@
 	<!-- <jaxws:endpoint id="roleService" implementor="#roleManager" address="/RoleService"/> -->
 	<!-- <jaxws:endpoint id="permissionService" implementor="#permissionManager" address="/PermissionService"/> -->
 	<jaxws:endpoint id="myMessageService" implementor="#myMessageManager" address="/MyMessageService"/>
-	<jaxws:endpoint id="cultureService" implementor="#cultureManager" address="/CultureService"/>
+	<!-- <jaxws:endpoint id="cultureService" implementor="#cultureManager" address="/CultureService"/> -->
 	<!-- <jaxws:endpoint id="bannerService" implementor="#bannerManager" address="/BannerService"/> -->
     <!-- Add new endpoints for additional services you'd like to expose -->
 

@@ -5,6 +5,11 @@
     <meta name="menu" content="CultureMenu"/>
 </head>
 
+<c:set var="group" value="grp_boostrap_table_treegrid" scope="request" />
+<c:set var="scripts" scope="request">
+    <%@ include file="/static/scripts/i18n/culture.js"%>
+</c:set>
+
 <div class="col">
 	<c:if test="{'$'}{not empty searchError}">
 	    <div class="alert alert-danger alert-dismissable">
@@ -14,26 +19,40 @@
 	</c:if>
 	
 	<h2><fmt:message key="cultureList.heading"/></h2>
-	
-	<form method="get" action="${ctx}/i18n/cultures" id="searchForm" class="form-inline float-right">
-	<div id="search" class="input-group">
-		<input type="text" size="20" name="q" id="query" value="${param.q}"
-	               placeholder="<fmt:message key="search.enterTerms"/>" class="form-control input-sm"/>
-	    <span class="input-group-append">
-		    <button id="button.search" class="btn btn-default btn-sm" type="submit">
-		        <i class="fa fa-search"></i> <fmt:message key="button.search"/>
-			</button>
-		</span>
-	</div>
-	</form>
+		
+	<form id="searchForm" class="form-inline float-right">
+        <div id="search" class="input-group">
+             <input type="text" size="20" name="q" id="query" value="${param.q}"
+                       placeholder="<fmt:message key="search.enterTerms"/>" class="form-control input-sm"/>
+            <span class="input-group-append">
+                <button id="buttonSearch" class="btn btn-default btn-sm">
+                    <i class="fa fa-search"></i> <fmt:message key="button.search"/>
+                </button>
+            </span>
+        </div>
+    </form>
 	
 	<p><fmt:message key="cultureList.message"/></p>
-	
+		
 	<div id="actions" class="btn-group">
-	    <a href='<c:url value="/i18n/cultureform"/>' class="btn btn-primary">
-	        <i class="fa fa-plus icon-white"></i> <fmt:message key="button.add"/></a>
-	    <a href='<c:url value="/home"/>' class="btn btn-default visible-xs-block visible-sm-block d-md-none d-xs-block d-sm-block"><i class="fa fa-check"></i> <fmt:message key="button.done"/></a>
-	</div>
+	    <secure:hasPermission name="i18n:cultures:add">
+	        <a href='<c:url value="/i18n/cultureform"/>' class="btn btn-primary">
+	            <i class="fa fa-plus icon-white"></i> <fmt:message key="button.add"/></a>
+	    </secure:hasPermission>
+	    <secure:hasPermission name="i18n:cultures:delete">
+	        <button class="btn btn-danger" id="delete" name="delete">
+	            <i class="fa fa-trash icon-white"></i> <fmt:message key="button.delete"/></button>
+	    </secure:hasPermission>
+	    <secure:hasPermission name="i18n:cultures:data_import">
+	        <button id="btnImport" class="btn btn-success" type="button" title="<fmt:message key="button.import"/>">
+	            <i class="fa fa-file-import"></i> <span class="hidden-xs"><fmt:message key="button.import"/></span></button>
+	    </secure:hasPermission>
+	    <secure:hasPermission name="i18n:cultures:data_export">
+	        <button id="btnExport" class="btn btn-info" type="button" title="<fmt:message key="button.export"/>">
+	            <i class="fa fa-file-export"></i><span class="hidden-xs"><fmt:message key="button.export"/></span></button>
+	    </secure:hasPermission>
+	        <a href='<c:url value="/home"/>' class="btn btn-default visible-xs-block visible-sm-block d-md-none d-xs-block d-sm-block"><i class="fa fa-check"></i> <fmt:message key="button.done"/></a>
+    </div>
 	
 	<div id="importBox" class="hidden d-none">
 		<form id="importForm" method="post" enctype="multipart/form-data"
@@ -52,19 +71,16 @@
 			</div>
 		</form>
 	</div>
-	
-	<display:table name="cultureList" class="table table-condensed table-striped table-hover" requestURI="" id="cultureList" export="true" pagesize="25">
-	    <display:column property="id" sortable="true" href="${ctx}/i18n/cultureform" media="html"
-	        paramId="id" paramProperty="id" titleKey="culture.id"/>
-	    <display:column property="id" media="csv excel xml pdf" titleKey="culture.id"/>
-	    <display:column property="cultureCode" sortable="true" titleKey="culture.cultureCode"/>
-	    <display:column property="cultureName" sortable="true" titleKey="culture.cultureName"/>
-	
-	    <display:setProperty name="paging.banner.item_name"><fmt:message key="cultureList.culture"/></display:setProperty>
-	    <display:setProperty name="paging.banner.items_name"><fmt:message key="cultureList.cultures"/></display:setProperty>
-	
-	    <display:setProperty name="export.excel.filename"><fmt:message key="cultureList.title"/>.xls</display:setProperty>
-	    <display:setProperty name="export.csv.filename"><fmt:message key="cultureList.title"/>.csv</display:setProperty>
-	    <display:setProperty name="export.pdf.filename"><fmt:message key="cultureList.title"/>.pdf</display:setProperty>
-	</display:table>
+		
+	<div class="table-responsive">
+        <table id="table">
+            <thead>
+            <tr>
+                <th data-field="state" data-checkbox="true"></th>
+                <th data-field="cultureCode" data-formatter="nameFormatter"><fmt:message key="culture.cultureCode"/></th>
+                <th data-field="cultureName"><fmt:message key="culture.cultureName"/></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
 </div>

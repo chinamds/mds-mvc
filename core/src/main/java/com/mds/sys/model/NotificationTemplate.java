@@ -53,7 +53,7 @@ import com.mds.common.model.plugin.LogicDeleteable;
 @XmlRootElement
 @DynamicInsert
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class NotificationTemplate extends IdEntity implements LogicDeleteable {
 
     /**

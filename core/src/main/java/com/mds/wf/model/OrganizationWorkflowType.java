@@ -91,7 +91,7 @@ public class OrganizationWorkflowType extends DataEntity implements Serializable
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
     public List<Workflow> getWorkflows() {
 		return workflows;
 	}

@@ -240,6 +240,12 @@ public class I18nUtils {
 		return getString(msgKey, languageTag);
 	}
 	
+	public static String getString(String msgKey, HttpServletRequest request){		
+		String languageTag = getLanguageTag(request);
+    			
+		return getString(msgKey, languageTag);
+	}
+	
 	public static String getString(String msgKey, String cultureCode){  	
 		String msgValue = getStringFallback(msgKey, cultureCode);
 		if (msgValue != null)

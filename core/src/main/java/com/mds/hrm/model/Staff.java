@@ -129,7 +129,7 @@ public class Staff extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<User> getUsers() {
 		return users;
 	}
@@ -142,7 +142,7 @@ public class Staff extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<Activity> getActivities() {
 		return activities;
 	}
@@ -155,7 +155,7 @@ public class Staff extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<StaffDepartment> getStaffDepartments() {
 		return staffDepartments;
 	}
@@ -168,7 +168,7 @@ public class Staff extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<StaffPosition> getStaffPositions() {
 		return staffPositions;
 	}
@@ -184,7 +184,7 @@ public class Staff extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<StaffIdentity> getStaffIdentities() {
 		return staffIdentities;
 	}

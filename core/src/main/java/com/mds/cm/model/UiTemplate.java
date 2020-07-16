@@ -177,7 +177,7 @@ public class UiTemplate extends IdEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	//
     public List<Album> getAlbums() {
 		return albums;
 	}

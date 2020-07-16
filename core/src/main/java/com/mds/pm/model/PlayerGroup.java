@@ -166,7 +166,7 @@ public class PlayerGroup extends TreeEntity<PlayerGroup> implements Serializable
 	@OrderBy(value="code") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
     @JsonManagedReference
     @Override
 	public List<PlayerGroup> getChildren() {
@@ -185,7 +185,7 @@ public class PlayerGroup extends TreeEntity<PlayerGroup> implements Serializable
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<PlayerMapping> getPlayerMappings() {
 		return playerMappings;
 	}

@@ -78,15 +78,26 @@ public class Culture extends IdEntity implements Serializable {
     public Culture() {
     	super();
     }
+    
+    public Culture(final String id) {
+    	this();
+    	this.id = Long.valueOf(id);
+    }
 
     /**
      * Create a new instance and set the name.
      *
      * @param cultureCode culture code of the culture.
      */
-    public Culture(final String cultureCode) {
+	/*
+	 * public Culture(final String cultureCode) { this(); this.cultureCode =
+	 * cultureCode; }
+	 */
+    
+    public Culture(final String cultureCode, final String cultureName) {
     	this();
         this.cultureCode = cultureCode;
+        this.cultureName = cultureName;
     }
  
     @JsonProperty(value = "culture_code")
@@ -115,7 +126,6 @@ public class Culture extends IdEntity implements Serializable {
 	@OrderBy(value="code") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	@JsonManagedReference
     public List<Organization> getOrganizations() {
 		return organizations;
@@ -129,7 +139,6 @@ public class Culture extends IdEntity implements Serializable {
     @OrderBy("id") 
     @Fetch(FetchMode.SUBSELECT)
     @NotFound(action = NotFoundAction.IGNORE)
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     public List<LocalizedResource> getLocalizedResources() {
     	return localizedResources;
     }

@@ -103,7 +103,7 @@ public class ContentList extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
     public List<ContentListItem> getContentListItems() {
 		return contentListItems;
 	}

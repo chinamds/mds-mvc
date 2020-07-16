@@ -40,7 +40,7 @@ import org.hibernate.search.annotations.Indexed;
 @XmlRootElement
 @DynamicInsert
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class CardType extends DataEntity {
 
 	/**

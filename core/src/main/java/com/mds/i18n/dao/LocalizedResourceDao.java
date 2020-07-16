@@ -13,6 +13,7 @@ import com.mds.i18n.model.LocalizedResource;
 public interface LocalizedResourceDao extends GenericDao<LocalizedResource, Long> {
 	List<LocalizedResource> findByCultureId(Long cultureId);
 	List<Map<Long, Long>> findNeutralMap(Long cultureId);
+	List<Long> findNeutralIds(Long cultureId);
 
 	/**
      * Saves a LocalizedResource's information.

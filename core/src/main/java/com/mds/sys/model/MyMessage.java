@@ -58,14 +58,6 @@ import java.util.Set;
 @Table(name = "sys_message")
 @Indexed
 @XmlRootElement
-@Proxy(lazy = true, proxyClass = MyMessage.class)
-@FullTextFilterDefs( {
-    @FullTextFilterDef(name = "messageFolder", impl = MessageFolderFilterFactory.class), 
-    @FullTextFilterDef(name = "sender", impl = MessageSenderFilterFactory.class),
-    @FullTextFilterDef(name = "user", impl = MessageUserFilterFactory.class),
-    @FullTextFilterDef(name = "recipient", impl = MessageRecipientFilterFactory.class)
-})
-
 public class MyMessage extends DataEntity {
 
     /**
@@ -189,7 +181,6 @@ public class MyMessage extends DataEntity {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	@JsonIgnore
     public Set<MyMessageContent> getContents() {
     	if(contents == null) {
@@ -207,7 +198,6 @@ public class MyMessage extends DataEntity {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	@JsonIgnore
 	public List<MyMessageReFw> getOriginals() {
 		return originals;
@@ -243,7 +233,6 @@ public class MyMessage extends DataEntity {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	@JsonIgnore
 	public List<MyMessageReFw> getReplies() {
 		return this.replies;
@@ -333,7 +322,6 @@ public class MyMessage extends DataEntity {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnore
 	public List<MyMessageRecipient> getMyMessageRecipients() {
 		return myMessageRecipients;

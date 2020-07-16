@@ -42,7 +42,7 @@ import com.google.common.collect.Lists;
 @XmlRootElement
 @DynamicInsert
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class State extends DataEntity {
 
 	/**
@@ -114,7 +114,7 @@ public class State extends DataEntity {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<ZipCode> getZipCodes() {
 		return zipCodes;
 	}

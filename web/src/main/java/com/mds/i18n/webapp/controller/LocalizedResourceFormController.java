@@ -103,19 +103,20 @@ public class LocalizedResourceFormController extends BaseFormController {
         			localizedResource.setCulture(cultureManager.get(new Long(request.getParameter("cultureId"))));
         		}
         	}else {
-        		Searchable searchable = Searchable.newSearchable();
+        		/*Searchable searchable = Searchable.newSearchable();
         		searchable.addSearchFilter("cultureCode", SearchOperator.eq, localizedResource.getCulture().getCultureCode());	
-        		localizedResource.setCulture(cultureManager.findAll(searchable).get(0));
+        		localizedResource.setCulture(cultureManager.findAll(searchable).get(0));*/
+        		localizedResource.setCulture(cultureManager.get(localizedResource.getCulture().getId()));
         	}
         	if (localizedResource.getNeutralResource() == null){
         		if (!StringUtils.isBlank(request.getParameter("neutralResourceId"))) {
         			localizedResource.setNeutralResource(neutralResourceManager.get(new Long(request.getParameter("neutralResourceId"))));
         		}
         	}else {
-        		Searchable searchable = Searchable.newSearchable();
+        		/*Searchable searchable = Searchable.newSearchable();
         		searchable.addSearchFilter("resourceKey", SearchOperator.eq, localizedResource.getNeutralResource().getResourceKey());	
-        		localizedResource.setNeutralResource(neutralResourceManager.findAll(searchable).get(0));
-        		//localizedResource.setNeutralResource(neutralResourceManager.get(localizedResource.getNeutralResource().getId()));
+        		localizedResource.setNeutralResource(neutralResourceManager.findAll(searchable).get(0));*/
+        		localizedResource.setNeutralResource(neutralResourceManager.get(localizedResource.getNeutralResource().getId()));
         	}
         	
         	try {

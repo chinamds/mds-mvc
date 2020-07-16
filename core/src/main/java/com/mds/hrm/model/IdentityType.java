@@ -43,7 +43,7 @@ import com.mds.common.model.DataEntity;
 @XmlRootElement
 @DynamicInsert
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class IdentityType extends DataEntity {
 	/**
 	 * 
@@ -113,7 +113,7 @@ public class IdentityType extends DataEntity {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<StaffIdentity> getStaffIdentities() {
 		return staffIdentities;
 	}

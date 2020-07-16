@@ -92,7 +92,7 @@ public class ContentListItem extends IdEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<ContentListZone> getContentListZones() {
 		return contentListZones;
 	}

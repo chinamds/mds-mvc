@@ -1,5 +1,6 @@
 package com.mds.i18n.service.impl;
 
+import com.mds.i18n.dao.LocalizedResourceDao;
 import com.mds.i18n.dao.NeutralResourceDao;
 import com.mds.i18n.model.NeutralResource;
 import com.mds.i18n.service.NeutralResourceManager;
@@ -41,6 +42,12 @@ import javax.ws.rs.core.Response;
 @WebService(serviceName = "NeutralResourceService", endpointInterface = "com.mds.i18n.service.NeutralResourceService")
 public class NeutralResourceManagerImpl extends GenericManagerImpl<NeutralResource, Long> implements NeutralResourceManager, NeutralResourceService {
     NeutralResourceDao neutralResourceDao;
+    LocalizedResourceDao localizedResourceDao;
+
+    @Autowired
+    public void setLocalizedResourceDao(LocalizedResourceDao localizedResourceDao) {
+        this.localizedResourceDao = localizedResourceDao;
+    }
 
     @Autowired
     public NeutralResourceManagerImpl(NeutralResourceDao neutralResourceDao) {
@@ -53,7 +60,7 @@ public class NeutralResourceManagerImpl extends GenericManagerImpl<NeutralResour
      */
     @Override
     public NeutralResource getNeutralResource(final String neutralResourceId) {
-        return neutralResourceDao.get(new Long(neutralResourceId));
+        return neutralResourceDao.get(Long.valueOf(neutralResourceId));
     }
 
     /**
@@ -120,6 +127,30 @@ public class NeutralResourceManagerImpl extends GenericManagerImpl<NeutralResour
      */
     @SuppressWarnings("unchecked")
 	@Override
+    public HashMap<String, Object> notLocalizedNeutralResourcesSelect2(String culture, String searchTerm, Integer limit, Integer offset) {
+		/*
+		 * if (StringUtils.isBlank(searchTerm)) return null;
+		 */
+    	
+    	var neutralResouceIds = localizedResourceDao.findNeutralIds(Long.valueOf(culture));
+    	Searchable searchable = Searchable.newSearchable();
+    	searchable.setPage(PageRequest.of(offset/limit, limit));
+    	if (neutralResouceIds.size() > 0) {
+    		searchable.addSearchFilter("id", SearchOperator.notIn, neutralResouceIds);
+    	}
+    	
+    	if (StringUtils.isBlank(searchTerm)) {
+    		return toSelect2Data(neutralResourceDao.find(searchable).getContent());
+    	}
+       
+        return toSelect2Data(neutralResourceDao.search(searchable, new String[]{"resourceKey", "value"}, StringUtils.isBlank(searchTerm) ? "*" : searchTerm).getContent());
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked")
+	@Override
     public HashMap<String, Object> neutralResourcesTable(String category, String searchTerm, Integer limit, Integer offset) {
     	Searchable searchable = Searchable.newSearchable();
     	searchable.setPage(PageRequest.of(offset/limit, limit));
@@ -130,7 +161,7 @@ public class NeutralResourceManagerImpl extends GenericManagerImpl<NeutralResour
 			
 	    	list =  findPaging(searchable);
     	}else {
-    		searchable.addSearchFilter("resourceClass", SearchOperator.ftqFilter, category, "resourceClass");
+    		searchable.addSearchFilter("resourceClass", SearchOperator.eq, category);
             
             list =  neutralResourceDao.search(searchable, searchTerm);	
     	}
@@ -223,7 +254,7 @@ public class NeutralResourceManagerImpl extends GenericManagerImpl<NeutralResour
 			HashMap<String, Object> mapData = new LinkedHashMap<String, Object>();
 			mapData.put("text", u.getResourceKey());//neutralResource name
 			mapData.put("selected", false);//status
-			mapData.put("id", u.getResourceKey());//neutralResource id
+			mapData.put("id", u.getId());//neutralResource id
 			list.add(mapData);
 		}
 		HashMap<String,Object> resultData = new LinkedHashMap<String, Object>();

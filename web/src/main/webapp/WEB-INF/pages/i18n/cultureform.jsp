@@ -7,7 +7,7 @@
 </head>
 
 <c:set var="scripts" scope="request">
-	<%@ include file="/static/scripts/i18n/neutralresource.js"%>
+	<%@ include file="/static/scripts/i18n/cultureform.js"%>
 </c:set>
 
 
@@ -30,7 +30,10 @@
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
         <appfuse:label key="culture.cultureCode" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="cultureCode" id="cultureCode"  maxlength="256"/>
+        <%-- <form:input cssClass="form-control" path="cultureCode" id="cultureCode"  maxlength="256"/> --%>
+        <select class="form-control" id="cultureCode" name="cultureCode">
+            <option selected="selected" value="${culture.cultureCode}">${locale.displayName}</option>
+        </select>
         <form:errors path="cultureCode" cssClass="help-block"/>
     </div>
     <spring:bind path="culture.cultureName">
@@ -60,9 +63,3 @@
 
 <v:javascript formName="culture" cdata="false" dynamicJavascript="true" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value='/static/scripts/validator.jsp'/>"></script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("input[type='text']:visible:enabled:first", document.forms['cultureForm']).focus();
-    });
-</script>

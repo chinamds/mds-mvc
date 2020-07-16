@@ -57,7 +57,6 @@ import com.mds.common.utils.excel.annotation.ExcelField;
 @XmlRootElement
 @DynamicInsert
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Area extends TreeEntity<Area>  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -141,7 +140,7 @@ public class Area extends TreeEntity<Area>  implements Serializable {
 	@OrderBy(value="code") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public List<Organization> getOrganizations() {
 		return organizations;
@@ -158,7 +157,7 @@ public class Area extends TreeEntity<Area>  implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public List<GalleryMapping> getGalleryMappings() {
 		return galleryMappings;
@@ -175,7 +174,7 @@ public class Area extends TreeEntity<Area>  implements Serializable {
 	@OrderBy(value="code") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonManagedReference
 	@Override
 	public List<Area> getChildren() {

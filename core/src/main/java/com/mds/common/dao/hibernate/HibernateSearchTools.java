@@ -3,10 +3,12 @@ package com.mds.common.dao.hibernate;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.Lists;
 import com.mds.common.model.Page;
 import com.mds.common.model.search.SearchOperator;
 import com.mds.common.model.search.Searchable;
@@ -23,6 +25,8 @@ import org.apache.lucene.index.ReaderUtil;
 import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.MatchAllDocsQuery;
+import org.apache.lucene.search.MultiPhraseQuery;
+import org.apache.lucene.search.PhraseQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.util.Version;
 import org.apache.lucene.search.BooleanClause;
@@ -42,6 +46,9 @@ import org.hibernate.search.MassIndexer;
 import org.hibernate.search.Search;
 import org.hibernate.search.SearchFactory;
 import org.hibernate.search.indexes.IndexReaderAccessor;
+import org.hibernate.search.query.dsl.BooleanJunction;
+import org.hibernate.search.query.dsl.MustJunction;
+import org.hibernate.search.query.dsl.QueryBuilder;
 
 /**
  * Utility class to generate lucene queries for hibernate search and perform full reindexing.
@@ -154,9 +161,18 @@ class HibernateSearchTools {
 	       			query.add(new TermQuery(new Term(condition.getSearchProperty(), condition.getValue().toString())), Occur.MUST);
 	       		 else if (condition.getOperator() == SearchOperator.isNotNull)
 	       			query.add(new TermQuery(new Term(condition.getSearchProperty(), condition.getValue().toString())), Occur.MUST);
-	       		 else if (condition.getOperator() == SearchOperator.in) {
-	       			 BooleanQuery.Builder queryIn = new BooleanQuery.Builder();
+	       		 else if (condition.getOperator() == SearchOperator.in || condition.getOperator() == SearchOperator.notIn) {
 	       			 Object value = condition.getValue();
+	       			 int maxClauseCount = BooleanQuery.getMaxClauseCount();
+	       			 if(value instanceof Collection<?>){
+	       				maxClauseCount = ((Collection<?>)value).size();
+	                  }else if(value instanceof Object[]){
+	                	  maxClauseCount = ((Object[])value).length;
+	                  }
+	       			 if (maxClauseCount > BooleanQuery.getMaxClauseCount()) {
+	       				BooleanQuery.setMaxClauseCount(maxClauseCount);
+	       			 }
+	       			 BooleanQuery.Builder queryIn = new BooleanQuery.Builder();
 	       			 if(value instanceof Collection<?>){
 	       				 for(Object obj : ((Collection<?>)value)) {
 	       					/*if (obj.getClass() == Long.class){
@@ -174,26 +190,95 @@ class HibernateSearchTools {
 	       					//}
 	       				 }
 	                  }
-	       			  query.add(queryIn.build(), Occur.MUST);
-	       		 }
-	       		 else if (condition.getOperator() == SearchOperator.notIn){
-	       			BooleanQuery.Builder queryIn = new BooleanQuery.Builder();
-	       			 Object value = condition.getValue();
-	       			 if(value instanceof Collection<?>){
-	       				 for(Object obj : ((Collection<?>)value)) {
-	       					queryIn.add(new TermQuery(new Term(condition.getSearchProperty(), obj.toString())), Occur.SHOULD);
-	       				 }
-	                  }else if(value instanceof Object[]){
-	                	 for(Object obj : ((Object[])value)) {
-	       					queryIn.add(new TermQuery(new Term(condition.getSearchProperty(), obj.toString())), Occur.SHOULD);
-	       				 }
-	                  }
-	       			  query.add(queryIn.build(), Occur.MUST_NOT);
+	       			  query.add(queryIn.build(), condition.getOperator() == SearchOperator.in ? Occur.MUST : Occur.MUST_NOT );
+	       			  //MultiPhraseQuery.Builder builder = new MultiPhraseQuery.Builder();
+		       		  //builder.add(terms.toArray(new Term[0]));
+		       		  //MultiPhraseQuery multiPhraseQuery = builder.build();
+	       			  
+	       			/*
+					 * MultiPhraseQuery multiPhraseQuery = new MultiPhraseQuery();
+					 * multiPhraseQuery.add(terms.toArray(new Term[0])); query.add(multiPhraseQuery,
+					 * Occur.MUST_NOT);
+					 */
 	       		 }
             }
         }
     	
     	return query.build();
+    }
+    
+    public static BooleanJunction generateQuery(QueryBuilder querybuilder, Searchable search) {
+    	BooleanJunction query = querybuilder.bool();
+    	for (SearchFilter searchFilter : search.getSearchFilters()) {
+            if (searchFilter instanceof Condition) {
+            	Query q = null;
+            	boolean mustNot = false;
+                Condition condition = (Condition) searchFilter;
+                if (condition.getOperator() == SearchOperator.eq)
+                	q = querybuilder.keyword().onField(condition.getSearchProperty()).matching(condition.getValue().toString()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.eqi)
+	       			q = querybuilder.keyword().onField(condition.getSearchProperty()).matching(condition.getValue().toString()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.ne) {
+	       			mustNot = true;
+	       			q = querybuilder.keyword().onField(condition.getSearchProperty()).matching(condition.getValue().toString()).createQuery();
+	       		 } else if (condition.getOperator() == SearchOperator.gt)
+	       			q = querybuilder.range().onField(condition.getSearchProperty()).above(condition.getValue()).excludeLimit().createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.gte)
+	       			q = querybuilder.range().onField(condition.getSearchProperty()).above(condition.getValue()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.lt)
+	       			q = querybuilder.range().onField(condition.getSearchProperty()).below(condition.getValue()).excludeLimit().createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.lte)
+	       			q = querybuilder.range().onField(condition.getSearchProperty()).below(condition.getValue()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.bt) 
+	       			q = querybuilder.range().onField(condition.getSearchProperty()).from(condition.getValue()).to(condition.getValue2()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.prefixLike) //PrefixQuery
+	       			q = querybuilder.keyword().wildcard().onField(condition.getSearchProperty()).matching(condition.getValue().toString() + "*").createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.prefixNotLike) {
+	       			mustNot = true;
+	       			q = querybuilder.keyword().wildcard().onField(condition.getSearchProperty()).matching(condition.getValue().toString() + "*").createQuery();
+	       		 }else if (condition.getOperator() == SearchOperator.suffixLike)
+	       			q = querybuilder.keyword().wildcard().onField(condition.getSearchProperty()).matching("*" + condition.getValue().toString()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.suffixNotLike) {
+	       			mustNot = true;
+	       			q = querybuilder.keyword().wildcard().onField(condition.getSearchProperty()).matching("*" + condition.getValue().toString()).createQuery();
+	       		 }else if (condition.getOperator() == SearchOperator.like)
+	       			q = querybuilder.keyword().wildcard().onField(condition.getSearchProperty()).matching("*" + condition.getValue().toString() + "*").createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.notLike) {
+	       			mustNot = true;
+	       			q = querybuilder.keyword().wildcard().onField(condition.getSearchProperty()).matching("*" + condition.getValue().toString() + "*").createQuery();
+	       		 }else if (condition.getOperator() == SearchOperator.contain)
+	       			q = querybuilder.keyword().fuzzy().onField(condition.getSearchProperty()).matching(condition.getValue().toString()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.notContain) {
+	       			mustNot = true;
+	       			q = querybuilder.keyword().fuzzy().onField(condition.getSearchProperty()).matching(condition.getValue().toString()).createQuery();
+	       		 }else if (condition.getOperator() == SearchOperator.isNull)
+	       			q = querybuilder.keyword().onField(condition.getSearchProperty()).matching("").createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.isNotNull) {
+	       			mustNot = true;
+	       			q = querybuilder.keyword().onField(condition.getSearchProperty()).matching("").createQuery();
+	       		 }else if (condition.getOperator() == SearchOperator.in || condition.getOperator() == SearchOperator.notIn) {
+	       			 Object value = condition.getValue();
+	       			 BooleanJunction queryIn = querybuilder.bool();
+	       			 if(value instanceof Collection<?>){
+	       				 for(Object obj : ((Collection<?>)value)) {
+       						queryIn = queryIn.should(querybuilder.keyword().onField(condition.getSearchProperty()).matching(obj.toString()).createQuery());
+	       				 }
+	                  }else if(value instanceof Object[]){
+	                	 for(Object obj : ((Object[])value)) {
+	                		 queryIn = queryIn.should(querybuilder.keyword().onField(condition.getSearchProperty()).matching(obj.toString()).createQuery());
+	       				 }
+	                  }
+	       			  q = queryIn.createQuery();
+	       			  mustNot = (condition.getOperator() == SearchOperator.notIn);
+	       		 }
+                
+                if (q != null) {
+               		query = mustNot ? query.must(q).not() : query.must(q);
+                }
+            }
+        }
+    	
+    	return query;
     }
     
     /**

@@ -75,7 +75,7 @@ import com.mds.util.StringUtils;
 @XmlRootElement
 @DynamicInsert 
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 @FilterDef(name = "tenantFilter", parameters = {@ParamDef(name = "tenantId", type = "string")})
 @Filter(name = "tenantFilter", condition = "tenant_id = :tenantId")
 public class User extends DataEntity implements TenantSupport, Serializable {
@@ -154,7 +154,6 @@ public class User extends DataEntity implements TenantSupport, Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnore
 	public List<Notification> getNotifications() {
 		return notifications;
@@ -184,7 +183,7 @@ public class User extends DataEntity implements TenantSupport, Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public List<GalleryMapping> getGalleryMappings() {
 		return galleryMappings;
@@ -275,7 +274,7 @@ public class User extends DataEntity implements TenantSupport, Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public Set<UserPhoto> getUserPhotos() {
     	if(userPhotos == null) {
@@ -404,7 +403,7 @@ public class User extends DataEntity implements TenantSupport, Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonIgnore
 	public Set<Role> getRoles() {
 		return roles;
@@ -630,7 +629,6 @@ public class User extends DataEntity implements TenantSupport, Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	@JsonIgnore
 	public List<MyMessage> getUserMessages() {
 		return userMessages;
@@ -650,7 +648,6 @@ public class User extends DataEntity implements TenantSupport, Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	@JsonIgnore
 	public List<MyMessage> getSentMessages() {
 		return sentMessages;
@@ -670,7 +667,6 @@ public class User extends DataEntity implements TenantSupport, Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	@JsonIgnore
 	public List<MyCalendar> getUserCalendars() {
 		return userCalendars;
@@ -690,7 +686,6 @@ public class User extends DataEntity implements TenantSupport, Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	@JsonIgnore
 	public List<MyMessageRecipient> getMessageRecipients() {
 		return messageRecipients;
@@ -807,7 +802,6 @@ public class User extends DataEntity implements TenantSupport, Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	@JsonIgnore
 	public List<UserAddress> getUserAddresses() {
 		return userAddresses;
@@ -827,7 +821,6 @@ public class User extends DataEntity implements TenantSupport, Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	@JsonIgnore
 	public List<UserContact> getUserContacts() {
 		return userContacts;

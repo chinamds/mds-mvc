@@ -53,7 +53,7 @@ import com.mds.common.utils.excel.annotation.ExcelField;
 @XmlRootElement
 @DynamicInsert
 @DynamicUpdate
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 public class Department extends TreeEntity<Department>  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -90,7 +90,7 @@ public class Department extends TreeEntity<Department>  implements Serializable 
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<StaffDepartment> getStaffDepartments() {
 		return staffDepartments;
 	}
@@ -106,7 +106,7 @@ public class Department extends TreeEntity<Department>  implements Serializable 
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<GalleryMapping> getGalleryMappings() {
 		return galleryMappings;
 	}
@@ -122,7 +122,7 @@ public class Department extends TreeEntity<Department>  implements Serializable 
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -179,7 +179,7 @@ public class Department extends TreeEntity<Department>  implements Serializable 
 	@OrderBy(value="code") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	
 	@JsonManagedReference
 	@Override
 	public List<Department> getChildren() {
