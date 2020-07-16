@@ -56,10 +56,10 @@
         <i class="fa fa-file-import"></i> <span class="hidden-xs"><fmt:message key="button.import"/></span></button>
     <button id="btnExport" class="btn btn-info hidden-xs" type="button" title="<fmt:message key="button.export"/>">
         <i class="fa fa-file-export"></i><span class="hidden-xs"><fmt:message key="button.export"/></span></button>
-    <div class="btn-group visible-xs-block visible-sm-block">
-	    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="btn-group visible-xs-block visible-sm-block d-md-none d-xs-block d-sm-block">
+	    <button type="button" class="btn btn-info dropdown-toggle visible-xs-block visible-sm-block d-md-none d-xs-block d-sm-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    <fmt:message key="button.moreactions"/> <span class="caret"></span></button>
-		<ul class="dropdown-menu">
+		<ul class="dropdown-menu  visible-xs-block visible-sm-block d-md-none d-xs-block d-sm-block">
 		  <li><a class="btn-moreactions-import"><i class="fa fa-file-import"></i>&nbsp;<fmt:message key="button.import"/></a></li>
 		  <li><a class="btn-moreactions-export"><i class="fa fa-file-export"></i>&nbsp;<fmt:message key="button.export"/></a></li>
 		  <li role="separator" class="divider"></li>

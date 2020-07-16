@@ -100,7 +100,7 @@ public class LocalizedResourceFormController extends BaseFormController {
         } else {
         	if (localizedResource.getCulture() == null){
         		if (!StringUtils.isBlank(request.getParameter("cultureId"))) {
-        			localizedResource.setCulture(cultureManager.get(new Long(request.getParameter("cultureId"))));
+        			localizedResource.setCulture(cultureManager.get(Long.valueOf(request.getParameter("cultureId"))));
         		}
         	}else {
         		/*Searchable searchable = Searchable.newSearchable();
@@ -110,7 +110,7 @@ public class LocalizedResourceFormController extends BaseFormController {
         	}
         	if (localizedResource.getNeutralResource() == null){
         		if (!StringUtils.isBlank(request.getParameter("neutralResourceId"))) {
-        			localizedResource.setNeutralResource(neutralResourceManager.get(new Long(request.getParameter("neutralResourceId"))));
+        			localizedResource.setNeutralResource(neutralResourceManager.get(Long.valueOf(request.getParameter("neutralResourceId"))));
         		}
         	}else {
         		/*Searchable searchable = Searchable.newSearchable();
@@ -118,8 +118,20 @@ public class LocalizedResourceFormController extends BaseFormController {
         		localizedResource.setNeutralResource(neutralResourceManager.findAll(searchable).get(0));*/
         		localizedResource.setNeutralResource(neutralResourceManager.get(localizedResource.getNeutralResource().getId()));
         	}
+        	Searchable searchable = Searchable.newSearchable();
+    		searchable.addSearchFilter("culture.id", SearchOperator.eq, localizedResource.getCulture().getId());	
+    		searchable.addSearchFilter("neutralResource.id", SearchOperator.eq, localizedResource.getNeutralResource().getId());
         	
         	try {
+        		if (localizedResourceManager.count(searchable) > 0) {
+        			errors.rejectValue("neutralResource", "localizedResource.existing.error",
+                            new Object[] { localizedResource.getNeutralResource().getResourceKey()}, "Resource key existing");
+            		localizedResourceManager.clear();
+            		if (isNew) {
+            			localizedResource.setId(null);
+            		}
+        		}
+        		
         		localizedResourceManager.saveLocalizedResource(localizedResource);
         	}catch(final RecordExistsException e) {
         		errors.rejectValue("neutralResource", "localizedResource.existing.error",
