@@ -9,6 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" href="<c:url value="/static/images/favicon.ico"/>"/>
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <title><decorator:title/> | <fmt:message key="webapp.name"/></title>
     <t:assets type="css"/>
     <decorator:head/>

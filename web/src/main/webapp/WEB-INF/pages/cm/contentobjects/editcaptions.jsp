@@ -1,8 +1,8 @@
 <%@ include file="/common/taglibs.jsp"%>
 
-<%@ page import="com.mds.cm.util.TransferObjectState" %>
-<%@ page import="com.mds.core.ResourceId" %>
-<%@ page import="com.mds.util.Utils" %>
+<%@ page import="com.mds.aiotplayer.cm.util.TransferObjectState" %>
+<%@ page import="com.mds.aiotplayer.core.ResourceId" %>
+<%@ page import="com.mds.aiotplayer.util.Utils" %>
 
 <head>
     <title><fmt:message key="task.editCaptions.Page_Title"/></title>

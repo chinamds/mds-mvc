@@ -1,5 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
-<%@ page import="com.mds.sys.model.MessageFolder" %>
+<%@ page import="com.mds.aiotplayer.sys.model.MessageFolder" %>
 
 <head>
 	<title><fmt:message key="myMessageList.title"/></title>

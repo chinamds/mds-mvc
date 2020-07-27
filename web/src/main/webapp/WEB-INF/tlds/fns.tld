@@ -14,35 +14,35 @@
   <function>
     <description>get administrator path</description>
     <name>getAdminPath</name>
-    <function-class>com.mds.common.webapp.util.Global</function-class>
+    <function-class>com.mds.aiotplayer.webapp.common.util.Global</function-class>
     <function-signature>java.lang.String getAdminPath()</function-signature>
     <example>${fns:getAdminPath()}</example>
   </function>
   <function>
     <description>get website path</description>
     <name>getFrontPath</name>
-    <function-class>com.mds.common.webapp.util.Global</function-class>
+    <function-class>com.mds.aiotplayer.webapp.common.util.Global</function-class>
     <function-signature>java.lang.String getFrontPath()</function-signature>
     <example>${fns:getFrontPath()}</example>
   </function>
   <function>
     <description>get website URL suffix</description>
     <name>getUrlSuffix</name>
-    <function-class>com.mds.common.webapp.util.Global</function-class>
+    <function-class>com.mds.aiotplayer.webapp.common.util.Global</function-class>
     <function-signature>java.lang.String getUrlSuffix()</function-signature>
     <example>${fns:getUrlSuffix()}</example>
   </function>
   <function>
     <description>get filing No.</description>
     <name>getFilingNo</name>
-    <function-class>com.mds.common.webapp.util.Global</function-class>
+    <function-class>com.mds.aiotplayer.webapp.common.util.Global</function-class>
     <function-signature>java.lang.String getFilingNo()</function-signature>
     <example>${fns:getFilingNo()}</example>  
   </function>
   <function>
     <description>get website configuration</description>
     <name>getConfig</name>
-    <function-class>com.mds.common.webapp.util.Global</function-class>
+    <function-class>com.mds.aiotplayer.webapp.common.util.Global</function-class>
     <function-signature>java.lang.String getConfig(java.lang.String)</function-signature>
     <example>${fns:getConfig(key)}</example>
   </function>
@@ -51,29 +51,29 @@
   <function>
     <description>get user object</description>
     <name>getUser</name>
-    <function-class>com.mds.sys.util.UserUtils</function-class>
-    <function-signature>com.mds.model.sys.User getUser()</function-signature>
+    <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>
+    <function-signature>com.mds.aiotplayer.model.sys.User getUser()</function-signature>
     <example>${fns:getUser()}</example>  
   </function>
   <function>
     <description>is system user login</description>
     <name>isSysUserLogin</name>
-    <function-class>com.mds.sys.util.UserUtils</function-class>
+    <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>
     <function-signature>java.lang.Boolea isSysUserLogin()</function-signature>
     <example>${fns:isSysUserLogin()}</example>  
   </function>
   <function>
     <description>get user object by Id</description>
     <name>getUserById</name>
-    <function-class>com.mds.sys.util.UserUtils</function-class>
-    <function-signature>com.mds.model.sys.User getUserById(java.lang.String)</function-signature>
+    <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>
+    <function-signature>com.mds.aiotplayer.model.sys.User getUserById(java.lang.String)</function-signature>
     <example>${fns:getUserById(id)}</example>  
   </function>
   
     <function>
     <description>Obtain authorized user information</description>
     <name>getPrincipal</name>
-    <function-class>com.mds.sys.util.UserUtils</function-class>
+    <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>
     <function-signature>org.apache.shiro.token.Principal getPrincipal()</function-signature>
     <example>${fns:getPrincipal()}</example>  
   </function>
@@ -81,7 +81,7 @@
   <function>
     <description>Determine whether the current user has the specified role</description>
     <name>hasRole</name>
-    <function-class>com.mds.sys.util.UserUtils</function-class>
+    <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>
     <function-signature>java.lang.Boolean hasRole(java.lang.String)</function-signature>
     <example>${fns:hasRole(roleName)}</example>  
   </function>
@@ -89,7 +89,7 @@
   <function>
     <description>Determine whether login by mobile device</description>
     <name>isMobileDevice</name>
-    <function-class>com.mds.sys.util.UserUtils</function-class>
+    <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>
     <function-signature>boolean isMobileDevice(javax.servlet.http.HttpServletRequest)</function-signature>
     <example>${fns:isMobileDevice()}</example>  
   </function>
@@ -97,7 +97,7 @@
   <function>
     <description>get current user's menu list</description>
     <name>getMenuList</name>
-    <function-class>com.mds.sys.util.UserUtils</function-class>
+    <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>
     <function-signature>java.util.List getMenuList()</function-signature>
     <example>${fns:getMenuList()}</example>  
   </function>
@@ -105,15 +105,15 @@
   <function>
     <description>get current user's area list</description>
     <name>getAreaList</name>
-    <function-class>com.mds.sys.util.UserUtils</function-class>
+    <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>
     <function-signature>java.util.List getAreaList()</function-signature>
     <example>${fns:getAreaList()}</example>  
   </function>
   
   <function>
-    <description>获取当前用户的部门对象列表</description>
+    <description>Gets the current user's Department list of objects</description>
     <name>getCompanyList</name>
-    <function-class>com.mds.sys.util.UserUtils</function-class>
+    <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>
     <function-signature>java.util.List getCompanyList()</function-signature>
     <example>${fns:getOfficeList()}</example>  
   </function>
@@ -121,7 +121,7 @@
   <function>
     <description>获取当前用户缓存</description>
     <name>getCache</name>
-    <function-class>com.mds.sys.util.UserUtils</function-class>
+    <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>
     <function-signature>java.lang.Object getCache(java.lang.String, java.lang.Object)</function-signature>
     <example>${fns:getCache(cacheName, defaultValue)}</example>  
   </function>
@@ -130,7 +130,7 @@
   <function>
     <description>获取字典标签</description>
     <name>getDictLabel</name>
-    <function-class>com.mds.util.DictUtils</function-class>
+    <function-class>com.mds.aiotplayer.util.DictUtils</function-class>
     <function-signature>java.lang.String getDictLabel(java.lang.String, java.lang.String, java.lang.String)</function-signature>
     <example>${fns:getDictLabel(value, type, defaultValue)}</example>  
   </function>
@@ -138,7 +138,7 @@
   <function>
     <description>获取字典值</description>
     <name>getDictValue</name>
-    <function-class>com.mds.util.DictUtils</function-class>
+    <function-class>com.mds.aiotplayer.util.DictUtils</function-class>
     <function-signature>java.lang.String getDictValue(java.lang.String, java.lang.String, java.lang.String)</function-signature>
     <example>${fns:getDictValue(label, type, defaultValue)}</example>  
   </function>
@@ -146,7 +146,7 @@
   <function>
     <description>获取字典对象列表</description>
     <name>getDictList</name>
-    <function-class>com.mds.util.DictUtils</function-class>
+    <function-class>com.mds.aiotplayer.util.DictUtils</function-class>
     <function-signature>java.util.List getDictList(java.lang.String)</function-signature>
     <example>${fns:getDictList(type)}</example>  
   </function>
@@ -155,7 +155,7 @@
   <function>
     <description>get cultures</description>
     <name>getCultures</name>
-    <function-class>com.mds.i18n.util.I18nUtils</function-class>
+    <function-class>com.mds.aiotplayer.i18n.util.I18nUtils</function-class>
     <function-signature>java.util.List getCultures()</function-signature>
     <example>${fns:getCultures()}</example>  
   </function>
@@ -163,7 +163,7 @@
   <function>
     <description>get culture</description>
     <name>getCulture</name>
-    <function-class>com.mds.i18n.util.I18nUtils</function-class>
+    <function-class>com.mds.aiotplayer.i18n.util.I18nUtils</function-class>
     <function-signature>java.lang.Object getCulture(java.util.Locale)</function-signature>
     <example>${fns:getCulture(locale)}</example>  
   </function>
@@ -171,7 +171,7 @@
   <function>
     <description>get culture name</description>
     <name>getCultureName</name>
-    <function-class>com.mds.i18n.util.I18nUtils</function-class>
+    <function-class>com.mds.aiotplayer.i18n.util.I18nUtils</function-class>
     <function-signature>java.lang.String getCultureName(java.util.Locale)</function-signature>
     <example>${fns:getCultureName(locale)}</example>  
   </function>
@@ -179,7 +179,7 @@
   <function>
     <description>get culture name</description>
     <name>getLanguageName</name>
-    <function-class>com.mds.i18n.util.I18nUtils</function-class>
+    <function-class>com.mds.aiotplayer.i18n.util.I18nUtils</function-class>
     <function-signature>java.lang.String getLanguageName(javax.servlet.http.HttpServletRequest)</function-signature>
     <example>${fns:getLanguageName(request)}</example>  
   </function>
@@ -187,7 +187,7 @@
   <function>
     <description>get current language</description>
     <name>getCurrentLanguageTag</name>
-    <function-class>com.mds.i18n.util.I18nUtils</function-class>
+    <function-class>com.mds.aiotplayer.i18n.util.I18nUtils</function-class>
     <function-signature>java.lang.String getCurrentLanguageTag()</function-signature>
     <example>${fns:getCurrentLanguageTag()}</example>  
   </function>
@@ -195,7 +195,7 @@
   <function>
     <description>get language</description>
     <name>getCurrentLanguage</name>
-    <function-class>com.mds.i18n.util.I18nUtils</function-class>
+    <function-class>com.mds.aiotplayer.i18n.util.I18nUtils</function-class>
     <function-signature>java.lang.String getCurrentLanguage()</function-signature>
     <example>${fns:getCurrentLanguage()}</example>  
   </function>
@@ -203,7 +203,7 @@
   <function>
     <description>get language</description>
     <name>getLanguageTag</name>
-    <function-class>com.mds.i18n.util.I18nUtils</function-class>
+    <function-class>com.mds.aiotplayer.i18n.util.I18nUtils</function-class>
     <function-signature>java.lang.String getLanguageTag(javax.servlet.http.HttpServletRequest)</function-signature>
     <example>${fns:getLanguageTag(request)}</example>  
   </function>
@@ -211,7 +211,7 @@
   <function>
     <description>get home page</description>
     <name>getHomePage</name>
-    <function-class>com.mds.sys.util.UserUtils</function-class>
+    <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>
     <function-signature>java.lang.String getHomePage(javax.servlet.http.HttpServletRequest)</function-signature>
     <example>${fns:getHomePage(request)}</example>  
   </function>
@@ -219,7 +219,7 @@
   <function>
     <description>get skin path</description>
     <name>getSkinnedUrl</name>
-    <function-class>com.mds.util.Utils</function-class>
+    <function-class>com.mds.aiotplayer.util.Utils</function-class>
     <function-signature>java.lang.String getSkinnedUrl(javax.servlet.http.HttpServletRequest, java.lang.String)</function-signature>
     <example>${fns:getSkinnedUrl(request, resource)}</example>  
   </function>
@@ -228,28 +228,28 @@
   <function>
     <description>URL Encode</description>
     <name>urlEncode</name>
-    <function-class>com.mds.common.utils.security.Encodes</function-class>
+    <function-class>com.mds.aiotplayer.common.utils.security.Encodes</function-class>
     <function-signature>java.lang.String urlEncode(java.lang.String)</function-signature>
     <example>${fns:urlEncode(part)}</example>  
   </function>
   <function>
     <description>URL decode</description>
     <name>urlDecode</name>
-    <function-class>com.mds.common.utils.security.Encodes</function-class>
+    <function-class>com.mds.aiotplayer.common.utils.security.Encodes</function-class>
     <function-signature>java.lang.String urlDecode(java.lang.String)</function-signature>
     <example>${fns:urlDecode(part)}</example>  
   </function>
   <function>
     <description>HTML encode</description>
     <name>escapeHtml</name>
-    <function-class>com.mds.common.utils.security.Encodes</function-class>
+    <function-class>com.mds.aiotplayer.common.utils.security.Encodes</function-class>
     <function-signature>java.lang.String escapeHtml(java.lang.String)</function-signature>
     <example>${fns:escapeHtml(html)}</example>  
   </function>
   <function>
     <description>HTML decode</description>
     <name>unescapeHtml</name>
-    <function-class>com.mds.common.utils.security.Encodes</function-class>
+    <function-class>com.mds.aiotplayer.common.utils.security.Encodes</function-class>
     <function-signature>java.lang.String unescapeHtml(java.lang.String)</function-signature>
     <example>${fns:unescapeHtml(html)}</example>  
   </function>
@@ -279,21 +279,21 @@
   <function>
     <description>缩写字符串，超过最大宽度用“...”表示</description>
     <name>abbr</name>
-    <function-class>com.mds.util.StringUtils</function-class>
+    <function-class>com.mds.aiotplayer.util.StringUtils</function-class>
     <function-signature>java.lang.String abbr(java.lang.String, int)</function-signature>
     <example>${fns:abbr(str,length)}</example>  
   </function>
   <function>
     <description>替换掉HTML标签后缩写字符串，超过最大宽度用“...”表示</description>
     <name>rabbr</name>
-    <function-class>com.mds.util.StringUtils</function-class>
+    <function-class>com.mds.aiotplayer.util.StringUtils</function-class>
     <function-signature>java.lang.String rabbr(java.lang.String, int)</function-signature>
     <example>${fns:rabbr(str,length)}</example>
   </function>
   <function>
     <description>替换掉HTML标签</description>
     <name>replaceHtml</name>
-    <function-class>com.mds.util.StringUtils</function-class>
+    <function-class>com.mds.aiotplayer.util.StringUtils</function-class>
     <function-signature>java.lang.String replaceHtml(java.lang.String)</function-signature>
     <example>${fns:replaceHtml(html)}</example>  
   </function>
@@ -302,14 +302,14 @@
   <function>
     <description>get current date</description>
     <name>getDate</name>
-    <function-class>com.mds.util.DateUtils</function-class>
+    <function-class>com.mds.aiotplayer.util.DateUtils</function-class>
     <function-signature>java.lang.String getDate(java.lang.String)</function-signature>
     <example>${fns:getDate(pattern)}</example>  
   </function>
   <function>
     <description>获取过去的天数</description>
     <name>pastDays</name>
-    <function-class>com.mds.util.DateUtils</function-class>
+    <function-class>com.mds.aiotplayer.util.DateUtils</function-class>
     <function-signature>long pastDays(java.util.Date)</function-signature>
     <example>${fns:pastDays(date)}</example>  
   </function>

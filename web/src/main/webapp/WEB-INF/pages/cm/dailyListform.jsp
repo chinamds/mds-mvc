@@ -1,5 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
-<%@ page import="com.mds.core.ApprovalStatus" %>
+<%@ page import="com.mds.aiotplayer.core.ApprovalStatus" %>
 
 <head>
     <title><fmt:message key="dailyListDetail.title"/></title>

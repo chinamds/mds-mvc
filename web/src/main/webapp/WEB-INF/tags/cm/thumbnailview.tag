@@ -1,13 +1,13 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%-- <%@ include file="/common/tagcommlibs.jsp"%> --%>
-<%@ tag import="com.mds.cm.content.UiTemplateBo" %>
-<%@ tag import="com.mds.cm.content.AlbumBo" %>
-<%@ tag import="com.mds.core.UiTemplateType" %>
-<%@ tag import="com.mds.util.StringUtils" %>
-<%@ tag import="com.mds.cm.util.CMUtils" %>
+<%@ tag import="com.mds.aiotplayer.cm.content.UiTemplateBo" %>
+<%@ tag import="com.mds.aiotplayer.cm.content.AlbumBo" %>
+<%@ tag import="com.mds.aiotplayer.core.UiTemplateType" %>
+<%@ tag import="com.mds.aiotplayer.util.StringUtils" %>
+<%@ tag import="com.mds.aiotplayer.cm.util.CMUtils" %>
 
-<%@ attribute name="album" type="com.mds.cm.content.AlbumBo" required="true" description="album folder" %>
-<%-- <%@ attribute name="uiTemplate" type="com.mds.cm.content.UiTemplateBo" required="true" description="ui template" %> --%>
+<%@ attribute name="album" type="com.mds.aiotplayer.cm.content.AlbumBo" required="true" description="album folder" %>
+<%-- <%@ attribute name="uiTemplate" type="com.mds.aiotplayer.cm.content.UiTemplateBo" required="true" description="ui template" %> --%>
 <%@ attribute name="id" type="java.lang.String" required="true"%>
 <%@ attribute name="mdsClientId" type="java.lang.String" required="true"%>
 <%@ attribute name="thumbnailHtmlTmplId" type="java.lang.String" required="true"%>

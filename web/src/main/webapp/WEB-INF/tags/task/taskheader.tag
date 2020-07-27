@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fns" uri="/WEB-INF/tlds/fns.tld" %>
 
-<%@ tag import="com.mds.common.Constants" %>
+<%@ tag import="com.mds.aiotplayer.common.Constants" %>
 <%@ tag import="org.apache.commons.lang.StringUtils" %>
 
 <%@ attribute name="taskHeader" type="java.lang.String" required="true" description="task Header"%>

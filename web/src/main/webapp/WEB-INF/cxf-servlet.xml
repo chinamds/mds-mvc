@@ -27,7 +27,7 @@
     <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider">
 	    <property name="mapper" ref="jacksonMapper" />
 	</bean>
-    <bean id="rssMDSProvider" class="com.mds.cm.util.AlbumSyndicationFeedFormatter"/>
+    <bean id="rssMDSProvider" class="com.mds.aiotplayer.cm.util.AlbumSyndicationFeedFormatter"/>
 
 	<!-- <jaxws:endpoint id="userService" implementor="#userManager" address="/UserService"/> -->
 	<jaxws:endpoint id="areaService" implementor="#areaManager" address="/AreaService"/>

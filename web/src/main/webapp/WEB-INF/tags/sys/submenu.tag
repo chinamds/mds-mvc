@@ -1,12 +1,12 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ tag import="com.mds.sys.util.UserUtils" %>
-<%@ tag import="com.mds.sys.model.MenuFunction" %>
-<%@ tag import="com.mds.sys.util.MenuComponent" %>
-<%@ tag import="com.mds.core.ResourceId" %>
+<%@ tag import="com.mds.aiotplayer.sys.util.UserUtils" %>
+<%@ tag import="com.mds.aiotplayer.sys.model.MenuFunction" %>
+<%@ tag import="com.mds.aiotplayer.sys.util.MenuComponent" %>
+<%@ tag import="com.mds.aiotplayer.core.ResourceId" %>
 <%-- <%@ include file="/common/tagcommlibs.jsp"%> --%>
 <%-- <%@tag pageEncoding="UTF-8" description="create sub menu" %> --%>
 <%-- <%@ attribute name="menus" type="java.util.List" required="true" description="all menu" %> --%>
-<%@ attribute name="menu" type="com.mds.sys.util.MenuComponent" required="true" description="Current menu" %>
+<%@ attribute name="menu" type="com.mds.aiotplayer.sys.util.MenuComponent" required="true" description="Current menu" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>

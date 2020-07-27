@@ -1,9 +1,10 @@
 <%@ include file="/common/taglibs.jsp" %>
 
-<page:applyDecorator name="default_login">
 <head>
     <title><fmt:message key="login.title"/></title>
     <meta name="menu" content="Login"/>
+    <meta name="decorator" content="default_login"/>
+    <%-- <t:assets type="css"/> --%>
 </head>
 <body id="login">
     
@@ -39,10 +40,10 @@
 			<img class="jcaptcha-btn jcaptcha-img mr-5" src="${ctx}/jcaptcha.jpg" title="<fmt:message key="login.changepicture.tip"/>">
 			<div class="input-group-append">
 				<button type="button" class="jcaptcha-btn btn btn-link"><fmt:message key="login.changepicture"/></button>
-			</div>
+			</div> ${ctx}/jcaptcha.jpg
 		</div> --%>
 		<div>              
-			<img class="jcaptcha-btn jcaptcha-img" src="${ctx}/static/jcaptcha.jpg" title="<fmt:message key="login.changepicture.tip"/>">
+			<img class="jcaptcha-btn jcaptcha-img" src="${ctx}/services/api/users/jcaptcha" title="<fmt:message key="login.changepicture.tip"/>">
 			<button type="button" class="jcaptcha-btn btn btn-link float-right"><fmt:message key="login.changepicture"/></button>
 		</div>
 	</c:if>           
@@ -76,4 +77,3 @@
 </div>
 
 </body>
-</page:applyDecorator>

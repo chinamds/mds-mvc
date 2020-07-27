@@ -39,7 +39,7 @@
     </http>
     
     <!-- For capturing CAPTCHA fields -->
-	<beans:bean id="captchaCaptureFilter" class="com.mds.common.webapp.security.CaptchaCaptureFilter" >
+	<beans:bean id="captchaCaptureFilter" class="com.mds.aiotplayer.webapp.common.security.CaptchaCaptureFilter" >
 		<beans:property name="jcaptchaEnabled" value="${spring.security.jcaptchaEnabled}" />
 	</beans:bean>
 
@@ -50,7 +50,7 @@
         <authentication-provider ref="mdsAuthenticationProvider"/>
     </authentication-manager>
     
-	<beans:bean id="mdsAuthenticationProvider" class="com.mds.common.webapp.security.MdsAuthenticationProvider" p:captchaCaptureFilter-ref="captchaCaptureFilter" >
+	<beans:bean id="mdsAuthenticationProvider" class="com.mds.aiotplayer.webapp.common.security.MdsAuthenticationProvider" p:captchaCaptureFilter-ref="captchaCaptureFilter" >
   		  <beans:property name="userDetailsService" ref="userDao"/>
   		  <beans:property name="passwordEncoder" ref="passwordEncoder"/>
 	</beans:bean>
@@ -62,7 +62,7 @@
 	</beans:bean>
 	
 	<!--Authentication filter for login, override "org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter-->
-	<beans:bean id="mdsLoginFilter" class="com.mds.common.webapp.security.MdsLoginFilter">
+	<beans:bean id="mdsLoginFilter" class="com.mds.aiotplayer.webapp.common.security.MdsLoginFilter">
 		<!-- 校验登录是否有效的虚拟url -->
 		<beans:property name="filterProcessesUrl" value="/j_security_check" />
 		<!--Custom MDS authentication manager, will handle the actual login-->
@@ -73,7 +73,7 @@
 		<beans:property name="mobileDeviceParameter" value="mobileDevice" />
 		<beans:property name="jcaptchaEnabled" value="${spring.security.jcaptchaEnabled}" />
 		<beans:property name="authenticationSuccessHandler">
-			<beans:bean class="com.mds.common.webapp.security.MdsLoginHandler">
+			<beans:bean class="com.mds.aiotplayer.webapp.common.security.MdsLoginHandler">
 				<beans:property name="defaultTargetUrl" value="/home" />
 			</beans:bean>
 		</beans:property>
@@ -86,7 +86,7 @@
 		</beans:property>
 	</beans:bean>
 
-	<!-- <beans:bean id="mdsLogoutFilter" class="com.mds.common.webapp.security.MdsLogoutFilter">
+	<!-- <beans:bean id="mdsLogoutFilter" class="com.mds.aiotplayer.webapp.common.security.MdsLogoutFilter">
 		处理退出的虚拟url
 		<beans:property name="filterProcessesUrl" value="/logout" />
 		退出处理成功后的默认显示url
@@ -97,7 +97,7 @@
 				<beans:bean id="securityContextLogoutHandler"
 					class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
 				加入了开发人员自定义的退出成功处理
-				<beans:bean id="mdsLogoutSuccessHandler" class="com.mds.common.webapp.security.MdsLogoutHandler" />
+				<beans:bean id="mdsLogoutSuccessHandler" class="com.mds.aiotplayer.webapp.common.security.MdsLogoutHandler" />
 			</beans:array>
 		</beans:constructor-arg>
 	</beans:bean> -->

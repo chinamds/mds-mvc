@@ -1,8 +1,8 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%-- <%@ include file="/common/tagcommlibs.jsp"%> --%>
-<%@ tag import="com.mds.common.Constants" %>
-<%@ tag import="com.mds.util.StringUtils" %>
-<%@ tag import="com.mds.i18n.util.I18nUtils" %>
+<%@ tag import="com.mds.aiotplayer.common.Constants" %>
+<%@ tag import="com.mds.aiotplayer.util.StringUtils" %>
+<%@ tag import="com.mds.aiotplayer.i18n.util.I18nUtils" %>
 
  <%
  	//out.write(getthumbnailTemplates());

@@ -16,9 +16,9 @@
     <!-- Add new DAOs here -->
 
     <!-- Add new Managers here -->
-    <bean id="pushService" class="com.mds.common.webapp.util.PushService" autowire="default" />
-    <bean id="pushApi" class="com.mds.common.webapp.util.PushApiImpl" autowire="default" />
-    <bean id="messageClearTask" class="com.mds.sys.service.task.MessageClearTask" autowire="default" />
+    <bean id="pushService" class="com.mds.aiotplayer.webapp.common.util.PushService" autowire="default" />
+    <bean id="pushApi" class="com.mds.aiotplayer.webapp.common.util.PushApiImpl" autowire="default" />
+    <bean id="messageClearTask" class="com.mds.aiotplayer.sys.service.task.MessageClearTask" autowire="default" />
     
     <!-- <bean id="wroFilter" class="ro.isdc.wro.http.ConfigurableWroFilter">
 	  <property name="properties" ref="wroProperties"/>
@@ -29,5 +29,5 @@
 	</bean>   -->
     
     <!-- Configure and Alternative PasswordTokenManager -->
-	<!-- <bean id="passwordTokenManager" class="com.mds.service.impl.PersistentPasswordTokenManagerImpl" autowire="default" /> -->
+	<!-- <bean id="passwordTokenManager" class="com.mds.aiotplayer.service.impl.PersistentPasswordTokenManagerImpl" autowire="default" /> -->
 </beans>

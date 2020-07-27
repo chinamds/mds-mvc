@@ -7,7 +7,7 @@
    <global>
 
       <validator name="twofields"
-         classname="com.mds.common.webapp.util.ValidationUtil"
+         classname="com.mds.aiotplayer.webapp.common.util.ValidationUtil"
          method="validateTwoFields"
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,

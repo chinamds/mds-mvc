@@ -2,7 +2,7 @@
 <%-- <%@ include file="/common/tagcommlibs.jsp"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fns" uri="/WEB-INF/tlds/fns.tld" %>
-<%@ tag import="com.mds.util.StringUtils" %>
+<%@ tag import="com.mds.aiotplayer.util.StringUtils" %>
 
 <%@ attribute name="id" type="java.lang.String" required="true" description="Id"%>
 <%@ attribute name="keyName" type="java.lang.String" required="true" description="hidden field（ID）"%>

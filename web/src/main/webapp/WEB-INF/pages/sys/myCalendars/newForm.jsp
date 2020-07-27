@@ -1,8 +1,8 @@
 <%@ include file="/common/taglibs.jsp"%>
 
-<page:applyDecorator name="default_panel">
 <head>
 	<title><fmt:message key="myCalendarDetail.title"/></title>
+	<meta name="decorator" content="default_panel"/>
 </head>
 
 <c:set var="group" value="grp_fullcalendar" scope="request" />
@@ -127,5 +127,3 @@
 
 <v:javascript formName="myCalendar" cdata="false" dynamicJavascript="true" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value='/static/scripts/validator.jsp'/>"></script>
-
-</page:applyDecorator>

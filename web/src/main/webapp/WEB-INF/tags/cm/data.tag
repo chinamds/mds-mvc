@@ -1,12 +1,12 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ tag import="com.mds.util.StringUtils" %>
-<%@ tag import="com.mds.util.HelperFunctions" %>
-<%@ tag import="com.mds.common.mapper.JsonMapper" %>
+<%@ tag import="com.mds.aiotplayer.util.StringUtils" %>
+<%@ tag import="com.mds.aiotplayer.util.HelperFunctions" %>
+<%@ tag import="com.mds.aiotplayer.common.mapper.JsonMapper" %>
 <%@ attribute name="id" type="java.lang.String" required="true"%>
 <%@ attribute name="mdsClientId" type="java.lang.String" required="true"%>
-<%@ attribute name="galleryView" type="com.mds.cm.util.GalleryView" required="true" description="gallery View customize" %>
-<%@ attribute name="mdsData" type="com.mds.cm.rest.CMData" required="false"%>
-<%@ attribute name="albumTreeData" type="com.mds.cm.rest.TreeView" required="false"%>
+<%@ attribute name="galleryView" type="com.mds.aiotplayer.cm.util.GalleryView" required="true" description="gallery View customize" %>
+<%@ attribute name="mdsData" type="com.mds.aiotplayer.cm.rest.CMData" required="false"%>
+<%@ attribute name="albumTreeData" type="com.mds.aiotplayer.cm.rest.TreeView" required="false"%>
 <%@ attribute name="showLeftPaneForAlbum" type="java.lang.Boolean" required="true"%>
 <%@ attribute name="showLeftPaneForContentObject" type="java.lang.Boolean" required="true"%>
 

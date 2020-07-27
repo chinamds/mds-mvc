@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
-<%@ page import="com.mds.core.ResourceId" %>
-<%@ page import="com.mds.sys.model.RoleType" %>
+<%@ page import="com.mds.aiotplayer.core.ResourceId" %>
+<%@ page import="com.mds.aiotplayer.sys.model.RoleType" %>
 
 <head>
     <title><fmt:message key="menuFunctionDetail.title"/></title>

@@ -1,9 +1,9 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ tag import="com.mds.sys.util.UserUtils" %>
-<%@ tag import="com.mds.sys.util.MenuComponent" %>
-<%@ tag import="com.mds.core.ResourceId" %>
+<%@ tag import="com.mds.aiotplayer.sys.util.UserUtils" %>
+<%@ tag import="com.mds.aiotplayer.sys.util.MenuComponent" %>
+<%@ tag import="com.mds.aiotplayer.core.ResourceId" %>
 
-<%@ attribute name="menu" type="com.mds.sys.util.MenuComponent" required="true" description="Current menu" %>
+<%@ attribute name="menu" type="com.mds.aiotplayer.sys.util.MenuComponent" required="true" description="Current menu" %>
 <%@ attribute name="dropdownmenu" type="java.lang.Boolean" required="false" description="dropdown menu" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>

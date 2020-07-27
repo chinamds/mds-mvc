@@ -27,10 +27,6 @@
         <to>/j_security_check</to>
     </rule>
     <rule>
-        <from>/dwr/**</from>
-        <to>/dwr/$1</to>
-    </rule>
-    <rule>
         <from>/services/**</from>
         <to>/services/$1</to>
     </rule>
@@ -69,6 +65,10 @@
     <rule>
         <from>/static/skins/**</from>
         <to>/static/skins/$1</to>
+    </rule>
+    <rule>
+        <from>/jcaptcha.jpg*</from>
+        <to>/jcaptcha.jpg</to>
     </rule>
     <rule>
         <from>/webjars/**</from>

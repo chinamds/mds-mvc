@@ -1,0 +1,1224 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" logicalFilePath="liquibase/mds-data-20200719234111.changelog.xml" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="John (generated)" id="1595173273064-17">
+        <insert tableName="i18n_culture">
+            <column name="id" valueNumeric="-3"/>
+            <column name="culture_code" value="zh_TW"/>
+            <column name="culture_name" value="Traditional Chinese"/>
+        </insert>
+        <insert tableName="i18n_culture">
+            <column name="id" valueNumeric="-2"/>
+            <column name="culture_code" value="zh_CN"/>
+            <column name="culture_name" value="Simplified Chinese(China)"/>
+        </insert>
+        <insert tableName="i18n_culture">
+            <column name="id" valueNumeric="-1"/>
+            <column name="culture_code" value="en_US"/>
+            <column name="culture_name" value="English"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1595173273064-35">
+        <insert tableName="sys_area">
+            <column name="id" valueNumeric="1"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-02-26T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="code" value="All"/>
+            <column name="name" value="All"/>
+            <column name="remarks"/>
+            <column name="type" value="1"/>
+            <column name="parent_id"/>
+        </insert>
+        <insert tableName="sys_area">
+            <column name="id" valueNumeric="-1"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-02-26T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="code" value="CN"/>
+            <column name="name" value="China"/>
+            <column name="remarks"/>
+            <column name="type" value="1"/>
+            <column name="parent_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="sys_area">
+            <column name="id" valueNumeric="-2"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-02-26T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="code" value="HK"/>
+            <column name="name" value="HongKong"/>
+            <column name="remarks"/>
+            <column name="type" value="1"/>
+            <column name="parent_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="sys_area">
+            <column name="id" valueNumeric="-3"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-02-26T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="code" value="MACAU"/>
+            <column name="name" value="MACAU"/>
+            <column name="remarks"/>
+            <column name="type" value="1"/>
+            <column name="parent_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="sys_area">
+            <column name="id" valueNumeric="-4"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-02-26T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="code" value="GD"/>
+            <column name="name" value="GuangDong"/>
+            <column name="remarks"/>
+            <column name="type" value="2"/>
+            <column name="parent_id" valueNumeric="-1"/>
+        </insert>
+        <insert tableName="sys_area">
+            <column name="id" valueNumeric="-5"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-02-26T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="code" value="GZ"/>
+            <column name="name" value="GuangZhou"/>
+            <column name="remarks"/>
+            <column name="type" value="3"/>
+            <column name="parent_id" valueNumeric="-4"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1595173273064-48">
+        <insert tableName="sys_organization">
+            <column name="id" valueNumeric="1"/>
+            <column name="createdby" value="admin"/>
+            <column name="date_added" valueDate="2017-02-27T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-02-27T00:00:00"/>
+            <column name="last_modifiedby" value="admin"/>
+            <column name="address"/>
+            <column name="address2"/>
+            <column name="address3"/>
+            <column name="address4"/>
+            <column name="city"/>
+            <column name="country"/>
+            <column name="postal_code"/>
+            <column name="province"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="code" value="All"/>
+            <column name="description"/>
+            <column name="email" value=""/>
+            <column name="fax" value=""/>
+            <column name="header" value=""/>
+            <column name="name" value="All"/>
+            <column name="phone" value=""/>
+            <column name="webSite" value=""/>
+            <column name="area_id" valueNumeric="-1"/>
+            <column name="parent_id"/>
+            <column name="culture_id" valueNumeric="-1"/>
+            <column name="tenant_id"/>
+        </insert>
+        <insert tableName="sys_organization">
+            <column name="id" valueNumeric="-3"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-02-27T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-02-27T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="address"/>
+            <column name="address2"/>
+            <column name="address3"/>
+            <column name="address4"/>
+            <column name="city"/>
+            <column name="country"/>
+            <column name="postal_code"/>
+            <column name="province"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="code" value="DEMO2"/>
+            <column name="description"/>
+            <column name="email" value="chinamds@mmdsplus.com"/>
+            <column name="fax" value="123456"/>
+            <column name="header" value="John Lee"/>
+            <column name="name" value="Demo name 2"/>
+            <column name="phone" value="123456"/>
+            <column name="webSite" value="http://www.mmdsplus.com"/>
+            <column name="area_id" valueNumeric="-3"/>
+            <column name="parent_id" valueNumeric="1"/>
+            <column name="culture_id" valueNumeric="-1"/>
+            <column name="tenant_id"/>
+        </insert>
+        <insert tableName="sys_organization">
+            <column name="id" valueNumeric="-2"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-02-27T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-02-27T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="address"/>
+            <column name="address2"/>
+            <column name="address3"/>
+            <column name="address4"/>
+            <column name="city"/>
+            <column name="country"/>
+            <column name="postal_code"/>
+            <column name="province"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="code" value="DEMO1"/>
+            <column name="description"/>
+            <column name="email" value="chinamds@mmdsplus.com"/>
+            <column name="fax" value="123456"/>
+            <column name="header" value="Demo Lee"/>
+            <column name="name" value="Demo name 1"/>
+            <column name="phone" value="123456"/>
+            <column name="webSite" value="http://www.mmdsplus.com"/>
+            <column name="area_id" valueNumeric="-2"/>
+            <column name="parent_id" valueNumeric="1"/>
+            <column name="culture_id" valueNumeric="-1"/>
+            <column name="tenant_id"/>
+        </insert>
+        <insert tableName="sys_organization">
+            <column name="id" valueNumeric="-1"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-02-27T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-02-27T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="address"/>
+            <column name="address2"/>
+            <column name="address3"/>
+            <column name="address4"/>
+            <column name="city"/>
+            <column name="country"/>
+            <column name="postal_code"/>
+            <column name="province"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="code" value="DEMO"/>
+            <column name="description"/>
+            <column name="email" value="chinamds@mmdsplus.com"/>
+            <column name="fax" value="123456"/>
+            <column name="header" value="Test Lee"/>
+            <column name="name" value="Demo name"/>
+            <column name="phone" value="123456"/>
+            <column name="webSite" value="http://www.mmdsplus.com"/>
+            <column name="area_id" valueNumeric="-1"/>
+            <column name="parent_id" valueNumeric="1"/>
+            <column name="culture_id" valueNumeric="-1"/>
+            <column name="tenant_id"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1567847478902-6">
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="1"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="All"/>
+		<column name="href" value=""/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id"/>
+		<column name="sort" valueNumeric="1"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+		<column name="module_id"/>
+		<column name="parent_id"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="2"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="content"/>
+		<column name="href" value=""/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id"/>
+		<column name="sort" valueNumeric="1"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+		<column name="module_id"/>
+		<column name="parent_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="3"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="operation"/>
+		<column name="href" value=""/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id"/>
+		<column name="sort" valueNumeric="2"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+		<column name="module_id"/>
+		<column name="parent_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="4"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="control"/>
+		<column name="href" value="/pm/players"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id"/>
+		<column name="sort" valueNumeric="3"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="5"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="personal"/>
+		<column name="href" value="/sys/myMessages"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id"/>
+		<column name="sort" valueNumeric="4"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="6"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="admin"/>
+		<column name="href" value="/sys/users"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id"/>
+		<column name="sort" valueNumeric="5"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="1"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="7"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="galleryexplorer"/>
+		<column name="href" value="/cm/galleryview"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="cm_galleryview"/>
+		<column name="sort" valueNumeric="101"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="2"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="8"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="banners"/>
+		<column name="href" value="/cm/banners"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="cm_banners"/>
+		<column name="sort" valueNumeric="102"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="2"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="9"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="slideshows"/>
+		<column name="href" value="/cm/slideshows"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="cm_slideshows"/>
+		<column name="sort" valueNumeric="103"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="2"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="10"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="contentlists"/>
+		<column name="href" value="/cm/contentlists"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="cm_contentLists"/>
+		<column name="sort" valueNumeric="104"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="2"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="11"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="clocks"/>
+		<column name="href" value="/cm/clocks"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="cm_clocks"/>
+		<column name="sort" valueNumeric="105"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="2"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="12"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="contenteditor"/>
+		<column name="href" value="/cm/contenteditor"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="cm_contenteditor"/>
+		<column name="sort" valueNumeric="106"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="2"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="13"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="galleries"/>
+		<column name="href" value="/cm/galleries"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="cm_galleries"/>
+		<column name="sort" valueNumeric="107"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="2"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="14"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="albums"/>
+		<column name="href" value="/cm/albums"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="cm_albums"/>
+		<column name="sort" valueNumeric="108"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="2"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="15"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="dailylists"/>
+		<column name="href" value="/cm/dailyLists"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="cm_dailyLists"/>
+		<column name="sort" valueNumeric="109"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="2"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="16"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="calendars"/>
+		<column name="href" value="/ps/calendars"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="ps_calendars"/>
+		<column name="sort" valueNumeric="301"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="3"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="17"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="players"/>
+		<column name="href" value="/pm/players"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="pm_players"/>
+		<column name="sort" valueNumeric="401"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="4"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="18"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="mymessages"/>
+		<column name="href" value="/sys/myMessages"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="sys_myMessages"/>
+		<column name="sort" valueNumeric="501"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="5"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="19"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="mycalendars"/>
+		<column name="href" value="/sys/myCalendars"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="sys_myCalendars"/>
+		<column name="sort" valueNumeric="502"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="5"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="20"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="mynotifications"/>
+		<column name="href" value="/sys/notifications/list"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="sys_notifications_list"/>
+		<column name="sort" valueNumeric="503"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="5"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="21"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="myprofiles"/>
+		<column name="href" value="/sys/users/loginUser/viewInfo"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="sys_myProfiles"/>
+		<column name="sort" valueNumeric="504"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="5"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="22"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="areas"/>
+		<column name="href" value="/sys/areas"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="sys_areas"/>
+		<column name="sort" valueNumeric="601"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="6"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="23"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="organizations"/>
+		<column name="href" value="/sys/organizations"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="sys_organizations"/>
+		<column name="sort" valueNumeric="602"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="6"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="24"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="menufunctions"/>
+		<column name="href" value="/sys/menuFunctions"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="sys_menuFunctions"/>
+		<column name="sort" valueNumeric="603"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="6"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="25"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="users"/>
+		<column name="href" value="/sys/users"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="sys_users"/>
+		<column name="sort" valueNumeric="604"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="6"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="26"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="roles"/>
+		<column name="href" value="/sys/roles"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="sys_roles"/>
+		<column name="sort" valueNumeric="605"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="6"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="27"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="permissions"/>
+		<column name="href" value="/sys/permissions"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="sys_permissions"/>
+		<column name="sort" valueNumeric="606"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="6"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="28"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="eventlog"/>
+		<column name="href" value="/sys/eventLogs"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="sys_eventLogs"/>
+		<column name="sort" valueNumeric="607"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="6"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="29"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="cultures"/>
+		<column name="href" value="/i18n/cultures"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="i18n_cultures"/>
+		<column name="sort" valueNumeric="608"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="6"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+		<column name="id" valueNumeric="30"/>
+		<column name="createdby" value="system"/>
+		<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+		<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+		<column name="last_modifiedby" value="system"/>
+		<column name="action"/>
+		<column name="code" value="neutrals"/>
+		<column name="href" value="/i18n/neutralResources"/>
+		<column name="icon" value=""/>
+		<column name="is_activiti" valueBoolean="false"/>
+		<column name="is_show" valueBoolean="true"/>
+		<column name="resource_id" value="i18n_neutralResources"/>
+		<column name="sort" valueNumeric="609"/>
+		<column name="target" value="notspecified"/>
+		<column name="type" value="m"/>
+	    <column name="module_id"/>
+		<column name="parent_id" valueNumeric="6"/>
+		</insert>
+		<insert tableName="sys_menu_function">
+			<column name="id" valueNumeric="31"/>
+			<column name="createdby" value="system"/>
+			<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+			<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+			<column name="last_modifiedby" value="system"/>
+			<column name="action"/>
+			<column name="code" value="localizeds"/>
+			<column name="href" value="/i18n/localizedResources"/>
+			<column name="icon" value=""/>
+			<column name="is_activiti" valueBoolean="false"/>
+			<column name="is_show" valueBoolean="true"/>
+			<column name="resource_id" value="i18n_localizedResources"/>
+			<column name="sort" valueNumeric="610"/>
+			<column name="target" value="notspecified"/>
+			<column name="type" value="m"/>
+		    <column name="module_id"/>
+			<column name="parent_id" valueNumeric="6"/>
+		</insert>
+	</changeSet>
+    <changeSet author="John (generated)" id="1595173273064-51">
+        <insert tableName="sys_role">
+            <column name="id" valueNumeric="-4"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-06-16T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-06-16T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="description" value="system"/>
+            <column name="name" value="ROLE_GUEST"/>
+            <column name="type" value="gt"/>
+            <column name="organization_id" valueNumeric="1"/>
+            <column name="tenant_id"/>
+        </insert>
+        <insert tableName="sys_role">
+            <column name="id" valueNumeric="-3"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-06-16T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-06-16T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="description" value="system"/>
+            <column name="name" value="ROLE_ADMIN"/>
+            <column name="type" value="ad"/>
+            <column name="organization_id" valueNumeric="1"/>
+            <column name="tenant_id"/>
+        </insert>
+        <insert tableName="sys_role">
+            <column name="id" valueNumeric="-2"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-06-16T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-06-16T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="description" value="system"/>
+            <column name="name" value="ROLE_USER"/>
+            <column name="type" value="ur"/>
+            <column name="organization_id" valueNumeric="1"/>
+            <column name="tenant_id"/>
+        </insert>
+        <insert tableName="sys_role">
+            <column name="id" valueNumeric="-1"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-06-16T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-06-16T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="description" value="system"/>
+            <column name="name" value="ROLE_SYSTEM"/>
+            <column name="type" value="sa"/>
+            <column name="organization_id" valueNumeric="1"/>
+            <column name="tenant_id"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1595173273064-54">
+        <insert tableName="sys_user">
+            <column name="id" valueNumeric="-3"/>
+            <column name="createdby"/>
+            <column name="date_added"/>
+            <column name="date_lastmodified"/>
+            <column name="last_modifiedby"/>
+            <column name="email" value="two_roles_user@appfuse.org"/>
+            <column name="first_name" value="Two Roles"/>
+            <column name="last_name" value="User"/>
+            <column name="login_date"/>
+            <column name="login_ip"/>
+            <column name="mobile"/>
+            <column name="nick_name"/>
+            <column name="password" value="$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO"/>
+            <column name="password_hint" value="MDS Plus Services."/>
+            <column name="phone_number" value=""/>
+            <column name="status" valueNumeric="1"/>
+            <column name="user_type" valueNumeric="0"/>
+            <column name="username" value="two_roles_user"/>
+            <column name="version" valueNumeric="1"/>
+            <column name="website" value="http://www.mmdsplus.com"/>
+            <column name="organization_id"/>
+            <column name="staff_id"/>
+            <column name="tenant_id"/>
+        </insert>
+        <insert tableName="sys_user">
+            <column name="id" valueNumeric="-2"/>
+            <column name="createdby"/>
+            <column name="date_added"/>
+            <column name="date_lastmodified"/>
+            <column name="last_modifiedby"/>
+            <column name="email" value="chinamds@hotmail.com"/>
+            <column name="first_name" value="John"/>
+            <column name="last_name" value="Lee"/>
+            <column name="login_date"/>
+            <column name="login_ip"/>
+            <column name="mobile"/>
+            <column name="nick_name"/>
+            <column name="password" value="$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO"/>
+            <column name="password_hint" value="Multimedia distribution service."/>
+            <column name="phone_number" value=""/>
+            <column name="status" valueNumeric="1"/>
+            <column name="user_type" valueNumeric="0"/>
+            <column name="username" value="admin"/>
+            <column name="version" valueNumeric="1"/>
+            <column name="website" value="http://www.mmdsplus.com"/>
+            <column name="organization_id"/>
+            <column name="staff_id"/>
+            <column name="tenant_id"/>
+        </insert>
+        <insert tableName="sys_user">
+            <column name="id" valueNumeric="-1"/>
+            <column name="createdby"/>
+            <column name="date_added"/>
+            <column name="date_lastmodified"/>
+            <column name="last_modifiedby"/>
+            <column name="email" value="chinamds@me.com"/>
+            <column name="first_name" value="Tomcat"/>
+            <column name="last_name" value="User"/>
+            <column name="login_date"/>
+            <column name="login_ip"/>
+            <column name="mobile"/>
+            <column name="nick_name"/>
+            <column name="password" value="$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO"/>
+            <column name="password_hint" value="MDS Plus Services."/>
+            <column name="phone_number" value=""/>
+            <column name="status" valueNumeric="1"/>
+            <column name="user_type" valueNumeric="0"/>
+            <column name="username" value="user"/>
+            <column name="version" valueNumeric="1"/>
+            <column name="website" value="http://tomcat.apache.org"/>
+            <column name="organization_id"/>
+            <column name="staff_id"/>
+            <column name="tenant_id"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1595173273064-36">
+        <insert tableName="sys_calendar">
+            <column name="id" valueNumeric="-3"/>
+            <column name="createdby" value="OqLkPcMePtBaTyYjCuWdZrBcEiLjLvYsNtBiAoSoDuAdVsPdAsHoShNwTuWxQdKrEeIkLmFxSlKzGsOoIkHbDmLxVqWkUqLdCjVh"/>
+            <column name="date_added" valueDate="2017-08-19T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-08-19T00:00:00"/>
+            <column name="last_modifiedby" value="LlPvWnClDwHbIoPvGvOdAyRlSxYiRmIzOmIxMfLsKxLcPeXlFnEnNdRgReVdNwSsIgSyVwKwAhBxQfYmJeZwGiFgEtPhJpKqDeUd"/>
+            <column name="background_color" value="VpPwNqMiOnXkFmItIoNiHgAeXrRxMuNcTjJoXfWeMsXyYtRwTuTbYhYhFzNeOvPfWeZhRtMmRrBnXrZnJiReWnWsYaRaBvYjMsGlFoZkHcMwTqYjVlFlEqCaJjUxZsYtJdKlItBzCgTfIwXkJhHqBbOiCwZhDbPbFyZtAuEkTfLhGfLgCcGxSjVqQpMwOyDsKkJmTlUoZdAaJzXtFmCfOjGgLpUjGwTsFxGzOpPoJsBaXzJmBgIfSgPvBiXfIbR"/>
+            <column name="details" value="LxAiTtUeUcFmUhYsBmBuIqZmJwVqSaYlSkFoPsQuBcNiWvGfErTuUdAqJlVqKmZiHaHjZaSqDkHnEfNzFyUsOpHxQxGeRkKiIqWfWqNxHsWaZiBbBxTrViFwAwVmNbTbOuGmMrVrJkSfQqZlWbFgCkIlKdFgWpEzDlHlOdHnZlYoBjXnQeEyPmWzEgDlPlGbCrSqPzEuWyFkYeXvMpCnSdRjQrUcMgBpDpUiVkMuRoSeScMtOzWoVeKnYvQuUuE"/>
+            <column name="duration" valueNumeric="1717501"/>
+            <column name="end_time" valueDate="2016-11-22T12:00:30"/>
+            <column name="start_date" valueDate="2017-08-19T00:00:00"/>
+            <column name="start_time" valueDate="2016-11-22T12:00:00"/>
+            <column name="text_color" value="IyXoVpFoUnRtJsBxXcKpJnZfDuIcNfKiIkRwVjVmSrRyRmMlVhCfZzGwMtXeTqMsRlFzEjHqJwXqWiAqKmZnGoZxAiJbExYePlSbWhWyVoTrCsKyDgMuJwWfInDoYoNoTxCqMrRvIqOkQnEbClIjFxDtSkHcXaMyJbDuOjZdGoVdWuIhCqSyQxFrNqQgUkNdSpTfQbGcYrPeByFiFeObZpOmNuGuXxSlQvJbHdAuBzWxVcRcPjJoXqWjBcBzZcR"/>
+            <column name="title" value="QnWyMvShPqTmChVfXjTySkIoFtMxBiCcKkFtWnCbFiViPeVzVzZrKdQmHbUsYyCpRgOvEyBeRwZpEiMfKsPvLxGsRxHbGnAnOuWkIvEiPqIhSnSsNjHgLkEwMfGsSwUiHhQsFtGkYtKeLjBaQlHiNlHlYgGsIjIcPoMyQlHxUeGySmGbDbYzScNnAuBoLdFcDqUrQeQaJePfVbScWxUgHeVuUuJpPqMzJdAfDkZkMbRoDqMrIqRtLgToYdIxUoN"/>
+            <column name="user_id" valueNumeric="-3"/>
+        </insert>
+        <insert tableName="sys_calendar">
+            <column name="id" valueNumeric="-2"/>
+            <column name="createdby" value="VvLlLyHkJxSlDhFcSiQzQjArBuYkSaXhAuFgFlTcElIpNeKpCtNnYpNtXjJdTuIaWsXfNtApRmWjLqFdZxKvLgMnRzAiTdFiTpVy"/>
+            <column name="date_added" valueDate="2017-08-19T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-08-19T00:00:00"/>
+            <column name="last_modifiedby" value="UbMaAxUdTgPlQzVdFfLpRpKyOaQvXiBxIaUuHqQvFgFnOtKxAsExZtEjLsNlDkRxGyYjOfNdQjSkQeAwTmYnXaZtLkStNuRgAaMs"/>
+            <column name="background_color" value="CbSzJhUoQoXzRaSgGnEmTfKbOgUwTsApEmWjVzVmRyOuIfVyCxWkRgVlJsRwHqTpUnCkIxPnJoDbHiSvXkOuLdDnGaGeBjQsUfMoKmJwUwXpNwCdNiLrRpNrMwPnNuOcGhXgAzDyCiDkPfIzWqMrRmRlLySqTpQdBsZnHoEwYcByScWmOwMxGuIiPpSwEyDmUvHfJnTkPgIrIjFcVgLzXgHpNhIrQoJwTpVcLxFyCwLdOgZjZcEmUxMnGpOvWvU"/>
+            <column name="details" value="OlDxPlGeUmZoVpUeQoOdSmClVrQnJxJqOzMbHfReTrYrOiDvHhFrNqNwMjEuHySnSfMdHwDiBgAsEgRxBaPeLwToKtRsGmKkIoHbGnYlGtFiHxDgUyIyDgYqUgXcLoCwXlSlYzUhOxInMzTaDyVvBrPvRwNeThDoBcAmFfKyOlGuLiDfSpFoIqYeHaEtMxFvVaYkTfGvWxSkXrWoQvLyXhExJmKsWoLtFnBuRhTqFyVyCzVoXlUnZpGpBuPoAuN"/>
+            <column name="duration" valueNumeric="768956684"/>
+            <column name="end_time" valueDate="2016-11-22T12:00:40"/>
+            <column name="start_date" valueDate="2017-08-19T00:00:00"/>
+            <column name="start_time" valueDate="2016-11-22T12:00:30"/>
+            <column name="text_color" value="WrDkTiHlVqLdDtMxOiFnTzSrNtDnIbHcBfYfKiFoZdJyGwJxOmOyDyAwOdUpToImAfJnQpCySrVuJkEnFrPuAdSgNwOzRiCcLhQoKoHmApNeZyTiZvIxRsKiPePySoDvDxSdYiSgDyPkGxJwBqRrMqLmDfHkEeNgDyFuXhZvYzWtJhNfVyMfSrEoLxVnHnMmUrLvAyPhBfOrBtPxYdMtReLwOvZuArQzOsLzOdNeSkCnOnDxCyTfHlCfSpUwBoB"/>
+            <column name="title" value="VkMuCyHcSaEdBrDeCxImBpIbJlLbPdRvGcSeCjGxJsNwUyZsSzVqMrUlRoXrYeSrGfKkGwZeQxUtDoFsFlYhSwBbBwYgRkYcOwXxRrThByYeBxBgMfXwRfXvAoFeVbDlXiFxBrQqMcSpTxEsYjOaWxZaDmQxVrNpNzNkRgXqQvNxVcKnLuWeJmThQxBdOoInRtIgQgEyTrGyOmSyUyXyKsMbKlMuUpZiUkFfHjJfViOjKhJhBeFmSgIgBgEuXbL"/>
+            <column name="user_id" valueNumeric="-2"/>
+        </insert>
+        <insert tableName="sys_calendar">
+            <column name="id" valueNumeric="-1"/>
+            <column name="createdby" value="ReZhHgLjVhXbBgLmQbKnPaMkSfCtLiXrMaRtBhSgYnLyBuAsSpXrKpHfFtGsKbTuPoQmVlHqOzIpPmKrJjGaJwWaSvWcYbNpYvTh"/>
+            <column name="date_added" valueDate="2017-08-19T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-08-19T00:00:00"/>
+            <column name="last_modifiedby" value="YuMeGsAeSgRyNmZvXuUnZlWrIeSbYeAbRtZiEaKxCfCpYfAqGnRlEgNrUrReAxKyRvCxKfInXgEjFpKmDcVqIfDbLdRcRzZeQkDn"/>
+            <column name="background_color" value="JkEyJaMpVfWyQjOgXmVnUeYjOyJyLnEvMlDjWvXzFlDcAcDlPsSnFyAuYjMmBmXjFjEjBeJiNvYtKkVbMnGpBjMaGeHoEgAiIzPlSeJhHsWaYlFuHaWbNbWwCmDbTcMzGmWoWpEwLzVzZjWjDxUsFfQrJrDwDaItVxNjMxXvRmOxViChDrCyRuUtQnVbDqPgLzHeFmFjYdIiIdYkUyEeGbJmXsZjJyOzXeXpGkZfDrCsFsSeCfJiJkHfJvAqDaC"/>
+            <column name="details" value="OhBlCrFjUjOtEaCjVfWrSrBsWrZfZiFnHjVrCyAaUyBrMfQmAiHaCxPfGhLnQlEmPuEyCrYqUeRoIhGhNvHlDmFnIfXjSfPaEdGaEpNsKxTkXpJzLlZyTzQlWuGxLfAiBnFmRuSoLtJwRyPfKzLdEfWwFxUmKwRdCfMzFgBpHiMuJuYdDfDlZzQiSnGcPlAzPrYjWpWvYsGzFoIiFvHkIyVnPaKqRuCbHrOcObWqShTjOaEdIwOkRuAgDnVtVuJ"/>
+            <column name="duration" valueNumeric="2060552085"/>
+            <column name="end_time" valueDate="2016-11-22T12:00:00"/>
+            <column name="start_date" valueDate="2017-08-19T00:00:00"/>
+            <column name="start_time" valueDate="2016-11-22T11:00:00"/>
+            <column name="text_color" value="LzEdXtDvPsWaPjHhGjAlMkUoYrYoMiUhKtQsDfDtUiGcJcCrUbJfMwOeRhDaQpDpGwBxEbBbJpZgBlAoFoInUyMzWxLdBkLnOwLsJbOfJvAaNtEsOtHyTkVdArFxEaVlWmLcWlIuWjBuDnGcWiLoMmDaBqCxRxOxWnMwXfNlRsVrPjRtRnVeGhKuUaKwYcIwEqAxUbXpYgHbLgAtZlToPuNwYxNpHlWsIqGpLjLfFuJtMgUpBhQgZzCzFeRgRoO"/>
+            <column name="title" value="RuXtSdHiUpUyHnCcWzVvFtFkDoQyRoNqToGrHkMxNkNrNmNbVcNvCyUmFyLqBbDkKuQaViSdZtStFoKcUvJuKxYuJeUqXkLuArSgYwVdUoFgJwHqFsJdLuVvFyUeFnJfDsAaWtEaRyCdIdJzLtApUiYdPgNaVzPkGaUkQgXcRmZkLtLnKxJiRxWpKcRmFbUaUcZzGnXdSeKkSbFdTzVkFcZuWeYcHgDvHvMsEbPyKhVoAwXvHqUlCxRtQdFkRwW"/>
+            <column name="user_id" valueNumeric="-1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1595173273064-46">
+        <insert tableName="sys_notification">
+            <column name="id" valueNumeric="-3"/>
+            <column name="content" value="TeNnXkOaNfPfMwXdZzWtOmJsRuXnCvZyLxKdOrDmDmZyPlPlJlMnZtZgUhEuNrCmXuHfZhDoJlFnKoZoTzZaFsLtLjQfXqWhTzQxOoVsGeZiJtKmXdNkEsQpKtZvDnDrZfVjSdNzLeYxGqQcCuCoVjNbIhNlPkRaKpJrXmQgUqBpOuCwVvZeCdKvMoKdHsLmGoDhQpCxDvWiLdZcJhBfIhDpMjFgGvFnEeYjHbUlDdGlKnGeAuNmXbDyJtTrDnJ"/>
+            <column name="date" valueDate="2017-08-19T00:00:00"/>
+            <column name="is_read" valueBoolean="false"/>
+            <column name="source" value="system"/>
+            <column name="title" value="NqYhJvFsTmBcYoVbEsOxDaLuAcOyPkCyJmShZyWzDmJkAhNePqEgCcAiRrIqBpWtTrPmIwEnYcHdPzSkNdMdEbTnSdFoJxGfTiRvCkIrVuChYuPnGkQgVeQhRoTzKbQjAcFjCeZeEvPsNyFhFtEaMgXtYbFyWhFlQwFdIqBpBrSkEcNlXjRlZrIzSoHpJyFeSuZxGgFzSlEdOfQgMoMhXvLyPcZxDjJaRiErNzAbZuMbRqKsKzVgIrEjHbQoSdI"/>
+            <column name="user_id" valueNumeric="-3"/>
+        </insert>
+        <insert tableName="sys_notification">
+            <column name="id" valueNumeric="-2"/>
+            <column name="content" value="AzGdOsNsMgKlHuWfVtPxVfFwMuJdDwNxKjGyFzLqPiUjEiXeQpTiWgJmFsQxVmQbVlBnNjSzTvZoZpRmIhGvJrSiClQvTzMoFpWtVdBcBtIsXcRmGoPyTwMmOjJjRrRzWgFdTlAgSxNaAlGtAxMuXiKnSuNxMhBgOoJtKwWtNbUeGcPlHvKjTiAnScSbCpNaNyEtXzJhQgGyKbUnIeUuUqMyYyXkUoEbFiZvDmKoQdHrKyFrQqViCpGaChZxKiY"/>
+            <column name="date" valueDate="2017-08-19T00:00:00"/>
+            <column name="is_read" valueBoolean="false"/>
+            <column name="source" value="system"/>
+            <column name="title" value="VmRuXfPlIfTtBoVpDeCeZhShYyQvLxTnKaNkXsWuEzXmPeRlNxGnEzLnAsTqNsVrDaLmAqLfUrKzXrJlRiAiYcEzKrYuAuFlSuSxFvKwJaUrBiUyUqQwXqNnNsAsUyRcXwUuQmEsLpNdQoFnLpArYrXuViChIoIbXiJpHaBxThHjSvXkPmGsWtBeEtFqCzPzPbIiUmPqBmZxElFePqQoFkNkKrJvXzKiShPxEeJbUsTkJwZbPeLeNsQuHuQiOoQ"/>
+            <column name="user_id" valueNumeric="-2"/>
+        </insert>
+        <insert tableName="sys_notification">
+            <column name="id" valueNumeric="-1"/>
+            <column name="content" value="InVpDxSeUlQkUxHkZoIuOjPrXiOyXdVrWdCnQdWqXyQdXqKhTeSzAqWgMnBoAhQjHnEeJcBnAmZhVgLcEtQaQgRrJrVnZjMpGpTrOfZiEaVrGaUyLfEiYtBsPqLaPoQgJcOzCwKoYnHvKqReZrUyTyHhIlQcHrHcPwVcRvPrOvWtJjGbMwSaGtDsYiXoOlQiIjCuDdKkGtGeIiXnMsYnRdDcRtMgHcIrDkBcHcUjXlNrJgSkAdIaYcJaIdNoTaF"/>
+            <column name="date" valueDate="2017-08-19T00:00:00"/>
+            <column name="is_read" valueBoolean="false"/>
+            <column name="source" value="system"/>
+            <column name="title" value="JrRpZdVrHqRqTaCdQfSiSvGxPpGuSlNgCpJaVdXiKgGvQbHxCoXbLmBvAsZzTyIpAfEqKxTeNpGdUcSxGfBtWnFbJnFeSjStSkKqXsMtFoWvAiQsSdKgCfSzKgZuUlGnXlAgNbXfUbOqYbAgLoZvJzXfMgBuBjBhQkWdScAzHbZkMsRrOnSpSwVcVjCjKoNdGvWtFeXkUtKdOwTuVwAcSdMwZcHnHbOhBvUhVpUzUgPnLnNtFfMjTiWnGpBeYuR"/>
+            <column name="user_id" valueNumeric="-1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1595173273064-47">
+        <insert tableName="sys_notification_template">
+            <column name="id" valueNumeric="-3"/>
+            <column name="deleted" valueBoolean="false"/>
+            <column name="name" value="WvCzVbLwQlLuAdFmLtWbShZzKcTbWyAdGxNzGhYjNfYtWvTqXsKfWkDnOvLoXtFjEcGzJyBpNbBfOwSqJkIdJnSkHvXxCiOiSvNq"/>
+            <column name="source" value="system"/>
+            <column name="template" value="JsXsJsKtSlFzGqUfHjEiAaCrXaIoKyDtWpRoHdJaVpElEqTyKoPwQqYyAvRgAuUnTbUhYsCrJoJyYbAgTzDaDbIqWyNqRdDbHuGbNnWaDsHcVuMfKcJeNiEqNvSpTbOsPcSkEvHfCdBoMdEbRyTjDxDjGmZnDeHzXnEoHcOlXxNwQwEkXkSfSdOoQhPzPcSoSvPaTjZgJyCyWhZiNrAwEmOgVrCuCmQvQgBbByNfPzImTqVyEhRoJkHdDoFdOpAgZtCyAaZyCwKaCuYaFvPeNdSzUfBzVbWlCuGeFyCeCwErMcWaNqCdDgFnAlXwTaHaQgTwKmYeIpBuGmLjKzYnFoUnIyOsWbDhEqTqJiVkWaQhMzTtXdMlNlLxXwQdWgHkYlOnVbBlLlDnGfKdChDsIeSlSrSvRiXrExEhUfJfQhHkHlDjCwWqHtNmGjVgPiMeHuEwCmFgSsPtXrKtUdQgMwHzAtDpTgBsNuRgYlMlNoNrVwQhGyWrYxGtZbDzWdEtVrShHjQzPpFqRyJmCuNqDsAdKuQwFhOuYgSdSgTmQfLgNiUhGeHoBbOpVyNtPwIcUcNrFcBjFuNxShQmAbBkDrAyLfHeDqLlAvEeWrQpMbWcZhAvDuKkUmKmPuDuSxJeWlJoUgKlRaOgQrXdKaUjYbXpPbFyAyWrJbAiOoIxFtGaIkKyJbOsBgVpUuCgVjGvQxBkMjWuPwChQmXaJnLpFhSpTmNpEyUaKiMnQwSqEqKzMzSpOyGiHxPzXaMjLrGcAjOpQqRoKgDtBdOfRyUwBrTwInIvBbZuLkRsBpChGgRcTuEsNqZvNaIuVjItQmYhQzUtXmCvVhCsTvUjDxMoOwQzArMpSdBcFeTdIiKuIcOyDoNmWmDnYaJiFyJjDzAfFtMuShIqGtTsJdIxBtCyEpDgXsPjHaBfGfQkWwWoQfXoSuVhMjYqGsNfAxBsZwHgZhHbPaHdBxWxBqUcOkAgAkZyBcXiGjUoKoCtMyXuFwNsCjLeQoHnFxGpTbJcTuOr"/>
+            <column name="title" value="DlMoSuUvGyJfOqNjEwEzKdXjWuEjYaHvCgKyRwFmFgJaVdWrTgTtThHhBmWrDcNnEwYcCtCoPyDmTsJhYxFvEvNeLyQmZzBiSbNvDcOtKcFdUrReOhMhStUzXfKqEnQbJwClEkCxEeWrDnUvCwFbFbChBkXrMwUzFeUcDbQvOhTvPvKbPtYsCjAfFxGlVtCrCvSiCrDcVbDxCkTmKcQpQxSgOoSgUoKpHsZsXrDiXpHfAnNtQtCgIvKtAmTwHdShIcAxGfXkLqCvIxJmLrGaLlXhSuDaObWvAnCyZbMjJgXwJgFaZxAaZfMqEuNeIhUhZlHrOeHaLiPoJrDvEgAaUkVoQhEiIwZqBtJoUcTqEtDaWvKyBbAeYoOiMhBiWxBuIwDrYyJoDoYxVwSpFkBhKwVcFrYhXwQcCpByXiUsDjZrFbQiPcMbWrYwHpXeGePuJbAqStJvDhVqXbRzJnNwYwShNoGwVwJwKwLgLhVeBuWtThYoGhTjPpQdShJkRqShKjNiZgJiXyGkVqSnYiJbPdMtHjXfPgLeAqUtOlPpGyKjCfUbWgAfQjFvImMzQuVmFeYiBhJfXuMeErIeErMyGtCoBuHpHrSyIbApWqDzVlKuKlWeXkGmLqXtGmAdJpLyQoLpWlEkFvVfGmSnPbMdCqRnYrJqVtNcMtWkSyRrCmUtUcHpXtFuYjKzSmFnBlArUgTjIwHaVfUfQfYaPjQhVkGgTmRpJrRoOsQcRdSpCfJoWqCfWmCtVmTwNeUjOlViSyHjVrUeCdOpLsLzRkTbFyOfNaDjYuEoHvGgAlQmWrXfXiMoPoUaBnFjIkWuMlZlRbVyNvGkDhLoWyHvVuAgNcFcWdZqMkKrGoZeZfZxZgBrMaPtFmLqFeJdCxVrWiFlKoRjVsSsFrGgLuYfBjCaUfJvOhRdNjSzJqLzGmApUjZvTwJwNyNaWgTsOvDdIaWxVjGvVuNtGfQxNrCiUaXdGyUsPiWuPrPiHrMyIvTkYhOuYrOuIlWfCwZmOoNkTvSr"/>
+        </insert>
+        <insert tableName="sys_notification_template">
+            <column name="id" valueNumeric="-2"/>
+            <column name="deleted" valueBoolean="false"/>
+            <column name="name" value="FdWvNsKwKuYaIqEhMxAyPiDwUwRrRoOiOuJeTwNrIdXwTzVbQlYwCvEqGzQhQwDtTdJoGnOhRrHxItSyHnJcNdPmMwWkOvWqTrQo"/>
+            <column name="source" value="system"/>
+            <column name="template" value="LaEqCqCyAqOeJpTeTbSiGmHaAqSqBvStVdQcDwZzDhEqOoOlZnIyZwZiDeYrGyUsZtXqHvJsHpGdUjKbDgKePcQhPvWfStJiAdTqCpKsApRzRpJfKdQsSyHtAmRaOiZfQmKcMoBhDyNtGmXwAhPfLnDzRkMkGzDeKuApLbNvKkQyUhFqAvUhTxSqOfRiYxNlUlRhSmEvVsCxNnQxZuIsLsCeMcWbFjYnCuHkQrJrQjGcEpTaKmLwBdTnPsPbTsCcOaErGlSbJyViIuCbUbNoHzEyCrCuQbWgEjNmDiUiCmHqDeUlRgMxNhIeFwIfQwPxDnDoJsQmEhQbGfXgBiAqOwRvIvHfSeElEgWtGaYxYyHvIeKhCmNqSgCaLcNnCpIvPhPgTnDvVgAuFfCvYjVmFzPfAgUpIyNrYoBxPvDwScTeUgBlWsToOyNmUaKbLzWrOmPsJhVpMuWiCqDyUnHiLcWuAlFcXjEkZsIwXxFsYiIbJlUxRjKsViAoArGlEzOgUzKtAiSfUkTyQqFbStCwEuMuSpPfZjBnKiRiMhObYzXbKbMeGzPdZeEaTdHkSkNaVkNqBxPrIyFwUrIeJfRkSoRsPmSfWmXqNeZwBvIgJeUjMnUmItRiSdWyCrAcCpSjUvAgAzBtKqPoOhLlPmEiOqYhDmAnGyPmIzEqLdOsWxVcZnNiZtJmPnKbLlFnRoIzWxNuFfRqTwOgRbRkYiPrWxMkEiZcYlAiJkMpXlLiTsRxUoQaLrXdWgSfYoGaPsQjBoMxNxEbZdAgDnKmNnDfGvZzVfDxLdOmGzJzGmGyRuUeYeLsSsCiYvLtFxDnSxNeWcIgXuPxLzIlXcLjKzDeJiCuAkHhTnXpMyXuDnUpHtUpHrWeInRgDbFxCaUcYfFqTyNxFaJqSwNpPzHmQkKnPsLrCmSjUhObVeWaXcHdYpJjEaLbVgHlHgTfEcBhEzVyDrWrQcQnMcJvEzBgMkFhSpVyOaCkFiTmIcUdCcSlDpQxZxNgOeRjMtWxOwWmWpHt"/>
+            <column name="title" value="RtNpPrFdXqOaMoYqLhRbMtHwSoZjEpOcPpGoImVxLiFxXmNhFuYpQgXjKkPlOnOkGsGiGoYwNfYfYoBlSaOkKbJbInUcQxJaTyZzSjNyZhKaRkXyPtOnEiRlSfApSaTnJuNmCoQdTbOzIiWwWbWhGkGuFbXyJcSxZqAwRtSdFdHeXoOjGrQlRpTaVxLmHhKgZzRcVmLySwWwGlCsMiQiWpVlAcZbLqMeDiVsNqRzLiAvDfTrByAhQoNeHiAdKfLwAwEbWxVgPqXsYsDzZdHlSfBcTdYsXsIjMvNoEsEyPgTrGrKgZzLsYjIwHhXpYgPyGqOlAeWgRtKhWzYcAbRzNoWpNbHyMeMuGwYlSlQeVwCvDkDiRtUsRaTdLrEdHmGzQwUzBhIaSrYlIgLoItJlCrKfChDtDhCrKbZpDwEsExAfMtQcCwAzPySnMcHvAkXpFlJkPvUtRzFqFhMaIzSpUaKaTnMoVrLsHxNdAnYzFpBdGaOkFmPiDcPrSzZwJwAeToKzOtYdKgZhPuDzSpZzGmXfQqErEkYmEnRfBkDcUoQoNgUzRgLzPyJlZlQaDyNbHpVsXnPxIzMgKeTcGdOmBkXmUqJqYpItArAqUtFmMvYpAdTyMaGcFbWoBdIxDyPaUxPxFuWdAkIgBlEoHdDlKhCrLpIrYpXyAqQcKdAzNqKvUbHeOaLfOjVxIgYrZdEuYxUnMjLsXnWbDeWlNqUiSwGvXmXbNtSpMbJsBfBoFkNtXuAqLnOnHvCzRhMdQwVgSuSqRfOrWyFgDlDgNkEyIvKxEdLmFhMqFaWgWqMnTrIeBoJyAyFiWmUfXcZgFhCbZpFuIhHrAsMiXqDiPsTzCzUzNdBqMiZxIuVuIbGxUvIsHyWpBoJmBfLmJsYrMlPvGcRhKkSjHlWeNkFaFeUhExGvErXjKsFoXsFzEaNcDhSzOsEpYqLuSwEkXhIxPzBsIoHxTfZvZzWrUpXkVuQmOyFcCpAgExIiOhFjWuOyJdOhLrHqKdNkIwVyFzRyUdRu"/>
+        </insert>
+        <insert tableName="sys_notification_template">
+            <column name="id" valueNumeric="-1"/>
+            <column name="deleted" valueBoolean="false"/>
+            <column name="name" value="LpHpTiTyOpSiNvItNpVzBsKjWaQnSkFzNnOcItNwHfOtAtKwOqQkPmUdRbAeHxUlFxIpNdKfNtQjZgAuZbXjPxGfDuGsJyHmGaIf"/>
+            <column name="source" value="system"/>
+            <column name="template" value="PwOmFxSyCsSfVxCsTyZaCkJvWkWkAaKtUgPjFiYjKlQnWcAjJeKeBzZlVrDsZvWkKqSwHtVsPiJnNkQoGaZdVfXmRyUzQwMaYvPdWpTaOfMaNtIgJaGwFgYdIiYxRmZbUnIfIjIrZkGtUvZwUuEtIwScDsFkSyBkAkVwDjAsVjMbGxEgCpFbRrXlPjBdToUeJgMtOxWaFuMoUuBzZfTlIeToClLpNiNmMnFiQmSaJtHkIwXuEvMaOlUoDxSdQrZpNuNtGpPwCiHpMqWgOnLhMnWuAoRsJoJhQzClPkEjChYlFgRyNtVvGuHoDqBgFrBkGjLdTbUjDbQmSoAoNfQpFuJjFeFyMyKvFaVdTsJtRcGoSeWkBwAfKdCaKbUdZlPmFqKyMkAzPiKeYwCdThBrNtEhQfBcFlFvPiXvGwKnJvJzThMvTgCdThIrLsHiSlOhJyAdNlSfGaYuGwXcFkXiDaNnUtGdObQiMiPhOqVyZrWlJzQrKqDmCpYfGeFbLnYkEhTjWrMnKrIfHiEdPbJpEkAuPzDcJxCkYgHzJfDwToPpKoXwQtEqEaHsFjXtLhBgIrMiDqPoSqBuAkQgLpEkGxJaJnBoBkCuHjWeKhEiGhPaSlSiVhAgPkHlAoRuBfUuQfSrOaGeDhCuUyUiUqUgEyQfRmMiQgLmXbDbOfNiGtZoXeTtVdLsSnWnQrHbRsJcCcDpUsExUaNlDpXsLyWtBmQyHoOcMyXoGbFxQhUkUaYhDtJgEpQdOjPmBkJtMkJzQbXmXcWsZpXeSyUdOtTlBgJeAlMeKoKqSnYkEsFhWnKvIrDyRkRpTdUzKhVwPfKvBjEmIcBoYgQoGrZcQyUiLvLtRpZzMcNpOiIjPyZpLgIgTbXoNaVeHpFmRxGbSoKaAwKhPjGbXrIvLtEoNaUoJuLcAuPxYrWjVzXoWsOkKwFsDzQjFqZiSaExUdFaImCvXkUtLoUgVmJrTnUuGnJeTaKzOzBvBoPiDcEbRfFcKtIyNlLmGnDsSnDfJeVlHuGu"/>
+            <column name="title" value="QuSoNgReMbEqLyDvXxMoKpDbLrYtCjQgSfYgZjKtTmHdCqGuHzTtGcEdRtBlZgJsTzBvOjRmGyObMsAgPyRjRgQnPwUpGjEtJgVfHtBbIoKkGaBlXtCkKuEvPgGiCsTyCiTuYbUeBwKpHkAtIsOyMePwIjRtMhDzCnQmHzGsOxAnInKpMwSqEzJlLzIfPiFkZoBmWdVfFySwXpXuYwGdGpSlLyOsLxNkIuQsWtGkGyBpQtTaGaWgOjSzXdJrPqHyXcZiFzPfNvIcQeGkZrSwTpBdZkTwKvTgQrFiBaEbNoHtGaWuCrWlJeJqZdYnFsReMgTwKxJcXwDwCgLrPhGtAiQaJtFyDxEiSpCfWeLySoVrCrJyKfNoClAvWrOfQjTbLdElEeIrNeNrDnMlMwTyHjRdBkByWhMsGzSgFdYxGpLiQaXcEaOpXyFmVyAsVjUnKbBtVdBjPaVrRjEaUqJnWqZwPjXmCmAfVoWbUoPjQkEqZtTdQuZzMnYzEtXePkPhXpPnUoTxKtTfPyPvZfOlBqNxLgIsPtHfXgUsBbTtFzLdPvCxMpNeZgYsAqViIkRhGrVgTqSwXzQqVkKyUqWxAsRrAqFwHaFfPpWgBePfIsRpKxPsLzYlWlDpLdBmErWmLxAtJeUlCwCvZdMyBoBfWbSfLaEvBeToSsVmMtOjXnPrOgOgNfQhYyAaDvTyQaMnZnYxKrVbNeCwKqBkUlQiFxFnMcAaWgCaNqEnGwOvPbUpJbNyQlXhDfZgMnJuSxAhYtOhKtXyImUvEaIrWpGqMtJnOxDuJkIoVfUnWgUyQvXxGnRvQvHrJoZeInFjPoJrVvDuVxWzGhNhUxSjBnBkMmNoMxThEgMxToChWfQmQiDvRaCfFqFcQfPzApTfVgEdIdVhUbTdKdMyGsKfZxErNlNcPhNzKaGeQzNzDvOcShRhWjIcTnCbVmRvHhYmAiMkKlBjYjChGwZmXvQqVvCtHtAiLzZjVoHqAgArMiCgCsEiYsSdJnAvNaSjZyUrTnXf"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1595173273064-52">
+        <insert tableName="sys_task_definition">
+            <column name="id" valueNumeric="-3"/>
+            <column name="createdby" value="AjToRcMyQpZhMnZdWqDgKxFxPsTdPbSdVpDuPhRxSwMhYbKuRcXfIvMpXfXoPlToYeYrTiHnNcEtRiVlQbMwDpYoRvEwBjRvTqDb"/>
+            <column name="date_added" valueDate="2017-08-19T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-08-19T00:00:00"/>
+            <column name="last_modifiedby" value="UmQhTuPxWgFvOjHgTzSjRrUlEyPlMbSmJiYqLcMkAoDiYqFzYmWvLsBuDrMrOvIeVuGfVwDtHaKyRkAeUhWjAnKnGmRhYmMtYxJt"/>
+            <column name="bean_class" value="VpPlGqWaGwAmYeEgAbCeIkAbXsVeJmZyMcNxWoIwAnBvReXfQqWsGbRpCySqRdItUbTzPkAeZaTuScHiGiAuTtYuUuAyGoTwVbVoBzXrMpSuOkOcXlPsQrMxGyFeCcTmYrWlNzQmLoOfAoZvJkXhYjToNkQiAnFdHxVkXfPbOxPvYbLeGvGhQlNiNuDqAzVcUzSvEvBzFlDoIoQdMtAqImYeDwXrVkVvCeIbNxUtYyYhLjJyXeXqQiTvToKaYvBoUaBkHlZpYuViOvFsHaIlBoJgCaUeSmAnBtCjUhXaFmRnMqItOcIxBeZuBaNlUnMxNaTwRmRhCwSfToOoYhKnNnDgCnAjQlGoFtEyEbLcLhRdVfUbAkZqApZhNnZjPqZrUlBtZoGsJbVoRkNpKsScBkUfMjKlXbLqJlAnEkEjYgSsLjSzYdIzUtOqTxKhClCkAvRbHcNnNrKqNmAaGoQlRgTzDeWrVhUzZdOiBuJzWcWyWeXrHgVfRlSpSjOyMrPbYsVkUiLtAvVdMaKqJzWzPhBrYtOxPyEaPbMoOzZhWkMcDiYrFsHfOxAyHjQuYpFhJpRqIeEfPnYpNoKoNdGbZnVbQhEuPvEoOkIsMuQaSlMmIiMhNgUuNsMvUrHkKuFwQsEaIeEbAjGsYpJgAyGbOvIaFzAkKoJhTbQaJdXxBeJwDbLbMjBzQtUeYdZwDcFgNcLwEiKyRnXvDsMfMzUyIuCwWfEnGlHdEoCxEwLaZaMuTxZgJhLuKaQcGmZfLmMvSjVuAbOqHtXiCiUfHmUoDqDvLhPyQkUvQbSiXrFdSyDaFoWcGrGdTsQfVoNtHaDjOqBeKcBhNdKaFrMvMdYfKdBkCkKdCxZcJhAfGbNdGeUaJcMgKuTrGxQgWyBpZvGmPpMpWjKyPaSoVsYrFcByTmEvDnXlYtPeTeEuJdEnAgDgHnZhIcJyFpUiOyIyUuYxKdCdSyCwCcNuAzZbNuIyRfVjLfUpQhCfYdCeHpTtPvJqCcRyAnXxZqVhMmPqTpSa"/>
+            <column name="bean_name" value="CmUxNxZzLbZhBoZdYyEzDcIwHvJzTwQsKrRpWrTpFrFxNaUrXaRhUmBfMbQiAtIhBzNkYhLiRqXrHxZlEjSvHeHaYbQiJdNwVlXwDzOpQmEdPgYbKtNyMiPwEsFfVgHmObIxGyIjCoCaPvZjSyTrElRyHbKsYuDyOeBuIiVnPxRaGqGbOuFlWvPaRrVcZqSfLdSvBnHlWhCfFlYkOlYkHwAlOgPjVkFuIjUqDvOrQiDiDsJnTcKhSbGuFoFbQvRlVmOhYgXdScUoGwZqVpAfEkPjXjFuAnZeXoIjQrDiNvHiBpSrFoXiEkBfUcJrRdIqOdNiEaVwOxHwKlPdMuWwIsKfEfSjTkEgVwQfWbTfGcFeTwQiYrTiQoAoYdOrVaYjDwYlFbWzEdCeRgUlUdUdPdPkKoXnCaLwXcQbNbFvIjLhQnOlCpLgChQtFnVzVdFqFbFzNcHkWtLzYlFtHiLgZqKrQfKlVwIzArFtNsMvUfIvFyCmWzAqEmEtZwUkMeIiInVlEaXzDaFqQvGqEmIfErLpKuMfVaMgTiKqRpLpMpXaYqHvWzIbMzVzYtZbZsEpKnOaNzDwHmGxJwJeBeQiLeUvQqLjWxTeWhUvLcLjBrKqWhRfDzApJjXtAiZmYgKgPrNwTfIxDxOdSrAmQfPlYhEqZuTgJgLsIaFrNaCyKsAiEpPaMsWdReUqSlQjPbSeXsPsRyUcPcFxRvCdIpNpTmBhVvAlUzKnNdKgNsRxKbJdXgDuIzUtFmJyZkZuXzZrTqHbJhAzLwWgMfToYnAcEhXkQtLcOgHmHiVqOvEcQzNtQsJpGsEhNaAyWyTrWmGbRjApReVzVxOfGeViIcDhRiIjUbRnOcMdIhWjZhNyUpEcDgRoUuVpQyTnZdFeJoEwZwGvCgMyCuCcNcXuZkPsJbCvFjDiVnMxAqCvAeQzRvTmXsQyYyFyLyMkKiMbUnXjLuTgHtXlIrEzApKfVhTnUyMaZqGbFlZrXtMuLsRdQeSjBpIzVrTpSuDrFxQgSzJx"/>
+            <column name="cron" value="ZsOuSoTeAlMcGfWkTkYaJbIdBuInAlAdPtGnDzFhFtNlSwMyNeTzJsRbCkYyJtNjCtHjLwTkTlVhHnAbHaNzJfEwWwAcVuCeDhJoWcGmXfYeXtRrMfRgLvOlDgYkOuHmXsFcQgOlVmLhEvYcJwDcFvMqXrIhThKkWqNvYvNnVlCeAyHaKcHsPkNgHtObEzWmLsMvGnFxZsYfVeIdTgUhMrTeRaSdPfYhBlHdStPhEtTsQeZgTmWcWrBvHzKyXfVcMjFnVrDeZlRaPiKvZsYfGzPvYfIlCfSwLrKrLaZbFpHzZhNiKkFbEnKwArTjVdIlGoRpYsGxIfStXnIjUdVqZiEySjGkVeTzZnThShKcNnBpVfEnKaZpBuRtLdWyBdFyWiLmZsHhUqDdXmHwXoOxBhZiSaLuSgMtOlPyKpXxCcKwYtToPrSkLuDbAfCgPgFeGvPuUmVnFeCuFiNrRcDdMuGsDeCnVpSvMtVeBjVtOvVkVlViDtAiCnIyNbXfSaZxPeUaIsMfFhAwJiQyPtUyMoBzFePcXkWcHxZkRgIyGyElLqUzLlTrKiDmQeHkTnMvFmLrIsCvOdUgUbSuGpCpHhLtZrYwAsCuHcKjHaGkMnWdRhDpNzFtAaZeQgQnUcXrXqZwXlUzCoUzFdKaPhBlQpOtWkQkLmLbJiOqUmHwNfYcGwNmUdDeNoDfYbDtGjZuWfWqFhFyJzFwIbEgYiHnNrXbHdZeXgDiLgYvJjJmZeFuChAmWmCkZfOaZlUiOdAoGlUiEdTcDjCqPkJnLuGrXkKtMsGrSgLsHeNfHiOcScLxHvCoWcMxSgJrRdQrWgGrXcWcEcNcDzNmVjNmVgIgDgPeZuSyBgDkDvRwPuJsIyQsMzZbKnQvAyWcBrUaRoSrVjVhLoQpSnWkSzHcYqXfXcThJtZzTjNcHjJlPsUvUyZoSlRgDqDfNmPsDjUtJuQgAwZuCyJlNuTtSvVuOiTvSbDiWuZdBeMjVfLeRvPbHnDhZyFqIrYnGwTtKePtBmOv"/>
+            <column name="description" value="CiRkMuFcBtIjOzTxYvAwOsYwCqHmCjWfIaRpYeKdReInYdRiOzKaYtAqMoVxDvIqXtDkAoFfNkMhZaNfLvJcQpUlSlBhRwMeHnWuTiWuGiOfLrOnMbOcWlZkVlWlZrLnEdVvUnXuEqWzGtIgIbGrAmOaWwMjWqGbBoEwNzUuJjTyLxRzJhGtLtGdKeBjNiEbEoQwErQsKeEtZiMtIeXpEaRdEvPmSqNdJtDfIfInCjWiJvMfTbHaYzKhGfVxAmPbNvUkNuQgXmEeTyLzFsSaStIoCoSwUoZqZsWfLcCjXdApZeHdEoOiCqKhHjXuQhXaNqHfVaHhTuZpPwAfRyErEaNoVgNmZbAcHsFhFtKcGdWsZaEhUrGxSpQqUlJuCzLkDiXpKcBuUrEiYjLeSwElJwHlUfCkCjVwDpXpPfIhJiKaOyKhYxYeKvCpEeXaKzYfMxJoMdXfLjXhBpShPxClJyVsGuFlMgLjKxSfTiXrSyMoEwKiBfWgGiMmRhYlMuSgNtNmWnHbGiBhTiOhDeYuXiRtFzNiRdCrNnQtVsHqWtRlGuAmAdXfLcJaWgTgRuPqSuNfRsJyRkNiCdRlTzOsEpUbWqMgEqGtIsYoOoYpZpPiRaQcAlXqVyMwKgReShKbQeWuWlCjNmFgAeYcVbUdNqWsFhUeYwSyQcNjXrRkPmBsMtIjBfSxSmTxRbGzAgVjTiUpDhNwWqHyYzKbNhPbXnIvYyJgEbYlYjWjShArDnCpSeZnVoKqObJrNzIzRkUyYuExEuVoNyHyMqPvHrFwSlOvXeOkXnAnXjIyKyBiSqImUiOhDvKdKnExTtIdVzMxFbUfTiMlUhJnEjSiTdIwLrByVwJlRsAeHvFyPnYwTtWeJzDmQeRuSeRtWlGuPtMuItNtAyKyAmGmYsOyCrDoGlOqYfLrDxYhKnYzUzUxOlTzXqFcPsXkZwDhTgZvLvCuOdLuNiGfMyQhXgYhZzTfPuIyRoJhWgBfTwHaBmXlAzUdJgPaJiMsLqYvIsKgApIf"/>
+            <column name="method_name" value="FjZaKsJmRsFnAqQhYoCbBmAwIiTrUrYaWdKsNbAlJfBfUhXgFnWqQsNnEgLmVsCwJeDbOtCqHlUjRkSwHmEyWzEzPbNxCsRdVbDtHrJaQmTpCqKiVmSxBnSoCgKwVwKmMyOwXkWnTdPaKzPcQkEmMjEmMcWcQmZnYaZiWcWbNmNvPkJuCvWhYlTqAbYzZuOeCkSaEyHiWcGyMkEvMlTsMdLxQoNyTnLeIuMpXtFkVePzTxGpRoRbTvMmKrLaEdDsNvEfSsNaMaBlQmCxBaAfAdPmHkXvYtOoUlDxYrEoJuWeRpPlRbEjAvPaBwYjPhKbHpMsUgFwDoCaSmUtVwVvOoOiSdHpIlZxGgTlWnPuKoEwCxMgKxArUiSbTxKvPnFrDlRoRxSoUoMtGgSpFwVwMuXcAtWsOySvMtMjUfRsKvJjPcPlWsXgNyLlTnXdGpJzKcDhZzIxIvHrHuLcHySmVgUiRvDsItAlVlAnOcBoRtKbRiFqLfPjLtUrRzTgYxPuShWbJoIbKxAhUoXlGbJhWlDuJdTrZiZaTuVpKsYwBjSbCnPrTaByOgBeCrOyHfWrVsTdJkFcZfMvNdLdKaXnWtZvJuVoJaGiNdCoTtLmMmDmTcAjZrQtAmDrBhObKtMjBvNkWwVfXwBuQcBaKlZqOjLaLzFtGaMxApEfPzLhVkEtDcApWjIyWnQtXqPyYxEcBxZrUtNfVnZiFdMaIpVoAeWiLaLeEgIqCyLlOaZnIdEhFaIaDyRlUvBeWmNvLgKgLsGbYiHaPiGoEsKiZmNgCuDoVeZaYeUbMnRuCkIaIyMpWpIgEvGgPvXhPnAlFlJlMqUmHeYyBuAbQeQuVlBaIgTyMpLyMvCvKfErNnFyCqLwSxBkUzOzAzXjDiAbWdEeQnRzAbJeQwNgTnEoLjMwIdWhKfOqHsCdDgTwLgUwEdWiQeHiVqGhKqBeGdTeZvEcLlQgXvKcAoKuJkLgGkDzRhRnDpQzEpHySeDzOfAjHqUsOsWhUiKbCxYfGxYwVvWn"/>
+            <column name="name" value="YxIwDlHvXaXzRyLlHyVgJvKePzJuZnAsPtXtEjRkYgAnZrScNtMbMqShQbZdYdFsKkKwXuTmLoWfRtVcQnUlRcMpTaGxDsSlIvWn"/>
+            <column name="is_start" valueBoolean="false"/>
+        </insert>
+        <insert tableName="sys_task_definition">
+            <column name="id" valueNumeric="-2"/>
+            <column name="createdby" value="CtTfCjTyVzHzYyCiQiUzFrBvTqFcPiWrSwIyZfRrOdFoGkRxIkIhOlHjFdIxBtBjLfWiZoIrOtMoCmWuAnHoKlUfIsAmHsRsQkHm"/>
+            <column name="date_added" valueDate="2017-08-19T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-08-19T00:00:00"/>
+            <column name="last_modifiedby" value="QsSxPkAiQkZaFaNpMlTcTzPmMrRaItYkAnDhHcFrOaJnSrWzGdCjDrSiMkXsCzOyBoDpLuMsJlWzUtQdVaDvJxNsRwGfYsFjRhJp"/>
+            <column name="bean_class" value="ZpGfKlXjYgKyWaAxFsKlNpIpPkWnWuZcBuYvLlIjWiVlYzSxVbQoAgWdClVjGmZoJmSxMqUhJgAtEyByUtMkVcVmMsOiMcCxScUjMgJcAjAkUtDlIxKmZhPmYbZjOgUkWnMvYjIuOhHuMfArSmRxRzIcWiQxPqLbNgMbFnFxBpBuNbPsCdEuMsUrQjGlReWcXwCsCcDjVkFyJoOpHiJgSnCiErVuAxDqCuZbFoKpWoYoIcZoDqNcWlDoBuMgLfLvZeBjVcFuSwMcYbXyUhNpSfVjUjXpCpNaHbQfQmXnYqZfYfCuRdGoGmWlHhBkHkDjZdXeJeCpTiTiZxJfEtAnFrSkSzVsStQlTcMsUuIbBvVhJyTqBnPmMyUuLfGwUbEkZuLkYqZnFnOnDlImToVkEkVuIwUoOkXfRlJiToDwZwSwLyYbFjKqOuRnGgAjImNcYdWrMdBwNfQpXaMsUwZuOwCoWhKcBpVjKjDuCcRlAvRqQuAgLaIpJvElRiKvRyZjFfXgFtMwDeBbDzVkFaYrDgNvFbXaXgPvAjRiPcLkXiPsRzVzZnVjJrCpRoRuXnKiJwZpFtMdAaHjTkAuIlOfAlGgOtImUdTaFlFzUjBzChLtBsUcUlOmGoQtTaJrUcVsTuKtIkVdLdOgJeLhHoMxGzWhXhPeAsXdRrKcOvUlVuHmWzFtZwHrMfGsSvPlMfRiEkLqPfPlRqThWuIzZtZyTwOtXbRaDbFoYlNoAhGiLdSaJhKzSeFdDwGvExAsIzVhOpOoBlQhJeScHgAzLgLxRnBbLuWkQuKjYaMkAoWbFpSmRrScTcCaMdNiKxFmLzWpNwPoFhNwOyMyHdZuTyHvEsAwGlRnOzXpUuGcUfAhZlZcKqUyBmIrMxXuVgPeHfDoFdVwZrUvAlFaViBuMkEvCkCgRzIbGzBtGxUyQmAfUuBwGxSmOhFhSfLlUyVkJyZzUnDhAeEoGpOyVxQoNtHlPrBfEpPiYlHfOiEpQgLdOlKvWlEbSoAeWfGrCiTbBqWu"/>
+            <column name="bean_name" value="DoGpQyQuTlSaYfSjRnIaTsBeDfHuJdDoZqBiFyErRyTmGlPyFdFbKaXkVhSbYvPlQsWyJpMuZfOuAqEnErTfKpQdKuAkNxPcMcKnWiPjTkAhOaIoRrNuGqOmVyOiUeIcOpSiNdUxWcXlYoWuPjYgMfAiAwReFpCbMkCbSoUyFlQxSgScGpEjMxAcLqZpYdWgZuVvAuEwNgOcDhSuIyFkBiEmWuMiWuXiIqQsIzSvZyOtEcJuFyBrXjYdGvNqEaUeIpRgZaHhVrOgJxAlHvHlQhBkGiDxYbXmEfQpGdDlEeRjIgGiTgVtSfCsNySqFxObAgGiGjVcFdGgEeNiPlCyBzQaRwWfXkCoKrXlSpDrPpPtKbWgPnCcHbHmClLrMmRqEmKhHkQtDzMtWmMdDbDvAwFgLbWxOrQcNvLfEvYjPtExClKmOaMiRbTaXlVaTzXoGrScRoYyXdTvWtZbKuOqXrLbFwCvYaXyNjUiFfIlPfLbAuXoIkAhHrEiPyQuRcJtPrXzScNqIbKtMiBcXkLaEnOaXmUbWbUfWyCeYxQrWlUhPwIdBkBtRnVdHoEaRwTvIrVuHaVxFmTfQxTrCiTbFrOrAcIoQtUcYcIlUsXwZsEqPtXlAsMoZnXlHkThHoJoUgUnIxDwClFqJkKvUkQuZmEyQbMkQfEbTcIqDzFhRcIxWrBoHfZfWmKsMcNeDqMfGbOlPxTnBeMvRvRvZbOnOjIoVlSjZtCfOtBiApQcKeSrWzTvJkCfVgPmHoXjKsGxSwNuFoAxEzTeAhViJwLhZpCmJhDcJpWxPnSrRuKuBfYaLzOlXuJlEpVsCbNkMfBfHoZaLvTmFfScYxTaCsTfRgUeOgUtJaYyQjXvFeGoNwSpLzUsHlQqMaBdCyOyUoPjDuEiIwCtJaWoAnGwNrVyGfIgOrQiMbGcVmVhLlLrKbClIaTjHaXrIpRsUsSbDaZsXdMwFzVlVmRjCxCqNuXaEyHrJkAxMnGlCkHhHmVzRcPbXxUeUrXeZdWzSvOwTkBf"/>
+            <column name="cron" value="OvPiOoPcNgNoHjIePcHjKlZeGtMkHwCwZwEiQeFfJjLwYbMhJbVsXwToCqPtPgItXsQhOyVfSsEyLwEyDlNqXdUuPiEpLdUjGrElWiJlCkPwWkXoAbViPlKmNiHwGoJoHiIqTjEbQsQjYxKiJlNpOwCfIaWuXtJnOpHqPoGnYqZrIjOaTsZxDuDrPsMlMuTqHlExRvLqGpOfFfMdTmUpPsRdUyDdQqBxAhVjFfCjVlRdYrUgGiNoXcReLhJkWrJfIhPtObWjSyEsKzNvWjOxLvRrHdPaHxLkAhQwThRnLzZvXiSvQdWbEpEvSzSmNeLzJjCjBhFnIqRkDnTeZnWdDpWvSsYnWvMsTsDqHjJkTbQgRnNtYhZiVpOkUhYxTkVtMiLwSiAkXtDqEiJlRqWuGfTxHqDsIwXtXkQsUkHxPeZgPkPtYxKqYhLhWwKoPoCpRuRrTjRyNjXvWvXzLvTjJvUuGqSfHjFzJrJfRvPpNfBqPfPtRsMgNuOoItLoQtRnInMwSxMaImOwCkIlPhEcUlLoIdRoSqUxThSqNeMgIoUjUzUhFeIoCwStMaQqPxBpAaGtCqBxXbFrRiCjPjFdFqJqPeVlKuFkGjHkRhKhSyEcFpZzDhHvLyByGvWmXuXqEqEeBmIrGtNlGnLlYmPzJsRlZhYkYqHfDdGdZaGzYfMmKqVtMmUhDbCiVhLeOtFiNlMwZfQnEzZeQqOzTxXaRiZqBjUyCpHeKdEcHgLcPnErBeYlEqUsJrBsHkLpPuNxCaPzEsBiBqByWtOjJsPvXrOoPsJdNsZxOxNoHrFfCwLoUxDzRwQvKpWrFyQvSiAjNnGjOqLyNgFmNoVkDtHnUgOsFtEzNiAzEwQjBxObKiYmQwKcTkLpJyKdNgXqFfQzZmRcIiOqCpHlNaBqXoXiTtCcDbCuReUkQkWeUdQzTvHhVlEmCsFtXzQsWjBtHoJpPvQuOyKlUxLvUiMaWcSvOzMoUiVpIgVaPqWwIfRkDyCzJfNfZdWcTbRgNuJhZsIe"/>
+            <column name="description" value="KoWaVaDrWmKkXyBzAxRlWvHkJcWnMsWzXiOdZoJdEbAbUxFhXaNcNoDzYjJhRbXdQzXvZqJhKwQgTjLdYtJxCdQoStRhJsZaCwMpBxWtOaCwShZaEkRaFtCeIgIyTbWqTiMxUjIgYoMwBcKnMtImUnEdSmAmZlTzAdUnOjYgYfVbOaOgSdEnZrLjOwEfHbRhUuNhKvZxHaJxHmSzHfEoPlLtDcWeYxLdRjOzWjHbJjFzDrXzQqQbSbUwLrTzVgMgEkMoHaEoYmVhCsOsOkSzOzUaGyRbAyEsPdUkIhMvBoDcKoKrYwIeSjWfUeZsUnJtJzHgRzVsAzTwDsNpRsCkEvTvLyOaTaBeTgRwAtGoZaJkAqWsZhOaKlNiTvYpHlMoOaQjIrAnPfOpOyTnViYtTbDzVhMoGfIpEnSqIfRdSaTvDjVqMpSsYqZhRwDeUcFjDnCvEcIfRkJdTlFxSfSsDfAhCmGdTcNgLyWlNaFtTaKnUvTvWuKtVqWkRgPsTzHaOzHoWyRmRhAeAqUdGdNyMcFgZgVpGrQxLhSbRgYhNeSmYiZsAbSkSjNwFrAmEbAgYiBjPrTzAvKvGiLuAkQrTsCfXiMnGeGeEgPlAtSpTqVvUoBfBnFdWwByZhXgKkItQsPxRkDnZmLzLnHfFuHyLeAcWpTsKdUaBfVkUwGdJfJePjVeUkGzYgOpHsUtUkCuZmPjDtIrGqMwOkYxAoEeIoJlVsXqBdNdZgUwVkKfZiZdJrQvNtBbPpFsYzIyDkCpYdLuNsZdNaDiZcLuMiJmWxPcMfWqZwWiRzDhEqFmOaGqJlIzQjWtFvKpUjOnQtJrSdHmKsCaHdUgHwQwAvOzFbRmYhLqDwKxMlXeVcCeDqZkXoRsItDlLsAkJgWiIuDgLwJjDkAlHnMaXsEhFaHmNoYaJwNfDoFdZbRiLmBuObHiXqIpDbRpZpNlOfIqVnHtVnXnKoXtMmDxUjScHyWpVqLoQiDgAdVrQoUiUqShWgTwRdZdSvTiCmCrIsUuBrDb"/>
+            <column name="method_name" value="VaPkAcNdJbUkXkClXlWhRaBsXmRhVjNwPuLzNmPnHmQmKaQeLbJuLvUdIeBiQpWeHyMmNuQuWvSuEuMaWkZgQwOmKnCvKrLfCsVpYsGrPaYzAxQkAcHqOmReNtXqYfRgQiGjTiAmXzMhUcNlNhIkFsXjBwYwWvTvHhJoKzJtZcSaOtZoIlHiQrDdXkNeJuTiKuGmQgWzAcItFgLuTjPbEkJyCdRhLcTtWjVrHpXvOyZkExHaUtGnCtVlAoJzGwOqBdXhSsOiDdAwPnJvJlFrNvNgQyQcYxElSpKlHoKnDjFpMzBdGrIpJfXhWiMaLjAyOnQvZlEiBfGrMiHnWvIwXaSeOzJdQyCcPiBrMkZnUcDaLsXpPwDaIpGxIcRsXfPzBgCzItLaIsUxPfImDcIfNzXvYrReRzJcRnLtOcNrQjDoVyMyHtYpGiPyXqNeKkLwOsIzHhYxTyKkHsWgZhPiMqZdYiVnVuPlIrGdVyVvGwJyBmYwFoRfDsOaKaUsHyPqNgXuUaJoYhHoIkTuXnYmSoZwFxQjJyIeUrHrRpYvQuUbSaUrEcGwRtZxOiFgXqFiLaEoQdMvIyBtPpHvRcQwNfBmRaUdGyEpTvQaIuAeQpLnGyIrPuPiReYdSvBpNbNtVcFwHaLkKxAoPhQiDhPdEnVfEsTbHzEaYpVeKkRkRaQxRlMpGoWlVeBiKrZdSlEsNeGiNyXfSvFmFgTyPiNsRyHqFkFjLvPvYpXrQgEiMxZiFhIaTpRnKkMpCvHxHpIiKmQxZgEtGyObItSgSeDeJjIzKzYuQuMcUoUfObJrPdPqWsYrMmCwTaDyWdDfRwTrGyYgXcGkJzFkOmSgCqGvRzNpJjEbIrKxPcFwBjBhEmHcEjTbXxYaCgWrYaQyVxBzFqJhVhHdCdLqTnJxXcWxNgNjDtSdInAuEsZqFjDtNsSoUfNnMrUiDqRuKnYbTrVeMfSlDkLrGwAfVfUhNnNbGtDcAgZuFrZcUsCtQxPmXfNxGmTaIpIdUuRmYePyDkVf"/>
+            <column name="name" value="CjNdVoCxQtGjIdSfHhIuFbKxFaHvErAlVcBfNiVmZdKpNmNgPjJlRhLlKxNtAhZlIaHeAiEkZqEpAuTlBdBxHsYqJzYqQaLeHiSy"/>
+            <column name="is_start" valueBoolean="false"/>
+        </insert>
+        <insert tableName="sys_task_definition">
+            <column name="id" valueNumeric="-1"/>
+            <column name="createdby" value="HtRpLuYlRnZoVdYzQlDbOuJyWhZzFuIxEwBvUjNuUvLjJqLgByBrVxWmVrJoRbMxYhLtHuZzKhScXxPsHbJfLoBeWpEySqNyWlBm"/>
+            <column name="date_added" valueDate="2017-08-19T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-08-19T00:00:00"/>
+            <column name="last_modifiedby" value="ZlNwHnOlJfNxEdRbDkLrSkSvRoDfNeEvLnVjLsVwMuQhQgQbFsGdVnRcNuEqXuXaMzTmBdYaGyIiObLaRwFuGqNxVxXbDqMdYoJq"/>
+            <column name="bean_class" value="XsZzPoSlRzRmWcXvKbYqMfOhDqQeCeIdXfUfNrSpKgIsHhWrLgWdZxZtUjDzAkIbElMhJjOnFvWzTnShVzGoMuPbGeQxGlXfVsBdFyFaRuBbQeKyWaQvCvReJpYcWeOnQoLrWlKrQuIbKvFaWyPbXjTmNcJvPlYlNuQfPbLnRbDiQiIhIkQrBjMgVxFcHsIxKtDpQgYkSeZtZsEiJgEaItKpHiVqSwPgHuOmSuCcXtBiMzTcNoVfJmKfIbQvJjCoVaTmOgQzYpWwEpJyUxFfEjYrSaPjTnCePfXfGnBbKvKzYpOrTeMfQlYzOdSrZaDpHgZyGvTuMsHmQqDdChMzMkTiNoAzDyXiQlJdAxUqUgEqHrRsMkEbInIwMeQgPtIkUkYmWgPrRiThVoEjHhBkHoSeKfGsBpStAxByTyFhObQmUwArBwEeLcSpCgQmAaMaOfHpTnPnSgMcMmZmYeWvSaAbYiQkKrSuPqVsOxCdAfSaKsWhKjLkCkGzZjDgSlKoVfPkCgNmIzFeNcWjDhNgClNpCzPaCwRpXpIeTcBhTlEkLnWuNxXnHqFgXgSsVrGnKnFyMrRpKzOrJhDbXgRsDpWkAbBzApHlXeJhMvSjJhOuJnGnJpLlKpJjRkNpPkKhIyUrTnWxSiFzYcGlWsBrGrOrMdKpOmBfQkSmJkBwDvOzClZeIoGvBvWoPxGxFeWnPqAsMvWeLrWgCvYmDfUnGtGoUiRkEsPrYrShBxGnRuCnAsYhYvUiOjNrFjKyEhFpTgCkQyGyAeQqHrMpQeIxFbTmDeUtHnXcZuYmDcDtNgKiNdZpPeDeStBpZvIbHvYxNrVsJjTjPjZvLuSfBuUcVrKpPrQzQlFlAtVqMoDbYsHaNyHoBeYiLxArXqNuDlMiNzQlPuJgVeCmHgGcHzAmHoXfPaIaHaMvYqMqCfQmJwHhIrFpHaVfJzGaFjRlSgMsYjWyQvNoKqWmHtSsEdVzXiUeMrFsXsGcCsAtUpVwHrRjEzVoBjHuNiTaWvWmDvVc"/>
+            <column name="bean_name" value="EaXhVzEzYyCmCrSsGfAiQhMiKfDcSzBaUdPkSnGlRcXkYsSgLjBgBkAuOtTvJeXiJaJrIrAcKjSfLzFhFnSqXgHuUcNcZxKtBxRkCbPdWcKxRrIqSnBdVpCkXxPjRiQiGiBcQxSzTbWbNbLqSsIrFlUnBuQsVjAgEwEgWoCyAnAaLnEkVoUaAhVlPyPhOpVmRoLiHlUmUzBdUrJgZoWhQpWpKoPlQuZvLlOvKhPlZyBeWwUhFiIuYpYkPfZoEhDeIbPtOmDsTyLcSwOlNaZyUmYsDkStAdWgXsAmZqTbSuKfUyCmHvMyNkGaCtBhCsIcKpJmArYiVhVgFwLrPaHzDfYmSxLnErXkTgRsRvAqCyWaYpLdExChCdTsDfOcXzKqClPxIbWcYaUcMyObEkHbYwTaCgShVdEqGaPkVwCsOxAvQiSqLlYzYuWyCtPqAyTkOgGzSyHhMoCqPjNrGxSpUpCcPzZwQhRcEgDfVnVzRmPpIzQbRxEgAwNvOwAxBfJmFwPuWsKwRqOyCiKyUyOdEiWuKaLmZePfQlBfRcMsYwRlJtWqAqHpQaHfVkJqVwWxTiIuHvJeQjKjVwTfHoJuIvGsIpCnPvJbQeNySnXcJoQeRdBbCkJiBiSiQiGtSpUfLtSjHuKeQaHcIpRxHjGpSqTpMaBqGdWsVaKcFzQsAaLlFtExLqCxDxEdUvGvLiSmBfTdJyFwAxNnUwEdHlEbVtOmUsPhJxQxAoLvDeCxWxUjXiNfIbEhCaJtVbHiVkHeMsLiZjSuUiFnLlEcDfZhRuNgVcGdQrWzYdIeQxTeJtIxCmZoGsGnAuEsQbSfDiQfGzTiGwPjGpMdLrViYiQtPtMcGiDmVrTvWwYkXeDrByPcHwDwSxCyRhApHuKfEsHnGlWzMxHfPsNrHcKfMsKiXyFuUoAoFpNwHnImPaHnHsLrUsJjUbZrYiYgKxZfOdLlLeKaXiAtTlUhSnTlDgYzJxTeNmMcMrPqPkDnRlQdWuZkHeDmXpNcUkUiZsAuPdBc"/>
+            <column name="cron" value="NtNkLlGkVdDlEyFhFwLbDhNlUlZpFmVfOiObBiGvQqYkRuAuIwZePqHpEzAmUdDwLcYxCyNeVtBdOkXdYjWsEwJwVgEuOyOoIjOoEfBeIdPsPtAsAdOuCnHkPcTjQeTrGnKiWpWzNqUjXvXtVkAhAhZsFeZbAaXySaZvQmYgXoBlBpMvCjHiUdWbJrJgFaFlOpOzFjVzRkJrYcGxOfTsJbRdXtTuWyTkBvWiZyXeOmNoGeNhReJyVrQgMrKfUyIqJwDeViPdDaAjWwHnNuEaWlXhLuLwCuZbYlIqGzFoEpCyYpYhGsGbKsOkQfGyRqKlPcJkIkInGoAbVjRfLmRpPkFtZeSaWqToPqZzQjMvXwLxMcOgTrWrTvMfUlZhNfPiWxTbTiBsOeEyWnPuCfErWmKbTxEdEiJnVwZjHcCpCcKtCyHoUbQvKqCyWpSnJbVjAtNnIrBhMxRjFqAkBdFtWqUaUvLyPlUwLoEgSmAeRdPwUhHrRfWcFtCtKrQrBpEtVwSvCqXcYtMbHoPhDqHxDgIeNrKbYdLiDuEtRvGxAoJmZfEtTqQtTpJiDpIeYnXbRfFwQaSvBmHsChDuEiRjMzPcNxHsVdQtZhUgQpRpJsWvAoBvGwClEgDdWyScOiPtGfCyPyCgTnWfAeNcUtZtMsHaBtWyKrQoBfWnRaOxUpKoZtXnYnRkQpFvUxKpIoKpCvPdNdQvOvCeMnWmTnYnDkAxVvNcYdUeIhOmWgMvOtOjFvMeScDzDyXsMeUhDjDyIjLqGkRwZzEiMtYtXzVmPaSePkPgOiPiAkRiCeMxZeDdChOjFwSzDcNcJwAuZuMjImVgWvVcLvRxKgYpTjMbUmSyVzJnXdDqLxLaShIxYcPmQbGhQyJbEhEtJmNxRjAtGzTuDqWbUrYzOeAdBmNuAmVlKkGpQnYuRbBtCrRaRfBcDhYfHwYfOzFhQtVfOfPaWtBjHyYlAxXaWkDeMuMrSlQnFtYaJkIdBkPhMvDiHfMfWjMxEwEcZuFnGlWjBtFj"/>
+            <column name="description" value="DtPyPxYqVbPdQmJqJdXqAlOxUeSsZpLbBfFiKqLgOzWbSsMwUoAlFmGaRnEpHvNpWvKtCiIyLuZpZpCbIxPwNdBsBtJgPqMhSvLcNfQvNhHbUwIzTxSnTtYhRvXaYnQtIoYmEwMbBnJgRfAyUqVhVoSuXnMlBuXkMgCoDwGjAwFmEeKsIcXoMfQjSbEcSaLhZkBxHtWoSrKvTiMcWdHxFdMfYkPnOyKeSeQwZbLpPeOrLvGpGnAyIiQfWsYcAnWrCiIgPuCgTiHkDdNfViKhKmUoAzJtLkHaNyHwUcDdZkXnOuRsIpAzWfIzGzNiSgWqKxCoPdFnRgYvIzZbVdNyBnRnAlPsTyLkFhDiAhDaSiNxGpYzBrAyCrGnVnKtSgOsUcTzVkRwPsEbZiVaQjVqOdCzInQtYpQfBkHpLrLaYiTbUjXqGcCuYyKvAqRePiOmWiSnLjQdCoTrSrEnDrWxPeUuTkHkKsNdBuCsVbFzAbXzTpFoVwOgAtFjHyYxKyZeUcTaYaCbQwRgQiLjDoJmYlSyYrCsJpAgHdGbOvAkCpPvNeKuJrEnGeXmXiTyDdSxRgAyWjArNbGpBlPdWyPpVnCaFcLuItFeZgYqJxAqWeYiXgDwTyHnPnMwPzLnLlLeNqIkJlNqGuHmDxGpVnLlZqOqCpVaVmRoSzBnAnAmFgLfBcHfXlViOeYxDbNjJvWhRzEaUbZrKtEsMdVgHhPoYrGuZfWqAaPqMcIfTlUnSgMpWdCqKlSqZsMcAxVgXlYrNbZxNyGzEoFuYdRnZqQiZzFkWxMdKjXmBeKdFmAkOpGkQsJpClWaQnPoDrNkTtWiEiGgQkTrBwPdCjIiUfHfOiFnZpElNaKkVpEzXsRmBnZsZzOtUfImVaGfLjJuWfJhFySwGkRcMbPrBnNjLxOiCxDwJwArMgBlKhScYfBbFaBiDaBhYrNuHgBkNuWpElWzEsLiQkDiPhUbArNqZpVtOyCfSbAgQpZtEwPyTzVuOwIyYmGhHsJyLbJfLhKqGwMp"/>
+            <column name="method_name" value="GxBmLeJoRfGfAwDtSfBzFaNvTeZmKdRyChBlNyMeRgBsGsQhMfLoMuMvEvKtXtKnBfVaSzTlAcNrMjXjQnXfEoKuDpYuTdEoIzBmDuFyYxDqSmDlTvAdRhVcLuNeXcWvFsYoGdCoNsXyWhHrCcZaCaJkBfFjVaGkVnLeQuDkDzIyKzBfPbNsFxCuFaTbPoKmXoOjLfTvFaRcOrVqQgXmYuWsTdMiVkNdAtEmXwQxCxKnMvJpLzIbWdHyNmNsNjYzTfYpZrTxEiBxDgGpKvLrJwJuJuBjKuNlMoLiLmGfKgFhVtXmEgDgNuCoZlAcFdBqFaSrFcYmXbPnLnRmCiTeTzNgLrAxNrBnQxWgVjYyZtVpTpJfZaDxAuWrNdHiSwYzNkZuEtIyFsBqXnTjGmNiLnDnRjHrAiFoIoMsOrJxWeXrMiPzXtAtQaUaAwFwFuWeCnLhZsWlRsVcJuTvGnBuUeQkPiXbFsMcNcGoPpVqRdPbEuRcNhHxTlEgZvYcXlAkIjPaPsBrMkZfSfXhVvNtNdZiCxCoQmCkYvTgCqNrNcVvCtElNpHjSrLlEaWrKfUkFoWvLdRwYwIbNcJmPwApOxVxDeLbTrBxStSoXfVzJhLiTpDzMsKiEeKoFbVxOrArYiTxEqGqFxUdRvLzAiVcRcYeOxCkKzFpBfBsNpEmYnKfEoLdOtIsBaJrKhGgZdBbSiAdBlCbYwHoCzThSrNuZmYdLkWsSfQlAeYxJaMhHfTdUhUzWpAnZxHoGmKpWwVaEqXrAyLcZpEnJdKnJhArVvXeBlKuPpNuXvCuVjCfKdBaYyYaOdAdCyYyBxJtMqFcIoCfYuQhXlFuJuDuIiYhFuDhJgJnJlQuDpUsOfDeWnImScVgAvNxNoBbUdJuZzAjXqCjNqHuUxTyYhLmErRhQyOsQeNiOcEtVdFfKqOpRuJgLqVtXtOlFnNyPyVpYxEuIpEeWhKaUuYyNrSrLrLuSkUfFyZoMwDoLbKlZfEsPoRpKnUbQrEzOvLyJiObZuAo"/>
+            <column name="name" value="BzToEhPbXaWmYrNsGfPxSeHmDhJwWbIeNaOnEwDeEnXrMxDpAoNzZkMySgZrQjGqNlInIcEwLnQgWpQkCpRxIoOoUxUqOoSxFnEb"/>
+            <column name="is_start" valueBoolean="false"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1595173273064-53">
+        <insert tableName="sys_tenant">
+            <column name="id" value="212aab68-7fb3-11e9-bc42-526af7764f64"/>
+            <column name="organization_id"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1595173273064-56">
+        <insert tableName="sys_user_role">
+            <column name="user_id" valueNumeric="-3"/>
+            <column name="role_id" valueNumeric="-2"/>
+        </insert>
+        <insert tableName="sys_user_role">
+            <column name="user_id" valueNumeric="-1"/>
+            <column name="role_id" valueNumeric="-2"/>
+        </insert>
+        <insert tableName="sys_user_role">
+            <column name="user_id" valueNumeric="-3"/>
+            <column name="role_id" valueNumeric="-1"/>
+        </insert>
+        <insert tableName="sys_user_role">
+            <column name="user_id" valueNumeric="-2"/>
+            <column name="role_id" valueNumeric="-1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1595173273064-57">
+        <insert tableName="wf_activity">
+            <column name="id" valueNumeric="-3"/>
+            <column name="createdby" value="YsNxCeAlKaOpHtDaRzKjDzAwWjYxFoSpWiUzCnPnVdJrYhNpBhHbAhYiGyKaOmFkLpRiMaHpWyObHmElIcClWtSnLiVrOnEwXsIn"/>
+            <column name="date_added" valueDate="2018-10-30T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
+            <column name="last_modifiedby" value="TnHeHrGlHmOdAqRgAaOnHgPkEhBsNsOqTyBcRkZtKrRsNwJvHiHxBmUtArSyDsKdTgEqByIiXjZxKnOgYtDfJiYwMlIrQxXvPiCt"/>
+            <column name="code" value="OfUrYcDhOjUeBeUyAuAaEsKyHeHeHjIpQsXfGrJhAcVlFrQpZpWtQdDbNwHtRiVjAoVjWcTlIzGpHiIjBrOzDcZaSrTdKuMiQfWx"/>
+            <column name="description" value="FeAfJaEyPzJlJxImCzMkVbOsGzGfAeKlLtNrWlEkFmIjFaMmHfHdGqOfRaCnOdCmXwIsRdPfTcZrKsXwQyMvDyDyHjMoTgGeAsRiDvXjBbVxLfHdBlFiVkPuFuYlQrOzJxWjOuNnJpXuHwGxVlOiOtGcYhYhQmZaXiXdBrUiTbSnJeDtSzJmKgGaFjCvNqWyOqZvTsEo"/>
+            <column name="organization_id"/>
+        </insert>
+        <insert tableName="wf_activity">
+            <column name="id" valueNumeric="-2"/>
+            <column name="createdby" value="JdZsDhWeEqMlPgBoMgYqAnRvPzHhHjHkKgPcQsJuTsEiRoMeBpRkDkUoRaCeWpNaWlLvNoEfOwLnRxHuMuYbKhPrXpDbZxFtKdHk"/>
+            <column name="date_added" valueDate="2018-10-30T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
+            <column name="last_modifiedby" value="NzEnMlYiYfSkQpKtBnMyEtTfGrYyNpMuTsAbWbSvEkDaAjDdMoLeWyHlFtSeLjMzFhSqQoHdWbSsDxIeVwWiBdUmHkVvMuXbRiUj"/>
+            <column name="code" value="SbHtGgJpTxIyArSsBzGnRdAaOxScVhLiMkBhOyGuSyCeZnSmDlVaQjZnCmTqMeZbVyYjGeEjTxRkDlFlOqTuAoUfYmFiFuPkEeCs"/>
+            <column name="description" value="TzKdSeZzXcUeTrXfCkErWnUpHaHwXfNtKcScZoAxBjLbXcEuLqIvVvVbNqGsWyIdLlSnGfBaNxBaOkUcMoNiCfSoXwDvIvFsQgHcHtGsCmVdTrXpRkVoBnPbZvWpEsFtUyMlHwOkCxEtExLcNfUmTfJgUtRxAdVfObOsCzPrFrXsSxJhMaVhEdVxWpHrDnAqUjEsEfDm"/>
+            <column name="organization_id"/>
+        </insert>
+        <insert tableName="wf_activity">
+            <column name="id" valueNumeric="-1"/>
+            <column name="createdby" value="GmLyQfDpFoKnDfYtJtZbUpCpJuReOfYcOrEnZkVkFuEgXqLtDrMbRrQqFpErZkJlRlBaQfGyDoNoXfUzQjYzNbXeLiKdEvByZgOj"/>
+            <column name="date_added" valueDate="2018-10-30T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
+            <column name="last_modifiedby" value="MoTzKxSdGgRgSrGwXaPiEwMiIqQlQmOaItRcGuYkSaGdVyCrJsPtBuMxHrAyJcAlYtNhEgGqUrNmVuVaOkRdDtBwYpFdDrEuPbTc"/>
+            <column name="code" value="GaLgLsCsYfQwYsWoXgCqXhPzNnTvPnIsZgRgPiVwDyXrMkWuPhWyGmNuZbNhJrBoAlWaIiFmNxYqUwSvXsYrUuAcNsZcMfRaTuQj"/>
+            <column name="description" value="AbPwHbWmJsRxSkZwIrVmRpRiGpPjJnKuUtXuOqTzEoPjFzHgJyPxPxEwHeQzWySxKcJhUcDjMeFiEuWxUoMuIgUyMfEzUdYjCvAmEcOhWwWbTvMyIgWfTkHgFoHuRjYsYcNdPaOuNxNxZfMzMxGeFcAzRiPgGnIuGiLaMcVvXoYkEwCeNwUlTmClRrTrMaVdIeNwDuPn"/>
+            <column name="organization_id"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1595173273064-58">
+        <insert tableName="wf_organization_workflowtype">
+            <column name="id" valueNumeric="-3"/>
+            <column name="createdby" value="BbOhNtRaSqTxKvIfTePvIcCeUlDnBuAsKkSuUdBeYbGzTbYkDcYtGfWtTuYrVqIaFiEwJaEwDtLyDhOpOnYeXlAjXhKjQqLzGlHk"/>
+            <column name="date_added" valueDate="2018-10-30T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
+            <column name="last_modifiedby" value="QqCvFtOqBnPdThAlBhSzIsZwOkCsTuFzCoYiHqTeQpGsWtDfOsKcJyNcDvSfDpLxOrNoViBeNqLeBaQrTgXxJvDfVwJjVyYiOhNz"/>
+            <column name="description" value="BwFsLaSlPlKsZkGzReKhIdYzJfInVpQzNrGaWbQvVmEmGxJbZcUqOfPfRaJqLhBuFyRxZiJkWnCcHvNzUqFwTxMaQlQqQlJsJkPbUfMvFfSvSkHbGlCrOvQgCfPgHtLnHhNvOoCiScYcRjQqEzLpUfGoUlRoQvSdMiVeOoCwSeLeJkJyEtIzEdAuPnAnZaRlFkDvYeRr"/>
+            <column name="workflow_type" value="NotSpecified"/>
+            <column name="organization_id"/>
+        </insert>
+        <insert tableName="wf_organization_workflowtype">
+            <column name="id" valueNumeric="-2"/>
+            <column name="createdby" value="XvFfNoNcDoVsKcZmNgIlQtPwZzKmNwTkOfVbGuUrJtMpBbVmCwSbOnStJuAaHnVsShRxDkEoZkCvRqOiLcJqXmMqQkDaAkOkJxAk"/>
+            <column name="date_added" valueDate="2018-10-30T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
+            <column name="last_modifiedby" value="YySwMyMzJbLtXdEaZlYqPkWaEbXqZwUvClEsCeZtLpXzMoPlUrHeIxWmZsIwVfOyCzUoWdQfRpGyYlYbPjLoOhTdXpRxEoApYdZu"/>
+            <column name="description" value="HyShWoLdOzVaNmFuEnOsHxAgEnKcVaRsAcIgQsOmWcWvKuKpIbPlFsDrUxJlCiLsWpEyLpArSnPqSaJoKvKkWqBfXlFyPsJqDaXtWcHlRaVdEmTyLqZrSxRaVmAeBpRlBbIbFsWqMwWqEvLeTlLzGuCyZjKbTvAdMzHbGvLpAnOaUyYbVpSlZaTzXnFhRyTvByGqGpHe"/>
+            <column name="workflow_type" value="Playlist"/>
+            <column name="organization_id"/>
+        </insert>
+        <insert tableName="wf_organization_workflowtype">
+            <column name="id" valueNumeric="-1"/>
+            <column name="createdby" value="QiOiTqSzDkOvTjHhCoKxToHfDwPwKcOzRyDoBaLiXgSdTaNoZuWuAzLqOnUuHxVvYwUjGdMrQnHeDmBdDjReSrUpLrMaLsHmYoGd"/>
+            <column name="date_added" valueDate="2018-10-30T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
+            <column name="last_modifiedby" value="GgMzEfAwWtUqYwBeHxLqZkIaReRdOiFfSsWpUqWnQpXnPcQiDwRtGyIxVuZaCrDeJkSaEqWwPfXuIpDdFyUmKqHsOuHsRvByEsOd"/>
+            <column name="description" value="YnBrHgJlYiMcAjFeKjGaLzCeQsXsCmVmEoTfNzLpKsDaZtWiNaUpBkOsOzUlRsDcIqDiDpHrVsRjQiUpIfPqUmIlCjWjMvCgIeXoLdXtOkOdOyYrFjJxIeGqLeGyAxIoZfJoBgFjRrFtEuIoObAiXxVuUkBwUhNnMyQuIjGkTgLiCbJcPlAxKxHoFnBoPsEcLeClKiRk"/>
+            <column name="workflow_type" value="ContentObject"/>
+            <column name="organization_id"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1595173273064-59">
+        <insert tableName="wf_workflow">
+            <column name="id" valueNumeric="-3"/>
+            <column name="createdby" value="BbOhNtRaSqTxKvIfTePvIcCeUlDnBuAsKkSuUdBeYbGzTbYkDcYtGfWtTuYrVqIaFiEwJaEwDtLyDhOpOnYeXlAjXhKjQqLzGlHk"/>
+            <column name="date_added" valueDate="2018-10-30T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
+            <column name="last_modifiedby" value="QqCvFtOqBnPdThAlBhSzIsZwOkCsTuFzCoYiHqTeQpGsWtDfOsKcJyNcDvSfDpLxOrNoViBeNqLeBaQrTgXxJvDfVwJjVyYiOhNz"/>
+            <column name="workflow_name" value="BwFsLaSlPlKsZkGzReKhIdYzJfInVpQzNrGaWbQvVmEmGxJbZcUqOfPfRaJqLhBuFyRxZiJkWnCcHvNzUqFwTxMaQlQqQlJsJkPbUfMvFfSvSkHbGlCrOvQgCfPgHtLnHhNvOoCiScYcRjQqEzLpUfGoUlRoQvSdMiVeOoCwSeLeJkJyEtIzEdAuPnAnZaRlFkDvYeRr"/>
+            <column name="workflow_type_id" valueNumeric="-3"/>
+        </insert>
+        <insert tableName="wf_workflow">
+            <column name="id" valueNumeric="-2"/>
+            <column name="createdby" value="XvFfNoNcDoVsKcZmNgIlQtPwZzKmNwTkOfVbGuUrJtMpBbVmCwSbOnStJuAaHnVsShRxDkEoZkCvRqOiLcJqXmMqQkDaAkOkJxAk"/>
+            <column name="date_added" valueDate="2018-10-30T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
+            <column name="last_modifiedby" value="YySwMyMzJbLtXdEaZlYqPkWaEbXqZwUvClEsCeZtLpXzMoPlUrHeIxWmZsIwVfOyCzUoWdQfRpGyYlYbPjLoOhTdXpRxEoApYdZu"/>
+            <column name="workflow_name" value="HyShWoLdOzVaNmFuEnOsHxAgEnKcVaRsAcIgQsOmWcWvKuKpIbPlFsDrUxJlCiLsWpEyLpArSnPqSaJoKvKkWqBfXlFyPsJqDaXtWcHlRaVdEmTyLqZrSxRaVmAeBpRlBbIbFsWqMwWqEvLeTlLzGuCyZjKbTvAdMzHbGvLpAnOaUyYbVpSlZaTzXnFhRyTvByGqGpHe"/>
+            <column name="workflow_type_id" valueNumeric="-2"/>
+        </insert>
+        <insert tableName="wf_workflow">
+            <column name="id" valueNumeric="-1"/>
+            <column name="createdby" value="QiOiTqSzDkOvTjHhCoKxToHfDwPwKcOzRyDoBaLiXgSdTaNoZuWuAzLqOnUuHxVvYwUjGdMrQnHeDmBdDjReSrUpLrMaLsHmYoGd"/>
+            <column name="date_added" valueDate="2018-10-30T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
+            <column name="last_modifiedby" value="GgMzEfAwWtUqYwBeHxLqZkIaReRdOiFfSsWpUqWnQpXnPcQiDwRtGyIxVuZaCrDeJkSaEqWwPfXuIpDdFyUmKqHsOuHsRvByEsOd"/>
+            <column name="workflow_name" value="YnBrHgJlYiMcAjFeKjGaLzCeQsXsCmVmEoTfNzLpKsDaZtWiNaUpBkOsOzUlRsDcIqDiDpHrVsRjQiUpIfPqUmIlCjWjMvCgIeXoLdXtOkOdOyYrFjJxIeGqLeGyAxIoZfJoBgFjRrFtEuIoObAiXxVuUkBwUhNnMyQuIjGkTgLiCbJcPlAxKxHoFnBoPsEcLeClKiRk"/>
+            <column name="workflow_type_id" valueNumeric="-1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="John (generated)" id="1595173273064-60">
+        <insert tableName="wf_workflow_detail">
+            <column name="id" valueNumeric="-3"/>
+            <column name="apply" valueBoolean="false"/>
+            <column name="approval" valueBoolean="false"/>
+            <column name="cancel" valueBoolean="false"/>
+            <column name="email" valueBoolean="false"/>
+            <column name="seq" valueNumeric="241915656"/>
+            <column name="activity_id" valueNumeric="-3"/>
+            <column name="workflow_id" valueNumeric="-3"/>
+        </insert>
+        <insert tableName="wf_workflow_detail">
+            <column name="id" valueNumeric="-2"/>
+            <column name="apply" valueBoolean="false"/>
+            <column name="approval" valueBoolean="false"/>
+            <column name="cancel" valueBoolean="false"/>
+            <column name="email" valueBoolean="false"/>
+            <column name="seq" valueNumeric="1148576883"/>
+            <column name="activity_id" valueNumeric="-2"/>
+            <column name="workflow_id" valueNumeric="-2"/>
+        </insert>
+        <insert tableName="wf_workflow_detail">
+            <column name="id" valueNumeric="-1"/>
+            <column name="apply" valueBoolean="false"/>
+            <column name="approval" valueBoolean="false"/>
+            <column name="cancel" valueBoolean="false"/>
+            <column name="email" valueBoolean="false"/>
+            <column name="seq" valueNumeric="228139326"/>
+            <column name="activity_id" valueNumeric="-1"/>
+            <column name="workflow_id" valueNumeric="-1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

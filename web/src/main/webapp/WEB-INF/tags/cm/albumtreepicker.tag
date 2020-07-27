@@ -1,15 +1,15 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ include file="/common/tagcommlibs.jsp"%>
-<%@ tag import="com.mds.cm.content.GalleryBoCollection" %>
-<%@ tag import="com.mds.cm.content.AlbumBo" %>
-<%@ tag import="com.mds.core.UiTemplateType" %>
-<%@ tag import="com.mds.core.SecurityActions" %>
-<%@ tag import="com.mds.util.StringUtils" %>
-<%@ tag import="com.mds.cm.util.CMUtils" %>
-<%@ tag import="com.mds.cm.util.AlbumTreeViewBuilder" %>
-<%@ tag import="com.mds.cm.rest.TreeViewOptions" %>
-<%@ tag import="com.mds.cm.rest.TreeView" %>
-<%@ tag import="com.mds.common.mapper.JsonMapper" %>
+<%@ tag import="com.mds.aiotplayer.cm.content.GalleryBoCollection" %>
+<%@ tag import="com.mds.aiotplayer.cm.content.AlbumBo" %>
+<%@ tag import="com.mds.aiotplayer.core.UiTemplateType" %>
+<%@ tag import="com.mds.aiotplayer.core.SecurityActions" %>
+<%@ tag import="com.mds.aiotplayer.util.StringUtils" %>
+<%@ tag import="com.mds.aiotplayer.cm.util.CMUtils" %>
+<%@ tag import="com.mds.aiotplayer.cm.util.AlbumTreeViewBuilder" %>
+<%@ tag import="com.mds.aiotplayer.cm.rest.TreeViewOptions" %>
+<%@ tag import="com.mds.aiotplayer.cm.rest.TreeView" %>
+<%@ tag import="com.mds.aiotplayer.common.mapper.JsonMapper" %>
 
 <%@ attribute name="id" type="java.lang.String" required="true"%>
 <%@ attribute name="keyName" type="java.lang.String" required="true" description="hidden field（ID）"%>
@@ -25,8 +25,8 @@
 <%@ attribute name="navigateUrl" type="java.lang.String" required="false"%>
 <%@ attribute name="enableCheckboxPlugin" type="java.lang.Boolean" required="true"%>
 <%@ attribute name="requireAlbumSelection" type="java.lang.Boolean" required="false"%>
-<%@ attribute name="selectedAlbumIds" type="com.mds.core.LongCollection" required="false"%>
-<%@ attribute name="galleries" type="com.mds.cm.content.GalleryBoCollection" required="false"%>
+<%@ attribute name="selectedAlbumIds" type="com.mds.aiotplayer.core.LongCollection" required="false"%>
+<%@ attribute name="galleries" type="com.mds.aiotplayer.cm.content.GalleryBoCollection" required="false"%>
 
 <%@ attribute name="cssClass" type="java.lang.String" required="false" description="css class"%>
 <%@ attribute name="cssStyle" type="java.lang.String" required="false" description="css style"%>

@@ -1,3 +1,4 @@
+<%@tag pageEncoding="UTF-8" description="paging" %>
 <%@ tag body-content="empty" %>
 <%@ attribute name="group" required="false" %>
 <%@ attribute name="type" required="false" %>

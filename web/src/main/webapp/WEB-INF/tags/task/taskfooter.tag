@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fns" uri="/WEB-INF/tlds/fns.tld" %>
 
-<%@ tag import="com.mds.common.Constants" %>
+<%@ tag import="com.mds.aiotplayer.common.Constants" %>
 <%@ tag import="org.apache.commons.lang.StringUtils" %>
 
 <%@ attribute name="task_Ok_Button_Text" type="java.lang.String" required="false" description="OK button text"%>

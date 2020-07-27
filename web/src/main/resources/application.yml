@@ -1,0 +1,223 @@
+########################
+# MDSPlus Settings
+#
+# MDSPlus home/installation directory
+# REQUIRED to be specified in this application.properties file, as it is used to locate and initialize
+# the MDSPlus Kernel and all Services (including configuration). See com.mds.aiotplayer.app.rest.Application.getMDSHome()
+# NOTE: this configuration is filled out by Apache Ant during the MDSPlus install/update process. It does NOT
+# interact with or read its configuration from mds.cfg.
+mdsplus.home: ${mdsplus.home}
+
+##############################
+#       Spring Config        #
+##############################
+spring:
+ application.name: MDSPlus Web Application
+ main.allow-bean-definition-overriding: true
+ #h2.console.enabled: true
+ ########################
+ # Spring DATA Rest settings
+ #
+ data.rest.basePath: 
+
+ ########################
+ # Jackson serialization settings
+ #
+ jackson.serialization.fail-on-empty-beans: false
+ 
+ #security.filter.dispatcher-types: async,error,forward,request
+
+ ########################
+ # Internationalization
+ #
+ # Base Path for our messages file (i18n)
+ messages.basename: ApplicationResources
+ messages.encoding: UTF-8
+ messages.use-code-as-default-message: true
+ messages.fallback-to-system-locale: true
+ 
+ ########################
+ # URI Encoding and Decoding
+ #
+ #
+ servlet:
+  multipart:
+   max-file-size: 536870912
+   max-request-size: 536870912
+ http:
+  multipart:
+   max-file-size: 536870912
+   max-request-size: 536870912
+   location: ${mdsplus.home} 
+  encoding:
+   # Charset of HTTP requests and responses. Added to the "Content-Type" header if not set explicitly. 
+   charset: UTF-8
+   # Enable http encoding support.
+   enabled: true
+   # Force the encoding to the configured charset on HTTP requests and responses.
+   force: true
+ mvc:
+  view:
+   suffix: .jsp
+   prefix: /WEB-INF/pages/
+  servlet:
+   #load-on-startup: 1
+   path: /app
+ datasource:
+  url: 'jdbc:mysql://192.168.0.110/mmds-dev?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true'
+  username: root
+  password: mdsplus
+  driver-class-name: com.mysql.cj.jdbc.Driver
+ jpa:
+  database-platform: org.hibernate.dialect.MySQL57Dialect
+  show-sql: true
+  open-in-view: true
+  #hibernate.ddl-auto: none
+  hibernate.ddl-auto: update
+  #hibernate.ddl-auto: create-drop
+  hibernate.jdbc.batch_size: 20
+  hibernate.order_inserts: true
+  hibernate.order_updates: true
+  hibernate.jdbc.batch_versioned_data: true
+  #hibernate.current_session_context_class: org.hibernate.context.internal.ThreadLocalSessionContext
+  properties:
+   jadira.usertype.autoRegisterUserTypes: true
+   net.sf.ehcache.configurationResourceName: 'file:${mdsplus.home}/config/hibernate-ehcache-config.xml'
+   javax.persistence.sharedCache.mode: ENABLE_SELECTIVE
+   hibernate:
+    configLocation: 'file:${mdsplus.home}/config/hibernate.cfg.xml'
+    jdbc.batch_size: 20
+    current_session_context_class: org.hibernate.context.internal.ThreadLocalSessionContext
+    order_inserts: true
+    order_updates: true
+    jdbc.batch_versioned_data: true
+    generate_statistics: false
+    use_structured_entries: true
+    enable_lazy_load_no_trans: true
+    format_sql: true
+    search:
+     lucene_version: LUCENE_5_5_5
+     default:
+      directory_provider: filesystem
+      indexBase: '${mdsplus.home}/lucene2'
+     #indexmanager: near-real-time
+    cache:
+     use_second_level_cache: true
+     use_query_cache: true
+     region:
+      factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory 
+    
+ # LIQUIBASE (LiquibaseProperties)
+ liquibase: 
+  change-log: 'classpath:/liquibase/mds_db.changelog.xml' # Change log configuration path.
+  #check-change-log-location: true # Whether to check that the change log location exists.
+  contexts: default,development # Comma-separated list of runtime contexts to use.
+  #database-change-log-lock-table: DATABASECHANGELOGLOCK # Name of table to use for tracking concurrent Liquibase usage.
+  #database-change-log-table: DATABASECHANGELOG # Name of table to use for tracking change history.
+  default-schema:  # Default database schema.
+  drop-first: false  # Whether to first drop the database schema.
+  enabled: true # Whether to enable Liquibase support.
+  #labels:  # Comma-separated list of runtime labels to use.
+  #liquibase-schema: # Schema to use for Liquibase objects.
+  #liquibase-tablespace: # Tablespace to use for Liquibase objects.
+  #'parameters.*':  # Change log parameters.
+  #password:  # Login password of the database to migrate.
+  #rollback-file: # File to which rollback SQL is written when an update is performed.
+  #test-rollback-on-update: false # Whether rollback should be tested before update is performed.
+  #url:  # JDBC URL of the database to migrate. If not set, the primary configured data source is used.
+  #user:  # Login user of the database to migrate.
+ 
+ # class path resource [processes/] cannot be resolved to URL because it does not exist 
+ activiti:
+  check-process-definitions: false
+  jpaEnabled: false
+  #databaseSchemaUpdate: true     
+
+#security:
+# basic:
+#  enabled: false
+  
+###########################
+# Embedded Tomcat Settings
+#
+server:
+ # Change application port (for embedded Tomcat)
+ # Spring Boot app will be available at http://localhost:[server.port]/
+ port: 8080
+ 
+ # This creates a Tomcat context-param named "mdsplus.home"
+ # and sets it to the value of the "mdsplus.home" property (listed above)
+ context-parameters.mdsplus.home: ${mdsplus.home}
+  
+ # This creates a Tomcat context-param named "mds-config"
+ # (Used by MDSContextListener to load the configurations)
+ # This is only needed in MDSPlus or below to initialize ConfigurationManager
+ #context-parameters.mds-config=${mdsplus.home}/config/mds.cfg
+
+ # Context path where application should be made available
+ # (Optional, defaults to root context)
+ #context-path=/spring-data-rest
+ 
+ # Error handling settings
+ # Always include the fullstacktrace in error pages
+ # (Our Error page hides this stacktrace so it only is visible in HTML source)
+ # Can be set to "never" if you don't want it.
+ error.include-stacktrace: always
+ 
+ compression:
+  enabled: true
+  mime-types: application/json,application/xml,text/html,text/xml,text/plain
+  
+  
+management:
+ endpoint:
+  health.show-details: always
+ endpoints.web.exposure.include: ['health', 'info', 'env']
+
+##############################
+# MDSPlus API CORS Settings  #
+##############################
+rest.cors.allowed-origins: '*'
+rest.cors.allow-credentials: true
+
+#########################
+# Spring Boot Logging levels
+##############################
+logging:
+ config: ${mdsplus.home}/config/log4j2.xml
+ #level:
+  #com.mds: DEBUG 
+  #org.springframework.boot : DEBUG
+  #org.springframework.web : DEBUG
+  #org.springframework.data : DEBUG
+  #org.hibernate:  DEBUG #ERROR
+
+##############################
+#    Application Specific    #
+##############################
+
+mds:
+ # MdsPlus installation directory
+ dir: ${mdsplus.home}
+ #dir=d:/install/mdsplus
+ rootfolder: ${mdsplus.home}
+ #concurrent-download: 2
+ #max-update-parallels: 3
+ #cover-default-name: cover
+ number-of-day-to-download: 30
+ number-of-day-to-save-cover: 30
+ #number-of-try: 10
+ #download-extension: .psdownload
+ #rss-default-number-item: 50
+ update-and-download.refresh.cron: 0 0 0 * * ?
+ backup :
+  location: ${mdsplus.home}/backup/
+  cron: 0 30 4 * * ?
+  binary: false
+  enabled: true
+ externaltools:
+  rtmpdump: ${mdsplus.home}/bin/rtmpdump.exe
+  ffmpeg: ${mdsplus.home}/bin/ffmpeg.exe
+  ffprobe: ${mdsplus.home}/bin/ffprobe.exe
+
+service.manager.developing: true

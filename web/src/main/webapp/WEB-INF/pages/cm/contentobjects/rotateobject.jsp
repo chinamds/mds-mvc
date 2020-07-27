@@ -1,7 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 
-<%@ page import="com.mds.core.ResourceId" %>
-<%@ page import="com.mds.util.Utils" %>
+<%@ page import="com.mds.aiotplayer.core.ResourceId" %>
+<%@ page import="com.mds.aiotplayer.util.Utils" %>
 
 <head>
     <title><fmt:message key="task.rotateImage.Page_Title"/></title>

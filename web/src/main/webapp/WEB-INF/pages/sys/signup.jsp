@@ -1,8 +1,8 @@
 <%@ include file="/common/taglibs.jsp" %>
 
-<page:applyDecorator name="default_login">
 <head>
     <title><fmt:message key="signup.title"/></title>
+    <meta name="decorator" content="default_login"/>
 </head>
 
 <body id="signup" class="signup" />
@@ -97,4 +97,3 @@
 <v:javascript formName="signup" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value="/static/scripts/validator.jsp"/>"></script>
 </c:set>
-</page:applyDecorator>

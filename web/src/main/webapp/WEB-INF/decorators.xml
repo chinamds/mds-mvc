@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <decorators defaultdir="/decorators">
     <excludes>
-    	<pattern>/home</pattern>
-    	<pattern>/login</pattern>
-    	<pattern>/sys/myCalendars/new*</pattern>
-    	<pattern>/sys/myCalendars/view*</pattern>
-        <pattern>/40*.jsp</pattern>
+    	<pattern>/app/home</pattern>
+    	<!-- <pattern>/app/login</pattern> -->
+    	<pattern>/app/sys/myCalendars/new*</pattern>
+    	<pattern>/app/sys/myCalendars/view*</pattern>
+        <!-- <pattern>/40*.jsp</pattern> -->
         <pattern>/*ajax=true*</pattern>
         <pattern>/struts/*</pattern>
         <pattern>/resources/*</pattern>
         <pattern>/static/*</pattern>
+        <pattern>/assets/*</pattern>
+        <pattern>/services/api/*</pattern>
     </excludes> 
     <decorator name="default" page="default.jsp">
         <pattern>/*</pattern>

@@ -10,7 +10,7 @@
     <uri>http://www.appfuse.org/tags/spring</uri>
     <tag>
         <name>label</name>
-        <tag-class>com.mds.common.webapp.taglib.LabelTag</tag-class>
+        <tag-class>com.mds.aiotplayer.webapp.common.taglib.LabelTag</tag-class>
         <body-content>JSP</body-content>
         <attribute>
             <name>key</name>
@@ -35,8 +35,8 @@
     </tag>
     <tag>
         <name>constants</name>
-        <tag-class>com.mds.common.webapp.taglib.ConstantsTag</tag-class>
-        <tei-class>com.mds.common.webapp.taglib.ConstantsTei</tei-class>
+        <tag-class>com.mds.aiotplayer.webapp.common.taglib.ConstantsTag</tag-class>
+        <tei-class>com.mds.aiotplayer.webapp.common.taglib.ConstantsTei</tei-class>
         <body-content>empty</body-content>
         <attribute>
             <name>className</name>
@@ -53,7 +53,7 @@
             Tag surrounds JSP code in which EL expressions should not be XML-escaped.
         </description>
         <name>out</name>
-        <tag-class>com.mds.common.webapp.taglib.OutTag</tag-class>
+        <tag-class>com.mds.aiotplayer.webapp.common.taglib.OutTag</tag-class>
         <body-content>JSP</body-content>
         <attribute>
             <description>
