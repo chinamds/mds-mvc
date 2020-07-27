@@ -6,79 +6,155 @@
         <!--
          NOTE: If you are looking for the Hibernate database connection info,
          it is initialized via the beans in
-         [mds.dir]/config/spring/api/core-hibernate.xml
+         [mdsplus.home]/config/spring/api/core-hibernate.xml
         -->
 
         <property name="hibernate.hbm2ddl.auto">validate</property>
         <property name="hibernate.hbm2ddl.import_files_sql_extractor">org.hibernate.tool.hbm2ddl.SingleLineSqlCommandExtractor</property>
-        <property name="hibernate.connection.autocommit">false</property>
+        <!-- <property name="hibernate.connection.autocommit">false</property> -->
         <property name="hibernate.jdbc.batch_size">20</property>
-        <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+        <!--Aync transactionManager will failure-->
+        <!-- <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property> -->
 
         <!--Debug property that can be used to display the sql-->
-        <property name="show_sql">false</property>
+        <property name="show_sql">true</property>
 
-        <!--Second level cache configuration-->
+        <!--Second level cache configuration, must SingletonEhCacheRegionFactory
+         , EhCacheRegionFactory name='com.mds.hibernate' in hibernate-ehcache-config.xml is invalid-->
         <property name="hibernate.cache.use_query_cache">true</property>
         <property name="hibernate.cache.use_second_level_cache">true</property>
         <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</property>
         <property name="hibernate.cache.use_structured_entries">true</property>
         <property name="javax.persistence.sharedCache.mode">ENABLE_SELECTIVE</property>
+        
+        <property name="hibernate.search.default.indexBase">${mdsplus.home}/lucene2</property>
+        <property name="hibernate.search.default.directory_provider">filesystem</property>
+        <property name="hibernate.search.lucene_version">LUCENE_5_5_5</property>
+        <property name="hibernate.search.analyzer">org.apache.lucene.analysis.en.EnglishAnalyzer</property>
+        <property name="hibernate.search.worker.batch_size">100</property>
         <!-- Set in config/spring/api/core-hibernate.xml -->
-        <!--<property name="net.sf.ehcache.configurationResourceName">file:${mds.dir}/config/hibernate-ehcache-config.xml</property>-->
+        <!--<property name="net.sf.ehcache.configurationResourceName">file:${mdsplus.home}/config/hibernate-ehcache-config.xml</property>-->
 
 
         <!-- Entities to be loaded by hibernate -->
-        <mapping class="com.mds.app.util.WebApp"/>
-
-        <mapping class="com.mds.authorize.ResourcePolicy"/>
-
-        <mapping class="com.mds.checker.ChecksumHistory"/>
-        <mapping class="com.mds.checker.ChecksumResult"/>
-        <mapping class="com.mds.checker.MostRecentChecksum"/>
-
-        <mapping class="com.mds.content.MDSObject"/>
-        <mapping class="com.mds.content.Bitstream"/>
-        <mapping class="com.mds.content.BitstreamFormat"/>
-        <mapping class="com.mds.content.Bundle"/>
-        <mapping class="com.mds.content.Collection"/>
-        <mapping class="com.mds.content.Community"/>
-        <mapping class="com.mds.content.Item"/>
-        <mapping class="com.mds.content.MetadataField"/>
-        <mapping class="com.mds.content.MetadataSchema"/>
-        <mapping class="com.mds.content.MetadataValue"/>
-        <mapping class="com.mds.content.Site"/>
-        <mapping class="com.mds.content.WorkspaceItem"/>
-
-        <mapping class="com.mds.eperson.EPerson"/>
-        <mapping class="com.mds.eperson.Group"/>
-        <mapping class="com.mds.eperson.Group2GroupCache"/>
-        <mapping class="com.mds.eperson.RegistrationData"/>
-        <mapping class="com.mds.eperson.Subscription"/>
-
-        <mapping class="com.mds.handle.Handle"/>
-
-        <mapping class="com.mds.harvest.HarvestedCollection"/>
-        <mapping class="com.mds.harvest.HarvestedItem"/>
-
-        <mapping class="com.mds.identifier.DOI"/>
-
-        <mapping class="com.mds.versioning.Version"/>
-        <mapping class="com.mds.versioning.VersionHistory"/>
-
-        <mapping class="com.mds.app.requestitem.RequestItem"/>
-
-        <!--Basic workflow services, comment or remove when switching to the configurable workflow -->
-        <mapping class="com.mds.workflowbasic.BasicWorkflowItem"/>
-        <mapping class="com.mds.workflowbasic.TaskListItem"/>
-
-        <!--Configurable workflow services, uncomment the xml workflow classes below to enable the configurable workflow-->
-        <!--<mapping class="com.mds.xmlworkflow.storedcomponents.ClaimedTask"/>
-        <mapping class="com.mds.xmlworkflow.storedcomponents.CollectionRole"/>
-        <mapping class="com.mds.xmlworkflow.storedcomponents.InProgressUser"/>
-        <mapping class="com.mds.xmlworkflow.storedcomponents.PoolTask"/>
-        <mapping class="com.mds.xmlworkflow.storedcomponents.WorkflowItemRole"/>
-        <mapping class="com.mds.xmlworkflow.storedcomponents.XmlWorkflowItem"/>-->
+        <mapping class="com.mds.aiotplayer.common.model.Country"/>
+    	<mapping class="com.mds.aiotplayer.common.model.State"/>
+    	<mapping class="com.mds.aiotplayer.common.model.Currency"/>
+    	<mapping class="com.mds.aiotplayer.common.model.ZipCode"/>
+    	<mapping class="com.mds.aiotplayer.common.model.ZipCodeType"/>
+    	<mapping class="com.mds.aiotplayer.common.model.CardType"/>
+    	
+    	<mapping class="com.mds.aiotplayer.sys.model.Tenant"/>
+    	<mapping class="com.mds.aiotplayer.sys.model.AppSetting"/>
+    	<mapping class="com.mds.aiotplayer.sys.model.TaskDefinition"/>
+    	<mapping class="com.mds.aiotplayer.sys.model.Area"/>
+    	<mapping class="com.mds.aiotplayer.sys.model.Organization"/>
+    	<mapping class="com.mds.aiotplayer.sys.model.OrganizationLogo"/>
+    	<mapping class="com.mds.aiotplayer.sys.model.MenuFunction"/>
+        <mapping class="com.mds.aiotplayer.sys.model.User"/>
+        <mapping class="com.mds.aiotplayer.sys.model.UserPhoto"/>
+        <mapping class="com.mds.aiotplayer.sys.model.UserAddress"/>
+        <mapping class="com.mds.aiotplayer.sys.model.UserContact"/>
+        <!-- <mapping class="com.mds.aiotplayer.sys.model.UserOnline"/>
+        <mapping class="com.mds.aiotplayer.sys.model.UserLastOnline"/> -->
+        <mapping class="com.mds.aiotplayer.sys.model.UserStatusHistory"/>
+        <mapping class="com.mds.aiotplayer.sys.model.Auth"/>
+        <mapping class="com.mds.aiotplayer.sys.model.Role"/>
+        <mapping class="com.mds.aiotplayer.sys.model.Permission"/>
+        <mapping class="com.mds.aiotplayer.sys.model.Log"/>
+        <mapping class="com.mds.aiotplayer.sys.model.Dict"/>
+        <mapping class="com.mds.aiotplayer.sys.model.MenuFunctionPermission"/>
+        <mapping class="com.mds.aiotplayer.sys.model.Setting"/>
+        <mapping class="com.mds.aiotplayer.sys.model.SettingMst"/>
+        <mapping class="com.mds.aiotplayer.sys.model.Module"/>
+        <mapping class="com.mds.aiotplayer.sys.model.AutoUpdate"/>
+        <mapping class="com.mds.aiotplayer.sys.model.AutoUpdateFile"/>
+        <mapping class="com.mds.aiotplayer.sys.model.Notification"/>
+        <mapping class="com.mds.aiotplayer.sys.model.NotificationTemplate"/>
+        <mapping class="com.mds.aiotplayer.sys.model.MyMessage"/>
+        <mapping class="com.mds.aiotplayer.sys.model.MyCalendar"/>
+        <mapping class="com.mds.aiotplayer.sys.model.MyMessageContent"/>
+        <mapping class="com.mds.aiotplayer.sys.model.MyMessageRecipient"/>
+        <mapping class="com.mds.aiotplayer.sys.model.MyMessageReFw"/>
+        
+        <mapping class="com.mds.aiotplayer.hrm.model.Staff"/>
+        <mapping class="com.mds.aiotplayer.hrm.model.IdentityType"/>
+        <mapping class="com.mds.aiotplayer.hrm.model.Department"/>
+        <mapping class="com.mds.aiotplayer.hrm.model.Position"/>
+        <mapping class="com.mds.aiotplayer.hrm.model.StaffDepartment"/>
+        <mapping class="com.mds.aiotplayer.hrm.model.StaffPosition"/>
+        <mapping class="com.mds.aiotplayer.hrm.model.StaffIdentity"/>
+                
+        <mapping class="com.mds.aiotplayer.wf.model.OrganizationWorkflowType"/>
+        <mapping class="com.mds.aiotplayer.wf.model.Activity"/>
+        <mapping class="com.mds.aiotplayer.wf.model.ActivityOrganizationUser"/>
+        <mapping class="com.mds.aiotplayer.wf.model.Workflow"/>
+        <mapping class="com.mds.aiotplayer.wf.model.WorkflowDetail"/>
+        
+        <mapping class="com.mds.aiotplayer.i18n.model.Culture"/>
+        <mapping class="com.mds.aiotplayer.i18n.model.LocalizedResource"/>
+        <mapping class="com.mds.aiotplayer.i18n.model.NeutralResource"/>
+        
+        <mapping class="com.mds.aiotplayer.cm.model.ContentType"/>
+        <mapping class="com.mds.aiotplayer.cm.model.Album"/>
+        <mapping class="com.mds.aiotplayer.cm.model.ContentObject"/>
+        <mapping class="com.mds.aiotplayer.cm.model.ContentQueue"/>
+        <mapping class="com.mds.aiotplayer.cm.model.ContentTemplate"/>
+        <mapping class="com.mds.aiotplayer.cm.model.Gallery"/>
+        <mapping class="com.mds.aiotplayer.cm.model.GalleryMapping"/>
+        <mapping class="com.mds.aiotplayer.cm.model.GalleryControlSetting"/>
+        <mapping class="com.mds.aiotplayer.cm.model.GallerySetting"/>
+        <mapping class="com.mds.aiotplayer.cm.model.Metadata"/>
+        <mapping class="com.mds.aiotplayer.cm.model.MetadataTag"/>
+        <mapping class="com.mds.aiotplayer.cm.model.MimeType"/>
+        <mapping class="com.mds.aiotplayer.cm.model.MimeTypeGallery"/>
+        <mapping class="com.mds.aiotplayer.cm.model.Synchronize"/>
+        <mapping class="com.mds.aiotplayer.cm.model.Tag"/>
+        <mapping class="com.mds.aiotplayer.cm.model.UiTemplate"/>
+        <mapping class="com.mds.aiotplayer.cm.model.UserGalleryProfile"/>
+        <mapping class="com.mds.aiotplayer.cm.model.ContentWorkflow"/>
+        <mapping class="com.mds.aiotplayer.cm.model.ContentActivity"/>
+        <mapping class="com.mds.aiotplayer.cm.model.Banner"/>
+        <mapping class="com.mds.aiotplayer.cm.model.Clock"/>
+        <mapping class="com.mds.aiotplayer.cm.model.Weather"/>
+        <mapping class="com.mds.aiotplayer.cm.model.Slideshow"/>
+        <mapping class="com.mds.aiotplayer.cm.model.ContentList"/>
+        <mapping class="com.mds.aiotplayer.cm.model.ContentListItem"/>
+        <mapping class="com.mds.aiotplayer.cm.model.ContentListZone"/>
+        <mapping class="com.mds.aiotplayer.cm.model.DailyList"/>
+        <mapping class="com.mds.aiotplayer.cm.model.DailyListItem"/>
+        <mapping class="com.mds.aiotplayer.cm.model.DailyListZone"/>
+        <mapping class="com.mds.aiotplayer.cm.model.DailyListWorkflow"/>
+        <mapping class="com.mds.aiotplayer.cm.model.DailyListActivity"/>
+    
+    	<mapping class="com.mds.aiotplayer.pl.model.Catalogue"/>   	  
+    	<mapping class="com.mds.aiotplayer.pl.model.Product"/>
+        <mapping class="com.mds.aiotplayer.pl.model.Zone"/>
+        <mapping class="com.mds.aiotplayer.pl.model.Playlist"/>   	  
+    	<mapping class="com.mds.aiotplayer.pl.model.PlaylistItem"/>
+        <mapping class="com.mds.aiotplayer.pl.model.AHPlaylist"/>
+        <mapping class="com.mds.aiotplayer.pl.model.LayoutMst"/>
+        <mapping class="com.mds.aiotplayer.pl.model.LayoutDtl"/>
+        
+        <mapping class="com.mds.aiotplayer.pm.model.Player"/>   	  
+    	<mapping class="com.mds.aiotplayer.pm.model.PlayerGroup"/>
+        <mapping class="com.mds.aiotplayer.pm.model.PlayerMapping"/>
+        <mapping class="com.mds.aiotplayer.pm.model.PlayerOutput"/>   	  
+    	<mapping class="com.mds.aiotplayer.pm.model.PlayerStatus"/>
+        <mapping class="com.mds.aiotplayer.pm.model.FileTransferStatus"/>
+        <mapping class="com.mds.aiotplayer.pm.model.FileTransferTask"/>
+        <mapping class="com.mds.aiotplayer.pm.model.PlayerTask"/>
+        <mapping class="com.mds.aiotplayer.pm.model.PlayerTaskScheduler"/>
+        <mapping class="com.mds.aiotplayer.pm.model.PlayerIdentity"/>
+    
+        <mapping class="com.mds.aiotplayer.ps.model.Channel"/>
+        <mapping class="com.mds.aiotplayer.ps.model.PlayerTuner"/>
+        <mapping class="com.mds.aiotplayer.ps.model.Calendar"/>
+        
+        <mapping class="com.mds.aiotplayer.msg.model.AHMessage"/>
+        <mapping class="com.mds.aiotplayer.msg.model.Message"/>
+        <mapping class="com.mds.aiotplayer.msg.model.MessageZone"/>
+        <mapping class="com.mds.aiotplayer.msg.model.MsgSending"/>
 
     </session-factory>
 </hibernate-configuration>

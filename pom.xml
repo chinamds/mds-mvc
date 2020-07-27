@@ -6,7 +6,7 @@
     <artifactId>mdsplus</artifactId>
     <packaging>pom</packaging>
     <version>2.0-SNAPSHOT</version>
-    <name>MDSPlus Application</name>
+    <name>MDSPlus Web Application</name>
     <description>Multimedia distribution service plus.</description>
   	<url>http://www.mmdsplus.com</url>
   	<inceptionYear>2016</inceptionYear>
@@ -15,30 +15,12 @@
 	    <url>http://www.mmdsplus.com</url>
 	</organization>
 
-    <!-- <parent>
-        <groupId>io.spring.platform</groupId>
-        <artifactId>platform-bom</artifactId>
-        <version>Cairo-RELEASE</version>
-    </parent> -->
-
     <repositories>       
 		<repository>
             <id>jfrog-repo</id>
             <name>jfrog Repository</name>
             <url>http://repo.jfrog.org/artifactory/libs-releases</url>
         </repository>
-        <repository>
-			<id>activiti-repos</id>
-			<name>Activiti Repository</name>
-			<url>https://maven.alfresco.com/nexus/content/groups/public</url>
-		</repository>
-		
-		<repository>
-			<id>activiti-repos2</id>
-			<name>Activiti Repository 2</name>
-			<url>https://app.camunda.com/nexus/content/groups/public</url>
-		</repository>
-
 		<repository>
 			<id>springsource-repos</id>
 			<name>SpringSource Repository</name>
@@ -52,6 +34,7 @@
     </repositories>
 
     <modules>
+        <module>mds-services</module>
         <module>core</module>
         <module>web</module>
     	<module>common</module>
@@ -456,7 +439,7 @@
                     <version>3.2.1</version>
                 </plugin>
                 <!-- Used for custom Groovy code that fills out the 'agnostic.build.dir' needed to
-                     set 'mds.home' for our testing environment -->
+                     set 'mdsplus.home' for our testing environment -->
                 <plugin>
                     <groupId>org.codehaus.gmaven</groupId>
                     <artifactId>groovy-maven-plugin</artifactId>
@@ -733,6 +716,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- HikariCP -->
+        <!-- <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikaricp.version}</version>
+        </dependency> -->
 						
 		<!-- redis begin -->
 		<dependency>
@@ -798,28 +788,20 @@
                 <artifactId>mdsplus-core</artifactId>
                 <version>2.0-SNAPSHOT</version>
             </dependency>
-            
-            <dependency>
-                <groupId>org.dspace</groupId>
-                <artifactId>handle</artifactId>
-                <version>6.2</version>
+             <dependency>
+                <groupId>com.mds</groupId>
+                <artifactId>mdsplus-web</artifactId>
+                <version>2.0-SNAPSHOT</version>
+                <type>jar</type>
+                <classifier>classes</classifier>
             </dependency>
             <dependency>
-                <groupId>org.dspace</groupId>
-                <artifactId>jargon</artifactId>
-                <version>1.4.25</version>
+                <groupId>com.mds</groupId>
+                <artifactId>mdsplus-web</artifactId>
+                <version>2.0-SNAPSHOT</version>
+                <type>war</type>
             </dependency>
-            <dependency>
-                <groupId>org.dspace</groupId>
-                <artifactId>mets</artifactId>
-                <version>1.5.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.dspace.dependencies</groupId>
-                <artifactId>dspace-tm-extractors</artifactId>
-                <version>1.0.1</version>
-            </dependency>
-            
+                        
             <!-- Explicitly Specify Latest Version of Spring -->
              <dependency>
                 <groupId>org.springframework</groupId>
@@ -1100,7 +1082,7 @@
                 <version>${javax-validation.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.hibernate</groupId>
+                <groupId>org.hibernate.validator</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate-validator.version}</version>
             </dependency>
@@ -1213,11 +1195,11 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <dependency>
+            <!-- <dependency>
                 <groupId>net.sf.ehcache</groupId>
                 <artifactId>ehcache-web</artifactId>
                 <version>${ehcache-web.version}</version>
-            </dependency>
+            </dependency> -->
             <dependency>
                 <groupId>org.apache.shale</groupId>
                 <artifactId>shale-test</artifactId>
@@ -1295,6 +1277,8 @@
                 </exclusions>
             </dependency>
             <dependency>
+                <!-- <groupId>org.sitemesh</groupId>
+                <artifactId>sitemesh</artifactId> -->
                 <groupId>opensymphony</groupId>
                 <artifactId>sitemesh</artifactId>
                 <version>${sitemesh.version}</version>
@@ -1610,9 +1594,16 @@
 	                </exclusion>
 	            </exclusions>
             </dependency>
+            
+            <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+	        <dependency>
+	            <groupId>org.mybatis</groupId>
+	            <artifactId>mybatis</artifactId>
+	            <version>3.5.0</version>
+	        </dependency>
 			
 			<!-- Activiti -->
-			<dependency>
+			<!-- <dependency>
 				<groupId>org.activiti</groupId>
 				<artifactId>activiti-engine</artifactId>
 				<version>${activiti.version}</version>
@@ -1621,6 +1612,10 @@
 						<groupId>org.slf4j</groupId>
 						<artifactId>slf4j-api</artifactId>
 					</exclusion>
+					<exclusion>
+                        <groupId>org.mybatis</groupId>
+                        <artifactId>mybatis</artifactId>
+                    </exclusion>
 				</exclusions>
 			</dependency>
 			<dependency>
@@ -1638,7 +1633,7 @@
 						<artifactId>slf4j-api</artifactId>
 					</exclusion>
 				</exclusions>
-			</dependency>
+			</dependency> -->
 			<!-- Activiti end-->
 			
 			<!-- Converge miscellaneous transitive dependencies. -->
@@ -1689,8 +1684,22 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>                   
-                                           
-			
+            
+            <!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
+			<dependency>
+			    <groupId>org.reflections</groupId>
+			    <artifactId>reflections</artifactId>
+			    <version>0.9.11</version>
+			</dependency>
+
+            <!-- https://mvnrepository.com/artifact/jakarta.activation/jakarta.activation-api -->
+			<dependency>
+			    <groupId>jakarta.activation</groupId>
+			    <artifactId>jakarta.activation-api</artifactId>
+			    <version>1.2.2</version>
+			    <scope>provided</scope>
+			</dependency>
+            			
 			<!-- redis begin -->
             <dependency>
                 <groupId>redis.clients</groupId>
@@ -2174,7 +2183,7 @@
                 <profile.id>development</profile.id>
                 
                 <db.name>mdsplus-dev</db.name>
-                <mds.home>D:/dcmtemp/20180408/mds_bootstrap4/mdsplus/mds</mds.home>
+                <mdsplus.home>D:/dcmtemp/20180408/mds_bootstrap4/mdsplus/mds</mdsplus.home>
                 <log.dir>${project.basedir}/logs</log.dir>
                 <shiro.uid.cookie.domain></shiro.uid.cookie.domain>
                 <shiro.uid.cookie.path>/</shiro.uid.cookie.path>
@@ -2356,9 +2365,8 @@
         <gin.version>2.1.2</gin.version>
         <hibernate.version>5.2.17.Final</hibernate.version>
         <hibernate-search.version>5.9.3.Final</hibernate-search.version>
-        <hibernate-validator.version>6.0.9.Final</hibernate-validator.version>
+        <hibernate-validator.version>6.0.18.Final</hibernate-validator.version>
         <querydsl.version>4.1.4</querydsl.version>
-        <!-- <hibernate-search-analyzers.version>4.5.3.Final</hibernate-search-analyzers.version> -->
         <javax-mail.version>1.4.7</javax-mail.version>
         <javax-validation.version>2.0.1.Final</javax-validation.version>
         <jetty.version>9.4.10.v20180503</jetty.version>
@@ -2388,7 +2396,7 @@
         <versions-maven-plugin.version>2.3</versions-maven-plugin.version>
         <git-commit-id-plugin.version>2.2.3</git-commit-id-plugin.version>
         
-        <ehcache.version>2.10.4</ehcache.version>
+        <ehcache.version>2.10.6</ehcache.version>
         <ehcache-core.version>2.6.11</ehcache-core.version>
 
 		<jena.version>2.13.0</jena.version>
@@ -2417,21 +2425,24 @@
         <jsoup.version>1.9.1</jsoup.version>
         <guava.version>20.0</guava.version>
         <tika.version>1.19.1</tika.version>
-        <druid.version>1.0.1</druid.version>
 		<activiti.version>5.22.0</activiti.version>
 		<fastjson.version>1.1.34</fastjson.version>
         <pdfbox-version>2.0.15</pdfbox-version>       
 		<poi-version>3.17</poi-version>
 		<solr.version>4.10.4</solr.version>
 		<rometools.version>1.12.0</rometools.version>
-		<!-- jdbc driver setting -->
+
+		<druid.version>1.1.20</druid.version>
+		<hikaricp.version>3.3.1</hikaricp.version>
         <jedis.version>2.9.0</jedis.version>		
+		<!-- jdbc driver setting -->
         <sqlite-jdbc.version>3.21.0.1</sqlite-jdbc.version>
         <h2.version>1.4.187</h2.version>       
 		<oracle.driver.version>10.2.0.1.0</oracle.driver.version>
 		<mssql.driver.version>1.3.1</mssql.driver.version>
 		<mysql.driver.version>8.0.15</mysql.driver.version>
 		<postgresql.driver.version>42.2.9</postgresql.driver.version>
+		<liquibase.version>3.8.2</liquibase.version>
 		<installDir>${project.build.directory}/install</installDir>
 		<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
 		<!-- <cargo.port>8080</cargo.port>

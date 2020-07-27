@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>mds-services</artifactId>
+    <packaging>jar</packaging>
+    <name>MDS Services Framework :: API and Implementation</name>
+
+    <parent>
+        <groupId>com.mds</groupId>
+        <artifactId>mdsplus</artifactId>
+        <version>2.0-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+    	<mysql.driver.version>8.0.15</mysql.driver.version>
+        <!-- This is the path to the root [mds-src] directory. -->
+        <root.basedir>${basedir}/..</root.basedir>
+    </properties>
+
+    <profiles>
+        <!-- If Unit Testing is enabled, then setup the Unit Test Environment.
+             See also the 'skiptests' profile in Parent POM. -->
+        <profile>
+            <id>test-environment</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>maven.test.skip</name>
+                    <value>false</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- This plugin allows us to run a Groovy script in our Maven POM
+                         (see: http://gmaven.codehaus.org/Executing+Groovy+Code )
+                         We are generating a OS-agnostic version (agnostic.build.dir) of
+                         the ${project.build.directory} property (full path of target dir).
+                         This is needed by the Surefire plugin (see below) to
+                         initialize the Unit Test environment's mdsplus.home setting.
+                         Otherwise, the Unit Test Framework will not work on Windows OS.
+                         This Groovy code was mostly borrowed from:
+                         http://stackoverflow.com/questions/3872355/how-to-convert-file-separator-in-maven
+                    -->
+                    <plugin>
+                        <groupId>org.codehaus.gmaven</groupId>
+                        <artifactId>groovy-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>setproperty</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <source>
+                                        project.properties['agnostic.build.dir'] = project.build.directory.replace(File.separator, '/');
+                                        println("Initializing Maven property 'agnostic.build.dir' to: " + project.properties['agnostic.build.dir']);
+                                    </source>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.codehaus.groovy</groupId>
+                                <artifactId>groovy-all</artifactId>
+                                <version>3.0.0</version>
+                                <scope>runtime</scope>
+                                <type>pom</type>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+
+                    <!-- Run Unit Testing! This plugin just kicks off the tests (when enabled). -->
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <!-- Specify the mdsplus.home to use for test environment -->
+                                <!-- For "mds-services" we don't need a full test environment, we just need
+                                     a valid "config-definition.xml" which exists in target/test-classes/ -->
+                                <mdsplus.home>${agnostic.build.dir}/test-classes/</mdsplus.home>
+                            </systemPropertyVariables>
+                            <!-- Detailed logs in reportsDirectory/testName-output.txt instead of stdout -->
+                    		<redirectTestOutputToFile>true</redirectTestOutputToFile>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <!-- spring service manager -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- this needs to eventually go into common/lib for tomcat 5 -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>${ehcache-core.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- for filters -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- SPECIAL CASE - need JUNIT at build time and testing time -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- testing only -->
+        <dependency>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>jetty</artifactId>
+            <version>6.1.26</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>jetty-servlet-tester</artifactId>
+            <version>6.1.26</version>
+            <scope>test</scope>
+        </dependency>      
+        <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+        </dependency>
+        <dependency>
+             <groupId>org.apache.commons</groupId>
+             <artifactId>commons-configuration2</artifactId>
+        </dependency>
+        <!-- <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+        </dependency> -->
+        <!-- Required by Commons Configuration -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+    </dependencies>
+
+    <developers>
+        <developer>
+            <id>azeckoski</id>
+            <name>Aaron Zeckoski</name>
+            <email>azeckoski@gmail.com</email>
+            <url>http://wiki.sakaiproject.org/confluence/display/~aaronz
+            </url>
+            <organization>CARET, University of Cambridge</organization>
+            <organizationUrl>http://caret.cam.ac.uk/
+            </organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>committer</role>
+            </roles>
+            <timezone>0</timezone>
+        </developer>
+        <developer>
+            <id>mdiggory</id>
+            <name>Mark Diggory</name>
+            <email>mdiggory@atmire.com</email>
+            <roles>
+                <role>architect</role>
+                <role>committer</role>
+            </roles>
+            <organization>@mire</organization>
+            <organizationUrl>http://www.atmire.com</organizationUrl>
+            <timezone>-8</timezone>
+        </developer>
+    </developers>
+    
+</project>

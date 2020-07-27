@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration strict='true'
+               xmlns='http://logging.apache.org/log4j/2.0/config'>
+    <Properties>
+        <!-- Default log file directory for MDSPlus.
+             NOTE: The value of 'mdsplus.home' will be replaced by its value in
+             your configuration when MDSPlus is installed. -->
+        <Property name='log.dir'>${log4j:configParentLocation}/../logs</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%p [%t] %c{1}.%M(%L) | %m%n"/>
+        </Console>
+        <RollingFile name="RollingFile" fileName="${log.dir}/mds.log"
+             filePattern="${log.dir}/$${date:yyyy-MM}/mds-%d{MM-dd-yyyy}-%i.log.gz">
+             <PatternLayout pattern="[%-5p] %d %c - %m%n" />
+             <Policies>
+                    <TimeBasedTriggeringPolicy />
+                    <SizeBasedTriggeringPolicy size="1024 KB" />
+             </Policies>
+             <DefaultRolloverStrategy max="20"/>
+       </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="net.sf.ehcache" level="error"/>
+        <!-- Suppress success logging from InteractiveAuthenticationSuccessEvent -->
+        <Logger name="org.springframework.security" level="debug"/>
+        <Logger name="org.springframework.boot" level="info"/>
+        <Logger name="org.apache" level="error"/>
+        <Logger name="org.apache.velocity" level="fatal"/>
+        <Logger name="org.dbunit" level="warn"/>
+        <Logger name="org.hibernate" level="warn"/>
+        <Logger name="org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory" level="error" />
+        <Logger name="liquibase" level="info"/>
+        <Logger name="org.activiti" level="debug"/>
+        <Logger name="org.tuckey" level="debug"/>
+        <Logger name="org.sitemesh" level="debug"/>
+        <Logger name="ro.isdc.wro" level="SEVERE"/>
+        
+        <!-- Uncomment if you want to see Hibernate's SQL -->
+        <!--<Logger name="org.hibernate.SQL" level="debug"/>-->
+        <Logger name="org.springframework" level="warn"/>
+        <Logger name="com.mds" level="debug"/>
+        <Logger name="com.mds.aiotplayer.tool" level="info"/>
+
+        <Root level="warn">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile" />
+        </Root>
+    </Loggers>
+</Configuration>
