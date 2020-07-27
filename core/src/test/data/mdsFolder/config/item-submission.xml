@@ -32,10 +32,10 @@
     <!-- -->
     <!-- <processing-class> - The class which will process all information for -->
     <!-- this step. The class must extend -->
-    <!-- 'com.mds.submit.AbstractProcessingStep' -->
-    <!-- (or one of the com.mds.submit.step.* classes) -->
+    <!-- 'com.mds.aiotplayer.submit.AbstractProcessingStep' -->
+    <!-- (or one of the com.mds.aiotplayer.submit.step.* classes) -->
     <!-- This property should reference the full path of the class -->
-    <!-- (e.g. com.mds.submit.step.MyCustomStep) -->
+    <!-- (e.g. com.mds.aiotplayer.submit.step.MyCustomStep) -->
     <!-- -->
     <!-- The following properties are OPTIONAL for each <step>: -->
     <!-- <heading> - References the message key, from the -->
@@ -47,35 +47,35 @@
         <!-- to a collection. This step ensures that a collection is always selected. -->
         <step id="collection">
             <heading></heading>
-            <processing-class>com.mds.app.rest.submit.step.CollectionStep</processing-class>
+            <processing-class>com.mds.aiotplayer.app.rest.submit.step.CollectionStep</processing-class>
             <type>collection</type>
             <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
         </step>
         <step id="traditionalpageone" mandatory="true">
             <heading>submit.progressbar.describe.stepone</heading>
-            <processing-class>com.mds.app.rest.submit.step.DescribeStep</processing-class>
+            <processing-class>com.mds.aiotplayer.app.rest.submit.step.DescribeStep</processing-class>
             <type>submission-form</type>
         </step>
         <step id="traditionalpagetwo" mandatory="true">
             <heading>submit.progressbar.describe.steptwo</heading>
-            <processing-class>com.mds.app.rest.submit.step.DescribeStep</processing-class>
+            <processing-class>com.mds.aiotplayer.app.rest.submit.step.DescribeStep</processing-class>
             <type>submission-form</type>
         </step>
         <step id="upload">
             <heading>submit.progressbar.upload</heading>
-            <processing-class>com.mds.app.rest.submit.step.UploadStep</processing-class>
+            <processing-class>com.mds.aiotplayer.app.rest.submit.step.UploadStep</processing-class>
             <type>upload</type>
         </step>
         <step id="license">
             <heading>submit.progressbar.license</heading>
-            <processing-class>com.mds.app.rest.submit.step.LicenseStep</processing-class>
+            <processing-class>com.mds.aiotplayer.app.rest.submit.step.LicenseStep</processing-class>
             <type>license</type>
             <scope visibilityOutside="read-only">submission</scope>
         </step>
 
         <!-- Step Upload Item with Embargo Features to enable this step, please
             make sure to comment-out the previous step "UploadStep" <step id="upload-with-embargo">
-            <heading>submit.progressbar.upload</heading> <processing-class>com.mds.submit.step.UploadWithEmbargoStep</processing-class>
+            <heading>submit.progressbar.upload</heading> <processing-class>com.mds.aiotplayer.submit.step.UploadWithEmbargoStep</processing-class>
             <type>uploadWithEmbargo</type> </step> -->
 
 
@@ -83,29 +83,29 @@
         <!-- Uncomment this step to allow the user to select a Creative Commons
             license -->
         <!-- <step id="creative-commons"> <heading>submit.progressbar.CClicense</heading>
-            <processing-class>com.mds.submit.step.CCLicenseStep</processing-class>
+            <processing-class>com.mds.aiotplayer.submit.step.CCLicenseStep</processing-class>
             <type>cclicense</type> </step> -->
 
         <!--Step will be to Check for potential duplicate -->
         <!-- <step id="detect-duplicate"> <heading>submit.progressbar.detect.duplicate</heading>
-            <processing-class>com.mds.submit.step.DetectPotentialDuplicate</processing-class>
+            <processing-class>com.mds.aiotplayer.submit.step.DetectPotentialDuplicate</processing-class>
             <type>duplicate</type> </step> -->
 
         <!--Step will be to Verify/Review everything -->
-        <!-- <step id="verify"> <heading>submit.progressbar.verify</heading> <processing-class>com.mds.submit.step.VerifyStep</processing-class>
+        <!-- <step id="verify"> <heading>submit.progressbar.verify</heading> <processing-class>com.mds.aiotplayer.submit.step.VerifyStep</processing-class>
             <type>verify</type> </step> -->
 
         <!-- Fake Steps to test parsing of all options -->
         <!-- <step mandatory="false"> <heading>fake.submission.readonly</heading>
-            <processing-class>com.mds.submit.step.SampleStep</processing-class> <type>sample</type>
+            <processing-class>com.mds.aiotplayer.submit.step.SampleStep</processing-class> <type>sample</type>
             <scope visibility="read-only">submission</scope> </step> <step mandatory="false">
-            <heading>fake.workflow.readonly</heading> <processing-class>com.mds.submit.step.SampleStep</processing-class>
+            <heading>fake.workflow.readonly</heading> <processing-class>com.mds.aiotplayer.submit.step.SampleStep</processing-class>
             <type>sample</type> <scope visibility="read-only">workflow</scope> </step> -->
 
         <!-- This is the Sample Step which utilizes the JSPSampleStep class -->
         <step id="sample">
             <heading>Sample</heading>
-            <processing-class>com.mds.submit.step.SampleStep</processing-class>
+            <processing-class>com.mds.aiotplayer.submit.step.SampleStep</processing-class>
             <type>sample</type>
         </step>
     </step-definitions>

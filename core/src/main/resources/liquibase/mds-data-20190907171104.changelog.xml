@@ -1,0 +1,1003 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" logicalFilePath="liquibase/mds-data-20190907171104.changelog.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+<changeSet author="John (generated)" id="1567847478902-1">
+<insert tableName="i18n_culture">
+<column name="id" valueNumeric="1"/>
+<column name="culture_code" value="en_US"/>
+<column name="display_name" value="English"/>
+</insert>
+<insert tableName="i18n_culture">
+<column name="id" valueNumeric="2"/>
+<column name="culture_code" value="zh_CN"/>
+<column name="display_name" value="Simplified Chinese(China)"/>
+</insert>
+<insert tableName="i18n_culture">
+<column name="id" valueNumeric="3"/>
+<column name="culture_code" value="zh_TW"/>
+<column name="display_name" value="Traditional Chinese"/>
+</insert>
+</changeSet>
+<changeSet author="John (generated)" id="1567847478902-2">
+<insert tableName="sys_area">
+<column name="id" valueNumeric="1"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="code" value="All"/>
+<column name="name" value="All"/>
+<column name="remarks"/>
+<column name="type" value="1"/>
+<column name="parent_id"/>
+</insert>
+<insert tableName="sys_area">
+<column name="id" valueNumeric="2"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="code" value="HK"/>
+<column name="name" value="HongKong"/>
+<column name="remarks"/>
+<column name="type" value="1"/>
+<column name="parent_id" valueNumeric="1"/>
+</insert>
+<insert tableName="sys_area">
+<column name="id" valueNumeric="3"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="code" value="MACAU"/>
+<column name="name" value="MACAU"/>
+<column name="remarks"/>
+<column name="type" value="1"/>
+<column name="parent_id" valueNumeric="1"/>
+</insert>
+<insert tableName="sys_area">
+<column name="id" valueNumeric="4"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="code" value="GD"/>
+<column name="name" value="GuangDong"/>
+<column name="remarks"/>
+<column name="type" value="2"/>
+<column name="parent_id" valueNumeric="1"/>
+</insert>
+<insert tableName="sys_area">
+<column name="id" valueNumeric="5"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="code" value="GZ"/>
+<column name="name" value="GuangZhou"/>
+<column name="remarks"/>
+<column name="type" value="3"/>
+<column name="parent_id" valueNumeric="4"/>
+</insert>
+<insert tableName="sys_area">
+<column name="id" valueNumeric="6"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="code" value="CN"/>
+<column name="name" value="China"/>
+<column name="remarks"/>
+<column name="type" value="1"/>
+<column name="parent_id" valueNumeric="1"/>
+</insert>
+</changeSet>
+<changeSet author="John (generated)" id="1567847478902-3">
+<insert tableName="sys_organization">
+<column name="id" valueNumeric="1"/>
+<column name="createdby" value="admin"/>
+<column name="date_added" valueDate="2017-02-27T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-27T00:00:00"/>
+<column name="last_modifiedby" value="admin"/>
+<column name="available" valueBoolean="true"/>
+<column name="code" value="All"/>
+<column name="description"/>
+<column name="email" value=""/>
+<column name="fax" value=""/>
+<column name="header" value=""/>
+<column name="name" value="All"/>
+<column name="phone" value=""/>
+<column name="web_site" value=""/>
+<column name="area_id" valueNumeric="1"/>
+<column name="parent_id"/>
+<column name="culture_id" valueNumeric="1"/>
+<column name="tenant_id"/>
+</insert>
+<insert tableName="sys_organization">
+<column name="id" valueNumeric="2"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-27T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-27T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="available" valueBoolean="true"/>
+<column name="code" value="DEMO1"/>
+<column name="description"/>
+<column name="email" value="chinamds@mmdsplus.com"/>
+<column name="fax" value="123456"/>
+<column name="header" value="Demo Lee"/>
+<column name="name" value="Demo name 1"/>
+<column name="phone" value="123456"/>
+<column name="web_site" value="http://www.mmdsplus.com"/>
+<column name="area_id" valueNumeric="2"/>
+<column name="parent_id" valueNumeric="1"/>
+<column name="culture_id" valueNumeric="1"/>
+<column name="tenant_id"/>
+</insert>
+<insert tableName="sys_organization">
+<column name="id" valueNumeric="3"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-27T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-27T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="available" valueBoolean="true"/>
+<column name="code" value="DEMO2"/>
+<column name="description"/>
+<column name="email" value="chinamds@mmdsplus.com"/>
+<column name="fax" value="123456"/>
+<column name="header" value="John Lee"/>
+<column name="name" value="Demo name 2"/>
+<column name="phone" value="123456"/>
+<column name="web_site" value="http://www.mmdsplus.com"/>
+<column name="area_id" valueNumeric="3"/>
+<column name="parent_id" valueNumeric="2"/>
+<column name="culture_id" valueNumeric="1"/>
+<column name="tenant_id"/>
+</insert>
+<insert tableName="sys_organization">
+<column name="id" valueNumeric="4"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-27T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-27T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="available" valueBoolean="true"/>
+<column name="code" value="DEMO"/>
+<column name="description"/>
+<column name="email" value="chinamds@mmdsplus.com"/>
+<column name="fax" value="123456"/>
+<column name="header" value="Test Lee"/>
+<column name="name" value="Demo name"/>
+<column name="phone" value="123456"/>
+<column name="web_site" value="http://www.mmdsplus.com"/>
+<column name="area_id" valueNumeric="1"/>
+<column name="parent_id" valueNumeric="3"/>
+<column name="culture_id" valueNumeric="1"/>
+<column name="tenant_id"/>
+</insert>
+</changeSet>
+<!-- <changeSet author="John (generated)" id="1567847478902-4">
+<insert tableName="sys_tenant">
+<column name="uuid" valueComputed="UUID()"/>
+<column name="organization_id"/>
+</insert>
+</changeSet> -->
+<changeSet author="John (generated)" id="1567847478902-6">
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="1"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="All"/>
+<column name="href" value=""/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id"/>
+<column name="sort" valueNumeric="1"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="2"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="content"/>
+<column name="href" value=""/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id"/>
+<column name="sort" valueNumeric="1"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="1"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="3"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="operation"/>
+<column name="href" value=""/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id"/>
+<column name="sort" valueNumeric="2"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="1"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="4"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="control"/>
+<column name="href" value="/pm/players"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id"/>
+<column name="sort" valueNumeric="3"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="1"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="5"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="personal"/>
+<column name="href" value="/sys/myMessages"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id"/>
+<column name="sort" valueNumeric="4"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="1"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="6"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="admin"/>
+<column name="href" value="/sys/users"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id"/>
+<column name="sort" valueNumeric="5"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="1"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="7"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="galleryexplorer"/>
+<column name="href" value="/cm/galleryview"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="cm_galleryview"/>
+<column name="sort" valueNumeric="101"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="2"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="8"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="banners"/>
+<column name="href" value="/cm/banners"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="cm_banners"/>
+<column name="sort" valueNumeric="102"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="2"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="9"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="slideshows"/>
+<column name="href" value="/cm/slideshows"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="cm_slideshows"/>
+<column name="sort" valueNumeric="103"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="2"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="10"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="contentlists"/>
+<column name="href" value="/cm/contentlists"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="cm_contentLists"/>
+<column name="sort" valueNumeric="104"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="2"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="11"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="clocks"/>
+<column name="href" value="/cm/clocks"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="cm_clocks"/>
+<column name="sort" valueNumeric="105"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="2"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="12"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="contenteditor"/>
+<column name="href" value="/cm/contenteditor"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="cm_contenteditor"/>
+<column name="sort" valueNumeric="106"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="2"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="13"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="galleries"/>
+<column name="href" value="/cm/galleries"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="cm_galleries"/>
+<column name="sort" valueNumeric="107"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="2"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="14"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="albums"/>
+<column name="href" value="/cm/albums"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="cm_albums"/>
+<column name="sort" valueNumeric="108"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="2"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="15"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="dailylists"/>
+<column name="href" value="/cm/dailyLists"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="cm_dailyLists"/>
+<column name="sort" valueNumeric="109"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="2"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="16"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="calendars"/>
+<column name="href" value="/ps/calendars"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="ps_calendars"/>
+<column name="sort" valueNumeric="301"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="3"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="17"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="players"/>
+<column name="href" value="/pm/players"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="pm_players"/>
+<column name="sort" valueNumeric="401"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="4"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="18"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="mymessages"/>
+<column name="href" value="/sys/myMessages"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="sys_mymessages"/>
+<column name="sort" valueNumeric="501"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="5"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="19"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="mycalendars"/>
+<column name="href" value="/sys/myCalendars"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="sys_mycalendars"/>
+<column name="sort" valueNumeric="502"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="5"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="20"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="mynotifications"/>
+<column name="href" value="/sys/notifications/list"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="sys_notifications_list"/>
+<column name="sort" valueNumeric="503"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="5"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="21"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="myprofiles"/>
+<column name="href" value="/sys/users/loginUser/viewInfo"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="sys_myprofiles"/>
+<column name="sort" valueNumeric="504"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="5"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="22"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="areas"/>
+<column name="href" value="/sys/areas"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="sys_areas"/>
+<column name="sort" valueNumeric="601"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="6"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="23"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="organizations"/>
+<column name="href" value="/sys/organizations"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="sys_organizations"/>
+<column name="sort" valueNumeric="602"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="6"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="24"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="menufunctions"/>
+<column name="href" value="/sys/menuFunctions"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="sys_menuFunctions"/>
+<column name="sort" valueNumeric="603"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="6"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="25"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="users"/>
+<column name="href" value="/sys/users"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="sys_users"/>
+<column name="sort" valueNumeric="604"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="6"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="26"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="roles"/>
+<column name="href" value="/sys/roles"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="sys_roles"/>
+<column name="sort" valueNumeric="605"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="6"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="27"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="permissions"/>
+<column name="href" value="/sys/permissions"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="sys_permissions"/>
+<column name="sort" valueNumeric="606"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="6"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="28"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="eventlog"/>
+<column name="href" value="/sys/eventLogs"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="sys_eventLogs"/>
+<column name="sort" valueNumeric="607"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="6"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="29"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="cultures"/>
+<column name="href" value="/i18n/cultures"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="i18n_cultures"/>
+<column name="sort" valueNumeric="608"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="6"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="30"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="neutrals"/>
+<column name="href" value="/i18n/neutrals"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="i18n_neutrals"/>
+<column name="sort" valueNumeric="609"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="6"/>
+</insert>
+<insert tableName="sys_menu_function">
+<column name="id" valueNumeric="31"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-02-26T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="action"/>
+<column name="code" value="localizeds"/>
+<column name="href" value="/i18n/localizeds"/>
+<column name="icon" value=""/>
+<column name="is_activiti" valueBoolean="false"/>
+<column name="is_show" valueBoolean="true"/>
+<column name="resource_id" value="i18n_localizeds"/>
+<column name="sort" valueNumeric="610"/>
+<column name="target" value="notspecified"/>
+<column name="type" value="m"/>
+<column name="tenant_id"/>
+<column name="organization_id"/>
+<column name="user_id"/>
+<column name="parent_id" valueNumeric="6"/>
+</insert>
+</changeSet>
+<changeSet author="John (generated)" id="1567847478902-41">
+<insert tableName="i18n_culture_organization_user">
+<column name="id" valueNumeric="1"/>
+<column name="culture_id" value="1"/>
+<column name="organization_id" value="1"/>
+<column name="user_id"/>
+<column name="tenant_id"/>
+</insert>
+<insert tableName="i18n_culture_organization_user">
+<column name="id" valueNumeric="2"/>
+<column name="culture_id" value="2"/>
+<column name="organization_id" value="1"/>
+<column name="user_id"/>
+<column name="tenant_id"/>
+</insert>
+<insert tableName="i18n_culture_organization_user">
+<column name="id" valueNumeric="3"/>
+<column name="culture_id" value="3"/>
+<column name="organization_id" value="1"/>
+<column name="user_id"/>
+<column name="tenant_id"/>
+</insert>
+</changeSet>
+<changeSet author="John (generated)" id="1567847478902-5">
+<insert tableName="sys_role">
+<column name="id" valueNumeric="1"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-06-16T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-06-16T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="description" value="system"/>
+<column name="name" value="ROLE_SYSTEM"/>
+<column name="type" value="sa"/>
+<column name="organization_id" valueNumeric="1"/>
+<column name="tenant_id"/>
+</insert>
+<insert tableName="sys_role">
+<column name="id" valueNumeric="2"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-06-16T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-06-16T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="description" value="system"/>
+<column name="name" value="ROLE_USER"/>
+<column name="type" value="ur"/>
+<column name="organization_id" valueNumeric="1"/>
+<column name="tenant_id"/>
+</insert>
+<insert tableName="sys_role">
+<column name="id" valueNumeric="3"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-06-16T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-06-16T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="description" value="system"/>
+<column name="name" value="ROLE_ADMIN"/>
+<column name="type" value="ad"/>
+<column name="organization_id" valueNumeric="1"/>
+<column name="tenant_id"/>
+</insert>
+<insert tableName="sys_role">
+<column name="id" valueNumeric="4"/>
+<column name="createdby" value="system"/>
+<column name="date_added" valueDate="2017-06-16T00:00:00"/>
+<column name="date_lastmodified" valueDate="2017-06-16T00:00:00"/>
+<column name="last_modifiedby" value="system"/>
+<column name="description" value="system"/>
+<column name="name" value="ROLE_GUEST"/>
+<column name="type" value="gt"/>
+<column name="organization_id" valueNumeric="1"/>
+<column name="tenant_id"/>
+</insert>
+</changeSet>
+<changeSet author="John (generated)" id="1567847478902-7">
+<insert tableName="sys_user">
+<column name="id" valueNumeric="1"/>
+<column name="createdby"/>
+<column name="date_added"/>
+<column name="date_lastmodified"/>
+<column name="last_modifiedby"/>
+<column name="email" value="chinamds@me.com"/>
+<column name="first_name" value="Tomcat"/>
+<column name="last_name" value="User"/>
+<column name="login_date"/>
+<column name="login_ip"/>
+<column name="mobile"/>
+<column name="nick_name"/>
+<column name="password" value="$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO"/>
+<column name="password_hint" value="MDS Plus Services."/>
+<column name="phone_number" value=""/>
+<column name="status" valueNumeric="1"/>
+<column name="user_type" valueNumeric="0"/>
+<column name="username" value="user"/>
+<column name="version" valueNumeric="1"/>
+<column name="website" value="http://tomcat.apache.org"/>
+<column name="organization_id"/>
+<column name="staff_id"/>
+<column name="tenant_id"/>
+</insert>
+<insert tableName="sys_user">
+<column name="id" valueNumeric="2"/>
+<column name="createdby"/>
+<column name="date_added"/>
+<column name="date_lastmodified"/>
+<column name="last_modifiedby"/>
+<column name="email" value="chinamds@hotmail.com"/>
+<column name="first_name" value="John"/>
+<column name="last_name" value="Lee"/>
+<column name="login_date"/>
+<column name="login_ip"/>
+<column name="mobile"/>
+<column name="nick_name"/>
+<column name="password" value="$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO"/>
+<column name="password_hint" value="Multimedia distribution service."/>
+<column name="phone_number" value=""/>
+<column name="status" valueNumeric="1"/>
+<column name="user_type" valueNumeric="0"/>
+<column name="username" value="admin"/>
+<column name="version" valueNumeric="1"/>
+<column name="website" value="http://www.mmdsplus.com"/>
+<column name="organization_id"/>
+<column name="staff_id"/>
+<column name="tenant_id"/>
+</insert>
+<insert tableName="sys_user">
+<column name="id" valueNumeric="3"/>
+<column name="createdby"/>
+<column name="date_added"/>
+<column name="date_lastmodified"/>
+<column name="last_modifiedby"/>
+<column name="email" value="chinamds@mmdsplus.com"/>
+<column name="first_name" value="Two Roles"/>
+<column name="last_name" value="User"/>
+<column name="login_date"/>
+<column name="login_ip"/>
+<column name="mobile"/>
+<column name="nick_name"/>
+<column name="password" value="$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO"/>
+<column name="password_hint" value="MDS Plus Services."/>
+<column name="phone_number" value=""/>
+<column name="status" valueNumeric="1"/>
+<column name="user_type" valueNumeric="0"/>
+<column name="username" value="two_roles_user"/>
+<column name="version" valueNumeric="1"/>
+<column name="website" value="http://www.mmdsplus.com"/>
+<column name="organization_id"/>
+<column name="staff_id"/>
+<column name="tenant_id"/>
+</insert>
+</changeSet>
+<changeSet author="John (generated)" id="1567847478902-8">
+<insert tableName="sys_user_role">
+<column name="user_id" valueNumeric="2"/>
+<column name="role_id" valueNumeric="1"/>
+</insert>
+<insert tableName="sys_user_role">
+<column name="user_id" valueNumeric="3"/>
+<column name="role_id" valueNumeric="1"/>
+</insert>
+<insert tableName="sys_user_role">
+<column name="user_id" valueNumeric="1"/>
+<column name="role_id" valueNumeric="2"/>
+</insert>
+<insert tableName="sys_user_role">
+<column name="user_id" valueNumeric="3"/>
+<column name="role_id" valueNumeric="2"/>
+</insert>
+</changeSet>
+</databaseChangeLog>

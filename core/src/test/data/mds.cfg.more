@@ -1,8 +1,8 @@
 # Configure authority control for Unit Testing (in MDSControlledVocabularyTest)
 # (This overrides default, commented out settings in mds.cfg)
-plugin.selfnamed.com.mds.content.authority.ChoiceAuthority = \
-	com.mds.content.authority.DCInputAuthority, \
-    com.mds.content.authority.MDSControlledVocabulary
+plugin.selfnamed.com.mds.aiotplayer.content.authority.ChoiceAuthority = \
+	com.mds.aiotplayer.content.authority.DCInputAuthority, \
+    com.mds.aiotplayer.content.authority.MDSControlledVocabulary
 
 # Configure some more Plugins for PluginTest class
 # NOTE: Plugins are just *interfaces*. So, here we are defining some plugins
@@ -29,4 +29,4 @@ choices.presentation.dc.language.iso = select
 authority.controlled.dc.language.iso = true
 
 # use the testing assetstore.dir
-assetstore.dir = ${mds.dir}/assetstore
+assetstore.dir = ${mdsplus.home}/assetstore

@@ -16,15 +16,15 @@
     <!-- Identifier Service Application Interface.  Will be autowired with
          any Identifier Providers present in Spring context.
     -->
-    <bean id="com.mds.identifier.service.IdentifierService"
-          class="com.mds.identifier.IdentifierServiceImpl"
+    <bean id="com.mds.aiotplayer.identifier.service.IdentifierService"
+          class="com.mds.aiotplayer.identifier.IdentifierServiceImpl"
           autowire="byType"
           scope="singleton"/>
 
     <!-- provider for using the versioned handle identifier instead of the default one. -->
-    <!--<bean id="com.mds.identifier.HandleIdentifierProvider" class="com.mds.identifier.VersionedHandleIdentifierProvider"-->
+    <!--<bean id="com.mds.aiotplayer.identifier.HandleIdentifierProvider" class="com.mds.aiotplayer.identifier.VersionedHandleIdentifierProvider"-->
     <!--scope="singleton">-->
-    <!--<property name="configurationService" ref="com.mds.services.ConfigurationService"/>-->
+    <!--<property name="configurationService" ref="com.mds.aiotplayer.services.ConfigurationService"/>-->
     <!--</bean>-->
 
     <!-- provider to mint and register DOIs with MDSPlus.
@@ -36,13 +36,13 @@
     <!-- In order to mint DOIs with MDS, get an agreement with a DOI registration
          agency,  take a look into mds.cfg, and uncomment this.
              -->
-    <bean id="com.mds.identifier.DOIIdentifierProvider"
-          class="com.mds.identifier.DOIIdentifierProvider"
+    <bean id="com.mds.aiotplayer.identifier.DOIIdentifierProvider"
+          class="com.mds.aiotplayer.identifier.DOIIdentifierProvider"
           scope="singleton">
         <property name="configurationService"
-                  ref="com.mds.services.ConfigurationService"/>
+                  ref="com.mds.aiotplayer.services.ConfigurationService"/>
         <property name="DOIConnector"
-                  ref="com.mds.identifier.doi.DOIConnector"/>
+                  ref="com.mds.aiotplayer.identifier.doi.DOIConnector"/>
     </bean>
 
     <!-- The DOIConnector will handle the API calls to your DOI registration
@@ -54,8 +54,8 @@
          DataCiteConnector won't work if EZID is your registration agency.
     -->
     <!-- Uncomment this to use the DataCite API directly as DOIConnector.
-    <bean id="com.mds.identifier.doi.DOIConnector"
-        class="com.mds.identifier.doi.DataCiteConnector"
+    <bean id="com.mds.aiotplayer.identifier.doi.DOIConnector"
+        class="com.mds.aiotplayer.identifier.doi.DataCiteConnector"
         scope="singleton">
         <property name='DATACITE_SCHEME' value='https'/>
         <property name='DATACITE_HOST' value='test.datacite.org'/>
@@ -64,7 +64,7 @@
         <property name='disseminationCrosswalkName' value="DataCite" />
     </bean>
     -->
-    <bean id="com.mds.identifier.doi.DOIConnector" class="com.mds.identifier.MockDOIConnector"/>
+    <bean id="com.mds.aiotplayer.identifier.doi.DOIConnector" class="com.mds.aiotplayer.identifier.MockDOIConnector"/>
 
     <!-- Provider to mint and register DOIs using EZID as the registrar.
     -->
@@ -74,14 +74,14 @@
          mds.cfg:crosswalk.dissemination.DataCite.stylesheet XSL configuration for metadata mapping
     -->
     <!-- Uncomment to enable DOI using EZID
-    <bean id="com.mds.identifier.EZIDIdentifierProvider"
-          class="com.mds.identifier.EZIDIdentifierProvider"
+    <bean id="com.mds.aiotplayer.identifier.EZIDIdentifierProvider"
+          class="com.mds.aiotplayer.identifier.EZIDIdentifierProvider"
           scope='singleton'>
         <description>Uses the EZID service to provide DOI identifiers from DataCite</description>
         <property name="configurationService"
-                      ref="com.mds.services.ConfigurationService"/>
+                      ref="com.mds.aiotplayer.services.ConfigurationService"/>
         <property name='requestFactory'>
-            <bean class='com.mds.identifier.ezid.EZIDRequestFactory'>
+            <bean class='com.mds.aiotplayer.identifier.ezid.EZIDRequestFactory'>
                 <property name='EZID_SCHEME' value='https'/>
                 <property name='EZID_HOST' value='ezid.cdlib.org'/>
                 <property name='EZID_PATH' value=''/>
@@ -99,7 +99,7 @@
             <description>How to compute the crosswalked value from the original.  Default is plain copy.</description>
             <map>
                 <entry key='datacite.publicationyear'>
-                    <bean class='com.mds.identifier.ezid.DateToYear'/>
+                    <bean class='com.mds.aiotplayer.identifier.ezid.DateToYear'/>
                 </entry>
             </map>
         </property>

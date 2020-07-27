@@ -19,13 +19,13 @@
 
     <context:annotation-config/> <!-- allows us to use spring annotations in beans -->
 
-    <bean class="com.mds.discovery.MockSolrServiceImpl" id="com.mds.discovery.SearchService"/>
+    <bean class="com.mds.aiotplayer.discovery.MockSolrServiceImpl" id="com.mds.aiotplayer.discovery.SearchService"/>
 
-    <alias name="com.mds.discovery.SearchService" alias="com.mds.discovery.IndexingService"/>
+    <alias name="com.mds.aiotplayer.discovery.SearchService" alias="com.mds.aiotplayer.discovery.IndexingService"/>
 
-    <!--<bean class="com.mds.discovery.SolrServiceIndexOutputPlugin" id="solrServiceIndexOutputPlugin"/>-->
+    <!--<bean class="com.mds.aiotplayer.discovery.SolrServiceIndexOutputPlugin" id="solrServiceIndexOutputPlugin"/>-->
 
     <!-- Statistics services are both lazy loaded (by name), as you are likely just using ONE of them and not both -->
-    <bean id="solrLoggerService" class="com.mds.statistics.MockSolrLoggerServiceImpl" lazy-init="true"/>
+    <bean id="solrLoggerService" class="com.mds.aiotplayer.statistics.MockSolrLoggerServiceImpl" lazy-init="true"/>
 
 </beans>
