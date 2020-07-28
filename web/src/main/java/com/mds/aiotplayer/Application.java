@@ -26,16 +26,15 @@ import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.servlet.HandlerExceptionResolver;
-import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springmodules.validation.commons.DefaultBeanValidator;
-import org.springmodules.validation.commons.DefaultValidatorFactory;
 import org.tuckey.web.filters.urlrewrite.UrlRewriteFilter;
+import com.mds.aiotplayer.common.web.interceptor.SetCommonDataInterceptor;
 
 import com.mds.utils.servlet.MDSWebappServletFilter;
 import com.opensymphony.module.sitemesh.filter.PageFilter;
@@ -43,6 +42,8 @@ import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
 
 import ro.isdc.wro.http.WroFilter;
 
+import com.mds.aiotplayer.common.web.bind.method.annotation.PageableMethodArgumentResolver;
+import com.mds.aiotplayer.common.web.bind.method.annotation.SearchableMethodArgumentResolver;
 import com.mds.aiotplayer.common.web.jcaptcha.JCaptchaFilter;
 import com.mds.aiotplayer.webapp.common.filter.MDSRequestContextFilter;
 import com.mds.aiotplayer.webapp.common.listener.MDSContextListener;
@@ -51,9 +52,11 @@ import com.mds.aiotplayer.webapp.common.util.CustomSimpleMappingExceptionResolve
 import com.mds.aiotplayer.webapp.common.util.MDSConfigurationInitializer;
 import com.mds.aiotplayer.webapp.common.util.MDSKernelInitializer;
 import com.mds.aiotplayer.webapp.configuration.ApplicationConfig;
+import com.mds.aiotplayer.webapp.sys.bind.method.CurrentUserMethodArgumentResolver;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -180,6 +183,12 @@ public class Application extends SpringBootServletInitializer {
             	registry.addViewController("/error/403").setViewName("error/403");
             	registry.addViewController("/error/404").setViewName("error/404");
             	registry.addViewController("/error/error").setViewName("error/error");
+            	registry.addViewController("/error/dataAccessFailure").setViewName("error/dataAccessFailure");
+            }
+            
+            @Override
+            public void addInterceptors(InterceptorRegistry registry) {
+                registry.addInterceptor(new SetCommonDataInterceptor()).addPathPatterns("/**").excludePathPatterns("/sys/polling*", "/services/api/**").order(1);
             }
             
             @Override
@@ -191,10 +200,13 @@ public class Application extends SpringBootServletInitializer {
                 return validator;
             }
                         
-            /*@Override
+            @Override
             public void addArgumentResolvers(@NonNull List<HandlerMethodArgumentResolver> argumentResolvers) {
-                argumentResolvers.add(new SearchFilterResolver());
-            }*/
+                //argumentResolvers.add(new SearchFilterResolver());
+            	argumentResolvers.add(new SearchableMethodArgumentResolver());
+            	//argumentResolvers.add(new CurrentUserMethodArgumentResolver());
+            	argumentResolvers.add(new PageableMethodArgumentResolver());
+            }
             
             @Override
             public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

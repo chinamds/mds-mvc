@@ -33,6 +33,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.repository.support.DomainClassConverter;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.format.support.FormattingConversionServiceFactoryBean;
@@ -46,6 +47,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.ui.velocity.VelocityEngineFactoryBean;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springmodules.validation.commons.DefaultBeanValidator;
@@ -149,6 +151,7 @@ public class ApplicationConfig {
         mappings.setProperty(InternalServerErrorException.class.getName(), "/error/error");
         mappings.setProperty(NullPointerException.class.getName(), "/error/error");
         mappings.setProperty(ClassNotFoundException.class.getName(), "/error/error");
+        mappings.setProperty(DataAccessException.class.getName(), "/error/dataAccessFailure");
         mappings.setProperty(Exception.class.getName(), "/error/error");
         resolver.setExceptionMappings(mappings);
         // Set specific HTTP codes
@@ -170,6 +173,13 @@ public class ApplicationConfig {
 	 * @Bean(name="Validator") LocalValidatorFactoryBean validator() { return new
 	 * LocalValidatorFactoryBean(); }
 	 */
+    
+    @Bean CommonsMultipartResolver multipartResolver() {
+    	CommonsMultipartResolver multipartResolver =  new CommonsMultipartResolver();
+    	multipartResolver.setMaxUploadSize(2147483648L);
+    	
+    	return multipartResolver;
+    }
 
     @Bean
     @ConfigurationPropertiesBinding

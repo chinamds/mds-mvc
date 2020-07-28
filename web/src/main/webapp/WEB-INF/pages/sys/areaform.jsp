@@ -93,9 +93,3 @@
 
 <v:javascript formName="area" cdata="false" dynamicJavascript="true" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value='/static/scripts/validator.jsp'/>"></script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("input[type='text']:visible:enabled:first", document.forms['areaForm']).focus();
-    });
-</script>

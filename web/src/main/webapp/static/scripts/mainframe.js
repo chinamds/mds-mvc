@@ -2013,7 +2013,7 @@ $.parentchild = {
 
 $(function () {
     //global disable ajax cache
-    $.ajaxSetup({ cache: false });
+    //$.ajaxSetup({ cache: false });
 
     //$.layout = top.$.layout;
     //$.mainframe = top.$.mainframe;
@@ -2021,7 +2021,6 @@ $(function () {
     $.menus = top.$.menus;
 
     $("[data-toggle='tooltip']").each(function() {
-
         $(this).tooltip({delay:300});
     });
 

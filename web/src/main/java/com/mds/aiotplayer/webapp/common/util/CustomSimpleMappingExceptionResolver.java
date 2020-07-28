@@ -7,6 +7,7 @@ import javax.ws.rs.InternalServerErrorException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
@@ -51,6 +52,11 @@ public class CustomSimpleMappingExceptionResolver extends SimpleMappingException
                         NullPointerException.class.getName()
                         )
         );
+        ArrayList<String> dataAccessFailure = new ArrayList<String>(
+                Arrays.asList(
+                		DataAccessException.class.getName()
+                        )
+        );
 
         String userExceptionDetail = ex.toString();
         String errorHuman = "";
@@ -68,6 +74,9 @@ public class CustomSimpleMappingExceptionResolver extends SimpleMappingException
             userExceptionDetail = "The current page refuses to load due to an internal error";
             mav.setViewName("/error/error");
             mav.addObject("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+        } else if (dataAccessFailure.contains(exceptionType)) {
+        	mav.setViewName("/error/dataAccessFailure");
+            mav.addObject("status", response.getStatus());
         } else {
             errorHuman = "We cannot serve the current page";
             errorTech = "General error";

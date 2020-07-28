@@ -54,6 +54,7 @@
 				enable : false
 			}
 		});*/
+         $("input[type='text']:visible:enabled:first", document.forms['organizationForm']).focus();
 	});
 	
 	var options = {

@@ -70,14 +70,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity webSecurity) throws Exception {
         webSecurity
             .ignoring()
-            	.antMatchers("/static/**", "/assets/**", "/app/login*", "/login*", "/login.jsp*", "/index.jsp*", "/services/**", "/jcaptcha.jpg*")
+            	.antMatchers("/static/**", "/assets/**", "/app/login*", "/login*", "/login.jsp*", "/index.jsp*")
                 .antMatchers(HttpMethod.GET, "/api/authn/login")
                 .antMatchers(HttpMethod.PUT, "/api/authn/login")
                 .antMatchers(HttpMethod.PATCH, "/api/authn/login")
                 .antMatchers(HttpMethod.DELETE, "/api/authn/login");
     }
 
-    /*.authorizeRequests()
+    /*.authorizeRequests() , "/services/**"
 	.antMatchers("/static/**", "/assets/**", "/app/login*", "/login*", "/login.jsp*", "/index.jsp*")
 	.permitAll()
 	.anyRequest()
@@ -108,7 +108,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             	.authorizeRequests().antMatchers("/app/sys/passwordHint/**", "/app/sys/requestRecoveryToken/**"
             			, "/app/sys/updatePassword*", "/app/sys/signup*", "/app/cm/galleryview*", "/app/jcaptcha-validate*").permitAll()*/ //.anyRequest().fullyAuthenticated()
             	.authorizeRequests().antMatchers("/sys/passwordHint/**", "/sys/requestRecoveryToken/**"
-        			, "/sys/updatePassword*", "/sys/signup*", "/cm/galleryview*", "/jcaptcha-validate*").permitAll()
+        			, "/sys/updatePassword*", "/sys/signup*", "/cm/galleryview*", "/jcaptcha-validate*", "/services/api/users/jcaptcha*").permitAll()
             		.antMatchers("/**").authenticated()
             /*.and()
             	.authorizeRequests()
@@ -119,7 +119,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             	.rememberMe().userDetailsService(userDao).key("e37f4b31-0c45-11dd-bd0b-0800200c9a66")
 	        .and()
 		        .httpBasic()
-		            .authenticationEntryPoint(loginEntryPoint());
+		            .authenticationEntryPoint(loginEntryPoint())
+		     .and()
+		     	.exceptionHandling()
+		     		.accessDeniedPage("/error/403");
     }
 
     @Override

@@ -66,7 +66,7 @@ public class AlbumManagerImpl extends GenericManagerImpl<Album, Long> implements
     
     public List<Album> getAlbums(long galleryId){
     	Searchable searchable = Searchable.newSearchable();
-        searchable.addSort(Direction.ASC, "parent.id");
+        searchable.addSort(Direction.ASC, "parent");
         searchable.addSearchFilter("gallery.id", SearchOperator.eq, galleryId);
         
         return albumDao.findAll(searchable);

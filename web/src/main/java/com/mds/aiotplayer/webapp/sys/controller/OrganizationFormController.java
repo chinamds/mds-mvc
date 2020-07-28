@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -95,7 +96,7 @@ public class OrganizationFormController extends BaseFormController {
     public String onSubmit(Organization organization, BindingResult errors, @RequestParam(value="logofile", required = false) byte[] logofile
     		, @RequestParam(value="removelogo", required = false) boolean removelogo, HttpServletRequest request,
                            HttpServletResponse response)
-    throws Exception {
+    throws Exception {         
         if (request.getParameter("cancel") != null) {
             return getCancelView();
         }
@@ -144,13 +145,14 @@ public class OrganizationFormController extends BaseFormController {
         	}
         	
         	//organization.setCurrentUser(request.getRemoteUser());
-        	if (organization.getPreferredlanguage() != null && !StringUtils.isBlank(organization.getPreferredlanguage().getCultureCode())) {
-        		Searchable searchable = Searchable.newSearchable();
-        		searchable.addSearchFilter("cultureCode", SearchOperator.eq, organization.getPreferredlanguage().getCultureCode());	
-	        	organization.setPreferredlanguage(cultureManager.findAll(searchable).get(0));
+        	if (organization.getPreferredlanguage() != null && organization.getPreferredlanguage().getId() != null) { //!StringUtils.isBlank(organization.getPreferredlanguage().getCultureCode())
+        		//Searchable searchable = Searchable.newSearchable();
+        		//searchable.addSearchFilter("id", SearchOperator.eq, organization.getPreferredlanguage().getId());	
+	        	//organization.setPreferredlanguage(cultureManager.findAll(searchable).get(0));
+        		organization.setPreferredlanguage(cultureManager.get(organization.getPreferredlanguage().getId()));
         	}else {
         		if (!StringUtils.isBlank(request.getParameter("cultureId"))) {
-                	organization.setPreferredlanguage(cultureManager.get(new Long(request.getParameter("cultureId"))));
+                	organization.setPreferredlanguage(cultureManager.get(Long.valueOf(request.getParameter("cultureId"))));
         		}
         	}
         	organization.setCurrentUser(UserUtils.getLoginName());

@@ -150,7 +150,6 @@ public class Gallery extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	
 	public List<GallerySetting> getGallerySettings() {
 		return gallerySettings;
 	}
@@ -163,7 +162,6 @@ public class Gallery extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	
 	public List<MimeTypeGallery> getMimeTypeGallerys() {
 		return mimeTypeGallerys;
 	}
@@ -176,7 +174,6 @@ public class Gallery extends DataEntity implements Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	
     public List<UiTemplate> getUiTemplates() {
 		return uiTemplates;
 	}

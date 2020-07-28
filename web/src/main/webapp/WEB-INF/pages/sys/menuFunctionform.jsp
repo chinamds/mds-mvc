@@ -26,7 +26,7 @@
 <div class="col-sm-6">
 <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
 <form:form modelAttribute="menuFunction" method="post" action="menuFunctionform" cssClass="well"
-           id="menuFunctionForm" onsubmit="return validateMenu(this)">
+           id="menuFunctionForm" onsubmit="return validateMenuFunction(this)">
 <form:hidden path="id"/>
 <form:hidden path="action"/>
 <form:hidden path="isActiviti"/>

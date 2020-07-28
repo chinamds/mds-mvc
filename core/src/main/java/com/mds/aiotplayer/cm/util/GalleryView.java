@@ -3058,6 +3058,6 @@ public class GalleryView{
  		}
 
  		String extensions = StringUtils.join(ArrayUtils.add(CMUtils.loadMimeTypes(gallerySettings.getGalleryId()).stream().filter(mt -> mt.getAllowAddToGallery()).map(mt -> mt.getExtension()).toArray(String[]::new), ".zip" ), ",");
- 		return StringUtils.format("[{{ title: 'Supported files', extensions: '{0}' }}]", extensions.replace(".", ""));
+ 		return StringUtils.format("[{{ title: \"Supported files\", extensions: \"{0}\" }}]", extensions.replace(".", ""));
  	}
 }

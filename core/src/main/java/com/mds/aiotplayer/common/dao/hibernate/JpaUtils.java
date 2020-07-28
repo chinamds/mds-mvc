@@ -548,8 +548,7 @@ public abstract class JpaUtils {
 
         CriteriaQuery criteriaQuery = criteriaBuilder.createQuery(searchedEntity);
         Root from = criteriaQuery.from(searchedEntity);
-        criteriaQuery.select(StringUtils.isBlank(selection) ? from : from.get(selection));
-        
+                
         List<Predicate> predicates = Lists.newArrayList();
         Map<String, Join> aliasAssociations= Maps.newHashMap();
         for (SearchFilter searchFilter : search.getSearchFilters()) {
@@ -567,6 +566,8 @@ public abstract class JpaUtils {
             }
         }
         List<javax.persistence.criteria.Order> qOrders = prepareOrder(criteriaBuilder, searchedEntity, from, search, aliasAssociations);
+        
+        criteriaQuery.select(StringUtils.isBlank(selection) ? from : from.get(selection));
         
         criteriaQuery.where(predicates.toArray(new Predicate[0]));
         if (!qOrders.isEmpty())

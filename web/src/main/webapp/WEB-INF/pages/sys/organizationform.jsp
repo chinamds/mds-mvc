@@ -113,7 +113,7 @@
     </spring:bind>
         <appfuse:label key="organization.preferredlanguage" styleClass="control-label"/>
         <select class="form-control" id="preferredlanguage" name="preferredlanguage">
-	    	<option selected="selected" value="${organization.preferredlanguage.cultureCode}">${organization.preferredlanguage.cultureName}</option>
+	    	<option selected="selected" value="${organization.preferredlanguage.id}">${organization.preferredlanguage.cultureName}</option>
 		</select>
         <form:errors path="preferredlanguage" cssClass="help-block"/>
     </div>
@@ -193,9 +193,3 @@
 
 <v:javascript formName="organization" cdata="false" dynamicJavascript="true" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value='/static/scripts/validator.jsp'/>"></script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("input[type='text']:visible:enabled:first", document.forms['organizationForm']).focus();
-    });
-</script>

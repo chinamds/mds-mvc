@@ -20,5 +20,7 @@
 				enable : false
 			}
 		});
+        
+        $("input[type='text']:visible:enabled:first", document.forms['areaForm']).focus();
 	});
 </script>
