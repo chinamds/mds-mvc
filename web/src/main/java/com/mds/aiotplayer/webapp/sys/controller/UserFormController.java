@@ -172,6 +172,7 @@ public class UserFormController extends BaseFormController {
                 // here
             }
 
+            user.setCurrentUser(UserUtils.getLoginName());
             try {
                 getUserManager().saveUser(user);
                 HelperFunctions.purgeCache();

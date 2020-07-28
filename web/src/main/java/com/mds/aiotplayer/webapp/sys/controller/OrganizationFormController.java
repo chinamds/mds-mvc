@@ -121,6 +121,8 @@ public class OrganizationFormController extends BaseFormController {
         } else {
         	if (organization.getParent() == null || organization.getParent().getId() == null) {
         		organization.setParent(organizationManager.get(Organization.getRootId()));
+        	}else {
+        		organization.setParent(organizationManager.get(organization.getParentId()));
         	}
         	
         	//organization.getOrganizationLogos().clear();
@@ -136,6 +138,8 @@ public class OrganizationFormController extends BaseFormController {
         	if (organization.getArea() == null || organization.getArea().getId() == null){
         		if (!StringUtils.isBlank(request.getParameter("areaId"))) {
                 	organization.setArea(areaManager.get(new Long(request.getParameter("areaId"))));
+        		}else {
+        			organization.setArea(areaManager.get(Area.getRootId()));
         		}
         	}else {
         		//Searchable searchable = Searchable.newSearchable();

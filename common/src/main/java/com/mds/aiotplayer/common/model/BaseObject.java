@@ -45,11 +45,11 @@ public abstract class BaseObject implements Serializable {
      */
     public abstract void copyFrom(Object source);
     
-    @PrePersist
+    //@PrePersist
 	public void prePersist(){
 	}
 	
-	@PreUpdate
+	//@PreUpdate
 	public void preUpdate(){
 		/*if (source != null){
 			copyFrom(source);

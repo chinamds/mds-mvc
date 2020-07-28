@@ -466,13 +466,17 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     protected T preAdd(T object) {
     	try {
 			// invoke method prePersist
-			for (Method method : object.getClass().getMethods()){
+			/*for (Method method : object.getClass().getMethods()){
 				PrePersist pp = method.getAnnotation(PrePersist.class);
 				if (pp != null){
 					method.invoke(object);
 					break;
 				}
-			}
+			}*/
+    		Method method = Reflections.getAccessibleMethodByName(object, "prePersist");
+    		if (method != null) {
+    			method.invoke(object);
+    		}
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {

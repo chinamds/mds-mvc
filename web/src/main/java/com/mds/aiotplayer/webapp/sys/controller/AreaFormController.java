@@ -77,7 +77,7 @@ public class AreaFormController extends BaseFormController {
         if (area.getParent() != null && area.getParent().getId() != null){
         	area.setParent(areaManager.get(area.getParent().getId()));
         }else{
-        	area.setParent(null);
+        	area.setParent(areaManager.get(area.getRootId()));
         }
         area.setCurrentUser(UserUtils.getLoginName());
 

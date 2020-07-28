@@ -72,7 +72,7 @@ public abstract class DataEntity extends AbstractEntity<Long> {
         this.id = id;
     }
 	
-	@PrePersist
+	//@PrePersist
 	@Override
 	public void prePersist(){
 		super.prePersist();
