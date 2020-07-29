@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -136,7 +137,7 @@ public class I18nUtils {
 
   	    Locale locale = null;
         if (session != null) {
-          	locale = (Locale) session.getAttribute(Constants.PREFERRED_LOCALE_KEY);
+          	locale = (Locale) session.getAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
         }else {
        	  locale = request.getLocale();
         }
@@ -157,7 +158,7 @@ public class I18nUtils {
 
    	    Locale locale = null;
         if (session != null) {
-           	locale = (Locale) session.getAttribute(Constants.PREFERRED_LOCALE_KEY);
+           	locale = (Locale) session.getAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
         }else {
         	locale = request.getLocale();
         }

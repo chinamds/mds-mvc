@@ -25,4 +25,5 @@ mds/mmrepo/
 mds/App_Data/
 bin/
 /mds/config/mds.properties
+/mds/lucene2
 /README.txt

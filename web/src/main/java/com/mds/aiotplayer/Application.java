@@ -27,12 +27,15 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.tuckey.web.filters.urlrewrite.UrlRewriteFilter;
 import com.mds.aiotplayer.common.web.interceptor.SetCommonDataInterceptor;
 
@@ -49,14 +52,17 @@ import com.mds.aiotplayer.webapp.common.filter.MDSRequestContextFilter;
 import com.mds.aiotplayer.webapp.common.listener.MDSContextListener;
 import com.mds.aiotplayer.webapp.common.listener.StartupListener;
 import com.mds.aiotplayer.webapp.common.util.CustomSimpleMappingExceptionResolver;
+import com.mds.aiotplayer.webapp.common.util.DatabaseMessageSource;
 import com.mds.aiotplayer.webapp.common.util.MDSConfigurationInitializer;
 import com.mds.aiotplayer.webapp.common.util.MDSKernelInitializer;
 import com.mds.aiotplayer.webapp.configuration.ApplicationConfig;
 import com.mds.aiotplayer.webapp.sys.bind.method.CurrentUserMethodArgumentResolver;
+import com.mds.aiotplayer.webapp.common.filter.LocaleFilter;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
@@ -188,7 +194,8 @@ public class Application extends SpringBootServletInitializer {
             
             @Override
             public void addInterceptors(InterceptorRegistry registry) {
-                registry.addInterceptor(new SetCommonDataInterceptor()).addPathPatterns("/**").excludePathPatterns("/sys/polling*", "/services/api/**").order(1);
+            	registry.addInterceptor(localeChangeInterceptor()).order(1);
+                registry.addInterceptor(new SetCommonDataInterceptor()).addPathPatterns("/**").excludePathPatterns("/sys/polling*", "/services/api/**").order(2);
             }
             
             @Override
@@ -216,7 +223,23 @@ public class Application extends SpringBootServletInitializer {
     }
     
     @Bean
-    public MessageSource messageSource() {
+    public LocaleResolver localeResolver() {
+    	SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+    	localeResolver.setDefaultLocale(Locale.US);
+    	//localeResolver.setLocaleAttributeName(localeAttributeName);
+
+        return localeResolver;
+    }
+    
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+       LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+       localeChangeInterceptor.setParamName("locale");
+       return localeChangeInterceptor;
+    }
+    
+    @Bean
+    public MessageSource propertiesMessageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasenames("classpath:ApplicationResources");
         messageSource.setUseCodeAsDefaultMessage(true);
@@ -224,6 +247,26 @@ public class Application extends SpringBootServletInitializer {
         // # -1 : never reload, 0 always reload
         // messageSource.setCacheSeconds(0);
         return messageSource;
+    }
+    
+    @Bean
+    public MessageSource messageSource() {
+    	DatabaseMessageSource messageSource = new DatabaseMessageSource();
+        messageSource.setParentMessageSource(propertiesMessageSource());
+        messageSource.setUseCodeAsDefaultMessage(true);
+
+        return messageSource;
+    }
+    
+    @Bean
+    public FilterRegistrationBean localeFilter(){
+    	LocaleFilter localeFilter = new LocaleFilter();
+        FilterRegistrationBean registration = new FilterRegistrationBean(localeFilter);
+        registration.setOrder(1);
+        
+        registration.setUrlPatterns(Arrays.asList("/*"));
+        
+        return registration;
     }
     
     @Bean

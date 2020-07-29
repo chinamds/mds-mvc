@@ -148,6 +148,13 @@ server:
  # This creates a Tomcat context-param named "mdsplus.home"
  # and sets it to the value of the "mdsplus.home" property (listed above)
  context-parameters.mdsplus.home: ${mdsplus.home}
+ 
+ # <!-- Define the basename for a resource bundle for I18N -->
+ context-parameters.javax.servlet.jsp.jstl.fmt.localizationContext: ApplicationResources
+ 
+ # <!-- Fallback locale if no bundles found for browser's preferred locale -->
+ # <!-- Force a single locale using param-name 'javax.servlet.jsp.jstl.fmt.locale' -->
+ context-parameters.javax.servlet.jsp.jstl.fmt.fallbackLocale: en
   
  # This creates a Tomcat context-param named "mds-config"
  # (Used by MDSContextListener to load the configurations)

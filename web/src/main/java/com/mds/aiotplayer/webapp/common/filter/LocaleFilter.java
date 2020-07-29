@@ -6,10 +6,16 @@ import com.mds.aiotplayer.webapp.common.util.DbResourceBundle;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,10 +29,18 @@ import java.util.ResourceBundle;
 /**
  * Filter to wrap request with a request including user preferred locale.
  */
-public class LocaleFilter extends OncePerRequestFilter {
-	public void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+public class LocaleFilter implements Filter {
+	@Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        //noop
+    }
+	
+	/*public void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
             FilterChain chain)
-          throws IOException, ServletException {
+          throws IOException, ServletException {*/
+	@Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+        throws IOException, ServletException {
 		String locale = request.getParameter("locale");
         Locale preferredLocale = null;
 
@@ -41,11 +55,11 @@ public class LocaleFilter extends OncePerRequestFilter {
             }
         }
 
-        HttpSession session = request.getSession(false);
+        HttpSession session = ((HttpServletRequest)request).getSession(false);
 
         if (session != null) {
             if (preferredLocale == null) {
-                preferredLocale = (Locale) session.getAttribute(Constants.PREFERRED_LOCALE_KEY);
+                preferredLocale = (Locale) session.getAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
             } 
             
             if (preferredLocale == null){
@@ -53,12 +67,12 @@ public class LocaleFilter extends OncePerRequestFilter {
             }
             
             if (preferredLocale != null){
-                session.setAttribute(Constants.PREFERRED_LOCALE_KEY, preferredLocale);
+                session.setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, preferredLocale);
                 //Config.set(session, Config.FMT_LOCALE, preferredLocale);
             }
             
             if (preferredLocale != null && !(request instanceof LocaleRequestWrapper)) {
-                request = new LocaleRequestWrapper(request, preferredLocale);
+                request = new LocaleRequestWrapper((HttpServletRequest)request, preferredLocale);
                 LocaleContextHolder.setLocale(preferredLocale);
             }
         }else {
@@ -89,6 +103,11 @@ public class LocaleFilter extends OncePerRequestFilter {
         // Reset thread-bound LocaleContext.
         LocaleContextHolder.setLocaleContext(null);
 	}
+	
+	@Override
+    public void destroy() {
+        //noop
+    }
 
     /**
      * This method looks for a "locale" request parameter. If it finds one, it sets it as the preferred locale
@@ -122,7 +141,7 @@ public class LocaleFilter extends OncePerRequestFilter {
 
         if (session != null) {
             if (preferredLocale == null) {
-                preferredLocale = (Locale) session.getAttribute(Constants.PREFERRED_LOCALE_KEY);
+                preferredLocale = (Locale) session.getAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
             } 
             
             if (preferredLocale == null){
@@ -130,7 +149,7 @@ public class LocaleFilter extends OncePerRequestFilter {
             }
             
             if (preferredLocale != null){
-                session.setAttribute(Constants.PREFERRED_LOCALE_KEY, preferredLocale);
+                session.setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, preferredLocale);
                 Config.set(session, Config.FMT_LOCALE, preferredLocale);
             }
             
