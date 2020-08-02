@@ -6,9 +6,6 @@
 
 <head>
 	<title><fmt:message key="galleryList.title"/></title>
-	<meta name="_csrf" content="${_csrf.token}"/>
-    <!-- default header name is X-CSRF-TOKEN -->
-    <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <meta name="menu" content="Repository"/>   
 	<meta name="container" content="galleryView"/>
 	<meta name="mdsClientId" content="${galleryView.mdsClientId}"/>

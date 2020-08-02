@@ -177,6 +177,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
+    @Override
     public List<T> getAll() {
         //EntityManager sess = getEntityManager();
         //return sess.createCriteria(persistentClass).list();
@@ -194,12 +195,13 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
+    @Override
     public List<T> getAllDistinct() {
         Collection<T> result = new LinkedHashSet<T>(getAll());
         return new ArrayList<T>(result);
     }
     
-    public org.apache.lucene.search.Sort prepareOrder(Searchable search) {
+    private org.apache.lucene.search.Sort prepareOrder(Searchable search) {
     	List<SortField> sortFields = Lists.newArrayList();
         for (Sort.Order order : search.getSort()) {
         	if (order.getDirection() == Direction.ASC)
@@ -214,6 +216,8 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     /**
      * {@inheritDoc}
      */
+    @Transactional
+    @Override
     public List<T> search(String searchTerm) throws SearchException {
     	EntityManager sess = getEntityManager();
         FullTextEntityManager txtSession = Search.getFullTextEntityManager(sess);
@@ -234,6 +238,8 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     /**
      * {@inheritDoc}
      */
+    @Transactional
+    @Override
     public  Page<T> search(Pageable page, String searchTerm) throws SearchException {
     	EntityManager sess = getEntityManager();
         FullTextEntityManager txtSession = Search.getFullTextEntityManager(sess);
@@ -260,6 +266,8 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
         return new PageImpl<T>(content, page, total);   
     }
     
+    @Transactional
+    @Override
     public  Page<T> search(Searchable searchable, String searchTerm) throws SearchException {
     	EntityManager sess = getEntityManager();
         FullTextEntityManager txtSession = Search.getFullTextEntityManager(sess);
@@ -313,6 +321,8 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     /**
      * {@inheritDoc}
      */
+    @Transactional
+    @Override
     public Page<T> search(Pageable page, String[] fnames, String searchTerm) throws SearchException {
     	EntityManager sess = getEntityManager();
         FullTextEntityManager txtSession = Search.getFullTextEntityManager(sess);
@@ -342,6 +352,8 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     /**
      * {@inheritDoc}
      */
+    @Transactional
+    @Override
     public Page<T> search(Searchable searchable, String[] fnames, String searchTerm) throws SearchException {
     	EntityManager sess = getEntityManager();
         FullTextEntityManager txtSession = Search.getFullTextEntityManager(sess);
@@ -401,6 +413,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
+    @Override
     public T get(PK id) {
     	EntityManager sess = getEntityManager();
     	T entity = this.entityManager.find(this.persistentClass, id);
@@ -417,6 +430,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
+    @Override
     public boolean exists(PK id) {
         EntityManager sess = getEntityManager();
         T entity = this.entityManager.find(this.persistentClass, id);
@@ -517,6 +531,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      */
     @SuppressWarnings("unchecked")
     @Transactional
+    @Override
     public T save(T object) {
         EntityManager sess = getEntityManager();
         return (T) sess.merge(preSave(object));
@@ -547,6 +562,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      */
     @SuppressWarnings("unchecked")
     @Transactional
+    @Override
     public T addOrUpdate(T object, final Searchable searchable) {
     	T result = update(object, searchable);
     	if (result == null){
@@ -560,6 +576,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
     @Transactional
+    @Override
     public void remove(T object) {
         entityManager.remove(entityManager.contains(object) ? object : entityManager.merge(object));
     }
@@ -568,6 +585,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
     @Transactional
+    @Override
     public void remove(PK id) {
     	this.entityManager.remove(this.get(id));
     }
@@ -576,6 +594,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
     @Transactional
+    @Override
     public void removeAll(){
     	remove(getAll());
     }
@@ -584,6 +603,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
+    @Override
     public List<T> findByNamedQuery(String queryName, Map<String, Object> queryParams) {
     	TypedQuery<T> query = getEntityManager().createNamedQuery(queryName, persistentClass);   		  
         for (String s : queryParams.keySet()) {
@@ -598,6 +618,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
     @Transactional
+    @Override
     public void reindex() {
     	com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.reindex(persistentClass, getEntityManager());
     }
@@ -607,6 +628,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
     @Transactional
+    @Override
     public void reindexAll(boolean async) {
     	com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.reindexAll(async, getEntityManager());
     }
@@ -614,6 +636,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     /**
      * {@inheritDoc}
      */
+    @Override
 	public void flush(){
 		getEntityManager().flush();
 	}
@@ -621,6 +644,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
 	/**
      * {@inheritDoc}
      */
+    @Override
 	public void clear(){ 
 		getEntityManager().clear();
 	}
@@ -628,6 +652,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
 	/**
      * {@inheritDoc}
      */
+    @Override
 	public void setIdentityInsert(boolean bOnOff){
 		getEntityManager().createNativeQuery("SET IDENTITY_INSERT "+ this.persistentClass.getSimpleName() + (bOnOff ? " ON" : " OFF"));
 	}
@@ -636,12 +661,15 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
 	@Transactional
+	@Override
 	public void save(List<T> entityList){
 		if (entityList != null && entityList.size() > 0){
 			try {
 				Method isNewMethod = entityList.get(0).getClass().getMethod("isNew");
-				Method  puMethod = Reflections.getAnnotationMethod(entityList.get(0).getClass(), PreUpdate.class);
-				Method  ppMethod = Reflections.getAnnotationMethod(entityList.get(0).getClass(), PrePersist.class);
+				//Method  puMethod = Reflections.getAnnotationMethod(entityList.get(0).getClass(), PreUpdate.class);
+				//Method  ppMethod = Reflections.getAnnotationMethod(entityList.get(0).getClass(), PrePersist.class);
+				Method puMethod = entityList.get(0).getClass().getMethod("beforeUpdate"); //Reflections.getAccessibleMethodByName(entityList.get(0), "beforeUpdate");
+				Method ppMethod = entityList.get(0).getClass().getMethod("prePersist"); //Reflections.getAccessibleMethodByName(entityList.get(0), "prePersist");
 				boolean isNew = false;
 				for (T entity : entityList){
 					isNew = false;
@@ -682,6 +710,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
 	@Transactional
+	@Override
 	public int update(String qlString){
 		return update(qlString, null);
 	}
@@ -690,6 +719,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
 	@Transactional
+	@Override
 	public int update(String qlString, Parameter parameter){
 		return createQuery(qlString, parameter).executeUpdate();
 	}
@@ -698,6 +728,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
 	@Transactional
+	@Override
 	public int removeById(PK id){
 		return update("update "+persistentClass.getSimpleName()+" set delFlag='" + Constants.DEL_FLAG_DELETE + "' where id = :p1", 
 				new Parameter(id));
@@ -707,6 +738,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
 	@Transactional
+	@Override
 	public int removeById(PK id, String likeParentIds){
 		return update("update "+persistentClass.getSimpleName()+" set delFlag = '" + Constants.DEL_FLAG_DELETE + "' where id = :p1 or parentIds like :p2",
 				new Parameter(id, likeParentIds));
@@ -716,6 +748,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
 	@Transactional
+	@Override
 	public int updateDelFlag(PK id, String delFlag){
 		return update("update "+persistentClass.getSimpleName()+" set delFlag = :p2 where id = :p1", 
 				new Parameter(id, delFlag));
@@ -725,6 +758,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
 	@Transactional
+	@Override
 	public int updateBySql(String sqlString, Parameter parameter){
 		return createSqlQuery(sqlString, parameter).executeUpdate();
 	}
@@ -732,6 +766,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
 	/**
      * {@inheritDoc}
      */
+	@Override
 	public Query createSqlQuery(String sqlString, Parameter parameter){
 		javax.persistence.Query query = getEntityManager().createNativeQuery(sqlString);
 		setParameter(query, parameter);
@@ -742,6 +777,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
 	/**
      * {@inheritDoc}
      */
+	@Override
 	public javax.persistence.Query createQuery(String qlString, Parameter parameter){
 		javax.persistence.Query query = getEntityManager().createQuery(qlString);
 		setParameter(query, parameter);
@@ -814,6 +850,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     /**
      * {@inheritDoc}
      */
+    @Override
 	public <E> Page<E> find(Pageable page, String qlString){
     	return find(page, qlString, null);
     }
@@ -822,6 +859,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
+    @Override
 	public <E> Page<E> find(Pageable page, String qlString, Parameter parameter){
     	String countQlString = "select count(*) " + removeSelect(removeOrders(qlString));  
 //      page.setCount(Long.valueOf(createQuery(countQlString, parameter).uniqueResult().toString()));
@@ -843,6 +881,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     /**
      * {@inheritDoc}
      */
+    @Override
 	public <E> List<E> find(String qlString){
 		return find(qlString, null);
 	}
@@ -851,6 +890,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
 	@SuppressWarnings("unchecked")
+	@Override
 	public <E> List<E> find(String qlString, Parameter parameter){
 		Query query = createQuery(qlString, parameter);
 		return query.getResultList();
@@ -860,6 +900,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<T> findAll(){
 		//return getEntityManager().createCriteria(persistentClass).list();
 		try {
@@ -875,6 +916,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
 	/**
      * {@inheritDoc}
      */
+	@Override
 	public T getByHql(String qlString){
 		return getByHql(qlString, null);
 	}
@@ -883,6 +925,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
 	@SuppressWarnings("unchecked")
+	@Override
 	public T getByHql(String qlString, Parameter parameter){
 		log.debug("SimpleBaseRepository getByHql: " + qlString + "; Parameter: " + parameter.toString());
 		
@@ -904,6 +947,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     /**
      * {@inheritDoc}
      */
+	@Override
  	public Page<T> find(Pageable page) {
  		return find(page, createCriteriaQuery());
  	}
@@ -912,6 +956,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
  	/**
      * {@inheritDoc}
      */
+	@Override
  	public Page<T> find(Pageable page, CriteriaQuery criteriaQuery) {
  		Long total = count(criteriaQuery);
         

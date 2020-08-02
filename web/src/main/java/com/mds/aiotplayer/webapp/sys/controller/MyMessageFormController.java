@@ -39,6 +39,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
 
@@ -168,7 +169,7 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
             @RequestParam(value = "textcontent", required = false) String textcontent,
             Model model,
             RedirectAttributes redirectAttributes,
-            final HttpServletRequest request) {
+            final HttpServletRequest request) throws SQLException {
     	
     	message.getContent().setContent(textcontent);
     	if (recipients != null && recipients.length > 0) {
@@ -272,7 +273,7 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
             @RequestParam(value = "recipients", required = false) String[] recipients,
             @RequestParam(value = "textcontent", required = false) String textcontent,
             final HttpServletRequest request,
-            Model model) {
+            Model model) throws SQLException {
     	
     	m.getContent().setContent(textcontent);
     	if (recipients != null && recipients.length > 0) {
@@ -339,7 +340,7 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
             @PathVariable("id") Long id,
             @ModelAttribute("m") MyMessage m, BindingResult result,
             final HttpServletRequest request,
-            Model model) {
+            Model model) throws SQLException {
         User recipient = getUserManager().getUserByUsername(username);
         if (recipient == null) {
             result.rejectValue("recipientId", "recipient.not.exists");
@@ -410,7 +411,7 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
             @RequestParam(value = "username", required = false) String username,
             @RequestParam(value = "contents", required = false) String contents,
             Model model, RedirectAttributes redirectAttributes,
-            final HttpServletRequest request) {
+            final HttpServletRequest request) throws SQLException {
 
         String viewName = send(m, result, new String[] {username}, contents, model, redirectAttributes, request);
         model.addAttribute(Constants.OP_NAME, MessageOperate.drafts);
@@ -424,7 +425,7 @@ public class MyMessageFormController extends BaseCRUDController<MyMessage, Long>
             @RequestParam(value = "username", required = false) String username,
             @RequestParam(value = "contents", required = false) String contents,
             Model model, RedirectAttributes redirectAttributes,
-            final HttpServletRequest request) {
+            final HttpServletRequest request) throws SQLException {
 
         String viewName = send(m, result, new String[] {username}, contents, model, redirectAttributes, request);
         model.addAttribute(Constants.OP_NAME, MessageOperate.drafts);

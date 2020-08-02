@@ -133,7 +133,6 @@
         <js>/static/3rdparty/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-en-US.min.js</js>
-        <js>/static/3rdparty/bootstrap-table/extensions/select2-filter/bootstrap-table-select2-filter.min.js</js>
         <js>/static/3rdparty/zTree/js/jquery.ztree.all.js</js>
         <js>/static/3rdparty/webui-popover/jquery.webui-popover.js</js>
         <js>/static/3rdparty/bootstrap-tabs-x/js/bootstrap-tabs-x.js</js>
@@ -569,7 +568,6 @@
         <js>/static/3rdparty/select2/js/select2.full.js</js>
         <js>/static/3rdparty/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js</js>
         <js>/static/3rdparty/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js</js>
-        <js>/static/3rdparty/bootstrap-table/extensions/select2-filter/bootstrap-table-select2-filter.min.js</js>
         <js>/static/3rdparty/zTree/js/jquery.ztree.all.js</js>
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
         <js>/static/3rdparty/pnotify/umd/PNotify.js</js>

@@ -136,6 +136,8 @@ public final class Condition implements SearchFilter {
     				this.searchProperty =  properties[2];
     				this.searchJpaProperty = properties[2];
     			}
+    		}else {
+    			this.searchJpaProperty = properties[properties.length-1];
     		}
     	}else if (properties.length == 2) {
         	this.searchAlias = properties[0];

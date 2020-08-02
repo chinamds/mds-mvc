@@ -560,7 +560,8 @@ public class ContentObjectSearcher{
 	/// Only items the current user is authorized to view are returned.
 	/// </summary>
 	/// <returns><see cref="Iterable&lt;ContentObjectBo&gt;" />.</returns>
-	private List<ContentObjectBo> findRecentlyAdded() throws UnsupportedContentObjectTypeException, InvalidAlbumException, InvalidGalleryException, UnsupportedImageTypeException, InvalidContentObjectException, IOException{
+	private List<ContentObjectBo> findRecentlyAdded() 
+			throws UnsupportedContentObjectTypeException, InvalidAlbumException, InvalidGalleryException, UnsupportedImageTypeException, InvalidContentObjectException, IOException{
 		ContentObjectBoCollection contentObjects = new ContentObjectBoCollection();
 
 		if (SearchOptions.Filter == ContentObjectType.All || SearchOptions.Filter == ContentObjectType.Album){
@@ -574,8 +575,8 @@ public class ContentObjectSearcher{
 		ContentObjectBoCollection filteredContentObjects = filterContentObjects(contentObjects);
 		//filteredContentObjects = FilterContentObjectsByApproval(filteredContentObjects);
 
-		if (filteredContentObjects.count() != contentObjects.count() && filteredContentObjects.count() < SearchOptions.MaxNumberResults && contentObjects.count() >= SearchOptions.MaxNumberResults)
-		{
+		if (filteredContentObjects.count() != contentObjects.count() && filteredContentObjects.count() < SearchOptions.MaxNumberResults 
+				&& contentObjects.count() >= SearchOptions.MaxNumberResults) {
 			// We lost some objects in the filter and now we have less than the desired MaxNumberResults. Get more.
 			// Note: Performance can be very poor for large galleries when using a filter. For example, a gallery where 20 videos
 			// were added and then 200,000 images were added, a search for the most recent 20 videos causes this algorithm
@@ -585,8 +586,7 @@ public class ContentObjectSearcher{
 			int skip = SearchOptions.MaxNumberResults;
 			final int maxTries = 5;
 
-			for (int i = 0; i < maxTries; i++)
-			{
+			for (int i = 0; i < maxTries; i++){
 				// Add items up to maxTries times, each time doubling the number of items to retrieve.
 				filteredContentObjects.addRange(getRecentlyAddedAlbums(max, skip));
 				filteredContentObjects.addRange(getRecentlyAddedContentObjects(max, skip));

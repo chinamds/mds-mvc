@@ -2,17 +2,17 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" logicalFilePath="liquibase/mds-data-20200719234111.changelog.xml" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet author="John (generated)" id="1595173273064-17">
         <insert tableName="i18n_culture">
-            <column name="id" valueNumeric="-3"/>
+            <column name="id" valueNumeric="3"/>
             <column name="culture_code" value="zh_TW"/>
             <column name="culture_name" value="Traditional Chinese"/>
         </insert>
         <insert tableName="i18n_culture">
-            <column name="id" valueNumeric="-2"/>
+            <column name="id" valueNumeric="2"/>
             <column name="culture_code" value="zh_CN"/>
             <column name="culture_name" value="Simplified Chinese(China)"/>
         </insert>
         <insert tableName="i18n_culture">
-            <column name="id" valueNumeric="-1"/>
+            <column name="id" valueNumeric="1"/>
             <column name="culture_code" value="en_US"/>
             <column name="culture_name" value="English"/>
         </insert>
@@ -31,7 +31,7 @@
             <column name="parent_id"/>
         </insert>
         <insert tableName="sys_area">
-            <column name="id" valueNumeric="-1"/>
+            <column name="id" valueNumeric="2"/>
             <column name="createdby" value="system"/>
             <column name="date_added" valueDate="2017-02-26T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
@@ -43,7 +43,7 @@
             <column name="parent_id" valueNumeric="1"/>
         </insert>
         <insert tableName="sys_area">
-            <column name="id" valueNumeric="-2"/>
+            <column name="id" valueNumeric="3"/>
             <column name="createdby" value="system"/>
             <column name="date_added" valueDate="2017-02-26T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
@@ -55,7 +55,7 @@
             <column name="parent_id" valueNumeric="1"/>
         </insert>
         <insert tableName="sys_area">
-            <column name="id" valueNumeric="-3"/>
+            <column name="id" valueNumeric="4"/>
             <column name="createdby" value="system"/>
             <column name="date_added" valueDate="2017-02-26T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
@@ -67,7 +67,7 @@
             <column name="parent_id" valueNumeric="1"/>
         </insert>
         <insert tableName="sys_area">
-            <column name="id" valueNumeric="-4"/>
+            <column name="id" valueNumeric="5"/>
             <column name="createdby" value="system"/>
             <column name="date_added" valueDate="2017-02-26T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
@@ -76,10 +76,10 @@
             <column name="name" value="GuangDong"/>
             <column name="remarks"/>
             <column name="type" value="2"/>
-            <column name="parent_id" valueNumeric="-1"/>
+            <column name="parent_id" valueNumeric="2"/>
         </insert>
         <insert tableName="sys_area">
-            <column name="id" valueNumeric="-5"/>
+            <column name="id" valueNumeric="6"/>
             <column name="createdby" value="system"/>
             <column name="date_added" valueDate="2017-02-26T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-02-26T00:00:00"/>
@@ -88,7 +88,7 @@
             <column name="name" value="GuangZhou"/>
             <column name="remarks"/>
             <column name="type" value="3"/>
-            <column name="parent_id" valueNumeric="-4"/>
+            <column name="parent_id" valueNumeric="5"/>
         </insert>
     </changeSet>
     <changeSet author="John (generated)" id="1595173273064-48">
@@ -115,69 +115,13 @@
             <column name="name" value="All"/>
             <column name="phone" value=""/>
             <column name="webSite" value=""/>
-            <column name="area_id" valueNumeric="-1"/>
+            <column name="area_id" valueNumeric="1"/>
             <column name="parent_id"/>
-            <column name="culture_id" valueNumeric="-1"/>
+            <column name="culture_id" valueNumeric="1"/>
             <column name="tenant_id"/>
         </insert>
         <insert tableName="sys_organization">
-            <column name="id" valueNumeric="-3"/>
-            <column name="createdby" value="system"/>
-            <column name="date_added" valueDate="2017-02-27T00:00:00"/>
-            <column name="date_lastmodified" valueDate="2017-02-27T00:00:00"/>
-            <column name="last_modifiedby" value="system"/>
-            <column name="address"/>
-            <column name="address2"/>
-            <column name="address3"/>
-            <column name="address4"/>
-            <column name="city"/>
-            <column name="country"/>
-            <column name="postal_code"/>
-            <column name="province"/>
-            <column name="available" valueBoolean="true"/>
-            <column name="code" value="DEMO2"/>
-            <column name="description"/>
-            <column name="email" value="chinamds@mmdsplus.com"/>
-            <column name="fax" value="123456"/>
-            <column name="header" value="John Lee"/>
-            <column name="name" value="Demo name 2"/>
-            <column name="phone" value="123456"/>
-            <column name="webSite" value="http://www.mmdsplus.com"/>
-            <column name="area_id" valueNumeric="-3"/>
-            <column name="parent_id" valueNumeric="1"/>
-            <column name="culture_id" valueNumeric="-1"/>
-            <column name="tenant_id"/>
-        </insert>
-        <insert tableName="sys_organization">
-            <column name="id" valueNumeric="-2"/>
-            <column name="createdby" value="system"/>
-            <column name="date_added" valueDate="2017-02-27T00:00:00"/>
-            <column name="date_lastmodified" valueDate="2017-02-27T00:00:00"/>
-            <column name="last_modifiedby" value="system"/>
-            <column name="address"/>
-            <column name="address2"/>
-            <column name="address3"/>
-            <column name="address4"/>
-            <column name="city"/>
-            <column name="country"/>
-            <column name="postal_code"/>
-            <column name="province"/>
-            <column name="available" valueBoolean="true"/>
-            <column name="code" value="DEMO1"/>
-            <column name="description"/>
-            <column name="email" value="chinamds@mmdsplus.com"/>
-            <column name="fax" value="123456"/>
-            <column name="header" value="Demo Lee"/>
-            <column name="name" value="Demo name 1"/>
-            <column name="phone" value="123456"/>
-            <column name="webSite" value="http://www.mmdsplus.com"/>
-            <column name="area_id" valueNumeric="-2"/>
-            <column name="parent_id" valueNumeric="1"/>
-            <column name="culture_id" valueNumeric="-1"/>
-            <column name="tenant_id"/>
-        </insert>
-        <insert tableName="sys_organization">
-            <column name="id" valueNumeric="-1"/>
+            <column name="id" valueNumeric="2"/>
             <column name="createdby" value="system"/>
             <column name="date_added" valueDate="2017-02-27T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-02-27T00:00:00"/>
@@ -199,9 +143,65 @@
             <column name="name" value="Demo name"/>
             <column name="phone" value="123456"/>
             <column name="webSite" value="http://www.mmdsplus.com"/>
-            <column name="area_id" valueNumeric="-1"/>
+            <column name="area_id" valueNumeric="2"/>
             <column name="parent_id" valueNumeric="1"/>
-            <column name="culture_id" valueNumeric="-1"/>
+            <column name="culture_id" valueNumeric="1"/>
+            <column name="tenant_id"/>
+        </insert>
+        <insert tableName="sys_organization">
+            <column name="id" valueNumeric="3"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-02-27T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-02-27T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="address"/>
+            <column name="address2"/>
+            <column name="address3"/>
+            <column name="address4"/>
+            <column name="city"/>
+            <column name="country"/>
+            <column name="postal_code"/>
+            <column name="province"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="code" value="DEMO1"/>
+            <column name="description"/>
+            <column name="email" value="chinamds@mmdsplus.com"/>
+            <column name="fax" value="123456"/>
+            <column name="header" value="Demo Lee"/>
+            <column name="name" value="Demo name 1"/>
+            <column name="phone" value="123456"/>
+            <column name="webSite" value="http://www.mmdsplus.com"/>
+            <column name="area_id" valueNumeric="2"/>
+            <column name="parent_id" valueNumeric="2"/>
+            <column name="culture_id" valueNumeric="1"/>
+            <column name="tenant_id"/>
+        </insert>
+        <insert tableName="sys_organization">
+            <column name="id" valueNumeric="4"/>
+            <column name="createdby" value="system"/>
+            <column name="date_added" valueDate="2017-02-27T00:00:00"/>
+            <column name="date_lastmodified" valueDate="2017-02-27T00:00:00"/>
+            <column name="last_modifiedby" value="system"/>
+            <column name="address"/>
+            <column name="address2"/>
+            <column name="address3"/>
+            <column name="address4"/>
+            <column name="city"/>
+            <column name="country"/>
+            <column name="postal_code"/>
+            <column name="province"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="code" value="DEMO2"/>
+            <column name="description"/>
+            <column name="email" value="chinamds@mmdsplus.com"/>
+            <column name="fax" value="123456"/>
+            <column name="header" value="John Lee"/>
+            <column name="name" value="Demo name 2"/>
+            <column name="phone" value="123456"/>
+            <column name="webSite" value="http://www.mmdsplus.com"/>
+            <column name="area_id" valueNumeric="3"/>
+            <column name="parent_id" valueNumeric="2"/>
+            <column name="culture_id" valueNumeric="1"/>
             <column name="tenant_id"/>
         </insert>
     </changeSet>
@@ -798,7 +798,7 @@
 	</changeSet>
     <changeSet author="John (generated)" id="1595173273064-51">
         <insert tableName="sys_role">
-            <column name="id" valueNumeric="-4"/>
+            <column name="id" valueNumeric="4"/>
             <column name="createdby" value="system"/>
             <column name="date_added" valueDate="2017-06-16T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-06-16T00:00:00"/>
@@ -810,7 +810,7 @@
             <column name="tenant_id"/>
         </insert>
         <insert tableName="sys_role">
-            <column name="id" valueNumeric="-3"/>
+            <column name="id" valueNumeric="3"/>
             <column name="createdby" value="system"/>
             <column name="date_added" valueDate="2017-06-16T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-06-16T00:00:00"/>
@@ -822,7 +822,7 @@
             <column name="tenant_id"/>
         </insert>
         <insert tableName="sys_role">
-            <column name="id" valueNumeric="-2"/>
+            <column name="id" valueNumeric="2"/>
             <column name="createdby" value="system"/>
             <column name="date_added" valueDate="2017-06-16T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-06-16T00:00:00"/>
@@ -834,7 +834,7 @@
             <column name="tenant_id"/>
         </insert>
         <insert tableName="sys_role">
-            <column name="id" valueNumeric="-1"/>
+            <column name="id" valueNumeric="1"/>
             <column name="createdby" value="system"/>
             <column name="date_added" valueDate="2017-06-16T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-06-16T00:00:00"/>
@@ -848,7 +848,7 @@
     </changeSet>
     <changeSet author="John (generated)" id="1595173273064-54">
         <insert tableName="sys_user">
-            <column name="id" valueNumeric="-3"/>
+            <column name="id" valueNumeric="3"/>
             <column name="createdby"/>
             <column name="date_added"/>
             <column name="date_lastmodified"/>
@@ -873,7 +873,7 @@
             <column name="tenant_id"/>
         </insert>
         <insert tableName="sys_user">
-            <column name="id" valueNumeric="-2"/>
+            <column name="id" valueNumeric="2"/>
             <column name="createdby"/>
             <column name="date_added"/>
             <column name="date_lastmodified"/>
@@ -898,7 +898,7 @@
             <column name="tenant_id"/>
         </insert>
         <insert tableName="sys_user">
-            <column name="id" valueNumeric="-1"/>
+            <column name="id" valueNumeric="1"/>
             <column name="createdby"/>
             <column name="date_added"/>
             <column name="date_lastmodified"/>
@@ -925,7 +925,7 @@
     </changeSet>
     <changeSet author="John (generated)" id="1595173273064-36">
         <insert tableName="sys_calendar">
-            <column name="id" valueNumeric="-3"/>
+            <column name="id" valueNumeric="3"/>
             <column name="createdby" value="OqLkPcMePtBaTyYjCuWdZrBcEiLjLvYsNtBiAoSoDuAdVsPdAsHoShNwTuWxQdKrEeIkLmFxSlKzGsOoIkHbDmLxVqWkUqLdCjVh"/>
             <column name="date_added" valueDate="2017-08-19T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-08-19T00:00:00"/>
@@ -938,10 +938,10 @@
             <column name="start_time" valueDate="2016-11-22T12:00:00"/>
             <column name="text_color" value="IyXoVpFoUnRtJsBxXcKpJnZfDuIcNfKiIkRwVjVmSrRyRmMlVhCfZzGwMtXeTqMsRlFzEjHqJwXqWiAqKmZnGoZxAiJbExYePlSbWhWyVoTrCsKyDgMuJwWfInDoYoNoTxCqMrRvIqOkQnEbClIjFxDtSkHcXaMyJbDuOjZdGoVdWuIhCqSyQxFrNqQgUkNdSpTfQbGcYrPeByFiFeObZpOmNuGuXxSlQvJbHdAuBzWxVcRcPjJoXqWjBcBzZcR"/>
             <column name="title" value="QnWyMvShPqTmChVfXjTySkIoFtMxBiCcKkFtWnCbFiViPeVzVzZrKdQmHbUsYyCpRgOvEyBeRwZpEiMfKsPvLxGsRxHbGnAnOuWkIvEiPqIhSnSsNjHgLkEwMfGsSwUiHhQsFtGkYtKeLjBaQlHiNlHlYgGsIjIcPoMyQlHxUeGySmGbDbYzScNnAuBoLdFcDqUrQeQaJePfVbScWxUgHeVuUuJpPqMzJdAfDkZkMbRoDqMrIqRtLgToYdIxUoN"/>
-            <column name="user_id" valueNumeric="-3"/>
+            <column name="user_id" valueNumeric="3"/>
         </insert>
         <insert tableName="sys_calendar">
-            <column name="id" valueNumeric="-2"/>
+            <column name="id" valueNumeric="2"/>
             <column name="createdby" value="VvLlLyHkJxSlDhFcSiQzQjArBuYkSaXhAuFgFlTcElIpNeKpCtNnYpNtXjJdTuIaWsXfNtApRmWjLqFdZxKvLgMnRzAiTdFiTpVy"/>
             <column name="date_added" valueDate="2017-08-19T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-08-19T00:00:00"/>
@@ -954,10 +954,10 @@
             <column name="start_time" valueDate="2016-11-22T12:00:30"/>
             <column name="text_color" value="WrDkTiHlVqLdDtMxOiFnTzSrNtDnIbHcBfYfKiFoZdJyGwJxOmOyDyAwOdUpToImAfJnQpCySrVuJkEnFrPuAdSgNwOzRiCcLhQoKoHmApNeZyTiZvIxRsKiPePySoDvDxSdYiSgDyPkGxJwBqRrMqLmDfHkEeNgDyFuXhZvYzWtJhNfVyMfSrEoLxVnHnMmUrLvAyPhBfOrBtPxYdMtReLwOvZuArQzOsLzOdNeSkCnOnDxCyTfHlCfSpUwBoB"/>
             <column name="title" value="VkMuCyHcSaEdBrDeCxImBpIbJlLbPdRvGcSeCjGxJsNwUyZsSzVqMrUlRoXrYeSrGfKkGwZeQxUtDoFsFlYhSwBbBwYgRkYcOwXxRrThByYeBxBgMfXwRfXvAoFeVbDlXiFxBrQqMcSpTxEsYjOaWxZaDmQxVrNpNzNkRgXqQvNxVcKnLuWeJmThQxBdOoInRtIgQgEyTrGyOmSyUyXyKsMbKlMuUpZiUkFfHjJfViOjKhJhBeFmSgIgBgEuXbL"/>
-            <column name="user_id" valueNumeric="-2"/>
+            <column name="user_id" valueNumeric="2"/>
         </insert>
         <insert tableName="sys_calendar">
-            <column name="id" valueNumeric="-1"/>
+            <column name="id" valueNumeric="1"/>
             <column name="createdby" value="ReZhHgLjVhXbBgLmQbKnPaMkSfCtLiXrMaRtBhSgYnLyBuAsSpXrKpHfFtGsKbTuPoQmVlHqOzIpPmKrJjGaJwWaSvWcYbNpYvTh"/>
             <column name="date_added" valueDate="2017-08-19T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-08-19T00:00:00"/>
@@ -970,41 +970,41 @@
             <column name="start_time" valueDate="2016-11-22T11:00:00"/>
             <column name="text_color" value="LzEdXtDvPsWaPjHhGjAlMkUoYrYoMiUhKtQsDfDtUiGcJcCrUbJfMwOeRhDaQpDpGwBxEbBbJpZgBlAoFoInUyMzWxLdBkLnOwLsJbOfJvAaNtEsOtHyTkVdArFxEaVlWmLcWlIuWjBuDnGcWiLoMmDaBqCxRxOxWnMwXfNlRsVrPjRtRnVeGhKuUaKwYcIwEqAxUbXpYgHbLgAtZlToPuNwYxNpHlWsIqGpLjLfFuJtMgUpBhQgZzCzFeRgRoO"/>
             <column name="title" value="RuXtSdHiUpUyHnCcWzVvFtFkDoQyRoNqToGrHkMxNkNrNmNbVcNvCyUmFyLqBbDkKuQaViSdZtStFoKcUvJuKxYuJeUqXkLuArSgYwVdUoFgJwHqFsJdLuVvFyUeFnJfDsAaWtEaRyCdIdJzLtApUiYdPgNaVzPkGaUkQgXcRmZkLtLnKxJiRxWpKcRmFbUaUcZzGnXdSeKkSbFdTzVkFcZuWeYcHgDvHvMsEbPyKhVoAwXvHqUlCxRtQdFkRwW"/>
-            <column name="user_id" valueNumeric="-1"/>
+            <column name="user_id" valueNumeric="1"/>
         </insert>
     </changeSet>
     <changeSet author="John (generated)" id="1595173273064-46">
         <insert tableName="sys_notification">
-            <column name="id" valueNumeric="-3"/>
+            <column name="id" valueNumeric="3"/>
             <column name="content" value="TeNnXkOaNfPfMwXdZzWtOmJsRuXnCvZyLxKdOrDmDmZyPlPlJlMnZtZgUhEuNrCmXuHfZhDoJlFnKoZoTzZaFsLtLjQfXqWhTzQxOoVsGeZiJtKmXdNkEsQpKtZvDnDrZfVjSdNzLeYxGqQcCuCoVjNbIhNlPkRaKpJrXmQgUqBpOuCwVvZeCdKvMoKdHsLmGoDhQpCxDvWiLdZcJhBfIhDpMjFgGvFnEeYjHbUlDdGlKnGeAuNmXbDyJtTrDnJ"/>
             <column name="date" valueDate="2017-08-19T00:00:00"/>
             <column name="is_read" valueBoolean="false"/>
             <column name="source" value="system"/>
             <column name="title" value="NqYhJvFsTmBcYoVbEsOxDaLuAcOyPkCyJmShZyWzDmJkAhNePqEgCcAiRrIqBpWtTrPmIwEnYcHdPzSkNdMdEbTnSdFoJxGfTiRvCkIrVuChYuPnGkQgVeQhRoTzKbQjAcFjCeZeEvPsNyFhFtEaMgXtYbFyWhFlQwFdIqBpBrSkEcNlXjRlZrIzSoHpJyFeSuZxGgFzSlEdOfQgMoMhXvLyPcZxDjJaRiErNzAbZuMbRqKsKzVgIrEjHbQoSdI"/>
-            <column name="user_id" valueNumeric="-3"/>
+            <column name="user_id" valueNumeric="3"/>
         </insert>
         <insert tableName="sys_notification">
-            <column name="id" valueNumeric="-2"/>
+            <column name="id" valueNumeric="2"/>
             <column name="content" value="AzGdOsNsMgKlHuWfVtPxVfFwMuJdDwNxKjGyFzLqPiUjEiXeQpTiWgJmFsQxVmQbVlBnNjSzTvZoZpRmIhGvJrSiClQvTzMoFpWtVdBcBtIsXcRmGoPyTwMmOjJjRrRzWgFdTlAgSxNaAlGtAxMuXiKnSuNxMhBgOoJtKwWtNbUeGcPlHvKjTiAnScSbCpNaNyEtXzJhQgGyKbUnIeUuUqMyYyXkUoEbFiZvDmKoQdHrKyFrQqViCpGaChZxKiY"/>
             <column name="date" valueDate="2017-08-19T00:00:00"/>
             <column name="is_read" valueBoolean="false"/>
             <column name="source" value="system"/>
             <column name="title" value="VmRuXfPlIfTtBoVpDeCeZhShYyQvLxTnKaNkXsWuEzXmPeRlNxGnEzLnAsTqNsVrDaLmAqLfUrKzXrJlRiAiYcEzKrYuAuFlSuSxFvKwJaUrBiUyUqQwXqNnNsAsUyRcXwUuQmEsLpNdQoFnLpArYrXuViChIoIbXiJpHaBxThHjSvXkPmGsWtBeEtFqCzPzPbIiUmPqBmZxElFePqQoFkNkKrJvXzKiShPxEeJbUsTkJwZbPeLeNsQuHuQiOoQ"/>
-            <column name="user_id" valueNumeric="-2"/>
+            <column name="user_id" valueNumeric="2"/>
         </insert>
         <insert tableName="sys_notification">
-            <column name="id" valueNumeric="-1"/>
+            <column name="id" valueNumeric="1"/>
             <column name="content" value="InVpDxSeUlQkUxHkZoIuOjPrXiOyXdVrWdCnQdWqXyQdXqKhTeSzAqWgMnBoAhQjHnEeJcBnAmZhVgLcEtQaQgRrJrVnZjMpGpTrOfZiEaVrGaUyLfEiYtBsPqLaPoQgJcOzCwKoYnHvKqReZrUyTyHhIlQcHrHcPwVcRvPrOvWtJjGbMwSaGtDsYiXoOlQiIjCuDdKkGtGeIiXnMsYnRdDcRtMgHcIrDkBcHcUjXlNrJgSkAdIaYcJaIdNoTaF"/>
             <column name="date" valueDate="2017-08-19T00:00:00"/>
             <column name="is_read" valueBoolean="false"/>
             <column name="source" value="system"/>
             <column name="title" value="JrRpZdVrHqRqTaCdQfSiSvGxPpGuSlNgCpJaVdXiKgGvQbHxCoXbLmBvAsZzTyIpAfEqKxTeNpGdUcSxGfBtWnFbJnFeSjStSkKqXsMtFoWvAiQsSdKgCfSzKgZuUlGnXlAgNbXfUbOqYbAgLoZvJzXfMgBuBjBhQkWdScAzHbZkMsRrOnSpSwVcVjCjKoNdGvWtFeXkUtKdOwTuVwAcSdMwZcHnHbOhBvUhVpUzUgPnLnNtFfMjTiWnGpBeYuR"/>
-            <column name="user_id" valueNumeric="-1"/>
+            <column name="user_id" valueNumeric="1"/>
         </insert>
     </changeSet>
     <changeSet author="John (generated)" id="1595173273064-47">
         <insert tableName="sys_notification_template">
-            <column name="id" valueNumeric="-3"/>
+            <column name="id" valueNumeric="3"/>
             <column name="deleted" valueBoolean="false"/>
             <column name="name" value="WvCzVbLwQlLuAdFmLtWbShZzKcTbWyAdGxNzGhYjNfYtWvTqXsKfWkDnOvLoXtFjEcGzJyBpNbBfOwSqJkIdJnSkHvXxCiOiSvNq"/>
             <column name="source" value="system"/>
@@ -1012,7 +1012,7 @@
             <column name="title" value="DlMoSuUvGyJfOqNjEwEzKdXjWuEjYaHvCgKyRwFmFgJaVdWrTgTtThHhBmWrDcNnEwYcCtCoPyDmTsJhYxFvEvNeLyQmZzBiSbNvDcOtKcFdUrReOhMhStUzXfKqEnQbJwClEkCxEeWrDnUvCwFbFbChBkXrMwUzFeUcDbQvOhTvPvKbPtYsCjAfFxGlVtCrCvSiCrDcVbDxCkTmKcQpQxSgOoSgUoKpHsZsXrDiXpHfAnNtQtCgIvKtAmTwHdShIcAxGfXkLqCvIxJmLrGaLlXhSuDaObWvAnCyZbMjJgXwJgFaZxAaZfMqEuNeIhUhZlHrOeHaLiPoJrDvEgAaUkVoQhEiIwZqBtJoUcTqEtDaWvKyBbAeYoOiMhBiWxBuIwDrYyJoDoYxVwSpFkBhKwVcFrYhXwQcCpByXiUsDjZrFbQiPcMbWrYwHpXeGePuJbAqStJvDhVqXbRzJnNwYwShNoGwVwJwKwLgLhVeBuWtThYoGhTjPpQdShJkRqShKjNiZgJiXyGkVqSnYiJbPdMtHjXfPgLeAqUtOlPpGyKjCfUbWgAfQjFvImMzQuVmFeYiBhJfXuMeErIeErMyGtCoBuHpHrSyIbApWqDzVlKuKlWeXkGmLqXtGmAdJpLyQoLpWlEkFvVfGmSnPbMdCqRnYrJqVtNcMtWkSyRrCmUtUcHpXtFuYjKzSmFnBlArUgTjIwHaVfUfQfYaPjQhVkGgTmRpJrRoOsQcRdSpCfJoWqCfWmCtVmTwNeUjOlViSyHjVrUeCdOpLsLzRkTbFyOfNaDjYuEoHvGgAlQmWrXfXiMoPoUaBnFjIkWuMlZlRbVyNvGkDhLoWyHvVuAgNcFcWdZqMkKrGoZeZfZxZgBrMaPtFmLqFeJdCxVrWiFlKoRjVsSsFrGgLuYfBjCaUfJvOhRdNjSzJqLzGmApUjZvTwJwNyNaWgTsOvDdIaWxVjGvVuNtGfQxNrCiUaXdGyUsPiWuPrPiHrMyIvTkYhOuYrOuIlWfCwZmOoNkTvSr"/>
         </insert>
         <insert tableName="sys_notification_template">
-            <column name="id" valueNumeric="-2"/>
+            <column name="id" valueNumeric="2"/>
             <column name="deleted" valueBoolean="false"/>
             <column name="name" value="FdWvNsKwKuYaIqEhMxAyPiDwUwRrRoOiOuJeTwNrIdXwTzVbQlYwCvEqGzQhQwDtTdJoGnOhRrHxItSyHnJcNdPmMwWkOvWqTrQo"/>
             <column name="source" value="system"/>
@@ -1020,7 +1020,7 @@
             <column name="title" value="RtNpPrFdXqOaMoYqLhRbMtHwSoZjEpOcPpGoImVxLiFxXmNhFuYpQgXjKkPlOnOkGsGiGoYwNfYfYoBlSaOkKbJbInUcQxJaTyZzSjNyZhKaRkXyPtOnEiRlSfApSaTnJuNmCoQdTbOzIiWwWbWhGkGuFbXyJcSxZqAwRtSdFdHeXoOjGrQlRpTaVxLmHhKgZzRcVmLySwWwGlCsMiQiWpVlAcZbLqMeDiVsNqRzLiAvDfTrByAhQoNeHiAdKfLwAwEbWxVgPqXsYsDzZdHlSfBcTdYsXsIjMvNoEsEyPgTrGrKgZzLsYjIwHhXpYgPyGqOlAeWgRtKhWzYcAbRzNoWpNbHyMeMuGwYlSlQeVwCvDkDiRtUsRaTdLrEdHmGzQwUzBhIaSrYlIgLoItJlCrKfChDtDhCrKbZpDwEsExAfMtQcCwAzPySnMcHvAkXpFlJkPvUtRzFqFhMaIzSpUaKaTnMoVrLsHxNdAnYzFpBdGaOkFmPiDcPrSzZwJwAeToKzOtYdKgZhPuDzSpZzGmXfQqErEkYmEnRfBkDcUoQoNgUzRgLzPyJlZlQaDyNbHpVsXnPxIzMgKeTcGdOmBkXmUqJqYpItArAqUtFmMvYpAdTyMaGcFbWoBdIxDyPaUxPxFuWdAkIgBlEoHdDlKhCrLpIrYpXyAqQcKdAzNqKvUbHeOaLfOjVxIgYrZdEuYxUnMjLsXnWbDeWlNqUiSwGvXmXbNtSpMbJsBfBoFkNtXuAqLnOnHvCzRhMdQwVgSuSqRfOrWyFgDlDgNkEyIvKxEdLmFhMqFaWgWqMnTrIeBoJyAyFiWmUfXcZgFhCbZpFuIhHrAsMiXqDiPsTzCzUzNdBqMiZxIuVuIbGxUvIsHyWpBoJmBfLmJsYrMlPvGcRhKkSjHlWeNkFaFeUhExGvErXjKsFoXsFzEaNcDhSzOsEpYqLuSwEkXhIxPzBsIoHxTfZvZzWrUpXkVuQmOyFcCpAgExIiOhFjWuOyJdOhLrHqKdNkIwVyFzRyUdRu"/>
         </insert>
         <insert tableName="sys_notification_template">
-            <column name="id" valueNumeric="-1"/>
+            <column name="id" valueNumeric="1"/>
             <column name="deleted" valueBoolean="false"/>
             <column name="name" value="LpHpTiTyOpSiNvItNpVzBsKjWaQnSkFzNnOcItNwHfOtAtKwOqQkPmUdRbAeHxUlFxIpNdKfNtQjZgAuZbXjPxGfDuGsJyHmGaIf"/>
             <column name="source" value="system"/>
@@ -1030,7 +1030,7 @@
     </changeSet>
     <changeSet author="John (generated)" id="1595173273064-52">
         <insert tableName="sys_task_definition">
-            <column name="id" valueNumeric="-3"/>
+            <column name="id" valueNumeric="3"/>
             <column name="createdby" value="AjToRcMyQpZhMnZdWqDgKxFxPsTdPbSdVpDuPhRxSwMhYbKuRcXfIvMpXfXoPlToYeYrTiHnNcEtRiVlQbMwDpYoRvEwBjRvTqDb"/>
             <column name="date_added" valueDate="2017-08-19T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-08-19T00:00:00"/>
@@ -1044,7 +1044,7 @@
             <column name="is_start" valueBoolean="false"/>
         </insert>
         <insert tableName="sys_task_definition">
-            <column name="id" valueNumeric="-2"/>
+            <column name="id" valueNumeric="2"/>
             <column name="createdby" value="CtTfCjTyVzHzYyCiQiUzFrBvTqFcPiWrSwIyZfRrOdFoGkRxIkIhOlHjFdIxBtBjLfWiZoIrOtMoCmWuAnHoKlUfIsAmHsRsQkHm"/>
             <column name="date_added" valueDate="2017-08-19T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-08-19T00:00:00"/>
@@ -1058,7 +1058,7 @@
             <column name="is_start" valueBoolean="false"/>
         </insert>
         <insert tableName="sys_task_definition">
-            <column name="id" valueNumeric="-1"/>
+            <column name="id" valueNumeric="1"/>
             <column name="createdby" value="HtRpLuYlRnZoVdYzQlDbOuJyWhZzFuIxEwBvUjNuUvLjJqLgByBrVxWmVrJoRbMxYhLtHuZzKhScXxPsHbJfLoBeWpEySqNyWlBm"/>
             <column name="date_added" valueDate="2017-08-19T00:00:00"/>
             <column name="date_lastmodified" valueDate="2017-08-19T00:00:00"/>
@@ -1080,25 +1080,25 @@
     </changeSet>
     <changeSet author="John (generated)" id="1595173273064-56">
         <insert tableName="sys_user_role">
-            <column name="user_id" valueNumeric="-3"/>
-            <column name="role_id" valueNumeric="-2"/>
+            <column name="user_id" valueNumeric="3"/>
+            <column name="role_id" valueNumeric="2"/>
         </insert>
         <insert tableName="sys_user_role">
-            <column name="user_id" valueNumeric="-1"/>
-            <column name="role_id" valueNumeric="-2"/>
+            <column name="user_id" valueNumeric="1"/>
+            <column name="role_id" valueNumeric="2"/>
         </insert>
         <insert tableName="sys_user_role">
-            <column name="user_id" valueNumeric="-3"/>
-            <column name="role_id" valueNumeric="-1"/>
+            <column name="user_id" valueNumeric="3"/>
+            <column name="role_id" valueNumeric="1"/>
         </insert>
         <insert tableName="sys_user_role">
-            <column name="user_id" valueNumeric="-2"/>
-            <column name="role_id" valueNumeric="-1"/>
+            <column name="user_id" valueNumeric="2"/>
+            <column name="role_id" valueNumeric="1"/>
         </insert>
     </changeSet>
     <changeSet author="John (generated)" id="1595173273064-57">
         <insert tableName="wf_activity">
-            <column name="id" valueNumeric="-3"/>
+            <column name="id" valueNumeric="3"/>
             <column name="createdby" value="YsNxCeAlKaOpHtDaRzKjDzAwWjYxFoSpWiUzCnPnVdJrYhNpBhHbAhYiGyKaOmFkLpRiMaHpWyObHmElIcClWtSnLiVrOnEwXsIn"/>
             <column name="date_added" valueDate="2018-10-30T00:00:00"/>
             <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
@@ -1108,7 +1108,7 @@
             <column name="organization_id"/>
         </insert>
         <insert tableName="wf_activity">
-            <column name="id" valueNumeric="-2"/>
+            <column name="id" valueNumeric="2"/>
             <column name="createdby" value="JdZsDhWeEqMlPgBoMgYqAnRvPzHhHjHkKgPcQsJuTsEiRoMeBpRkDkUoRaCeWpNaWlLvNoEfOwLnRxHuMuYbKhPrXpDbZxFtKdHk"/>
             <column name="date_added" valueDate="2018-10-30T00:00:00"/>
             <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
@@ -1118,7 +1118,7 @@
             <column name="organization_id"/>
         </insert>
         <insert tableName="wf_activity">
-            <column name="id" valueNumeric="-1"/>
+            <column name="id" valueNumeric="1"/>
             <column name="createdby" value="GmLyQfDpFoKnDfYtJtZbUpCpJuReOfYcOrEnZkVkFuEgXqLtDrMbRrQqFpErZkJlRlBaQfGyDoNoXfUzQjYzNbXeLiKdEvByZgOj"/>
             <column name="date_added" valueDate="2018-10-30T00:00:00"/>
             <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
@@ -1130,7 +1130,7 @@
     </changeSet>
     <changeSet author="John (generated)" id="1595173273064-58">
         <insert tableName="wf_organization_workflowtype">
-            <column name="id" valueNumeric="-3"/>
+            <column name="id" valueNumeric="3"/>
             <column name="createdby" value="BbOhNtRaSqTxKvIfTePvIcCeUlDnBuAsKkSuUdBeYbGzTbYkDcYtGfWtTuYrVqIaFiEwJaEwDtLyDhOpOnYeXlAjXhKjQqLzGlHk"/>
             <column name="date_added" valueDate="2018-10-30T00:00:00"/>
             <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
@@ -1140,7 +1140,7 @@
             <column name="organization_id"/>
         </insert>
         <insert tableName="wf_organization_workflowtype">
-            <column name="id" valueNumeric="-2"/>
+            <column name="id" valueNumeric="2"/>
             <column name="createdby" value="XvFfNoNcDoVsKcZmNgIlQtPwZzKmNwTkOfVbGuUrJtMpBbVmCwSbOnStJuAaHnVsShRxDkEoZkCvRqOiLcJqXmMqQkDaAkOkJxAk"/>
             <column name="date_added" valueDate="2018-10-30T00:00:00"/>
             <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
@@ -1150,7 +1150,7 @@
             <column name="organization_id"/>
         </insert>
         <insert tableName="wf_organization_workflowtype">
-            <column name="id" valueNumeric="-1"/>
+            <column name="id" valueNumeric="1"/>
             <column name="createdby" value="QiOiTqSzDkOvTjHhCoKxToHfDwPwKcOzRyDoBaLiXgSdTaNoZuWuAzLqOnUuHxVvYwUjGdMrQnHeDmBdDjReSrUpLrMaLsHmYoGd"/>
             <column name="date_added" valueDate="2018-10-30T00:00:00"/>
             <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
@@ -1162,63 +1162,63 @@
     </changeSet>
     <changeSet author="John (generated)" id="1595173273064-59">
         <insert tableName="wf_workflow">
-            <column name="id" valueNumeric="-3"/>
+            <column name="id" valueNumeric="3"/>
             <column name="createdby" value="BbOhNtRaSqTxKvIfTePvIcCeUlDnBuAsKkSuUdBeYbGzTbYkDcYtGfWtTuYrVqIaFiEwJaEwDtLyDhOpOnYeXlAjXhKjQqLzGlHk"/>
             <column name="date_added" valueDate="2018-10-30T00:00:00"/>
             <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
             <column name="last_modifiedby" value="QqCvFtOqBnPdThAlBhSzIsZwOkCsTuFzCoYiHqTeQpGsWtDfOsKcJyNcDvSfDpLxOrNoViBeNqLeBaQrTgXxJvDfVwJjVyYiOhNz"/>
             <column name="workflow_name" value="BwFsLaSlPlKsZkGzReKhIdYzJfInVpQzNrGaWbQvVmEmGxJbZcUqOfPfRaJqLhBuFyRxZiJkWnCcHvNzUqFwTxMaQlQqQlJsJkPbUfMvFfSvSkHbGlCrOvQgCfPgHtLnHhNvOoCiScYcRjQqEzLpUfGoUlRoQvSdMiVeOoCwSeLeJkJyEtIzEdAuPnAnZaRlFkDvYeRr"/>
-            <column name="workflow_type_id" valueNumeric="-3"/>
+            <column name="workflow_type_id" valueNumeric="3"/>
         </insert>
         <insert tableName="wf_workflow">
-            <column name="id" valueNumeric="-2"/>
+            <column name="id" valueNumeric="2"/>
             <column name="createdby" value="XvFfNoNcDoVsKcZmNgIlQtPwZzKmNwTkOfVbGuUrJtMpBbVmCwSbOnStJuAaHnVsShRxDkEoZkCvRqOiLcJqXmMqQkDaAkOkJxAk"/>
             <column name="date_added" valueDate="2018-10-30T00:00:00"/>
             <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
             <column name="last_modifiedby" value="YySwMyMzJbLtXdEaZlYqPkWaEbXqZwUvClEsCeZtLpXzMoPlUrHeIxWmZsIwVfOyCzUoWdQfRpGyYlYbPjLoOhTdXpRxEoApYdZu"/>
             <column name="workflow_name" value="HyShWoLdOzVaNmFuEnOsHxAgEnKcVaRsAcIgQsOmWcWvKuKpIbPlFsDrUxJlCiLsWpEyLpArSnPqSaJoKvKkWqBfXlFyPsJqDaXtWcHlRaVdEmTyLqZrSxRaVmAeBpRlBbIbFsWqMwWqEvLeTlLzGuCyZjKbTvAdMzHbGvLpAnOaUyYbVpSlZaTzXnFhRyTvByGqGpHe"/>
-            <column name="workflow_type_id" valueNumeric="-2"/>
+            <column name="workflow_type_id" valueNumeric="2"/>
         </insert>
         <insert tableName="wf_workflow">
-            <column name="id" valueNumeric="-1"/>
+            <column name="id" valueNumeric="1"/>
             <column name="createdby" value="QiOiTqSzDkOvTjHhCoKxToHfDwPwKcOzRyDoBaLiXgSdTaNoZuWuAzLqOnUuHxVvYwUjGdMrQnHeDmBdDjReSrUpLrMaLsHmYoGd"/>
             <column name="date_added" valueDate="2018-10-30T00:00:00"/>
             <column name="date_lastmodified" valueDate="2018-10-30T00:00:00"/>
             <column name="last_modifiedby" value="GgMzEfAwWtUqYwBeHxLqZkIaReRdOiFfSsWpUqWnQpXnPcQiDwRtGyIxVuZaCrDeJkSaEqWwPfXuIpDdFyUmKqHsOuHsRvByEsOd"/>
             <column name="workflow_name" value="YnBrHgJlYiMcAjFeKjGaLzCeQsXsCmVmEoTfNzLpKsDaZtWiNaUpBkOsOzUlRsDcIqDiDpHrVsRjQiUpIfPqUmIlCjWjMvCgIeXoLdXtOkOdOyYrFjJxIeGqLeGyAxIoZfJoBgFjRrFtEuIoObAiXxVuUkBwUhNnMyQuIjGkTgLiCbJcPlAxKxHoFnBoPsEcLeClKiRk"/>
-            <column name="workflow_type_id" valueNumeric="-1"/>
+            <column name="workflow_type_id" valueNumeric="1"/>
         </insert>
     </changeSet>
     <changeSet author="John (generated)" id="1595173273064-60">
         <insert tableName="wf_workflow_detail">
-            <column name="id" valueNumeric="-3"/>
+            <column name="id" valueNumeric="3"/>
             <column name="apply" valueBoolean="false"/>
             <column name="approval" valueBoolean="false"/>
             <column name="cancel" valueBoolean="false"/>
             <column name="email" valueBoolean="false"/>
             <column name="seq" valueNumeric="241915656"/>
-            <column name="activity_id" valueNumeric="-3"/>
-            <column name="workflow_id" valueNumeric="-3"/>
+            <column name="activity_id" valueNumeric="3"/>
+            <column name="workflow_id" valueNumeric="3"/>
         </insert>
         <insert tableName="wf_workflow_detail">
-            <column name="id" valueNumeric="-2"/>
+            <column name="id" valueNumeric="2"/>
             <column name="apply" valueBoolean="false"/>
             <column name="approval" valueBoolean="false"/>
             <column name="cancel" valueBoolean="false"/>
             <column name="email" valueBoolean="false"/>
             <column name="seq" valueNumeric="1148576883"/>
-            <column name="activity_id" valueNumeric="-2"/>
-            <column name="workflow_id" valueNumeric="-2"/>
+            <column name="activity_id" valueNumeric="2"/>
+            <column name="workflow_id" valueNumeric="2"/>
         </insert>
         <insert tableName="wf_workflow_detail">
-            <column name="id" valueNumeric="-1"/>
+            <column name="id" valueNumeric="1"/>
             <column name="apply" valueBoolean="false"/>
             <column name="approval" valueBoolean="false"/>
             <column name="cancel" valueBoolean="false"/>
             <column name="email" valueBoolean="false"/>
             <column name="seq" valueNumeric="228139326"/>
-            <column name="activity_id" valueNumeric="-1"/>
-            <column name="workflow_id" valueNumeric="-1"/>
+            <column name="activity_id" valueNumeric="1"/>
+            <column name="workflow_id" valueNumeric="1"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

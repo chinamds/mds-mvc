@@ -72,8 +72,8 @@ spring:
   database-platform: org.hibernate.dialect.MySQL57Dialect
   show-sql: true
   open-in-view: true
-  #hibernate.ddl-auto: none
-  hibernate.ddl-auto: update
+  hibernate.ddl-auto: none
+  #hibernate.ddl-auto: update
   #hibernate.ddl-auto: create-drop
   hibernate.jdbc.batch_size: 20
   hibernate.order_inserts: true
@@ -150,11 +150,11 @@ server:
  context-parameters.mdsplus.home: ${mdsplus.home}
  
  # <!-- Define the basename for a resource bundle for I18N -->
- context-parameters.javax.servlet.jsp.jstl.fmt.localizationContext: ApplicationResources
+ # context-parameters.javax.servlet.jsp.jstl.fmt.localizationContext: ApplicationResources
  
  # <!-- Fallback locale if no bundles found for browser's preferred locale -->
  # <!-- Force a single locale using param-name 'javax.servlet.jsp.jstl.fmt.locale' -->
- context-parameters.javax.servlet.jsp.jstl.fmt.fallbackLocale: en
+ # context-parameters.javax.servlet.jsp.jstl.fmt.fallbackLocale: en
   
  # This creates a Tomcat context-param named "mds-config"
  # (Used by MDSContextListener to load the configurations)

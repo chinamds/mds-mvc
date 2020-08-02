@@ -129,7 +129,8 @@ public class ApplicationConfig {
     public DefaultValidatorFactory validatorFactory() {
     	DefaultValidatorFactory validatorFactory = new DefaultValidatorFactory();
     	validatorFactory.setValidationConfigLocations(new Resource[] {new FileSystemResource(springContextHolder().getRootRealPath() + "/WEB-INF/validation.xml"), 
-    			new FileSystemResource(springContextHolder().getRootRealPath() + "/WEB-INF/validator-rules.xml"), new FileSystemResource(springContextHolder().getRootRealPath() + "/WEB-INF/validator-rules-custom.xml")});
+    			new FileSystemResource(springContextHolder().getRootRealPath() + "/WEB-INF/validator-rules.xml")
+    			, new FileSystemResource(springContextHolder().getRootRealPath() + "/WEB-INF/validator-rules-custom.xml")});
     	
     	return validatorFactory;
     }

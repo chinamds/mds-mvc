@@ -1,6 +1,7 @@
 package com.mds.aiotplayer.sys.service.impl;
 
 import com.mds.aiotplayer.sys.dao.MyMessageDao;
+import com.mds.aiotplayer.sys.dao.MyMessageReFwDao;
 import com.mds.aiotplayer.sys.dao.MyMessageRecipientDao;
 import com.mds.aiotplayer.sys.model.MessageAction;
 import com.mds.aiotplayer.sys.model.MessageFolder;
@@ -33,6 +34,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.ByteArrayInputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -53,6 +55,7 @@ import javax.ws.rs.core.Response;
 public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> implements MyMessageManager, MyMessageService {
     MyMessageDao myMessageDao;
     MyMessageRecipientDao myMessageRecipientDao;
+    MyMessageReFwDao myMessageReFwDao;
 
     @Autowired
     public MyMessageManagerImpl(MyMessageDao myMessageDao) {
@@ -63,6 +66,11 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
     @Autowired
     public void setMyMessageRecipientDao(MyMessageRecipientDao myMessageRecipientDao) {
         this.myMessageRecipientDao = myMessageRecipientDao;
+    }
+    
+    @Autowired
+    public void setMyMessageReFwDao(MyMessageReFwDao myMessageReFwDao) {
+        this.myMessageReFwDao = myMessageReFwDao;
     }
     
     @Override
@@ -226,10 +234,11 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
     
     /**
      * {@inheritDoc}
+     * @throws SQLException 
      */
     @Transactional
     @Override
-    public void send(MyMessage message) {
+    public void send(MyMessage message) throws SQLException {
         Date now = new Date();
         message.setSendDate(now);
         message.setMessageFolder(MessageFolder.outbox);
@@ -243,12 +252,12 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
         myMessageDao.saveMyMessage(message);
         
         for (MyMessageRecipient recipient : message.getMyMessageRecipients()) {
-        	MyMessage copyMyMessage = new MyMessage();
+        	MyMessage copyMyMessage = myMessageDao.create(new MyMessage());
 
-            BeanUtils.copyProperties(message, copyMyMessage);
+            BeanUtils.copyProperties(message, copyMyMessage, "id", "replies");
             
-            copyMyMessage.setId(null);
-            copyMyMessage.setReplies(null);
+            //copyMyMessage.setId(null);
+            //copyMyMessage.setReplies(null);
             MyMessageContent copyMyMessageContent = new MyMessageContent();
             copyMyMessageContent.setContent(message.getContent().getContent());
             //copyMyMessageContent.setMyMessage(copyMyMessage);
@@ -259,7 +268,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
             
             copyMyMessage.setMessageFolder(MessageFolder.inbox);
             copyMyMessage.setUser(recipient.getUser());
-            MyMessageReFw messageReFw = new MyMessageReFw(copyMyMessage, message);
+            MyMessageReFw messageReFw = myMessageReFwDao.create(new MyMessageReFw(copyMyMessage, message));
             messageReFw.setMessageAction(MessageAction.rt);
             List<MyMessageReFw> originals = Lists.newArrayList();
             originals.add(messageReFw);
@@ -267,10 +276,14 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
             
             List<MyMessageRecipient> myMessageRecipients = Lists.newArrayList();
             for (MyMessageRecipient recipient1 : message.getMyMessageRecipients()) {
-            	MyMessageRecipient copyrecipient = new MyMessageRecipient();
-            	BeanUtils.copyProperties(recipient1, copyrecipient);
-            	copyrecipient.setId(null);
-            	copyrecipient.setMyMessage(copyMyMessage);
+            	MyMessageRecipient copyrecipient = myMessageRecipientDao.create(new MyMessageRecipient(copyMyMessage, recipient1.getUser()));
+            	//BeanUtils.copyProperties(recipient1, copyrecipient);
+            	//copyrecipient.setId(null);
+            	//copyrecipient.setMyMessage(copyMyMessage);
+            	copyrecipient.setMessageFolder(recipient1.getMessageFolder());
+            	copyrecipient.setRead(recipient1.getRead());
+            	copyrecipient.setReplied(recipient1.getReplied());
+            	copyrecipient.setRecipientType(recipient1.getRecipientType());
             	myMessageRecipients.add(copyrecipient);
             }
             copyMyMessage.setMyMessageRecipients(myMessageRecipients);

@@ -25,7 +25,7 @@
     <Loggers>
         <Logger name="net.sf.ehcache" level="error"/>
         <!-- Suppress success logging from InteractiveAuthenticationSuccessEvent -->
-        <Logger name="org.springframework.security" level="debug"/>
+        <Logger name="org.springframework.security" level="error"/>
         <Logger name="org.springframework.boot" level="info"/>
         <Logger name="org.apache" level="error"/>
         <Logger name="org.apache.velocity" level="fatal"/>
@@ -43,6 +43,18 @@
         <Logger name="org.springframework" level="warn"/>
         <Logger name="com.mds" level="debug"/>
         <Logger name="com.mds.aiotplayer.tool" level="info"/>
+        
+        <!--  # Block services logging except on exceptions -->
+        <Logger name='com.mds.kernel'
+        level='DEBUG'/>
+        <Logger name='com.mds.services'
+        level='DEBUG'/>
+        <Logger name='com.mds.servicemanager'
+        level='DEBUG'/>
+        <Logger name='com.mds.providers'
+        level='DEBUG'/>
+        <Logger name='com.mds.utils'
+        level='DEBUG'/>
 
         <Root level="warn">
             <AppenderRef ref="Console" />

@@ -4,21 +4,22 @@ MDSPlus:
 
 You can find all details on the [official website](http://www.mmdsplus.com/mds-web).
 
-![alt tag](http://www.mmdsplus.com/mds-web/services/api/contentitems/getmedia?moid=4&dt=Optimized&g=1)
+![alt tag](http://www.mmdsplus.com/mds-web/services/api/contentitems/getmedia?moid=3&dt=Optimized&g=1)
 
-![alt tag](http://www.mmdsplus.com/mds-web/services/api/contentitems/getmedia?moid=5&dt=Optimized&g=1)
+![alt tag](http://www.mmdsplus.com/mds-web/services/api/contentitems/getmedia?moid=2&dt=Optimized&g=1)
 
-![alt tag](http://www.mmdsplus.com/mds-web/services/api/contentitems/getmedia?moid=6&dt=Optimized&g=1)
+![alt tag](http://www.mmdsplus.com/mds-web/services/api/contentitems/getmedia?moid=1&dt=Optimized&g=1)
 
 
 1.	About MDSPlus:
 	
-	Basic on Spring Framework, Spring MVC, Hibernate. supports Multi database types: MySQL, MSSQL, PostgreSQL or Oracle
+	Basic on Spring boot, Spring MVC, Hibernate. supports Multi database types: MySQL, MSSQL, PostgreSQL or Oracle
 
 
 	a.	Services module
 
-		a)	Core Framework: Spring Framework 5.2.5.RELEASE.
+		a)	Core Framework: Spring boot 2.2.6.RELEASE 
+							Spring Framework 5.2.5.RELEASE.
 
 		b)	Security Framework: Spring security 5.2.3.RELEASE.
 

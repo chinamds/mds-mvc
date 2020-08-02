@@ -6,7 +6,7 @@
 		});
 		
 		$("#delete").click(function(){
-			//alert('getSelections: ' + JSON.stringify($("#table").bootstrapTable('getSelections')));
+			//alert('getSelections: ' + JSON.stringify($("#table").bootstrapTable('getSelections'))); , { searchOnEnterKey: false, search: true}
 			var seletions = $("#table").bootstrapTable('getAllSelections');
 			var ids="";
 			for(x in seletions){

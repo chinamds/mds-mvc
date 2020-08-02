@@ -3,6 +3,8 @@ package com.mds.aiotplayer.webapp.common.util;
 import java.text.MessageFormat;
 import java.util.Locale;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.support.AbstractMessageSource;
@@ -13,6 +15,7 @@ import org.springframework.core.io.ResourceLoader;
 import com.mds.aiotplayer.i18n.util.I18nUtils;
 
 public class DatabaseMessageSource extends AbstractMessageSource implements ResourceLoaderAware {
+	protected static final Logger log = LoggerFactory.getLogger(I18nUtils.class);
 	
 	private ResourceLoader resourceLoader;
 	
@@ -30,6 +33,7 @@ public class DatabaseMessageSource extends AbstractMessageSource implements Reso
     private String getText(String code, Locale locale) {
     	String msg = I18nUtils.getDBString(code, locale);
         if (msg == null) {
+        	log.debug("DatabaseMessageSource - getDBString Key: {} not found, Locale: {}", code, locale.getDisplayName());
             try {
             	msg = getParentMessageSource().getMessage(code, null, locale);
             } catch (Exception e) {

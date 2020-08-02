@@ -55,7 +55,7 @@ public class LocalizedResourceManagerImpl extends GenericManagerImpl<LocalizedRe
      */
     @Override
     public LocalizedResource getLocalizedResource(final String localizedResourceId) {
-        return localizedResourceDao.get(new Long(localizedResourceId));
+        return localizedResourceDao.get(Long.valueOf(localizedResourceId));
     }
 
     /**
@@ -69,6 +69,10 @@ public class LocalizedResourceManagerImpl extends GenericManagerImpl<LocalizedRe
     
     public List<LocalizedResource> findByCultureId(Long cultureId){
     	return localizedResourceDao.findByCultureId(cultureId);
+    }
+    
+    public List<LocalizedResource> findByCultureCode(String cultureCode){
+    	return localizedResourceDao.findByCultureCode(cultureCode);
     }
     
     public List<Map<Long, Long>> findNeutralMap(Long cultureId){

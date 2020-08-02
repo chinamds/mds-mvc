@@ -69,10 +69,10 @@
 	        <thead>
 	        <tr>
 	            <th data-field="state" data-checkbox="true"></th>
-	            <th data-field="name" data-formatter="nameFormatter"><fmt:message key="permission.name"/></th>
+	            <th data-field="name" data-filter-control="input" data-formatter="nameFormatter"><fmt:message key="permission.name"/></th>
 		        <th data-field="permission"><fmt:message key="permission.permission"/></th>
-		        <%-- <th data-field="show"><fmt:message key="permission.show"/></th>   --%>        
-		        <th data-field="description"><fmt:message key="permission.description"/></th>
+		        <%-- <th data-field="show"><fmt:message key="permission.show"/></th>    data-filter-control="true" data-filter-show-clear="false" data-search="true" --%>        
+		        <th data-field="description" data-filter-control="input"><fmt:message key="permission.description"/></th>
 	        </tr>
 	        </thead>
 	    </table>

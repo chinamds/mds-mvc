@@ -50,6 +50,16 @@ public class MyMessageContent extends IdEntity {
      * message content
      */
     private String content;
+    
+    public MyMessageContent() {
+    	super();
+    }
+    
+    public MyMessageContent(MyMessage myMessage) {
+    	this();
+    	
+    	this.myMessage = myMessage;
+    }
 
 
     /*@OneToOne(fetch = FetchType.LAZY)

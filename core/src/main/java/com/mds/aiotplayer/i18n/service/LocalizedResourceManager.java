@@ -17,6 +17,9 @@ import org.springframework.cache.annotation.Cacheable;
 public interface LocalizedResourceManager extends GenericManager<LocalizedResource, Long> {
 	
 	List<LocalizedResource> findByCultureId(Long cultureId);
+	
+	List<LocalizedResource> findByCultureCode(String cultureCode);
+	
 	List<Map<Long, Long>> findNeutralMap(Long cultureId);
     /**
      * Retrieves a list of all localizedResource.

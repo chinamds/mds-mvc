@@ -57,8 +57,8 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name="i18n_localized_resource")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, include = "non-lazy")
+//@Cacheable
+//@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, include = "non-lazy")
 @Indexed
 @XmlRootElement
 public class LocalizedResource extends IdEntity implements Serializable {

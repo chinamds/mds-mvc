@@ -133,7 +133,6 @@
         <js>/static/3rdparty/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js</js>
         <js>/static/3rdparty/bootstrap-table/bootstrap-table.js</js>
         <js>/static/3rdparty/bootstrap-table/locale/bootstrap-table-en-US.min.js</js>
-        <js>/static/3rdparty/bootstrap-table/extensions/select2-filter/bootstrap-table-select2-filter.min.js</js>
         <js>/static/3rdparty/zTree/js/jquery.ztree.all.js</js>
         <js>/static/3rdparty/webui-popover/jquery.webui-popover.js</js>
         <js>/static/3rdparty/bootstrap-tabs-x/js/bootstrap-tabs-x.js</js>
@@ -217,6 +216,7 @@
         <css>/static/skins/light/styles/gallery.css</css>
         <js>classpath:META-INF/resources/webjars/jquery/3.2.1/jquery.min.js</js>
 		<js>classpath:META-INF/resources/webjars/jquery-migrate/1.4.1/jquery-migrate.min.js</js>
+		<js>/static/3rdparty/jquery/jquery-migrate-3.0.0.min.js</js>
 		<js>classpath:META-INF/resources/webjars/popper.js/1.14.3/umd/popper.min.js</js>
         <js>classpath:META-INF/resources/webjars/bootstrap/4.3.1/js/bootstrap.min.js</js>
         <js>classpath:META-INF/resources/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js</js>
@@ -441,6 +441,7 @@
         <js>classpath:META-INF/resources/webjars/json2/20140204/json2.min.js</js>
         <js>/static/3rdparty/bootstrap-dialog/js/bootstrap-dialog.js</js>
         <js>/static/3rdparty/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.js</js>
+        <js>/static/3rdparty/bootstrap-table/extensions/filter-control/bootstrap-table-filter-control.js</js>
         <js>/static/3rdparty/jquery-treegrid/js/jquery.treegrid.js</js>
         <js>/static/3rdparty/jquery.fileDownload/jquery.fileDownload.js</js>
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
@@ -569,7 +570,6 @@
         <js>/static/3rdparty/select2/js/select2.full.js</js>
         <js>/static/3rdparty/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js</js>
         <js>/static/3rdparty/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js</js>
-        <js>/static/3rdparty/bootstrap-table/extensions/select2-filter/bootstrap-table-select2-filter.min.js</js>
         <js>/static/3rdparty/zTree/js/jquery.ztree.all.js</js>
         <!-- <js>/static/3rdparty/pnotify/pnotify.custom.js</js> -->
         <js>/static/3rdparty/pnotify/umd/PNotify.js</js>

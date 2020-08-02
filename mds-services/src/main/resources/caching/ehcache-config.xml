@@ -15,7 +15,7 @@
     <!-- WARNING: If you are running multiple MDS instances on the same server, make sure to start
          each MDS instance with another value for java.io.tmpdir !!! -->
 
-    <diskStore path="java.io.tmpdir"/>
+    <diskStore path="java.io.tmpdir/mdsplus"/>
 
     <!--
     Mandatory Default Cache configuration. These settings will be applied to caches

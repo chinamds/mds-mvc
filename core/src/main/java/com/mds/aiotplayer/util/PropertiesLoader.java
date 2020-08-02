@@ -7,6 +7,7 @@ package com.mds.aiotplayer.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 
@@ -16,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.util.DefaultPropertiesPersister;
+import org.springframework.util.PropertiesPersister;
 
 /**
  * Properties文件载入工具类. 可载入多个properties文件, 相同的属性在最后载入的文件中的值将会覆盖之前的值，但以System的Property优先.
@@ -27,12 +30,20 @@ public class PropertiesLoader {
 	private static Logger logger = LoggerFactory.getLogger(PropertiesLoader.class);
 
 	private static ResourceLoader resourceLoader = new DefaultResourceLoader();
+	
+	private static final String DEFAULT_ENCODING = "UTF-8";
+ 
+	private static PropertiesPersister propertiesPersister = new DefaultPropertiesPersister();
 
 	private final Properties properties;
 
 	public PropertiesLoader(String... resourcesPaths) {
 		properties = loadProperties(resourcesPaths);
 	}
+	
+	/*public PropertiesLoader(String encoding, String... resourcesPaths) {
+		properties = loadProperties(encoding, resourcesPaths);
+	}*/
 
 	public Properties getProperties() {
 		return properties;
@@ -132,6 +143,10 @@ public class PropertiesLoader {
 	 * 载入多个文件, 文件路径使用Spring Resource格式.
 	 */
 	private Properties loadProperties(String... resourcesPaths) {
+		return loadProperties(null, resourcesPaths);
+	}
+	
+	private Properties loadProperties(String encoding, String... resourcesPaths) {
 		Properties props = new Properties();
 
 		for (String location : resourcesPaths) {
@@ -142,7 +157,7 @@ public class PropertiesLoader {
 			try {
 				Resource resource = resourceLoader.getResource(location);
 				is = resource.getInputStream();
-				props.load(is);
+		        propertiesPersister.load(props, new InputStreamReader(is, StringUtils.isNotBlank(encoding) ? encoding : DEFAULT_ENCODING));
 			} catch (IOException ex) {
 				logger.info("Could not load properties from path:" + location + ", " + ex.getMessage());
 			} finally {

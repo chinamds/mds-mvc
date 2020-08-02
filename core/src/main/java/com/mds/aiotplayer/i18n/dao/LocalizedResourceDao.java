@@ -12,6 +12,7 @@ import com.mds.aiotplayer.i18n.model.LocalizedResource;
  */
 public interface LocalizedResourceDao extends GenericDao<LocalizedResource, Long> {
 	List<LocalizedResource> findByCultureId(Long cultureId);
+	List<LocalizedResource> findByCultureCode(String cultureCode);
 	List<Map<Long, Long>> findNeutralMap(Long cultureId);
 	List<Long> findNeutralIds(Long cultureId);
 

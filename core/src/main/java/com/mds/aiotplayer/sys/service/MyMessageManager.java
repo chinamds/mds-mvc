@@ -5,6 +5,7 @@ import com.mds.aiotplayer.common.service.GenericManager;
 import com.mds.aiotplayer.sys.model.MessageFolder;
 import com.mds.aiotplayer.sys.model.MyMessage;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -76,8 +77,9 @@ public interface MyMessageManager extends GenericManager<MyMessage, Long> {
      * Send Message
      *
      * @param message
+     * @throws SQLException 
      */
-    void send(MyMessage message);
+    void send(MyMessage message) throws SQLException;
     
     /**
      * Mark message as read

@@ -7,5 +7,7 @@
     		};
 
    		$("#selectActions").select2(options);
+        
+        $("input[type='text']:visible:enabled:first", document.forms['permissionForm']).focus();
     });
 </script>

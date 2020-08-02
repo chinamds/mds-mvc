@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.google.common.collect.Lists;
@@ -54,9 +55,9 @@ public class I18nUtils {
      */
     protected static final Logger log = LoggerFactory.getLogger(I18nUtils.class);
     
-	private static CultureManager cultureManager = (CultureManager)SpringContextHolder.getBean(CultureManager.class);
-	private static NeutralResourceManager neutralResourceManager = (NeutralResourceManager)SpringContextHolder.getBean(NeutralResourceManager.class);
-	private static LocalizedResourceManager localizedResourceManager = SpringContextHolder.getBean(LocalizedResourceManager.class);
+	//private static CultureManager cultureManager = (CultureManager)SpringContextHolder.getBean(CultureManager.class);
+	//private static NeutralResourceManager neutralResourceManager = (NeutralResourceManager)SpringContextHolder.getBean(NeutralResourceManager.class);
+	//private static LocalizedResourceManager localizedResourceManager = SpringContextHolder.getBean(LocalizedResourceManager.class);
 
 	public static final String CACHE_I18N_MAP = "i18nMap";
 	public static final String NEUTRAL_KEY = "NeutralResource";
@@ -88,6 +89,7 @@ public class I18nUtils {
 		}
 		
 		return cultures;*/
+		CultureManager cultureManager = (CultureManager)SpringContextHolder.getBean(CultureManager.class);
 		
 		return cultureManager.getCultures();
 	}
@@ -133,14 +135,25 @@ public class I18nUtils {
 	}
 	
 	public static String getLanguageTag(HttpServletRequest request){
-		HttpSession session = request.getSession(false);
+		Locale locale = null;
+		
+		LocaleResolver localeResolver = (LocaleResolver)SpringContextHolder.getBean(SessionLocaleResolver.class);
+		if (localeResolver != null) {
+			locale = localeResolver.resolveLocale(request);
+		}
+		if (locale == null) {
+			locale = request.getLocale();
+		}
+			
+		
+		/*HttpSession session = request.getSession(false);
 
   	    Locale locale = null;
         if (session != null) {
           	locale = (Locale) session.getAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
         }else {
        	  locale = request.getLocale();
-        }
+        }*/
 
         String languageTag = "en";
         if (locale != null) {
@@ -154,14 +167,23 @@ public class I18nUtils {
 	}
 	
 	public static String getLanguageName(HttpServletRequest request){
-		 HttpSession session = request.getSession(false);
+		Locale locale = null;
+		
+		LocaleResolver localeResolver = (LocaleResolver)SpringContextHolder.getBean(SessionLocaleResolver.class);
+		if (localeResolver != null) {
+			locale = localeResolver.resolveLocale(request);
+		}
+		if (locale == null) {
+			locale = request.getLocale();
+		}
+		 /*HttpSession session = request.getSession(false);
 
    	    Locale locale = null;
         if (session != null) {
            	locale = (Locale) session.getAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
         }else {
         	locale = request.getLocale();
-        }
+        }*/
 
         Culture culture = getCulture(locale);
 		if (culture != null)
@@ -191,6 +213,8 @@ public class I18nUtils {
     	if (StringUtils.isNotBlank(locale.getCountry())){
     		languageTag =  languageTag + "_" + locale.getCountry();
     	}
+    	
+    	log.debug("getString Key: {}, Locale: {}", msgKey, languageTag);
     			
 		return getString(msgKey, languageTag, value);
 	}
@@ -219,7 +243,9 @@ public class I18nUtils {
     	if (StringUtils.isNotBlank(locale.getCountry())){
     		languageTag =  languageTag + "_" + locale.getCountry();
     	}
-    			
+    		
+    	
+    	log.debug("getMessage Key: {}, Locale: {}", msgKey, languageTag);
 		return getString(msgKey, languageTag);
 	}
 	
@@ -237,12 +263,16 @@ public class I18nUtils {
     	if (StringUtils.isNotBlank(locale.getCountry())){
     		languageTag =  languageTag + "_" + locale.getCountry();
     	}
+    	
+    	log.debug("getString Key: {}, Locale: {}", msgKey, languageTag);
     			
 		return getString(msgKey, languageTag);
 	}
 	
 	public static String getString(String msgKey, HttpServletRequest request){		
 		String languageTag = getLanguageTag(request);
+		
+		log.debug("getString Key: {}, Locale: {}", msgKey, languageTag);
     			
 		return getString(msgKey, languageTag);
 	}
@@ -299,6 +329,8 @@ public class I18nUtils {
     	if (StringUtils.isNotBlank(locale.getCountry())){
     		languageTag =  languageTag + "_" + locale.getCountry();
     	}
+    	
+    	log.debug("getDBString Key: {}, Locale: {}", msgKey, languageTag);
     	
 		Properties properties = getStrings(languageTag);		
 		if (properties != null){
@@ -359,16 +391,20 @@ public class I18nUtils {
 		if (culture != null)
 		{
 			properties = new Properties();
-			log.debug("i18nUtils-getLocalizedResources get localized resources from db");
+			log.debug("i18nUtils-getLocalizedResources get localized resources '{}' from db", cultureCode);
+			LocalizedResourceManager localizedResourceManager = SpringContextHolder.getBean(LocalizedResourceManager.class);
 			List<LocalizedResource> localizedResources = localizedResourceManager.findByCultureId(culture.getId());
 			//log.debug("i18nUtils-getLocalizedResources get neutral Resource Mappings from db");
 			//List<Map<Long, Long>> neutralResourceMappings = localizedResourceManager.findNeutralMap(culture.getId());
-			log.debug("i18nUtils-getLocalizedResources init Properties object");
+			log.debug("i18nUtils-getLocalizedResources init Properties object, localized resources '{}', get Database Records: '{}'", cultureCode, localizedResources.size());
 			for (NeutralResource neutralResource : getNeutralResources()){
 				String label = neutralResource.getValue();
-				Optional<LocalizedResource> optLocalizedResource = localizedResources.stream().filter(l->l.getNeutralResource().getId() == neutralResource.getId()).findFirst();
-				if (optLocalizedResource.isPresent())
+				Optional<LocalizedResource> optLocalizedResource = localizedResources.stream().filter(l->l.getNeutralResource().getId().equals(neutralResource.getId())).findFirst();
+				if (optLocalizedResource.isPresent()) {
 					label = optLocalizedResource.get().getValue();
+					
+					//log.debug("i18nUtils-getLocalizedResources '{}' init Key: '{}', Value: '{}'", cultureCode, neutralResource.getResourceKey(), label);					
+				}
 				/*Optional<Map<Long, Long>> optMap = neutralResourceMappings.stream().filter(m->m.containsKey(neutralResource.getId())).findFirst();
 				if (optMap.isPresent()) {
 					Optional<LocalizedResource> optLocalizedResource = localizedResources.stream().filter(l->l.getId() == optMap.get().get(neutralResource.getId())).findFirst();
@@ -423,11 +459,13 @@ public class I18nUtils {
 	}
 		
 	public static NeutralResource getNeutralResource(final String resourceKey){
+		NeutralResourceManager neutralResourceManager = (NeutralResourceManager)SpringContextHolder.getBean(NeutralResourceManager.class);
 		Optional<NeutralResource> optNeutralResources= neutralResourceManager.getNeutralResources().stream().filter(n->n.getResourceKey() == resourceKey).findFirst();
 		return optNeutralResources.isPresent() ? optNeutralResources.get() : null;
 	}
 	
 	public static List<NeutralResource> getNeutralResources(){
+		NeutralResourceManager neutralResourceManager = (NeutralResourceManager)SpringContextHolder.getBean(NeutralResourceManager.class);
 		/*@SuppressWarnings("unchecked")
 		List<NeutralResource> neutralResources = (List<NeutralResource>)CacheUtils.get(CACHE_I18N_NEUTRAL);
 		if (neutralResources == null){

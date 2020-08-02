@@ -19,15 +19,19 @@ public class LocalizedResourceDaoHibernate extends GenericDaoHibernate<Localized
     }
     
     public List<LocalizedResource> findByCultureId(Long cultureId){
-    	return find("from LocalizedResource where culture.id = :p1", new Parameter(cultureId));
+    	return find("from LocalizedResource l where l.culture.id = :p1", new Parameter(cultureId));
+    }
+    
+    public List<LocalizedResource> findByCultureCode(String cultureCode){
+    	return find("from LocalizedResource l where l.culture.cultureCode = :p1", new Parameter(cultureCode));
     }
     
     public List<Map<Long, Long>> findNeutralMap(Long cultureId){
-    	return find("select new map(neutralResource.id as neutralResourceId, id) from LocalizedResource where culture.id = :p1", new Parameter(cultureId));
+    	return find("select new map(l.neutralResource.id as neutralResourceId, l.id) from LocalizedResource l where l.culture.id = :p1", new Parameter(cultureId));
     }
     
     public List<Long> findNeutralIds(Long cultureId){
-    	return find("select neutralResource.id from LocalizedResource where culture.id = :p1", new Parameter(cultureId));
+    	return find("select l.neutralResource.id from LocalizedResource l where l.culture.id = :p1", new Parameter(cultureId));
     }
 
 	/**
