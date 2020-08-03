@@ -54,10 +54,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name="pm_playermapping", uniqueConstraints = @UniqueConstraint(columnNames={"player_id", "playergroup_id", "dateFrom"}))
+@Table(name="pm_playergroup2player", uniqueConstraints = @UniqueConstraint(columnNames={"player_id", "playergroup_id", "dateFrom"}))
 @Indexed
 @XmlRootElement
-public class PlayerMapping extends DataEntity implements Serializable {
+public class PlayerGroup2Player extends DataEntity implements Serializable {
     /**
 	 * 
 	 */
@@ -143,7 +143,7 @@ public class PlayerMapping extends DataEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PlayerMapping pojo = (PlayerMapping)o;
+        PlayerGroup2Player pojo = (PlayerGroup2Player)o;
         return (new EqualsBuilder()
              .append(player.getId(), pojo.getPlayer().getId())
              .append(playerGroup.getId(), pojo.getPlayerGroup().getId())

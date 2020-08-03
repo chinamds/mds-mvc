@@ -16,11 +16,13 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.FieldBridge;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.SortableField;
 import org.hibernate.search.bridge.builtin.IntegerBridge;
 import  org.apache.commons.lang.builder.HashCodeBuilder;
 import  org.apache.commons.lang.builder.EqualsBuilder;
@@ -105,7 +107,8 @@ public class Culture extends IdEntity implements Serializable {
  
     @JsonProperty(value = "culture_code")
     @Column(name="culture_code", length=256, unique=true, nullable=false)
-    @Field
+    @Field(analyze=Analyze.NO)
+    @SortableField
     public String getCultureCode(){
         return this.cultureCode;
     }

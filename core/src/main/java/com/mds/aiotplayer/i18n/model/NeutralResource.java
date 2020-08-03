@@ -17,6 +17,7 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.FieldBridge;
@@ -24,6 +25,7 @@ import org.hibernate.search.annotations.FullTextFilterDef;
 import org.hibernate.search.annotations.FullTextFilterDefs;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.SortableField;
 import org.hibernate.search.bridge.builtin.IntegerBridge;
 import  org.apache.commons.lang.builder.HashCodeBuilder;
 import  org.apache.commons.lang.builder.EqualsBuilder;
@@ -106,7 +108,8 @@ public class NeutralResource extends IdEntity implements Serializable {
 	@JsonProperty(value = "resourceClass")
     @Column(name="resource_class", length=100)
     @ExcelField(title="neutralResource.resourceClass", align=1, sort=20)
-    @Field
+	@Field(analyze=Analyze.NO)
+    @SortableField
     public String getResourceClass(){
         return this.resourceClass;
     }
@@ -118,7 +121,8 @@ public class NeutralResource extends IdEntity implements Serializable {
     @JsonProperty(value = "resourceKey")
     @Column(name="resource_key", length=256, unique=true)
     @ExcelField(title="neutralResource.resourceKey", align=1, sort=21)
-    @Field
+    @Field(analyze=Analyze.NO)
+    @SortableField
     public String getResourceKey(){
         return this.resourceKey;
     }

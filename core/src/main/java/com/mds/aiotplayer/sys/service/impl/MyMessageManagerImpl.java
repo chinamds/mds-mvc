@@ -1,5 +1,6 @@
 package com.mds.aiotplayer.sys.service.impl;
 
+import com.mds.aiotplayer.sys.dao.MyMessageContentDao;
 import com.mds.aiotplayer.sys.dao.MyMessageDao;
 import com.mds.aiotplayer.sys.dao.MyMessageReFwDao;
 import com.mds.aiotplayer.sys.dao.MyMessageRecipientDao;
@@ -56,6 +57,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
     MyMessageDao myMessageDao;
     MyMessageRecipientDao myMessageRecipientDao;
     MyMessageReFwDao myMessageReFwDao;
+    MyMessageContentDao myMessageContentDao;
 
     @Autowired
     public MyMessageManagerImpl(MyMessageDao myMessageDao) {
@@ -73,16 +75,21 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
         this.myMessageReFwDao = myMessageReFwDao;
     }
     
+    @Autowired
+    public void setMyMessageContentDao(MyMessageContentDao myMessageContentDao) {
+        this.myMessageContentDao = myMessageContentDao;
+    }
+    
     @Override
     public Page<MyMessage> findUserMyMessage(Long userId, String state, String searchTerm, Pageable pageable) {
     	Searchable searchable = Searchable.newSearchable();
         searchable.setPage(pageable);
         searchable.addSort(Direction.ASC, "sendDate");
 
+        searchable.addSearchFilter("user.id", SearchOperator.eq, userId);
+        searchable.addSearchFilter("messageFolder", SearchOperator.eq, MessageFolder.valueOf(state));
         if (StringUtils.isBlank(searchTerm)) {
-        	searchable.addSearchFilter("user.id", SearchOperator.eq, userId);
-            searchable.addSearchFilter("messageFolder", SearchOperator.eq, MessageFolder.valueOf(state));
-            
+        	
             return findPaging(searchable);
 	        /*switch (state) {
 	            //for sender
@@ -112,10 +119,8 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
 	
 	                searchable.or(and1, and2);
 	        }*/
-        }else {
-        	searchable.addSearchFilter("userId", SearchOperator.ftqFilter, userId, "user");
-            searchable.addSearchFilter("folder", SearchOperator.ftqFilter, state, "messageFolder");
-            
+        }else {       	
+        	//searchable.addSearchFilter("messageFolder", SearchOperator.eq, state); //, new String[] {"title", "user.username", "sender.username"}
         	return myMessageDao.search(searchable, searchTerm);	
         }
     }
@@ -249,16 +254,16 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
         	recipient.setRecipientType(RecipientType.to);
         }
         message.getContent().setMyMessage(message);
-        myMessageDao.saveMyMessage(message);
+        message = myMessageDao.saveMyMessage(message);
         
         for (MyMessageRecipient recipient : message.getMyMessageRecipients()) {
-        	MyMessage copyMyMessage = myMessageDao.create(new MyMessage());
+        	MyMessage copyMyMessage = myMessageDao.create(new MyMessage(message.getUser(), message.getSender(), message.getType(), message.getMessageFolder()));
 
             BeanUtils.copyProperties(message, copyMyMessage, "id", "replies");
             
             //copyMyMessage.setId(null);
             //copyMyMessage.setReplies(null);
-            MyMessageContent copyMyMessageContent = new MyMessageContent();
+            MyMessageContent copyMyMessageContent = new MyMessageContent(copyMyMessage);//myMessageContentDao.create(new MyMessageContent(copyMyMessage));
             copyMyMessageContent.setContent(message.getContent().getContent());
             //copyMyMessageContent.setMyMessage(copyMyMessage);
             Set<MyMessageContent> contents = new HashSet<MyMessageContent>();
@@ -268,7 +273,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
             
             copyMyMessage.setMessageFolder(MessageFolder.inbox);
             copyMyMessage.setUser(recipient.getUser());
-            MyMessageReFw messageReFw = myMessageReFwDao.create(new MyMessageReFw(copyMyMessage, message));
+            MyMessageReFw messageReFw = new MyMessageReFw(copyMyMessage, message); //myMessageReFwDao.create(new MyMessageReFw(copyMyMessage, message));
             messageReFw.setMessageAction(MessageAction.rt);
             List<MyMessageReFw> originals = Lists.newArrayList();
             originals.add(messageReFw);
@@ -276,14 +281,13 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
             
             List<MyMessageRecipient> myMessageRecipients = Lists.newArrayList();
             for (MyMessageRecipient recipient1 : message.getMyMessageRecipients()) {
-            	MyMessageRecipient copyrecipient = myMessageRecipientDao.create(new MyMessageRecipient(copyMyMessage, recipient1.getUser()));
+            	MyMessageRecipient copyrecipient = new MyMessageRecipient(copyMyMessage, recipient1.getUser(), recipient1.getRecipientType(), recipient1.getMessageFolder());// myMessageRecipientDao.create(
+            			//new MyMessageRecipient(copyMyMessage, recipient1.getUser(), recipient1.getRecipientType(), recipient1.getMessageFolder()));
             	//BeanUtils.copyProperties(recipient1, copyrecipient);
             	//copyrecipient.setId(null);
             	//copyrecipient.setMyMessage(copyMyMessage);
-            	copyrecipient.setMessageFolder(recipient1.getMessageFolder());
             	copyrecipient.setRead(recipient1.getRead());
             	copyrecipient.setReplied(recipient1.getReplied());
-            	copyrecipient.setRecipientType(recipient1.getRecipientType());
             	myMessageRecipients.add(copyrecipient);
             }
             copyMyMessage.setMyMessageRecipients(myMessageRecipients);

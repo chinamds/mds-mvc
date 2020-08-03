@@ -15,7 +15,7 @@ import org.springframework.core.io.ResourceLoader;
 import com.mds.aiotplayer.i18n.util.I18nUtils;
 
 public class DatabaseMessageSource extends AbstractMessageSource implements ResourceLoaderAware {
-	protected static final Logger log = LoggerFactory.getLogger(I18nUtils.class);
+	protected static final Logger log = LoggerFactory.getLogger(DatabaseMessageSource.class);
 	
 	private ResourceLoader resourceLoader;
 	

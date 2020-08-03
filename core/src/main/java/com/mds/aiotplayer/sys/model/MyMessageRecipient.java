@@ -86,9 +86,16 @@ public class MyMessageRecipient extends IdEntity {
 	}
 	
 	public MyMessageRecipient(MyMessage myMessage, User user) {
+		this();
+		
 		this.myMessage = myMessage;
 		this.user = user;
-		this.recievedTime = new Date();
+	}
+	
+	public MyMessageRecipient(MyMessage myMessage, User user, RecipientType recipientType, MessageFolder messageFolder) {
+		this(myMessage, user);
+		this.recipientType = recipientType;
+		this.messageFolder = messageFolder;
 	}
 
     /**

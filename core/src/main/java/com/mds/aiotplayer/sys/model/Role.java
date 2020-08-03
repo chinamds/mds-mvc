@@ -40,9 +40,11 @@ import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.ParamDef;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.Where;
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.FieldBridge;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.SortableField;
 import org.hibernate.search.bridge.builtin.IntegerBridge;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
@@ -141,6 +143,10 @@ public class Role extends DataEntity implements Serializable {
 		return "";
 	}
 	
+
+	/**
+	 * @return the deparments
+	 */
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "sys_role_department", 
@@ -149,11 +155,7 @@ public class Role extends DataEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	
 	@JsonIgnore
-	/**
-	 * @return the deparments
-	 */
 	public List<Department> getDepartments() {
 		return departments;
 	}
@@ -200,7 +202,8 @@ public class Role extends DataEntity implements Serializable {
     }
 
     @Column(nullable = false, length = 100)
-    @Field
+    @Field(analyze=Analyze.NO)
+    @SortableField
 	public String getName() {
 		return name;
 	}

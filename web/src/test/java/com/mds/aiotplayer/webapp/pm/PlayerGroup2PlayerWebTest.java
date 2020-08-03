@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 
 import static net.sourceforge.jwebunit.junit.JWebUnit.*;
 
-public class PlayerMappingWebTest {
+public class PlayerGroup2PlayerWebTest {
 
     private ResourceBundle messages;
 
@@ -23,47 +23,47 @@ public class PlayerMappingWebTest {
     }
 
     @Before
-    public void addPlayerMapping() {
-        beginAt("/playerMappingform");
-        assertTitleKeyMatches("playerMappingDetail.title");
+    public void addPlayerGroup2Player() {
+        beginAt("/playerGroup2Playerform");
+        assertTitleKeyMatches("playerGroup2PlayerDetail.title");
         clickButton("save");
-        assertTitleKeyMatches("playerMappingList.title");
-        assertKeyPresent("playerMapping.added");
+        assertTitleKeyMatches("playerGroup2PlayerList.title");
+        assertKeyPresent("playerGroup2Player.added");
     }
 
     @Test
-    public void listPlayerMappings() {
-        beginAt("/playerMappings");
-        assertTitleKeyMatches("playerMappingList.title");
+    public void listPlayerGroup2Players() {
+        beginAt("/playerGroup2Players");
+        assertTitleKeyMatches("playerGroup2PlayerList.title");
 
         // check that table is present
-        assertTablePresent("playerMappingList");
+        assertTablePresent("playerGroup2PlayerList");
     }
 
     @Test
-    public void editPlayerMapping() {
-        beginAt("/playerMappingform?id=" + getInsertedId());
+    public void editPlayerGroup2Player() {
+        beginAt("/playerGroup2Playerform?id=" + getInsertedId());
         clickButton("save");
-        assertTitleKeyMatches("playerMappingDetail.title");
+        assertTitleKeyMatches("playerGroup2PlayerDetail.title");
     }
 
     @Test
-    public void savePlayerMapping() {
-        beginAt("/playerMappingform?id=" + getInsertedId());
-        assertTitleKeyMatches("playerMappingDetail.title");
+    public void savePlayerGroup2Player() {
+        beginAt("/playerGroup2Playerform?id=" + getInsertedId());
+        assertTitleKeyMatches("playerGroup2PlayerDetail.title");
 
         // update some of the required fields
         clickButton("save");
-        assertTitleKeyMatches("playerMappingDetail.title");
-        assertKeyPresent("playerMapping.updated");
+        assertTitleKeyMatches("playerGroup2PlayerDetail.title");
+        assertKeyPresent("playerGroup2Player.updated");
     }
 
     @After
-    public void removePlayerMapping() {
-        beginAt("/playerMappingform?id=" + getInsertedId());
+    public void removePlayerGroup2Player() {
+        beginAt("/playerGroup2Playerform?id=" + getInsertedId());
         clickButton("delete");
-        assertTitleKeyMatches("playerMappingList.title");
-        assertKeyPresent("playerMapping.deleted");
+        assertTitleKeyMatches("playerGroup2PlayerList.title");
+        assertKeyPresent("playerGroup2Player.deleted");
     }
 
     /**
@@ -72,9 +72,9 @@ public class PlayerMappingWebTest {
      * @return last id in the table
      */
     protected String getInsertedId() {
-        beginAt("/playerMappings");
-        assertTablePresent("playerMappingList");
-        Table table = getTable("playerMappingList");
+        beginAt("/playerGroup2Players");
+        assertTablePresent("playerGroup2PlayerList");
+        Table table = getTable("playerGroup2PlayerList");
         // Find link in last row, skip header row
         for (int i = 1; i < table.getRows().size(); i++) {
             Row row = table.getRows().get(i);

@@ -41,7 +41,7 @@
     </spring:bind>
         <appfuse:label key="neutralResource.value" styleClass="control-label"/>
         <%-- <form:input cssClass="form-control" path="value" id="value"  maxlength="255"/> --%>
-        <form:textarea path="value" id="value" row='10' cssClass="form-control"/>
+        <form:textarea path="value" id="value" rows="10" cssClass="form-control"/>
         <form:errors path="value" cssClass="help-block"/>
     </div>
 

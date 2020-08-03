@@ -33,7 +33,7 @@ public class NotificationController extends BaseController<Notification, Long>{
     }
 
     @RequestMapping(value = "SearchDefault", method = RequestMethod.GET)
-    public Model handleRequest(@RequestParam(required = false, value = "q") String query)
+    public Model handleRequestDefault(@RequestParam(required = false, value = "q") String query)
     throws Exception {
         Model model = new ExtendedModelMap();
         try {
@@ -42,6 +42,19 @@ public class NotificationController extends BaseController<Notification, Long>{
             model.addAttribute("searchError", se.getMessage());
             model.addAttribute(notificationManager.getAll());
         }
+        return model;
+    }
+    
+    @RequestMapping(method = RequestMethod.GET)
+    public Model handleRequest(@RequestParam(required = false, value = "q") String query)
+    throws Exception {
+        Model model = new ExtendedModelMap();
+        /*try {
+            model.addAttribute(notificationManager.search(query, Notification.class));
+        } catch (SearchException se) {
+            model.addAttribute("searchError", se.getMessage());
+            model.addAttribute(notificationManager.getAll());
+        }*/
         return model;
     }
     

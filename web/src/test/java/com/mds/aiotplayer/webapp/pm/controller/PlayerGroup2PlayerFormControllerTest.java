@@ -18,9 +18,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @Transactional
-public class PlayerMappingFormControllerTest extends BaseControllerTestCase {
+public class PlayerGroup2PlayerFormControllerTest extends BaseControllerTestCase {
     @Autowired
-    private PlayerMappingFormController controller;
+    private PlayerGroup2PlayerFormController controller;
     private MockMvc mockMvc;
 
     @Before
@@ -35,15 +35,15 @@ public class PlayerMappingFormControllerTest extends BaseControllerTestCase {
     @Test
     public void testEdit() throws Exception {
         log.debug("testing edit...");
-        mockMvc.perform(get("/pm/playerMappingform")
+        mockMvc.perform(get("/pm/playerGroup2Playerform")
             .param("id", "-1"))
             .andExpect(status().isOk())
-            .andExpect(model().attributeExists("playerMapping"));
+            .andExpect(model().attributeExists("playerGroup2Player"));
     }
 
     @Test
     public void testSave() throws Exception {
-        HttpSession session = mockMvc.perform(post("/pm/playerMappingform")
+        HttpSession session = mockMvc.perform(post("/pm/playerGroup2Playerform")
         		.param("playerId", "-1")
         		.param("playerGroupId", "-1")
             )
@@ -58,7 +58,7 @@ public class PlayerMappingFormControllerTest extends BaseControllerTestCase {
 
     @Test
     public void testRemove() throws Exception {
-        HttpSession session = mockMvc.perform((post("/pm/playerMappingform"))
+        HttpSession session = mockMvc.perform((post("/pm/playerGroup2Playerform"))
             .param("delete", "").param("id", "-2"))
             .andExpect(status().is3xxRedirection())
             .andReturn().getRequest().getSession();

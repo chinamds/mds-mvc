@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,AlbumTests,AppSettingTests,NotificationTemplateTests,NotificationTests,MyMessageRecipientTests,MyMessageContentTests,TaskDefinitionTests,MyCalendarTests,NeutralResourceTests,LocalizedResourceTests,CultureTests,PlayerMappingTests,PlayerOutputTests,PlayerTests,PlayerGroupTests,PlayerTunerTests,LayoutDtlTests,LayoutMstTests,ZoneTests,GalleryMappingTests,GalleryTests,MenuPermissionTests,PermissionTests,RoleTests,MenuTests,CompanyTests,AreaTests,CalendarTests,ChannelTests,ProductTests,CatalogueTests,BannerTests,ModuleTests"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,AlbumTests,AppSettingTests,NotificationTemplateTests,NotificationTests,MyMessageRecipientTests,MyMessageContentTests,TaskDefinitionTests,MyCalendarTests,NeutralResourceTests,LocalizedResourceTests,CultureTests,PlayerGroup2PlayerTests,PlayerOutputTests,PlayerTests,PlayerGroupTests,PlayerTunerTests,LayoutDtlTests,LayoutMstTests,ZoneTests,GalleryMappingTests,GalleryTests,MenuPermissionTests,PermissionTests,RoleTests,MenuTests,CompanyTests,AreaTests,CalendarTests,ChannelTests,ProductTests,CatalogueTests,BannerTests,ModuleTests"
         description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -2396,98 +2396,98 @@
             </steps>
         </webtest>
     </target>    <!--PlayerOutput-END-->
-    <!--PlayerMapping-START-->
-    <!-- runs playerMapping-related tests -->
-    <target name="PlayerMappingTests"
-            depends="SearchPlayerMappings,EditPlayerMapping,SavePlayerMapping,AddPlayerMapping,DeletePlayerMapping"
-            description="Call and executes all playerMapping test cases (targets)">
-        <echo>Successfully ran all PlayerMapping UI tests!</echo>
+    <!--PlayerGroup2Player-START-->
+    <!-- runs playerGroup2Player-related tests -->
+    <target name="PlayerGroup2PlayerTests"
+            depends="SearchPlayerGroup2Players,EditPlayerGroup2Player,SavePlayerGroup2Player,AddPlayerGroup2Player,DeletePlayerGroup2Player"
+            description="Call and executes all playerGroup2Player test cases (targets)">
+        <echo>Successfully ran all PlayerGroup2Player UI tests!</echo>
     </target>
 
-    <!-- Verify the playerMappings list screen displays without errors -->
-    <target name="SearchPlayerMappings" description="Tests search for and displaying all playerMappings">
-        <webtest name="searchPlayerMappings">
+    <!-- Verify the playerGroup2Players list screen displays without errors -->
+    <target name="SearchPlayerGroup2Players" description="Tests search for and displaying all playerGroup2Players">
+        <webtest name="searchPlayerGroup2Players">
             &config;
             <steps>
                 &login;
-                <invoke description="click View PlayerMapping link" url="/playerMappings"/>
-                <verifytitle description="we should see the playerMappingList title"
-                    text=".*${playerMappingList.title}.*" regex="true"/>
+                <invoke description="click View PlayerGroup2Player link" url="/playerGroup2Players"/>
+                <verifytitle description="we should see the playerGroup2PlayerList title"
+                    text=".*${playerGroup2PlayerList.title}.*" regex="true"/>
                 <setinputfield description="set search term" name="q" value="*"/>
                 <clickbutton label="${button.search}" description="Click Search"/>
-                <verifytitle description="we should see the playerMappingList title"
-                    text=".*${playerMappingList.title}.*" regex="true"/>
+                <verifytitle description="we should see the playerGroup2PlayerList title"
+                    text=".*${playerGroup2PlayerList.title}.*" regex="true"/>
             </steps>
         </webtest>
     </target>
 
-    <!-- Verify the edit playerMapping screen displays without errors -->
-    <target name="EditPlayerMapping" description="Tests editing an existing PlayerMapping's information">
-        <webtest name="editPlayerMapping">
+    <!-- Verify the edit playerGroup2Player screen displays without errors -->
+    <target name="EditPlayerGroup2Player" description="Tests editing an existing PlayerGroup2Player's information">
+        <webtest name="editPlayerGroup2Player">
             &config;
             <steps>
                 &login;
-                <invoke description="View PlayerMapping List" url="/playerMappings"/>
+                <invoke description="View PlayerGroup2Player List" url="/playerGroup2Players"/>
                 <clicklink label="-1" description="Click edit link"/>
-                <verifytitle description="we should see the playerMappingDetail title"
-                    text=".*${playerMappingDetail.title}.*" regex="true"/>
+                <verifytitle description="we should see the playerGroup2PlayerDetail title"
+                    text=".*${playerGroup2PlayerDetail.title}.*" regex="true"/>
             </steps>
         </webtest>
     </target>
 
-    <!-- Edit a playerMapping and then save -->
-    <target name="SavePlayerMapping" description="Tests editing and saving a playerMapping">
-        <webtest name="savePlayerMapping">
+    <!-- Edit a playerGroup2Player and then save -->
+    <target name="SavePlayerGroup2Player" description="Tests editing and saving a playerGroup2Player">
+        <webtest name="savePlayerGroup2Player">
             &config;
             <steps>
                 &login;
-                <invoke description="click Edit PlayerMapping link" url="/playerMappingform?id=-1"/>
-                <verifytitle description="we should see the playerMappingDetail title"
-                    text=".*${playerMappingDetail.title}.*" regex="true"/>
+                <invoke description="click Edit PlayerGroup2Player link" url="/playerGroup2Playerform?id=-1"/>
+                <verifytitle description="we should see the playerGroup2PlayerDetail title"
+                    text=".*${playerGroup2PlayerDetail.title}.*" regex="true"/>
 
                 <!-- update some of the required fields -->
 
                 <clickbutton label="${button.save}" description="Click Save"/>
                 <verifytitle description="Page re-appears if save successful"
-                    text=".*${playerMappingDetail.title}.*" regex="true"/>
-                <verifytext description="verify success message" text="${playerMapping.updated}"/>
+                    text=".*${playerGroup2PlayerDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${playerGroup2Player.updated}"/>
             </steps>
         </webtest>
     </target>
 
-    <!-- Add a new PlayerMapping -->
-    <target name="AddPlayerMapping" description="Adds a new PlayerMapping">
-        <webtest name="addPlayerMapping">
+    <!-- Add a new PlayerGroup2Player -->
+    <target name="AddPlayerGroup2Player" description="Adds a new PlayerGroup2Player">
+        <webtest name="addPlayerGroup2Player">
             &config;
             <steps>
                 &login;
-                <invoke description="click Add Button" url="/playerMappingform"/>
-                <verifytitle description="we should see the playerMappingDetail title"
-                    text=".*${playerMappingDetail.title}.*" regex="true"/>
+                <invoke description="click Add Button" url="/playerGroup2Playerform"/>
+                <verifytitle description="we should see the playerGroup2PlayerDetail title"
+                    text=".*${playerGroup2PlayerDetail.title}.*" regex="true"/>
 
                 <!-- enter required fields -->
 
                 <clickbutton label="${button.save}" description="Click button 'Save'"/>
-                <verifytitle description="PlayerMapping List appears if save successful"
-                    text=".*${playerMappingList.title}.*" regex="true"/>
-                <verifytext description="verify success message" text="${playerMapping.added}"/>
+                <verifytitle description="PlayerGroup2Player List appears if save successful"
+                    text=".*${playerGroup2PlayerList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${playerGroup2Player.added}"/>
             </steps>
         </webtest>
     </target>
 
-    <!-- Delete existing playerMapping -->
-    <target name="DeletePlayerMapping" description="Deletes existing PlayerMapping">
-        <webtest name="deletePlayerMapping">
+    <!-- Delete existing playerGroup2Player -->
+    <target name="DeletePlayerGroup2Player" description="Deletes existing PlayerGroup2Player">
+        <webtest name="deletePlayerGroup2Player">
             &config;
             <steps>
                 &login;
-                <invoke description="click Edit PlayerMapping link" url="/playerMappingform?id=-1"/>
+                <invoke description="click Edit PlayerGroup2Player link" url="/playerGroup2Playerform?id=-1"/>
                 <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
-                <verifytitle description="display PlayerMapping List" text=".*${playerMappingList.title}.*" regex="true"/>
-                <verifytext description="verify success message" text="${playerMapping.deleted}"/>
+                <verifytitle description="display PlayerGroup2Player List" text=".*${playerGroup2PlayerList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${playerGroup2Player.deleted}"/>
             </steps>
         </webtest>
-    </target>    <!--PlayerMapping-END-->
+    </target>    <!--PlayerGroup2Player-END-->
     <!--Culture-START-->
     <!-- runs culture-related tests -->
     <target name="CultureTests"

@@ -2372,7 +2372,7 @@
         </createTable>
     </changeSet>
     <changeSet author="John (generated)" id="1595170870144-79">
-        <createTable tableName="pm_playermapping">
+        <createTable tableName="pm_playergroup2player">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
             </column>
@@ -3545,7 +3545,7 @@
         <addUniqueConstraint columnNames="workflow_type_id, workflow_name" constraintName="UKs7caf4d2trr64ako5rldpvcsd" tableName="wf_workflow"/>
     </changeSet>
     <changeSet author="John (generated)" id="1595170870144-182">
-        <addUniqueConstraint columnNames="player_id, playergroup_id, dateFrom" constraintName="UKscpc9r6wwapt1k3ar9bshmide" tableName="pm_playermapping"/>
+        <addUniqueConstraint columnNames="player_id, playergroup_id, dateFrom" constraintName="UKscpc9r6wwapt1k3ar9bshmide" tableName="pm_playergroup2player"/>
     </changeSet>
     <changeSet author="John (generated)" id="1595170870144-183">
         <addUniqueConstraint columnNames="strTask, strUniqueName" constraintName="UKtkxjku1qagrhwwq0js27i9r5d" tableName="pm_playertask"/>
@@ -3924,7 +3924,7 @@
         </createIndex>
     </changeSet>
     <changeSet author="John (generated)" id="1595170870144-259">
-        <createIndex indexName="FKm5k75q00hfx99qn1vfou4ok9h" tableName="pm_playermapping">
+        <createIndex indexName="FKm5k75q00hfx99qn1vfou4ok9h" tableName="pm_playergroup2player">
             <column name="playergroup_id"/>
         </createIndex>
     </changeSet>
@@ -4175,7 +4175,7 @@
         <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="sys_organization" constraintName="FKc50ghw3gv37epedfra5n124xg" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="sys_organization" validate="true"/>
     </changeSet>
     <changeSet author="John (generated)" id="1595170870144-326">
-        <addForeignKeyConstraint baseColumnNames="player_id" baseTableName="pm_playermapping" constraintName="FKc6w0sn6bfl942jynam67oytg0" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="pm_player" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="player_id" baseTableName="pm_playergroup2player" constraintName="FKc6w0sn6bfl942jynam67oytg0" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="pm_player" validate="true"/>
     </changeSet>
     <changeSet author="John (generated)" id="1595170870144-327">
         <addForeignKeyConstraint baseColumnNames="gallery_id" baseTableName="cm_uitemplate" constraintName="FKcd3w8eh7cla25evumamk7uaoo" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="cm_gallery" validate="true"/>
@@ -4367,7 +4367,7 @@
         <addForeignKeyConstraint baseColumnNames="staff_id" baseTableName="hrm_staffdepartment" constraintName="FKly3t603r7jc2akx3x5vyacns9" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="hrm_staff" validate="true"/>
     </changeSet>
     <changeSet author="John (generated)" id="1595170870144-390">
-        <addForeignKeyConstraint baseColumnNames="playergroup_id" baseTableName="pm_playermapping" constraintName="FKm5k75q00hfx99qn1vfou4ok9h" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="pm_playergroup" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="playergroup_id" baseTableName="pm_playergroup2player" constraintName="FKm5k75q00hfx99qn1vfou4ok9h" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="pm_playergroup" validate="true"/>
     </changeSet>
     <changeSet author="John (generated)" id="1595170870144-391">
         <addForeignKeyConstraint baseColumnNames="organization_id" baseTableName="cm_contentlist" constraintName="FKm8e8n2wwruowp02xy1ltfooeq" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="sys_organization" validate="true"/>

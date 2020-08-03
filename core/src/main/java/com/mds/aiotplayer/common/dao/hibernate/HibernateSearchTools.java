@@ -15,6 +15,7 @@ import com.mds.aiotplayer.common.model.search.Searchable;
 import com.mds.aiotplayer.common.model.search.filter.Condition;
 import com.mds.aiotplayer.common.model.search.filter.SearchFilter;
 
+import org.apache.commons.lang.reflect.FieldUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.index.FieldInfo;
 import org.apache.lucene.index.IndexReader;
@@ -46,6 +47,7 @@ import org.hibernate.search.MassIndexer;
 import org.hibernate.search.Search;
 import org.hibernate.search.SearchFactory;
 import org.hibernate.search.indexes.IndexReaderAccessor;
+import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.BooleanJunction;
 import org.hibernate.search.query.dsl.MustJunction;
 import org.hibernate.search.query.dsl.QueryBuilder;
@@ -280,6 +282,7 @@ class HibernateSearchTools {
     	
     	return query;
     }
+    
     
     /**
      * Generates a lucene query to search for a given term in the specified fields of a class

@@ -85,7 +85,7 @@ public class PlayerGroup extends TreeEntity<PlayerGroup> implements Serializable
     private Organization organization;	// organization
     
     //private List<PlayerGroup> children = Lists.newArrayList();// child player groups
-    private List<PlayerMapping> playerMappings = Lists.newArrayList(); // player mappings
+    private List<PlayerGroup2Player> playerGroup2Players = Lists.newArrayList(); // player mappings
     
     public PlayerGroup(){
 		super();
@@ -179,22 +179,22 @@ public class PlayerGroup extends TreeEntity<PlayerGroup> implements Serializable
 	}
 
 	/**
-	 * @return the playerMappings
+	 * @return the playerGroup2Players
 	 */
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy="playerGroup")
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
 	
-	public List<PlayerMapping> getPlayerMappings() {
-		return playerMappings;
+	public List<PlayerGroup2Player> getPlayerGroup2Players() {
+		return playerGroup2Players;
 	}
 
 	/**
-	 * @param playerMappings the playerMappings to set
+	 * @param playerGroup2Players the playerGroup2Players to set
 	 */
-	public void setPlayerMappings(List<PlayerMapping> playerMappings) {
-		this.playerMappings = playerMappings;
+	public void setPlayerGroup2Players(List<PlayerGroup2Player> playerGroup2Players) {
+		this.playerGroup2Players = playerGroup2Players;
 	}
 	
     @ManyToOne(optional=true, fetch = FetchType.LAZY)

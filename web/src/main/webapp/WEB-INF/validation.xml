@@ -459,10 +459,10 @@
             </field>
         </form>
         <!--PlayerOutput-END-->
-        <!--PlayerMapping-START-->
-        <form name="playerMapping">
+        <!--PlayerGroup2Player-START-->
+        <form name="playerGroup2Player">
         </form>
-        <!--PlayerMapping-END-->
+        <!--PlayerGroup2Player-END-->
         <!--Culture-START-->
         <form name="culture">
         	<field property="cultureCode" depends="required">

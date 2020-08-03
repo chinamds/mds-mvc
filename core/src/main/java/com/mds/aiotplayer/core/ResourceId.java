@@ -23,7 +23,7 @@ public enum ResourceId {
 	
 	sys_myMessages,
 	sys_myCalendars,
-	sys_notifications_list,
+	sys_notifications,
 	sys_myProfiles,
 	
 	cm_albums,
@@ -40,7 +40,7 @@ public enum ResourceId {
 	
 	pm_playerGroups,
 	pm_players,
-	pm_playerMappings,
+	pm_playerGroup2Players,
 	
 	pl_layouts,
 	pl_catalogues,

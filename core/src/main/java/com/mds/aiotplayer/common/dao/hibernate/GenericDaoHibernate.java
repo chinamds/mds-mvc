@@ -3,97 +3,56 @@ package com.mds.aiotplayer.common.dao.hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang.reflect.FieldUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.search.BooleanQuery;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.SortField;
-import org.apache.lucene.search.TopDocs;
-import org.apache.lucene.search.BooleanClause.Occur;
-import org.apache.lucene.util.Version;
-
 import com.mds.aiotplayer.common.Constants;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.mds.aiotplayer.common.dao.GenericDao;
 import com.mds.aiotplayer.common.exception.SearchException;
-import com.mds.aiotplayer.common.model.search.SearchOperator;
 import com.mds.aiotplayer.common.model.search.Searchable;
-import com.mds.aiotplayer.common.model.search.filter.AndCondition;
-import com.mds.aiotplayer.common.model.search.filter.Condition;
-import com.mds.aiotplayer.common.model.search.filter.OrCondition;
-import com.mds.aiotplayer.common.model.search.filter.SearchFilter;
-import com.mds.aiotplayer.common.service.impl.TenantContext;
 import com.mds.aiotplayer.common.utils.Reflections;
 import com.mds.aiotplayer.core.ReloadableEntity;
 import com.mds.aiotplayer.common.model.AbstractEntity;
-import com.mds.aiotplayer.common.model.DataEntity;
-
 //import com.mds.aiotplayer.common.model.Page;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import com.mds.aiotplayer.common.model.Parameter;
-import com.mds.aiotplayer.common.model.TenantSupport;
 import com.mds.aiotplayer.util.StringUtils;
 
 import org.hibernate.query.NativeQuery;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.exception.SQLGrammarException;
-import org.hibernate.internal.CriteriaImpl;
 import org.hibernate.proxy.HibernateProxyHelper;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
 import org.hibernate.search.query.dsl.QueryBuilder;
-import org.hibernate.transform.ResultTransformer;
 import org.hibernate.transform.Transformers;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import javax.persistence.EntityManager;
-import javax.persistence.Id;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.SingularAttribute;
-import javax.persistence.metamodel.Type;
 import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 
 import com.google.common.collect.AbstractIterator;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.io.Serializable;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -204,10 +163,42 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     private org.apache.lucene.search.Sort prepareOrder(Searchable search) {
     	List<SortField> sortFields = Lists.newArrayList();
         for (Sort.Order order : search.getSort()) {
-        	if (order.getDirection() == Direction.ASC)
-        		sortFields.add(new SortField(order.getProperty(), SortField.Type.DOC));
-        	else
-        		sortFields.add(new SortField(order.getProperty(), SortField.Type.SCORE));
+        	String[] properties = StringUtils.split(order.getProperty(), ".");
+        	Field f = null;
+         	if (properties.length > 1) { //&& !properties[0].equalsIgnoreCase("parent")
+         		f = FieldUtils.getDeclaredField(this.persistentClass, properties[0], true);
+         		Class<?> valType = f.getType();
+         		for(int i=1; i<properties.length; i++) {
+         			f = FieldUtils.getDeclaredField(valType, properties[i], true);
+         			valType = f.getType();
+         		}
+         	}else {
+         		f = FieldUtils.getDeclaredField(this.persistentClass, order.getProperty(), true);
+         	}
+         	         	
+        	//Field f = FieldUtils.getDeclaredField(this.persistentClass, order.getProperty(), true);
+        	if (f!= null) {
+	        	Class<?> valType = f.getType();
+	        	if (valType == String.class || valType == Date.class) {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.STRING, order.getDirection() == Direction.DESC));
+	        	} else if (valType == int.class || valType == Integer.class) {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.INT, order.getDirection() == Direction.DESC));
+	        	}else if (valType == long.class || valType == Long.class) {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.LONG, order.getDirection() == Direction.DESC));
+	        	}else if (valType == float.class || valType == Float.class) {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.FLOAT, order.getDirection() == Direction.DESC));
+	        	}else if (valType == double.class || valType == Double.class) {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.DOUBLE, order.getDirection() == Direction.DESC));
+	        	}else if (valType == int.class || valType == Integer.class) {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.INT, order.getDirection() == Direction.DESC));
+	        	}else {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.DOC));
+	        	}
+	        	/*if (order.getDirection() == Direction.ASC)
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.DOC));
+	        	else
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.SCORE));*/
+        	}
         }
         
         return new org.apache.lucene.search.Sort(sortFields.toArray(new SortField[0]));
@@ -224,7 +215,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
 
         org.apache.lucene.search.Query qry;
         try {
-            qry = com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, sess, defaultAnalyzer);
+            qry = com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, txtSession, defaultAnalyzer);
         } catch (ParseException ex) {
             throw new SearchException(ex);
         }
@@ -246,7 +237,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
 
         org.apache.lucene.search.Query qry;
         try {
-            qry = com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, sess, defaultAnalyzer);
+            qry = com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, txtSession, defaultAnalyzer);
         } catch (ParseException ex) {
             throw new SearchException(ex);
         }
@@ -274,11 +265,11 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
 
         org.apache.lucene.search.Query qry;
         try {       			
-            qry = com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, sess, defaultAnalyzer);
+            qry = com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, txtSession, defaultAnalyzer);
             if (searchable.hasSearchFilter()) {
             	QueryBuilder querybuilder = txtSession.getSearchFactory()
             	        .buildQueryBuilder()
-            	        .forEntity(this.persistentClass )
+            	        .forEntity(this.persistentClass)
             	        .get();
             	
 				/*
@@ -329,7 +320,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
 
         org.apache.lucene.search.Query qry;
         try {
-            qry = com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, fnames, sess, defaultAnalyzer);
+            qry = com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, fnames, txtSession, defaultAnalyzer);
         } catch (ParseException ex) {
             throw new SearchException(ex);
         }
@@ -360,7 +351,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
 
         org.apache.lucene.search.Query qry;
         try {
-            qry = com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, fnames, sess, defaultAnalyzer);
+            qry = com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, fnames, txtSession, defaultAnalyzer);
 			if (searchable.hasSearchFilter()) { 
 				  /*BooleanQuery.Builder bQuery = new BooleanQuery.Builder(); 
 				  bQuery.add(qry, Occur.MUST);

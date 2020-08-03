@@ -2486,8 +2486,8 @@
     </row>
     </table>
     <!--PlayerOutput-END-->
-    <!--PlayerMapping-START-->
-    <table name="pm_playermapping">
+    <!--PlayerGroup2Player-START-->
+    <table name="pm_playergroup2player">
         <column>id</column>
         <column>createdby</column>
         <column>date_added</column>
@@ -2531,7 +2531,7 @@
         <value description="playergroup_id">-3</value>
     </row>
     </table>
-    <!--PlayerMapping-END-->
+    <!--PlayerGroup2Player-END-->
     <!--ChannelMapping-START-->
     <table name="ps_player_tuner">
         <column>id</column>

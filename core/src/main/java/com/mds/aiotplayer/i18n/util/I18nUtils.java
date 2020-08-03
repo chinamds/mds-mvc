@@ -330,7 +330,7 @@ public class I18nUtils {
     		languageTag =  languageTag + "_" + locale.getCountry();
     	}
     	
-    	log.debug("getDBString Key: {}, Locale: {}", msgKey, languageTag);
+    	//log.debug("getDBString Key: {}, Locale: {}", msgKey, languageTag);
     	
 		Properties properties = getStrings(languageTag);		
 		if (properties != null){

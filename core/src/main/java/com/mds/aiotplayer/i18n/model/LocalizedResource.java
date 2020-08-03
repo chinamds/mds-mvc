@@ -75,6 +75,7 @@ public class LocalizedResource extends IdEntity implements Serializable {
 	@JoinColumn(name="culture_id", nullable=false)
 	@NotFound(action = NotFoundAction.IGNORE)
     @JsonIgnore
+    @IndexedEmbedded(includePaths = { "cultureCode" })
 	public Culture getCulture() {
 		return culture;
 	}
@@ -87,6 +88,7 @@ public class LocalizedResource extends IdEntity implements Serializable {
 	@JoinColumn(name="neutralresource_id", nullable=false)
 	@NotFound(action = NotFoundAction.IGNORE)
 	@JsonIgnore
+	@IndexedEmbedded(includePaths = { "resourceClass", "resourceKey" })
 	public NeutralResource getNeutralResource() {
 		return neutralResource;
 	}

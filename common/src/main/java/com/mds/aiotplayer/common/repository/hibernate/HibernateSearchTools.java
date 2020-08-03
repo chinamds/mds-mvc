@@ -1,6 +1,5 @@
 package com.mds.aiotplayer.common.repository.hibernate;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -11,45 +10,35 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.google.common.collect.Lists;
 import com.mds.aiotplayer.common.model.search.SearchOperator;
 import com.mds.aiotplayer.common.model.search.Searchable;
 import com.mds.aiotplayer.common.model.search.filter.Condition;
 import com.mds.aiotplayer.common.model.search.filter.SearchFilter;
+import org.apache.commons.lang3.StringUtils;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.index.FieldInfo;
+import org.apache.lucene.index.FieldInfos;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.index.MultiFields;
-import org.apache.lucene.index.ReaderUtil;
 import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.MatchAllDocsQuery;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.util.Version;
-import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.FuzzyQuery;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TermRangeQuery;
-import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.WildcardQuery;
-import org.hibernate.Session;
-import org.hibernate.query.NativeQuery;
-import org.hibernate.search.FullTextSession;
 import org.hibernate.search.MassIndexer;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
 import org.hibernate.search.SearchFactory;
-import org.hibernate.search.indexes.IndexReaderAccessor;
 
 /**
  * Utility class to generate lucene queries for hibernate search and perform full reindexing.
@@ -69,7 +58,7 @@ public class HibernateSearchTools {
      * @return
      * @throws ParseException
      */
-    public static Query generateQuery(String searchTerm, Class searchedEntity, EntityManager entityManager, Analyzer defaultAnalyzer) throws ParseException {
+    public static Query generateQuery(String searchTerm, Class searchedEntity, FullTextEntityManager txtSession, Analyzer defaultAnalyzer) throws ParseException {
         Query qry = null;
 
         if (searchTerm.equals("*")) {
@@ -77,47 +66,47 @@ public class HibernateSearchTools {
         } else {
             // Search in all indexed fields
 
-            IndexReaderAccessor readerAccessor = null;
-            IndexReader reader = null;
+            //IndexReaderAccessor readerAccessor = null;
+            IndexReader reader = null;           
+        	SearchFactory searchFactory = txtSession.getSearchFactory();
+        	
+            // obtain analyzer to parse the query:
+            Analyzer analyzer;
+            if (searchedEntity == null) {
+                analyzer = defaultAnalyzer;
+            } else {
+                analyzer = searchFactory.getAnalyzer(searchedEntity);
+            }
+
+            // search on all indexed fields: generate field list, removing internal hibernate search field name: _hibernate_class
+            // TODO: possible improvement: cache the fields of each entity
+            reader = searchFactory.getIndexReaderAccessor().open(searchedEntity);
+            Collection<String> fieldNames = new HashSet<>();
             try {
-            	FullTextEntityManager txtSession = Search.getFullTextEntityManager(entityManager);
-
-                // obtain analyzer to parse the query:
-                Analyzer analyzer;
-                if (searchedEntity == null) {
-                    analyzer = defaultAnalyzer;
-                } else {
-                    analyzer = txtSession.getSearchFactory().getAnalyzer(searchedEntity);
-                }
-
-                // search on all indexed fields: generate field list, removing internal hibernate search field name: _hibernate_class
-                // TODO: possible improvement: cache the fields of each entity
-                SearchFactory searchFactory = txtSession.getSearchFactory();
-                readerAccessor = searchFactory.getIndexReaderAccessor();
-                reader = readerAccessor.open(searchedEntity);
-                Collection<String> fieldNames = new HashSet<>();
-                for (FieldInfo fieldInfo : MultiFields.getMergedFieldInfos(reader)) {
-                    if (fieldInfo.getIndexOptions() != IndexOptions.NONE) {
+            	FieldInfos fieldInfos = MultiFields.getMergedFieldInfos(reader);
+                for (FieldInfo fieldInfo : fieldInfos) {
+                	String[] properties = StringUtils.split(fieldInfo.name, ".");
+                    if (fieldInfo.getIndexOptions() != IndexOptions.NONE 
+                    		&& !properties[properties.length-1].equalsIgnoreCase("id")) {
                         fieldNames.add(fieldInfo.name);
                     }
                 }
-                fieldNames.remove("_hibernate_class");
-                String[] fnames = new String[0];
-                fnames = fieldNames.toArray(fnames);
-
-                // To search on all fields, search the term in all fields
-                String[] queries = new String[fnames.length];
-                for (int i = 0; i < queries.length; ++i) {
-                    queries[i] = searchTerm;
-                }
-
-                qry = MultiFieldQueryParser.parse(queries, fnames, analyzer);
-            } finally {
-                if (readerAccessor != null && reader != null) {
-                    readerAccessor.close(reader);
-                }
+            }finally {
+               searchFactory.getIndexReaderAccessor().close(reader);
             }
+            fieldNames.remove("_hibernate_class");
+            String[] fnames = new String[0];
+            fnames = fieldNames.toArray(fnames);
+
+            // To search on all fields, search the term in all fields
+            String[] queries = new String[fnames.length];
+            for (int i = 0; i < queries.length; ++i) {
+                queries[i] = searchTerm;
+            }
+
+            qry = MultiFieldQueryParser.parse(queries, fnames, analyzer);
         }
+        
         return qry;
     }
     
@@ -215,15 +204,12 @@ public class HibernateSearchTools {
      * @return
      * @throws ParseException
      */
-    public static Query generateQuery(String searchTerm, Class searchedEntity, String[] fnames, EntityManager entityManager, Analyzer defaultAnalyzer) throws ParseException {
+    public static Query generateQuery(String searchTerm, Class searchedEntity, String[] fnames, FullTextEntityManager txtSession, Analyzer defaultAnalyzer) throws ParseException {
         Query qry = null;
 
         if (searchTerm.equals("*")) {
             qry = new MatchAllDocsQuery();
         } else {
-            // Search in all indexed fields
-        	FullTextEntityManager txtSession = Search.getFullTextEntityManager(entityManager);
-
             // obtain analyzer to parse the query:
             Analyzer analyzer;
             if (searchedEntity == null) {
@@ -235,7 +221,7 @@ public class HibernateSearchTools {
             // To search on specified fields, search the term in specified fields
             String[] queries = new String[fnames.length];
             for (int i = 0; i < queries.length; ++i) {
-                queries[i] = searchTerm + "*";
+                queries[i] = searchTerm; // + "*";
             }
 
             qry = MultiFieldQueryParser.parse(queries, fnames, analyzer);

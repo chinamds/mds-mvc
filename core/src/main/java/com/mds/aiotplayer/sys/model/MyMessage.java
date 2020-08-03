@@ -20,12 +20,19 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Proxy;
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.DateBridge;
+import org.hibernate.search.annotations.EncodingType;
 import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.FieldBridge;
 import org.hibernate.search.annotations.FullTextFilterDef;
 import org.hibernate.search.annotations.FullTextFilterDefs;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.Resolution;
+import org.hibernate.search.annotations.SortableField;
+import org.hibernate.search.bridge.builtin.StringBridge;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -132,6 +139,19 @@ public class MyMessage extends DataEntity {
      * reply/forward messages with the message
      */
     private List<MyMessageReFw> replies = Lists.newArrayList();
+    
+    public MyMessage() {
+    	super();
+    }
+    
+    public MyMessage(User user, User sender, MessageType type, MessageFolder messageFolder) {
+    	this();
+    	
+    	this.user = user;
+    	this.sender = sender;
+    	this.type = type;
+    	this.messageFolder = messageFolder;
+    }
 
 
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -140,6 +160,9 @@ public class MyMessage extends DataEntity {
     @DateTimeFormat(iso=ISO.DATE_TIME)
     @Column(name = "send_date")
     @Temporal(TemporalType.TIMESTAMP)
+    @Field(analyze=Analyze.NO)
+    @DateBridge(resolution=Resolution.MINUTE, encoding=EncodingType.STRING)
+    @SortableField
     public Date getSendDate() {
         return sendDate;
     }
@@ -257,6 +280,7 @@ public class MyMessage extends DataEntity {
 
     @Column(name = "message_folder", nullable = false, length = 10)
     @Field(index=Index.YES)
+    @FieldBridge(impl = MessageFolderBridge.class)
     @Enumerated(EnumType.STRING)
     public MessageFolder getMessageFolder() {
         return messageFolder;
@@ -403,6 +427,7 @@ public class MyMessage extends DataEntity {
 	@JoinColumn(name="sender_id", nullable=false)
 	@NotFound(action = NotFoundAction.IGNORE)
 	@JsonIgnore
+	@IndexedEmbedded(includeEmbeddedObjectId=true)
 	public User getSender() {
 		return sender;
 	}
@@ -421,7 +446,7 @@ public class MyMessage extends DataEntity {
 	@JoinColumn(name="user_id", nullable=false)
 	@NotFound(action = NotFoundAction.IGNORE)
 	@JsonIgnore
-	@IndexedEmbedded
+	@IndexedEmbedded(includeEmbeddedObjectId=true)
 	public User getUser() {
 		return user;
 	}

@@ -21,11 +21,13 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.FieldBridge;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.SortableField;
 import org.hibernate.search.bridge.builtin.IntegerBridge;
 import  org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.StringUtils;
@@ -40,6 +42,8 @@ import java.util.stream.Collectors;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
@@ -108,7 +112,8 @@ public class Gallery extends DataEntity implements Serializable {
     
     @JsonProperty(value = "Name")
     @Column(name="name", nullable=false, length=50, unique=true)
-    @Field
+    @Field(analyze=Analyze.NO)
+    @SortableField
     public String getName(){
         return this.name;
     }

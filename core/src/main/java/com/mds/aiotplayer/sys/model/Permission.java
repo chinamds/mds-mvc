@@ -16,8 +16,10 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.SortableField;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
@@ -92,7 +94,8 @@ public class Permission extends DataEntity {
     }
 
     @Column(nullable = false, length = 100)
-    @Field
+    @Field(analyze=Analyze.NO)
+    @SortableField
     public String getName() {
         return name;
     }

@@ -1,8 +1,8 @@
 package com.mds.aiotplayer.webapp.pm.controller;
 
 import com.mds.aiotplayer.common.exception.SearchException;
-import com.mds.aiotplayer.pm.service.PlayerMappingManager;
-import com.mds.aiotplayer.pm.model.PlayerMapping;
+import com.mds.aiotplayer.pm.service.PlayerGroup2PlayerManager;
+import com.mds.aiotplayer.pm.model.PlayerGroup2Player;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/pm/playerMappings*")
-public class PlayerMappingController {
-    private PlayerMappingManager playerMappingManager;
+@RequestMapping("/pm/playerGroup2Players*")
+public class PlayerGroup2PlayerController {
+    private PlayerGroup2PlayerManager playerGroup2PlayerManager;
 
     @Autowired
-    public void setPlayerMappingManager(PlayerMappingManager playerMappingManager) {
-        this.playerMappingManager = playerMappingManager;
+    public void setPlayerGroup2PlayerManager(PlayerGroup2PlayerManager playerGroup2PlayerManager) {
+        this.playerGroup2PlayerManager = playerGroup2PlayerManager;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -28,10 +28,10 @@ public class PlayerMappingController {
     throws Exception {
         Model model = new ExtendedModelMap();
         try {
-            model.addAttribute(playerMappingManager.search(query, PlayerMapping.class));
+            model.addAttribute(playerGroup2PlayerManager.search(query, PlayerGroup2Player.class));
         } catch (SearchException se) {
             model.addAttribute("searchError", se.getMessage());
-            model.addAttribute(playerMappingManager.getAll());
+            model.addAttribute(playerGroup2PlayerManager.getAll());
         }
         return model;
     }

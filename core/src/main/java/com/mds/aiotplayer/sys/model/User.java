@@ -50,6 +50,7 @@ import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.FieldBridge;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.SortableField;
 import org.hibernate.search.bridge.builtin.IntegerBridge;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -271,7 +272,6 @@ public class User extends DataEntity implements TenantSupport, Serializable {
 	@OrderBy(value="id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	
 	@JsonIgnore
 	public Set<UserPhoto> getUserPhotos() {
     	if(userPhotos == null) {
@@ -302,7 +302,8 @@ public class User extends DataEntity implements TenantSupport, Serializable {
 		
 
 	@Column(nullable = false, length = 100)
-    @Field
+    @Field(analyze=Analyze.NO)
+    @SortableField
 	public String getUsername() {
 		return username;
 	}

@@ -579,7 +579,7 @@
 		<column name="icon" value=""/>
 		<column name="is_activiti" valueBoolean="false"/>
 		<column name="is_show" valueBoolean="true"/>
-		<column name="resource_id" value="sys_notifications_list"/>
+		<column name="resource_id" value="sys_notifications"/>
 		<column name="sort" valueNumeric="503"/>
 		<column name="target" value="notspecified"/>
 		<column name="type" value="m"/>

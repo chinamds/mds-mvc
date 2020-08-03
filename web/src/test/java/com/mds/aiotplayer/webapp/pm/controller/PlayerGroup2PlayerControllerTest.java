@@ -1,7 +1,7 @@
 package com.mds.aiotplayer.webapp.pm.controller;
 
-import com.mds.aiotplayer.pm.service.PlayerMappingManager;
-import com.mds.aiotplayer.pm.model.PlayerMapping;
+import com.mds.aiotplayer.pm.service.PlayerGroup2PlayerManager;
+import com.mds.aiotplayer.pm.model.PlayerGroup2Player;
 
 import com.mds.aiotplayer.webapp.common.controller.BaseControllerTestCase;
 import org.junit.Before;
@@ -18,11 +18,11 @@ import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-public class PlayerMappingControllerTest extends BaseControllerTestCase {
+public class PlayerGroup2PlayerControllerTest extends BaseControllerTestCase {
     @Autowired
-    private PlayerMappingManager playerMappingManager;
+    private PlayerGroup2PlayerManager playerGroup2PlayerManager;
     @Autowired
-    private PlayerMappingController controller;
+    private PlayerGroup2PlayerController controller;
 
     private MockMvc mockMvc;
 
@@ -37,25 +37,25 @@ public class PlayerMappingControllerTest extends BaseControllerTestCase {
 
     @Test
     public void testHandleRequest() throws Exception {
-        mockMvc.perform(get("/pm/playerMappings"))
+        mockMvc.perform(get("/pm/playerGroup2Players"))
             .andExpect(status().isOk())
-            .andExpect(model().attributeExists("playerMappingList"))
-            .andExpect(view().name("pm/playerMappings"));
+            .andExpect(model().attributeExists("playerGroup2PlayerList"))
+            .andExpect(view().name("pm/playerGroup2Players"));
     }
 
     @Test
     public void testSearch() throws Exception {
         // regenerate indexes
-        playerMappingManager.reindex();
+        playerGroup2PlayerManager.reindex();
 
-        Map<String,Object> model = mockMvc.perform((get("/pm/playerMappings")).param("q", "*"))
+        Map<String,Object> model = mockMvc.perform((get("/pm/playerGroup2Players")).param("q", "*"))
             .andExpect(status().isOk())
-            .andExpect(model().attributeExists("playerMappingList"))
+            .andExpect(model().attributeExists("playerGroup2PlayerList"))
             .andReturn()
             .getModelAndView()
             .getModel();
 
-        List results = (List) model.get("playerMappingList");
+        List results = (List) model.get("playerGroup2PlayerList");
         assertNotNull(results);
         assertEquals(3, results.size());
     }
