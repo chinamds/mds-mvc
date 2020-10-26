@@ -1,12 +1,12 @@
-MDSPlus:
+# MDSPlus:
 
-	MDSPlus is a web(SSH) based with Multi-tenant software product
+	MDSPlus is a web(SSH) based with Multi-tenant software product, that lets you manage 
 
-		, that lets you manage your multi media on your own website.
+your multi media on your own website.
 
-	You can find all details on the [official website](http://www.mmdsplus.com/mds-web).
+You can find all details on the [official website](http://www.mmdsplus.com/mds-web).
 
-	SwaggerUi for [MDSPlus APIs Demo](http://www.mmdsplus.com/mds-web/services/api/api-docs?url=/mds-web/services/api/openapi.json).
+SwaggerUi for [MDSPlus APIs Demo](http://www.mmdsplus.com/mds-web/services/api/api-docs?url=/mds-web/services/api/openapi.json).
 
 ![alt tag](http://www.mmdsplus.com/mds-web/services/api/contentitems/getmedia?moid=3&dt=Optimized&g=1)
 
@@ -15,7 +15,7 @@ MDSPlus:
 ![alt tag](http://www.mmdsplus.com/mds-web/services/api/contentitems/getmedia?moid=1&dt=Optimized&g=1)
 
 
-1.	About MDSPlus:
+## 1.	About MDSPlus:
 	
 	Basic on Spring boot, Spring MVC, Hibernate. 
 
@@ -75,7 +75,7 @@ MDSPlus:
 		g)  springfox swagger ui: springfox-swagger-ui 3.0.0.
 
 
-2.	Requirements
+## 2.	Requirements
 
 	 Server Requirements 	
 
