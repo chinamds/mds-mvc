@@ -95,6 +95,19 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>src/test/resources/**</exclude>
+                        <exclude>src/test/data/**</exclude>
+                        
+                        <exclude>src/main/java/org/apache/solr/handler/extraction/**</exclude>
+                        <exclude>src/main/java/org/springframework/ui/velocity/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

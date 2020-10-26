@@ -13,7 +13,7 @@
 
 <%-- <ul class="nav nav-tabs">
 	<li class="active"><a href="${ctx}/sys/areas/">Area List</a></li>
-	<secure:hasPermission name="sys:area:edit"><li><a href="${ctx}/sys/areaform">Area </a></li></secure:hasPermission>
+	<secure:hasPermission name="sys:area:edit"><li><a href="${ctx}/sys/areaform">Areaï¿½</a></li></secure:hasPermission>
 </ul> --%>
 
 <c:set var="delObject" scope="request"><fmt:message key="areaList.area"/></c:set>

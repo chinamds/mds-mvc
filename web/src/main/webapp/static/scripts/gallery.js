@@ -1,6 +1,5 @@
-
 // Contains javascript required for read-only browsing of a gallery
-//#region MDS System javascript
+//#region MDSPlus System javascript
 ; (function ($, window, document, undefined) {
 	//#region Gallery-wide functions
 
@@ -3133,7 +3132,7 @@
 			opt = $.extend({}, opt, {buttons: {closer: true}});
 		}*/
 
-        new PNotify.alert(opt);
+        PNotify.alert(opt);
 	};
 
 	//#endregion

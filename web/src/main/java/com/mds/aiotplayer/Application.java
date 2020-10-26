@@ -1,26 +1,24 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer;
 
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 //import org.sitemesh.config.ConfigurableSiteMeshFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -40,35 +38,26 @@ import org.tuckey.web.filters.urlrewrite.UrlRewriteFilter;
 import com.mds.aiotplayer.common.web.interceptor.SetCommonDataInterceptor;
 
 import com.mds.utils.servlet.MDSWebappServletFilter;
-import com.opensymphony.module.sitemesh.filter.PageFilter;
 import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
 
 import ro.isdc.wro.http.WroFilter;
 
 import com.mds.aiotplayer.common.web.bind.method.annotation.PageableMethodArgumentResolver;
 import com.mds.aiotplayer.common.web.bind.method.annotation.SearchableMethodArgumentResolver;
-import com.mds.aiotplayer.common.web.jcaptcha.JCaptchaFilter;
 import com.mds.aiotplayer.webapp.common.filter.MDSRequestContextFilter;
 import com.mds.aiotplayer.webapp.common.listener.MDSContextListener;
-import com.mds.aiotplayer.webapp.common.listener.StartupListener;
-import com.mds.aiotplayer.webapp.common.util.CustomSimpleMappingExceptionResolver;
 import com.mds.aiotplayer.webapp.common.util.DatabaseMessageSource;
 import com.mds.aiotplayer.webapp.common.util.MDSConfigurationInitializer;
 import com.mds.aiotplayer.webapp.common.util.MDSKernelInitializer;
 import com.mds.aiotplayer.webapp.configuration.ApplicationConfig;
-import com.mds.aiotplayer.webapp.sys.bind.method.CurrentUserMethodArgumentResolver;
 import com.mds.aiotplayer.webapp.common.filter.LocaleFilter;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Properties;
-
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
-import javax.ws.rs.InternalServerErrorException;
 
 /**
  * Created by John Lee on 11/04/15

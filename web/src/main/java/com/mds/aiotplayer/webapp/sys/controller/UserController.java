@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.webapp.sys.controller;
 
 import com.mds.aiotplayer.common.Constants;
@@ -105,7 +112,7 @@ public class UserController extends BaseController {
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			ExcelImportResult<User> excelResult = ei.getDataList(User.class);
 			List<User> listValidated = Lists.newArrayList();
-			Validator validator = SpringContextHolder.getBean(Validator.class);
+			Validator validator = SpringContextHolder.getBean("beanValidator", Validator.class);
 			for (int row : excelResult.dataRow()){
 				BindException errors = new BindException(excelResult.data(row), "User");
 				if (validator != null)
@@ -116,7 +123,7 @@ public class UserController extends BaseController {
 					listValidated.add(excelResult.data(row));
 				}else{
 					//saveError(request, errors);
-					excelResult.addResult(row, errors);
+					excelResult.addResult(row, errors, request.getLocale());
 				}
 			}
 			userManager.importFrom(listValidated, new String[] {"username"});

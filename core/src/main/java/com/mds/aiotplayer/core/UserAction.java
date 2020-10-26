@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.core;
 
 import java.util.Collection;
@@ -83,6 +90,24 @@ public enum UserAction {
      */
 	send(131072, "useraction.send"),
 	
+	/**
+     * Action of empty data.
+     * 
+     */
+	empty(262144, "useraction.empty"),
+	
+	/**
+     * Action of move content to other folder.
+     * 
+     */
+	move(524288, "useraction.move"),
+	
+	/**
+     * Action of copy content as other content.
+     * 
+     */
+	copy(1048576, "useraction.copy"),
+	
 	/// <summary>
   	/// Represents all possible permissions. Note: This enum value is defined to contain ALL POSSIBLE enum values to ensure
   	/// the <see cref="SecurityActionEnumHelper.IsValidSecurityAction(SecurityActions)" /> method properly works. If a developer adds or removes
@@ -90,7 +115,8 @@ public enum UserAction {
   	/// </summary>
     All(add.getValue() | edit.getValue() | view.getValue() | delete.getValue() | remove.getValue() | download.getValue() | abort.getValue() 
     		| print.getValue() | data_import.getValue() | data_export.getValue() | calculate.getValue() | synchronize.getValue()
-    		| approve.getValue()| addchild.getValue()| removechild.getValue()| vieworiginalmedia.getValue() | operate.getValue() | send.getValue(), "useraction.all");
+    		| approve.getValue()| addchild.getValue()| removechild.getValue()| vieworiginalmedia.getValue() | operate.getValue() 
+    		| send.getValue() | empty.getValue() | move.getValue() | copy.getValue(), "useraction.all");
 	
 	private final int userActions;
 	private final String label;

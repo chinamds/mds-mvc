@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.cm.service.impl;
 
 import com.google.common.collect.Lists;
@@ -177,7 +184,7 @@ public class AlbumManagerImpl extends GenericManagerImpl<Album, Long> implements
      */
     @Override
     public Album getAlbum(final String albumId) {
-        return albumDao.get(new Long(albumId));
+        return albumDao.get(Long.valueOf(albumId));
     }
 
     /**
@@ -339,7 +346,7 @@ public class AlbumManagerImpl extends GenericManagerImpl<Album, Long> implements
 				mapList.add(map);
 			}
 		}else {
-			long excludeId = new Long(excludeIdStr);
+			long excludeId = Long.valueOf(excludeIdStr);
 			List<Long> parentIds = list.stream().filter(c->!c.getParentIds().contains(excludeId)).map(Album::getId).collect(Collectors.toList());
 			for (int i=0; i<list.size(); i++){
 				Album e = list.get(i);

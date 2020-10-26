@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.webapp.cm.controller;
 
 import com.mds.aiotplayer.common.exception.SearchException;
@@ -112,7 +119,7 @@ public class BannerController extends BaseController {
 			int successNum = 0;
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			ExcelImportResult<Banner> importResult = ei.getDataList(Banner.class);
-			Validator validator = SpringContextHolder.getBean(Validator.class);
+			Validator validator = SpringContextHolder.getBean("beanValidator", Validator.class);
 			List<Banner> listValidated = Lists.newArrayList();
 			for (int row : importResult.dataRow()){
 				BindException errors = new BindException(importResult.data(row), "Banner");
@@ -123,7 +130,7 @@ public class BannerController extends BaseController {
 				if (!errors.hasErrors()){
 					listValidated.add(importResult.data(row));
 				}else{
-					importResult.addResult(row, errors);
+					importResult.addResult(row, errors, request.getLocale());
 				}
 			}
 			bannerManager.importFrom(listValidated, new String[] {"strContent"});

@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.util;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -6,6 +13,10 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -96,4 +107,26 @@ public final class ConvertUtil {
       
        return ret.toArray(new Long[0]);  
      }  
+    
+
+	public static byte[] longToBytes(long x) {
+	    ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
+	    buffer.putLong(x);
+	    return buffer.array();
+	}
+	
+	public static long bytesToLong(byte[] bytes) {
+	    ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
+	    buffer.put(bytes);
+	    buffer.flip();//need flip 
+	    return buffer.getLong();
+	}
+	
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
+	}
 }

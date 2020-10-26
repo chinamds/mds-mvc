@@ -31,9 +31,10 @@
             <%-- <form:label path="startDate"  cssStyle="width: 60px;text-align: right;"><fmt:message key="myCalendar.startDate"/></form:label> --%>
             <div class="input-group date" id="datetimepicker0" data-target-input="nearest">
                 <form:input path="startDate" cssClass="form-control datetimepicker-input" data-target="#datetimepicker0" data-position="bottom-left" data-format="${fn:toUpperCase(datePattern)}"/>
-                <!-- <span class="add-on"><i data-time-icon="fa fa-time" data-date-icon="fa fa-calendar"></i></span> -->
+                <!-- <span class="add-on"><i data-time-icon="fa fa-time" data-date-icon="fa fa-calendar"></i></span>-->
                 <div class="input-group-append input-group-addon" data-target="#datetimepicker0" data-toggle="datetimepicker">
                        <div class="input-group-text"><i class="fa fa-calendar icon-calendar"></i></div>
+                       <!-- <button class="btn btn-outline-secondary" type="button"><i class="fa fa-calendar icon-calendar"></i></button> -->
                    </div>
                 <form:errors path="startDate" cssClass="help-block"/>
             </div>
@@ -59,7 +60,7 @@
 		<spring:bind path="myCalendar.startTime">
         <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
 	    </spring:bind>        
-        	<appfuse:label key="myCalendar.startTime" styleClass="col-sm-4 control-label"/>
+        	<appfuse:label key="myCalendar.startTime" styleClass="control-label"/>
             <%-- <form:label path="startTime" cssStyle="width: 60px;text-align: right;"><fmt:message key="myCalendar.startTime" data-format="HH:mm:ss"/></form:label> --%>
             <form:hidden path="startTime"/>
             <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
@@ -67,6 +68,7 @@
 	            <input type="text" class="form-control datetimepicker-input" name="startTimeStr" id="startTimeStr"  data-target="#datetimepicker1" data-position="bottom-left" data-format="HH:mm" />
 	            <div class="input-group-append input-group-addon" data-target="#datetimepicker1" data-toggle="datetimepicker">
                        <div class="input-group-text"><i class="fa fa-clock icon-calendar"></i></div>
+                       <!-- <button class="btn btn-outline-secondary" type="button"><i class="fa fa-clock icon-calendar"></i></button> -->
                    </div>
 	            <form:errors path="startTime" cssClass="help-block"/>
             </div>
@@ -83,6 +85,7 @@
                 <input type="text" class="form-control datetimepicker-input" name="endTimeStr" id="endTimeStr"  data-target="#datetimepicker2" data-position="bottom-left" data-format="HH:mm" />
                 <div class="input-group-append input-group-addon" data-target="#datetimepicker2" data-toggle="datetimepicker">
                        <div class="input-group-text"><i class="fa fa-clock icon-calendar"></i></div>
+                       <!-- <button class="btn btn-outline-secondary" type="button"><i class="fa fa-clock icon-calendar"></i></button> -->
                    </div>
             	<form:errors path="endTime" cssClass="help-block"/>
            	</div>
@@ -109,7 +112,9 @@
 	                    <option style="background: ${c}" value="${c}">&nbsp;</option>
 	                </c:forEach>
 	            </select> --%>
-            <form:input cssClass="form-control" path="backgroundColor" id="backgroundColor" />
+            <%-- <form:input cssClass="form-control" path="backgroundColor" id="backgroundColor" /> --%>
+            <input type="hidden" id="backgroundColor" name="backgroundColor" value="${backgroundColor}"/>
+            <input type="text" name="spBGColor" class="form-control" id="spBGColor" value="<c:out value="${backgroundColor}" />" >
             <form:errors path="backgroundColor" cssClass="help-block"/>
             <%--<form:label path="textColor" cssStyle="width: 60px;text-align: right;"><fmt:message key="myCalendar.textColor"/></form:label>--%>
             <%--<form:input path="textColor" cssClass="input-small"/>--%>

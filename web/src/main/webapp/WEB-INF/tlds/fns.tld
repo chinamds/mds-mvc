@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
 <taglib xmlns="http://java.sun.com/xml/ns/j2ee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
@@ -59,7 +58,7 @@
     <description>is system user login</description>
     <name>isSysUserLogin</name>
     <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>
-    <function-signature>java.lang.Boolea isSysUserLogin()</function-signature>
+    <function-signature>java.lang.Boolean isSysUserLogin()</function-signature>
     <example>${fns:isSysUserLogin()}</example>  
   </function>
   <function>

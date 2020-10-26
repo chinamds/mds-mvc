@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.cm.metadata;
 
 import java.awt.image.BufferedImage;
@@ -2650,7 +2657,7 @@ public class ImageMetadataReadWriter extends MediaObjectMetadataReadWriter{
 	/// <param name="persistAction">The persist action.</param>
 	private void persistMetaValue(MetadataItemName metaName, MetaPersistAction persistAction)	{
 		if (!getUpdatableMetaItems().containsKey(metaName)){
-			//EventLogController.RecordEvent(String.Format("This version of MDS System does not support modifying the meta value {0} in the original file. The request to save or delete the meta value was ignored.", metaName));
+			//EventLogController.RecordEvent(StringUtils.Format("This version of MDS System does not support modifying the meta value {0} in the original file. The request to save or delete the meta value was ignored.", metaName));
 			return;
 		}
 

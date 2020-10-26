@@ -1,7 +1,9 @@
 /**
- * Copyright &copy; 2012-2013 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * https://github.com/chinamds/license/
  */
 package com.mds.aiotplayer.webapp.sys.controller;
 

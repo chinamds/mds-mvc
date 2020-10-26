@@ -1,7 +1,17 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.cm.service.impl;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -33,6 +43,7 @@ import com.mds.aiotplayer.cm.exception.InvalidAlbumException;
 import com.mds.aiotplayer.cm.exception.InvalidContentObjectException;
 import com.mds.aiotplayer.cm.exception.InvalidGalleryException;
 import com.mds.aiotplayer.cm.exception.UnsupportedImageTypeException;
+import com.mds.aiotplayer.cm.model.ContentType;
 import com.mds.aiotplayer.cm.rest.CMData;
 import com.mds.aiotplayer.cm.rest.CMDataLoadOptions;
 import com.mds.aiotplayer.cm.rest.MediaItem;
@@ -52,6 +63,7 @@ import com.mds.aiotplayer.core.ContentObjectType;
 import com.mds.aiotplayer.core.DisplayObjectType;
 import com.mds.aiotplayer.core.EventType;
 import com.mds.aiotplayer.core.SecurityActions;
+import com.mds.aiotplayer.i18n.util.I18nUtils;
 import com.mds.aiotplayer.cm.exception.UnsupportedContentObjectTypeException;
 import com.mds.aiotplayer.cm.util.CMUtils;
 import com.mds.aiotplayer.cm.util.ContentObjectHtmlBuilder;
@@ -230,7 +242,7 @@ public class ContentItemsManagerImpl implements ContentItemsManager, ContentItem
 
 		int i = 1;
 		for (ActionResult result : unsuccesfulResults){
-			ex.Data.put("File " + i++, MessageFormat.format( "{0}: {1}", result.Title, result.Message));
+			ex.addData("File " + i++, MessageFormat.format( "{0}: {1}", result.Title, result.Message));
 		}
 
 		AppEventLogUtils.LogError(ex, galleryId);
@@ -353,4 +365,47 @@ public class ContentItemsManagerImpl implements ContentItemsManager, ContentItem
 		}
 		//}
 	}
+	
+	/**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<HashMap<String, Object>> genPreviewItemsFromContent(String contentObjectIds, HttpServletRequest request) {
+        List<HashMap<String,Object>> list = new LinkedList<HashMap<String,Object>>();
+        try {
+        	String[] cIds  = StringUtils.split(contentObjectIds, ",");
+        	List<Long> ids = Lists.newArrayList();
+        	for(String cId : cIds) {
+        		if (cId.startsWith("m")) {
+        			long id = StringUtils.toLong(cId.substring(1));
+        			if (id > 0) {
+        				ids.add(id);
+        			}
+        		}
+        	}
+        	//Long[] ids = ConvertUtil.StringtoLongArray(contentObjectIds);
+        	for(long id : ids) {
+        		HashMap<String, Object> mapData = new LinkedHashMap<String, Object>();  			
+        		ContentObjectBo mo = CMUtils.loadContentObjectInstance(id);
+        		mapData.put("content", mo.getTitle());//dailyList parent
+				mapData.put("fileName", mo.getOriginal().getFileName());//dailyList name
+				ContentObjectHtmlBuilder moBuilder = ContentObjectUtils.getContentObjectHtmlBuilder(ContentObjectHtmlBuilder.getContentObjectHtmlBuilderOptions(mo, DisplayObjectType.Thumbnail, request));
+				mapData.put("url", moBuilder.getContentObjectUrl());//dailyList name
+				mapData.put("mimeType", moBuilder.getMimeType().getBrowserMimeType());//dailyList name
+				mapData.put("duration", mo.getDuration());//gallery
+				mapData.put("contentObjectId", id);//content object id
+				mapData.put("width", moBuilder.getWidth());
+				mapData.put("height", moBuilder.getHeight());
+				ContentType contentType = CMUtils.getContentType(mo.getOriginal().getFileName());
+				mapData.put("contentType", contentType.getType());//content type
+				mapData.put("contentTypeDisplay", I18nUtils.getString(contentType.getLanguageKey(), request.getLocale()));//content type
+				list.add(mapData);
+        	}
+        } catch (final Exception e) {
+            e.printStackTrace();
+            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+        }
+
+        return list;
+    }
 }

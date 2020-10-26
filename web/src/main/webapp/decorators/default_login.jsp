@@ -53,10 +53,10 @@
 	window.Mds.AppRoot = "${ctx}";
 	window.Mds.locale = "${languageTag}";
 	if (!(typeof(PNotify) === "undefined") && PNotify){
-		/* PNotify.prototype.options.styling = 'bootstrap3'; // Bootstrap version 3
-		PNotify.prototype.options.icons = 'bootstrap3'; // glyphicons */
-		PNotify.defaults.styling = 'bootstrap4'; // Bootstrap version 3
-		PNotify.defaults.icons = 'fontawesome5'; // glyphicons
+		//PNotify.defaults.styling = 'bootstrap4'; // Bootstrap version 3
+		//PNotify.defaults.icons = 'fontawesome5'; // glyphicons
+		PNotify.defaultModules.set(PNotifyBootstrap4, {});
+        PNotify.defaultModules.set(PNotifyFontAwesome5, {});
 	}
 </script>    
 <%= (request.getAttribute("scripts") != null) ?  request.getAttribute("scripts") : "" %>

@@ -1,7 +1,9 @@
 /**
- * Copyright &copy; 2016-2017 <a href="https://github.com/chinamds/mds">MDSPlus</a> All rights reserved.
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * https://github.com/chinamds/license/
  */
 package com.mds.aiotplayer.common.service;
 
@@ -504,8 +506,7 @@ public class SeedManager
 		/// Any existing enterprise templates are replaced. Note that only UI templates associated with the template gallery are
 		/// updated. The calling code must ensure that these templates are propagated to the remaining galleries.
 		/// </summary>
-		public void InsertEnterpriseTemplates()
-		{
+		public void InsertEnterpriseTemplates()	{
 			InsertLeftPaneEnterpriseTemplates();
 
 			InsertFacebookTemplates();
@@ -584,8 +585,7 @@ public class SeedManager
 			appSettingDao.save(Arrays.asList(appSettings));
 		}
 
-		private Gallery InsertGalleries(String currentUser)
-		{
+		private Gallery InsertGalleries(String currentUser){
 			Searchable searchable = Searchable.newSearchable();
 	        searchable.addSearchFilter("isTemplate", SearchOperator.eq, true);
 	        if (!galleryDao.findAny(searchable)) {
@@ -603,8 +603,7 @@ public class SeedManager
 	        return gallery;
 		}
 
-		private void InsertAlbums(Gallery gallery, String currentUser)
-		{
+		private void InsertAlbums(Gallery gallery, String currentUser){
 			Searchable searchable = Searchable.newSearchable();
 			searchable.addSearchFilter("gallery.id", SearchOperator.eq, gallery.getId());
 			searchable.addSearchFilter("parent", SearchOperator.eq, null);

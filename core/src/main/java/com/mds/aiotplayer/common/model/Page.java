@@ -1,7 +1,9 @@
 /**
- * Copyright &copy; 2016-2017 <a href="https://github.com/chinamds/mdsplus">MDSPlus</a> All rights reserved.
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * https://github.com/chinamds/license/
  */
 package com.mds.aiotplayer.common.model;
 

@@ -31,8 +31,8 @@
  	<%-- <input id="${id}Id" name="${keyName}" class="${cssClass}" type="hidden" value="${keyValue}"/> --%>
 	<input id="${id}Name" name="${fieldName}" ${allowInput?'':'readonly="readonly"'} type="text" value="${fns:unescapeHtml(fieldValue)}" data-msg-required="${dataMsgRequired}"
 		class="${cssClass}" style="${cssStyle}" maxlength="${not empty maxlength?maxlength:50}"/>
-	<span class="input-group-btn">
-		<a id="${id}Button" type="button" href="javascript:" class="btn btn-default dropdown-toggle ${disabled} ${hideBtn ? 'hide' : ''}" data-toggle="dropdown"></a>
+	<span class="input-group-append">
+		<a id="${id}Button" type="button" href="javascript:" class="btn btn-outline-secondary dropdown-toggle ${disabled} ${hideBtn ? 'hidden d-none' : ''}" data-toggle="dropdown"></a>
 	</span>
 </div>  
  

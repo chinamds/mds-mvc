@@ -1,7 +1,9 @@
 /**
- * Copyright &copy; 2012-2013 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * https://github.com/chinamds/license/
  */
 package com.mds.aiotplayer.sys.util;
 
@@ -723,8 +725,8 @@ public class UserUtils {
 		}
 	}
 	
-	public static List<Long> getOrganizationIds(List<String> organizationCodes) throws InvalidMDSRoleException{
-		return loadOrganizations().stream().filter(o->organizationCodes.contains(o.getCode())).map(o->o.getOrganizationId()).collect(Collectors.toList());
+	public static List<Long> getOrganizationIds(List<String> organizationCodes, boolean ignoreCase) throws InvalidMDSRoleException{
+		return loadOrganizations().stream().filter(o->StringUtils.contains(organizationCodes, o.getCode(), ignoreCase)).map(o->o.getOrganizationId()).collect(Collectors.toList());
 	}
 	
 	public static List<OrganizationBo> getUserOrganizations() throws InvalidMDSRoleException{

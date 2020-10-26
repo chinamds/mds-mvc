@@ -1,7 +1,9 @@
 /**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * https://github.com/chinamds/license/
  */
 package com.mds.aiotplayer.common.repository.support;
 
@@ -28,6 +30,7 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.BooleanClause.Occur;
 import org.hibernate.search.jpa.Search;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.hibernate.transform.Transformers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -626,6 +629,13 @@ public class SimpleBaseRepository<M, ID extends Serializable> extends SimpleJpaR
         org.apache.lucene.search.Query qry;
         try {
             qry = HibernateSearchTools.generateQuery(searchTerm, this.entityClass, sess, defaultAnalyzer);
+            
+            QueryBuilder querybuilder = sess.getSearchFactory()
+        	        .buildQueryBuilder()
+        	        .forEntity(this.entityClass )
+        	        .get();
+        	
+			  qry = HibernateSearchTools.generateQuery(querybuilder, searchable).must(qry).createQuery();
         } catch (ParseException ex) {
             throw new SearchException(ex);
         }
@@ -633,12 +643,8 @@ public class SimpleBaseRepository<M, ID extends Serializable> extends SimpleJpaR
         org.hibernate.search.jpa.FullTextQuery hibQuery = sess.createFullTextQuery(qry,
                 this.entityClass);
         
-        if (searchable.hasSearchFilter()) {
-        	hibQuery = HibernateSearchTools.applyFilters(hibQuery, searchable);
-        }
-        
         if (searchable.hashSort()) {
-        	hibQuery.setSort(HibernateSearchTools.prepareOrder(searchable));
+        	hibQuery.setSort(HibernateSearchTools.prepareOrder(searchable, this.entityClass));
         }
         
         int total = hibQuery.getResultSize();
@@ -707,7 +713,7 @@ public class SimpleBaseRepository<M, ID extends Serializable> extends SimpleJpaR
                 this.entityClass);
                 
         if (searchable.hashSort()) {
-        	hibQuery.setSort(HibernateSearchTools.prepareOrder(searchable));
+        	hibQuery.setSort(HibernateSearchTools.prepareOrder(searchable, this.entityClass));
         }
         
         int total = hibQuery.getResultSize();

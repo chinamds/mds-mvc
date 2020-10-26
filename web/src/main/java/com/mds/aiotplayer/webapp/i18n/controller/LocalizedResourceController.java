@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.webapp.i18n.controller;
 
 import com.google.common.collect.Lists;
@@ -112,7 +119,7 @@ public class LocalizedResourceController {
 			ImportExcel ei = new ImportExcel(importFile, 1, 0);
 			ExcelImportResult<LocalizedResource> importResult = ei.getDataList(LocalizedResource.class);
 			List<LocalizedResource> listValidated = Lists.newArrayList();
-			Validator validator = SpringContextHolder.getBean(Validator.class);
+			Validator validator = SpringContextHolder.getBean("beanValidator", Validator.class);
 			for (int row : importResult.dataRow()){
 				BindException errors = new BindException(importResult.data(row), "LocalizedResource");
 				if (validator != null)
@@ -124,7 +131,7 @@ public class LocalizedResourceController {
 					successNum++;
 				}else{
 					//saveError(request, errors);
-					importResult.addResult(row, errors);
+					importResult.addResult(row, errors, request.getLocale());
 				}
 			}
 			//localizedResourceManager.Import(listValidated, new String[]{"resourceClass", "resourceKey"});

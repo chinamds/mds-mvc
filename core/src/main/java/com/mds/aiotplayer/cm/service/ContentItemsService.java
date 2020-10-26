@@ -1,5 +1,13 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.cm.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.jws.WebService;
@@ -107,4 +115,9 @@ public interface ContentItemsService{
 	@Path("/getmedia")
    /* @Produces({"image/png", "image/jpg", "image/jpeg", "image/gif", "image/bmp", "video/mp4", "video/mov", MediaType.APPLICATION_OCTET_STREAM})*/
 	public void getMedia(@QueryParam("moid") String id, @QueryParam("dt") String displayType, @QueryParam("g") String galleryId, @QueryParam("sa") String sendAsAttachment, @Context HttpServletRequest request, @Context HttpServletResponse response) throws Exception;
+	
+	@GET
+    @Path("/genpreviewitems")
+    @Produces({ MediaType.APPLICATION_JSON })
+    List<HashMap<String, Object>> genPreviewItemsFromContent(@QueryParam("ids") String contentObjectIds, @Context HttpServletRequest request);
 }

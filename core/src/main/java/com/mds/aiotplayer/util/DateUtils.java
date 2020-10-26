@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.util;
 
 import org.apache.commons.lang.time.DateFormatUtils;
@@ -324,20 +331,39 @@ public final class DateUtils extends org.apache.commons.lang.time.DateUtils {
 	}
 	
 	public static Date getFromTimeString(String time) {
-		return mergeTimeFrom(Now(), time);
+		try {
+			return mergeTimeFrom(Now(), time);
+		}catch (Exception ignored){
+            return null;
+        }
+		
 	}
 	
 	public static Date mergeTimeFrom(Date date, String time) {
-		if(date==null) {
+		if(date==null ) {
 			return null;
 		}
 
-		if (StringUtils.split(time, ':').length == 2) {
+		return combineDateTime(formatDate(date, "yyyy-MM-dd"), time);
+	}
+	
+	public static Date combineDateTime(String dateString, String time) {
+		if (StringUtils.isBlank(dateString)) {
+			dateString=formatDate(Now(), "yyyy-MM-dd");
+		}
+		
+		if (StringUtils.isBlank(time)) {
+			time = "00:00:00";
+		}else if (StringUtils.split(time, ':').length == 1) {
+			time = time.concat(":00:00");
+		}else if (StringUtils.split(time, ':').length == 2) {
 			time = time.concat(":00");
 		}
+		
+		Date date = null;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
-			date= sdf.parse(formatDate(date, "yyyy-MM-dd") + " " + time);
+			date= sdf.parse(dateString + " " + time);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -358,26 +384,16 @@ public final class DateUtils extends org.apache.commons.lang.time.DateUtils {
 		if(date==null) {
 			return null;
 		}
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		try {
-			date= sdf.parse(formatDate(date, "yyyy-MM-dd")+" 00:00:00");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return date;
+
+		return combineDateTime(formatDate(date, "yyyy-MM-dd"), null);
 	}
 	
 	public static Date getDateEnd(Date date) {
 		if(date==null) {
 			return null;
 		}
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		try {
-			date= sdf.parse(formatDate(date, "yyyy-MM-dd") +" 23:59:59");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return date;
+		
+		return combineDateTime(formatDate(date, "yyyy-MM-dd"), "23:59:59");
 	}
 	
 	public static Date fromFileTime(FileTime fileTime) {

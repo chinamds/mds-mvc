@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.webapp.sys.controller;
 
 import com.google.common.collect.Lists;
@@ -186,7 +193,7 @@ public class AreaController  extends BaseController {
 			ImportExcel ei = new ImportExcel(importFile, 1, 0);
 			ExcelImportResult<Area> importResult = ei.getDataList(Area.class);
 			List<Area> listValidated = Lists.newArrayList();
-			Validator validator = SpringContextHolder.getBean(Validator.class);
+			Validator validator = SpringContextHolder.getBean("beanValidator", Validator.class);
 			for (int row : importResult.dataRow()){
 				AreaCell.setParent(importResult.data(row), importResult.toList());
 

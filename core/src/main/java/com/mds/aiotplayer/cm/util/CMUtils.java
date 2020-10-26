@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.cm.util;
 
 import java.io.File;
@@ -2380,9 +2387,9 @@ public class CMUtils{
 		return emptyCollection;
 	}
 	
-	public static List<Long> loadOrganizationGalleries(List<String> oCodes) throws InvalidGalleryException, InvalidMDSRoleException{
+	public static List<Long> loadOrganizationGalleries(List<String> oCodes, boolean ignoreCase) throws InvalidGalleryException, InvalidMDSRoleException{
 		List<Long> gIds = Lists.newArrayList();
-		List<Long> oIds = UserUtils.getOrganizationIds(oCodes);
+		List<Long> oIds = UserUtils.getOrganizationIds(oCodes, ignoreCase);
 		GalleryBoCollection galleries = CMUtils.loadGalleries();
 		for(long oid : oIds) {
 			for(GalleryBo gallery : galleries) {

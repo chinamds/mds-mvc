@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.cm.service.impl;
 
 import com.mds.aiotplayer.common.model.search.Searchable;
@@ -258,7 +265,7 @@ public class ContentObjectManagerImpl extends GenericManagerImpl<ContentObject, 
      */
     @Override
     public ContentObject getContentObject(final String contentObjectId) {
-        return contentObjectDao.get(new Long(contentObjectId));
+        return contentObjectDao.get(Long.valueOf(contentObjectId));
     }
 
     /**

@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.cm.util;
 
 import java.beans.EventHandler;
@@ -347,9 +354,9 @@ public final class GalleryUtils implements GalleryCreatedListener {
 				}catch (ArgumentException ex){
 					synchStatusWeb.CurrentFile = StringUtils.EMPTY;
 
-					ex.Data.put("INFO", "This error was handled and should not affect the user experience unless it occurs frequently.");
-					ex.Data.put("synchStatus.CurrentFilePath", synchStatus.getCurrentFilePath());
-					ex.Data.put("synchStatus.CurrentFileName", synchStatus.getCurrentFileName());
+					ex.addData("INFO", "This error was handled and should not affect the user experience unless it occurs frequently.");
+					ex.addData("synchStatus.CurrentFilePath", synchStatus.getCurrentFilePath());
+					ex.addData("synchStatus.CurrentFileName", synchStatus.getCurrentFileName());
 					AppEventLogUtils.LogError(ex, synchStatus.getGalleryId());
 				}
 			}

@@ -21,9 +21,10 @@
     }
 })
 
-/*PNotify.prototype.options.styling = "bootstrap3";*/
-PNotify.defaults.styling = 'bootstrap4'; // Bootstrap version 3
-PNotify.defaults.icons = 'fontawesome5'; // glyphicons
+//PNotify.defaults.styling = 'bootstrap4'; // Bootstrap version 3
+//PNotify.defaults.icons = 'fontawesome5'; // glyphicons
+PNotify.defaultModules.set(PNotifyBootstrap4, {});
+PNotify.defaultModules.set(PNotifyFontAwesome5, {});
 $.mdsNotify =
 {
     showSuccess : function (title, text, context)
@@ -41,7 +42,7 @@ $.mdsNotify =
             $.mdsNotify.show_context (context, false, opt);
             return;
         }
-        new PNotify.alert(opt);
+        PNotify.alert(opt);
     },
     showNotice : function (title, text, context)
     {
@@ -58,7 +59,7 @@ $.mdsNotify =
             $.mdsNotify.show_context (context, false, opt);
             return;
         }
-        new PNotify.alert(opt);
+        PNotify.alert(opt);
     },
     showError : function (title, text, context)
     {
@@ -75,7 +76,7 @@ $.mdsNotify =
             $.mdsNotify.show_context (context, false, opt);
             return;
         }
-        new PNotify.alert(opt);
+        PNotify.alert(opt);
     },
     showLogin : function (context)
     {
@@ -108,7 +109,7 @@ $.mdsNotify =
             $.mdsNotify.show_context (context, false, opt);
             return;
         }
-        new PNotify.alert(opt);
+        PNotify.alert(opt);
     },
     showConfirm : function (title, text, buttons, context)
     {
@@ -135,7 +136,7 @@ $.mdsNotify =
             return;
         }
         
-        new PNotify.alert(opt);
+        PNotify.alert(opt);
         
     },
     show_context : function (context, modal, opt)
@@ -150,7 +151,7 @@ $.mdsNotify =
             "overlay_close" : true,
             "addclass" : "stack-modal"
         }, opt)
-        new PNotify.alert(opts);
+        PNotify.alert(opts);
     }
 }
 
@@ -165,14 +166,14 @@ $.mdsShowResult = function (result, title, options) {
 			 delay: 4000, 
 		};
 		var settings = $.extend({}, defaults, options);
-		new PNotify.alert(settings);
+		PNotify.alert(settings);
 	}else{
 		var opt = {
 	            title : "system error",
 	            text : "Please contact your administrator!",
 	            type : "error"
         };
-        new PNotify.alert(opt);
+        PNotify.alert(opt);
 	}
 };
 
@@ -187,7 +188,7 @@ $.mdsShowMsg = function (title, message, options) {
 
 	var settings = $.extend({}, defaults, options);
 
-	new PNotify.alert(settings);
+	PNotify.alert(settings);
 };
 
 //#endregion
@@ -792,7 +793,7 @@ $.mdsDialog = {
                     if (showOpt.onPostSuccess != undefined){
                         showOpt.onPostSuccess(json)
                     }else{
-                    	new PNotify({
+                    	PNotify({
                             title : showOpt.title,
                             text : showOpt.text,
                             type : 'success',
@@ -1121,7 +1122,7 @@ $.mdsDialog = {
             type : "error"
         };
         if (dialog == undefined || dialog == null) {
-            new PNotify(opt);
+            PNotify.alert(opt);
         } else {
             $.mdsDialog.show_stack_err_context(dialog.getModalContent(), false, opt);
         }
@@ -1144,7 +1145,7 @@ $.mdsDialog = {
         }
 
         if ($.mdsDialog.isNullOrEmpty(dialog)) {
-            new PNotify(opt);
+            PNotify.alert(opt);
         } else {
             $.mdsDialog.show_stack_err_context(dialog.getModalContent(), false, opt)
         }
@@ -1152,7 +1153,7 @@ $.mdsDialog = {
     },
     show_stack_err_context : function(context, modal, opt) {
         var opts = !opt ? {} : opt;
-        opts.stack = modal ? {
+        opts.stack = new Stack(modal ? {
             "push" : "top",
             "dir1" : "down",
             "dir2" : "left",
@@ -1164,8 +1165,8 @@ $.mdsDialog = {
             "dir1" : "down",
             "dir2" : "left",
             "context" : context
-        };
+        });
         opts.addclass = "stack-modal";
-        new PNotify(opts);
+        PNotify.alert(opts);
     }
 }

@@ -3,9 +3,8 @@
  * detailed in the LICENSE and NOTICE files at the root of the source
  * tree and available online at
  *
- * http://github.com/chinamds/license/
+ * https://github.com/chinamds/license/
  */
-
 /** Utility classes and starting points.
  * Standalone code, for example, can use the framework by instantiating
  * a MDS object and using its methods to locate other parts of the

@@ -1,10 +1,5 @@
 <script>
     $(function() {
-        /*var validationEngine = $("form").validationEngine({
-            promptPosition : "topRight",
-            autoPositionUpdate:true,
-            scroll:false
-        });*/
     	$(document).ready(function() {
             $("input[type='text']:visible:enabled:first", document.forms['editForm']).focus();
         });
@@ -22,44 +17,61 @@
     	      close: 'far fa-times-circle'
     	    }
     	});
-
-    	$('#backgroundColor').colorpicker({
-              extensions: [
-                {
-                  name: 'swatches',
-                  options: {
-                    colors: {
-                      'tetrad1': '#000',
-                      'tetrad2': '#000',
-                      'tetrad3': '#000',
-                      'tetrad4': '#000'
-                    },
-                    namesAsValues: false
-                  }
-                }
-              ]
-            })
-        	.on('colorpickerChange colorpickerCreate', function (e) {
-                var colors = e.color.generate('tetrad');
-    
-                colors.forEach(function (color, i) {
-                  var colorStr = color.string(),
-                      swatch = e.colorpicker.picker
-                          .find('.colorpicker-swatch[data-name="tetrad' + (i + 1) + '"]');
-    
-                  swatch
-                      .attr('data-value', colorStr)
-                      .attr('title', colorStr)
-                      .find('> i')
-                      .css('background-color', colorStr);
-                });
-              });
-    	$('#backgroundColor').on('colorpickerChange', function(event) {
-            $('.jumbotron').css('background-color', event.color.toString());
+        
+        /*$('#startDate').datetimepicker({
+            timepicker: false,
+            scrollInput: false,
+            format: 'Y-m-d',
+            formatDate: 'Y-m-d'*/
+            /*onShow: function (ct) {
+                this.setOptions({
+                    maxDate: false
+                })
+            },
+            onChangeDateTime: function (dp, $input) {
+                //checkVacant(); 
+            }
+            ,
+            onSelectDate: function (current_time, $input) {
+                checkVacant();
+            }*/
+        /*});
+        
+        $('.datetimepicker-input').datetimepicker({
+            datepicker: false,
+            scrollInput: false,
+            format: 'H:i',
+            step: 30
         });
-        /*$("#backgroundColor").change(function() {
-            $(this).attr("style", $(this).find("option:selected").attr("style"));
-        })*/
+        
+        $('.datetimepicker-input').each(function() {
+             var $date = $(this);
+             $date.click(function() {$date.datetimepicker('show');});
+           });*/
+        
+        var colorPal = [
+            ["#000","#444","#666","#999","#ccc","#eee","#f3f3f3","#fff"],
+            ["#f00","#f90","#ff0","#0f0","#0ff","#00f","#90f","#f0f"],
+            ["#f4cccc","#fce5cd","#fff2cc","#d9ead3","#d0e0e3","#cfe2f3","#d9d2e9","#ead1dc"],
+            ["#ea9999","#f9cb9c","#ffe599","#b6d7a8","#a2c4c9","#9fc5e8","#b4a7d6","#d5a6bd"],
+            ["#e06666","#f6b26b","#ffd966","#93c47d","#76a5af","#6fa8dc","#8e7cc3","#c27ba0"],
+            ["#c00","#e69138","#f1c232","#6aa84f","#45818e","#3d85c6","#674ea7","#a64d79"],
+            ["#900","#b45f06","#bf9000","#38761d","#134f5c","#0b5394","#351c75","#741b47"],
+            ["#600","#783f04","#7f6000","#274e13","#0c343d","#073763","#20124d","#4c1130"]
+        ];
+        
+        $("#spBGColor").spectrum({
+            showPaletteOnly: true,
+            showPalette:true,
+            /*togglePaletteOnly: true,
+            togglePaletteMoreText: 'more',
+            togglePaletteLessText: 'less',*/
+            color: '${backgroundColor}',
+            palette: colorPal,
+            change: function(color) {
+                $("#backgroundColor").val(color.toHexString()); // #ff0000
+            }
+        });
         
         $('.date:not(.custom)').each(function() {
              var $date = $(this);
@@ -70,23 +82,23 @@
 
              var dateformat = $(this).find("[data-format]").data("format");
              $date.datetimepicker({
-             	format: dateformat,
-             	buttons: {
+                format: dateformat,
+                buttons: {
                     showToday: true,
                     showClear: true,
                     showClose: true
                 },
                 icons: {
-          	      time: 'far fa-clock',
-          	      date: 'far fa-calendar',
-          	      up: 'fas fa-arrow-up',
-          	      down: 'fas fa-arrow-down',
-          	      previous: 'fas fa-chevron-left',
-          	      next: 'fas fa-chevron-right',
-          	      today: 'fas fa-calendar-check',
-          	      clear: 'far fa-trash-alt',
-          	      close: 'far fa-times-circle'
-          	    }
+                  time: 'far fa-clock',
+                  date: 'far fa-calendar',
+                  up: 'fas fa-arrow-up',
+                  down: 'fas fa-arrow-down',
+                  previous: 'fas fa-chevron-left',
+                  next: 'fas fa-chevron-right',
+                  today: 'fas fa-calendar-check',
+                  clear: 'far fa-trash-alt',
+                  close: 'far fa-times-circle'
+                }
              });
              $date.find(":input").click(function() {$date.find(".icon-calendar,.icon-time,.icon-date").click();});
              $date.attr("initialized", true);

@@ -1,7 +1,9 @@
 /**
- * Copyright (c) 2016-2017 https://github.com/chinamds
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * https://github.com/chinamds/license/
  */
 package com.mds.aiotplayer.sys.model;
 

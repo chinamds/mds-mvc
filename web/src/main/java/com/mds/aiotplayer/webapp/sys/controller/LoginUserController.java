@@ -1,7 +1,9 @@
 /**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * https://github.com/chinamds/license/
  */
 package com.mds.aiotplayer.webapp.sys.controller;
 
@@ -75,7 +77,7 @@ public class LoginUserController extends AbstractBaseController<User, Long> {
 
     @RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
     public String updateInfo(
-            @CurrentUser User user,
+            //@CurrentUser User user,
             @RequestParam("email") String email,
             @RequestParam("mobile") String mobile,
             Model model,
@@ -104,8 +106,10 @@ public class LoginUserController extends AbstractBaseController<User, Long> {
             return updateInfoForm(user, model);
         }
 */
+    	User user = userManager.get(UserUtils.getUser().getId());
         user.setEmail(email);
         user.setMobile(mobile);
+        user.setCurrentUser(UserUtils.getLoginName());
         userManager.save(user);
 
         redirectAttributes.addFlashAttribute(Constants.MESSAGES_KEY, I18nUtils.getString("user.saved", request.getLocale()));

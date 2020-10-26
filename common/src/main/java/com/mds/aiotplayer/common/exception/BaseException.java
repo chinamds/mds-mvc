@@ -1,7 +1,9 @@
 /**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * https://github.com/chinamds/license/
  */
 package com.mds.aiotplayer.common.exception;
 
@@ -53,8 +55,18 @@ public class BaseException extends RuntimeException {
     // Returns:
     //     An object that implements the System.Collections.IDictionary interface and contains
     //     a collection of user-defined key/value pairs. The default is an empty collection.
-    public Map<String, Object> Data = new HashMap<String, Object>();
-
+    private Map<String, Object> data = null;
+    
+    public Map<String, Object> getData(){
+    	return data;
+    }
+    
+    public  void addData(String key, Object value){
+    	if (this.data == null)
+    		this.data = new HashMap<String, Object>();
+    		
+    	this.data.put(key, value);
+    }
 
     public BaseException(String module, String code, Object[] args, String defaultMessage) {
     	super(defaultMessage);

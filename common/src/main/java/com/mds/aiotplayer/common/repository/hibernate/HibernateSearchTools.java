@@ -1,6 +1,15 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.common.repository.hibernate;
 
+import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -15,6 +24,8 @@ import com.mds.aiotplayer.common.model.search.SearchOperator;
 import com.mds.aiotplayer.common.model.search.Searchable;
 import com.mds.aiotplayer.common.model.search.filter.Condition;
 import com.mds.aiotplayer.common.model.search.filter.SearchFilter;
+
+import org.apache.commons.lang.reflect.FieldUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -24,20 +35,30 @@ import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.index.MultiFields;
+import org.apache.lucene.index.ReaderUtil;
 import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.MatchAllDocsQuery;
+import org.apache.lucene.search.MultiPhraseQuery;
+import org.apache.lucene.search.PhraseQuery;
 import org.apache.lucene.search.Query;
+import org.apache.lucene.util.Version;
+import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.FuzzyQuery;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TermRangeQuery;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.WildcardQuery;
 import org.hibernate.search.MassIndexer;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
+import org.hibernate.search.query.dsl.BooleanJunction;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.hibernate.search.SearchFactory;
 
 /**
@@ -193,6 +214,80 @@ public class HibernateSearchTools {
     	return query.build();
     }
     
+    public static BooleanJunction generateQuery(QueryBuilder querybuilder, Searchable search) {
+    	BooleanJunction query = querybuilder.bool();
+    	for (SearchFilter searchFilter : search.getSearchFilters()) {
+            if (searchFilter instanceof Condition) {
+            	Query q = null;
+            	boolean mustNot = false;
+                Condition condition = (Condition) searchFilter;
+                if (condition.getOperator() == SearchOperator.eq)
+                	q = querybuilder.keyword().onField(condition.getSearchProperty()).matching(condition.getValue().toString()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.eqi)
+	       			q = querybuilder.keyword().onField(condition.getSearchProperty()).matching(condition.getValue().toString()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.ne) {
+	       			mustNot = true;
+	       			q = querybuilder.keyword().onField(condition.getSearchProperty()).matching(condition.getValue().toString()).createQuery();
+	       		 } else if (condition.getOperator() == SearchOperator.gt)
+	       			q = querybuilder.range().onField(condition.getSearchProperty()).above(condition.getValue()).excludeLimit().createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.gte)
+	       			q = querybuilder.range().onField(condition.getSearchProperty()).above(condition.getValue()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.lt)
+	       			q = querybuilder.range().onField(condition.getSearchProperty()).below(condition.getValue()).excludeLimit().createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.lte)
+	       			q = querybuilder.range().onField(condition.getSearchProperty()).below(condition.getValue()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.bt) 
+	       			q = querybuilder.range().onField(condition.getSearchProperty()).from(condition.getValue()).to(condition.getValue2()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.prefixLike) //PrefixQuery
+	       			q = querybuilder.keyword().wildcard().onField(condition.getSearchProperty()).matching(condition.getValue().toString() + "*").createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.prefixNotLike) {
+	       			mustNot = true;
+	       			q = querybuilder.keyword().wildcard().onField(condition.getSearchProperty()).matching(condition.getValue().toString() + "*").createQuery();
+	       		 }else if (condition.getOperator() == SearchOperator.suffixLike)
+	       			q = querybuilder.keyword().wildcard().onField(condition.getSearchProperty()).matching("*" + condition.getValue().toString()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.suffixNotLike) {
+	       			mustNot = true;
+	       			q = querybuilder.keyword().wildcard().onField(condition.getSearchProperty()).matching("*" + condition.getValue().toString()).createQuery();
+	       		 }else if (condition.getOperator() == SearchOperator.like)
+	       			q = querybuilder.keyword().wildcard().onField(condition.getSearchProperty()).matching("*" + condition.getValue().toString() + "*").createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.notLike) {
+	       			mustNot = true;
+	       			q = querybuilder.keyword().wildcard().onField(condition.getSearchProperty()).matching("*" + condition.getValue().toString() + "*").createQuery();
+	       		 }else if (condition.getOperator() == SearchOperator.contain)
+	       			q = querybuilder.keyword().fuzzy().onField(condition.getSearchProperty()).matching(condition.getValue().toString()).createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.notContain) {
+	       			mustNot = true;
+	       			q = querybuilder.keyword().fuzzy().onField(condition.getSearchProperty()).matching(condition.getValue().toString()).createQuery();
+	       		 }else if (condition.getOperator() == SearchOperator.isNull)
+	       			q = querybuilder.keyword().onField(condition.getSearchProperty()).matching("").createQuery();
+	       		 else if (condition.getOperator() == SearchOperator.isNotNull) {
+	       			mustNot = true;
+	       			q = querybuilder.keyword().onField(condition.getSearchProperty()).matching("").createQuery();
+	       		 }else if (condition.getOperator() == SearchOperator.in || condition.getOperator() == SearchOperator.notIn) {
+	       			 Object value = condition.getValue();
+	       			 BooleanJunction queryIn = querybuilder.bool();
+	       			 if(value instanceof Collection<?>){
+	       				 for(Object obj : ((Collection<?>)value)) {
+       						queryIn = queryIn.should(querybuilder.keyword().onField(condition.getSearchProperty()).matching(obj.toString()).createQuery());
+	       				 }
+	                  }else if(value instanceof Object[]){
+	                	 for(Object obj : ((Object[])value)) {
+	                		 queryIn = queryIn.should(querybuilder.keyword().onField(condition.getSearchProperty()).matching(obj.toString()).createQuery());
+	       				 }
+	                  }
+	       			  q = queryIn.createQuery();
+	       			  mustNot = (condition.getOperator() == SearchOperator.notIn);
+	       		 }
+                
+                if (q != null) {
+               		query = mustNot ? query.must(q).not() : query.must(q);
+                }
+            }
+        }
+    	
+    	return query;
+    }
+    
     /**
      * Generates a lucene query to search for a given term in the specified fields of a class
      *
@@ -241,31 +336,49 @@ public class HibernateSearchTools {
         return qry;
     }
     
-    public static org.apache.lucene.search.Sort prepareOrder(Searchable search) {
+    public static org.apache.lucene.search.Sort prepareOrder(Searchable search, Class searchedEntity) {
     	List<SortField> sortFields = Lists.newArrayList();
         for (Sort.Order order : search.getSort()) {
-        	if (order.getDirection() == Direction.ASC)
-        		sortFields.add(new SortField(order.getProperty(), SortField.Type.DOC));
-        	else
-        		sortFields.add(new SortField(order.getProperty(), SortField.Type.SCORE));
+        	String[] properties = StringUtils.split(order.getProperty(), ".");
+        	Field f = null;
+         	if (properties.length > 1) { //&& !properties[0].equalsIgnoreCase("parent")
+         		f = FieldUtils.getDeclaredField(searchedEntity, properties[0], true);
+         		Class<?> valType = f.getType();
+         		for(int i=1; i<properties.length; i++) {
+         			f = FieldUtils.getDeclaredField(valType, properties[i], true);
+         			valType = f.getType();
+         		}
+         	}else {
+         		f = FieldUtils.getDeclaredField(searchedEntity, order.getProperty(), true);
+         	}
+         	         	
+        	//Field f = FieldUtils.getDeclaredField(this.persistentClass, order.getProperty(), true);
+        	if (f!= null) {
+	        	Class<?> valType = f.getType();
+	        	if (valType == String.class || valType == Date.class) {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.STRING, order.getDirection() == Direction.DESC));
+	        	} else if (valType == int.class || valType == Integer.class) {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.INT, order.getDirection() == Direction.DESC));
+	        	}else if (valType == long.class || valType == Long.class) {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.LONG, order.getDirection() == Direction.DESC));
+	        	}else if (valType == float.class || valType == Float.class) {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.FLOAT, order.getDirection() == Direction.DESC));
+	        	}else if (valType == double.class || valType == Double.class) {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.DOUBLE, order.getDirection() == Direction.DESC));
+	        	}else if (valType == int.class || valType == Integer.class) {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.INT, order.getDirection() == Direction.DESC));
+	        	}else {
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.DOC));
+	        	}
+	        	/*if (order.getDirection() == Direction.ASC)
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.DOC));
+	        	else
+	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.SCORE));*/
+        	}
         }
         
         return new org.apache.lucene.search.Sort(sortFields.toArray(new SortField[0]));
     }
-    
-    public static org.hibernate.search.jpa.FullTextQuery applyFilters(org.hibernate.search.jpa.FullTextQuery hibQuery, Searchable search) {
-        for (SearchFilter searchFilter : search.getSearchFilters()) {
-
-            if (searchFilter instanceof Condition) {
-                Condition condition = (Condition) searchFilter;
-                if (condition.getOperator() == SearchOperator.ftqFilter) {
-                	hibQuery.enableFullTextFilter(condition.getValue2().toString()).setParameter(condition.getSearchProperty(), condition.getValue());
-                }
-            }
-        }
-        
-        return hibQuery;
-	}
 
 
     /**

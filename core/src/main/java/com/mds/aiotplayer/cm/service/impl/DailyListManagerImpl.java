@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.cm.service.impl;
 
 import com.google.common.collect.Lists;
@@ -865,7 +872,7 @@ public class DailyListManagerImpl extends GenericManagerImpl<DailyList, Long> im
 				log.debug("get FileList from organizations: " + organizations);
 				String[] oCodes  = StringUtils.split(organizations, ",");
 				
-				searchable.addSearchFilter("gallery.id", SearchOperator.in, CMUtils.loadOrganizationGalleries(Lists.newArrayList(oCodes)));
+				searchable.addSearchFilter("gallery.id", SearchOperator.in, CMUtils.loadOrganizationGalleries(Lists.newArrayList(oCodes), true));
 			}else {
 				log.debug("get FileList from galleries: " + galleries);
 				String[] gCodes  = StringUtils.split(galleries, ",");

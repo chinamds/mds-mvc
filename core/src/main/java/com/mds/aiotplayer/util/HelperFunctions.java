@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.util;
 
 import java.awt.Color;
@@ -523,7 +530,7 @@ public class HelperFunctions{
 		CacheUtils.remove(CacheItem.pm_players);
 		CacheUtils.remove(CacheItem.sys_menufunctionpermissions);
 		CacheUtils.remove(CacheItem.sys_menufunctions);
-		//CacheUtils.remove(CacheItem.sys_permissions);
+		CacheUtils.remove(CacheItem.sys_organizations);
 
 		CMUtils.clearGalleryCache(); // Since galleries store a list of all albums, we must clear it out anytime an album is added, deleted, or moved.
 	}

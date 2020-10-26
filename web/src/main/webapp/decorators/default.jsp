@@ -78,8 +78,10 @@
 	window.Mds.AppRoot = "${ctx}";
 	window.Mds.locale = "${languageTag}";
 	if (!(typeof(PNotify) === "undefined") && PNotify){
-		PNotify.defaults.styling = 'bootstrap4'; // Bootstrap version 4
-		PNotify.defaults.icons = 'fontawesome5'; // fontawesome version 5
+		//PNotify.defaults.styling = 'bootstrap4'; // Bootstrap version 4
+		//PNotify.defaults.icons = 'fontawesome5'; // fontawesome version 5
+		PNotify.defaultModules.set(PNotifyBootstrap4, {});
+        PNotify.defaultModules.set(PNotifyFontAwesome5, {});
 	}
 	
 	if (window.Mds.isWidthLessThan(991)){

@@ -1,13 +1,19 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.webapp.configuration;
 
 import org.apache.cxf.Bus;
 import org.apache.cxf.endpoint.Server;
+import org.apache.cxf.feature.LoggingFeature;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
+import org.apache.cxf.jaxrs.openapi.OpenApiFeature;
 import org.apache.cxf.jaxws.EndpointImpl;
-import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -45,8 +51,10 @@ import com.mds.aiotplayer.wf.service.OrganizationWorkflowTypeManager;
 import com.mds.aiotplayer.wf.service.WorkflowManager;
 
 import org.apache.cxf.jaxrs.swagger.Swagger2Feature;
+import org.apache.cxf.jaxrs.swagger.ui.SwaggerUiConfig;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import javax.xml.ws.Endpoint;
 
@@ -226,7 +234,24 @@ public class CxfConfig {
         		));
         endpoint.setProviders(Arrays.asList(jsonProvider(), rssMDSProvider()));
         endpoint.setExtensionMappings(Maps.newHashMap("json", "application/json", "xml", "application/xml", "feed", "application/atom+xml"));
-        endpoint.setFeatures(Arrays.asList(new Swagger2Feature()));
+        //endpoint.setFeatures(Arrays.asList(new Swagger2Feature()));
+        endpoint.setFeatures(Arrays.asList(createOpenApiFeature(), new LoggingFeature()));
         return endpoint.create();
+    }
+    
+    @Bean
+    public OpenApiFeature createOpenApiFeature() {
+        final OpenApiFeature openApiFeature = new OpenApiFeature();
+        openApiFeature.setPrettyPrint(true);
+        openApiFeature.setTitle("MDSPlus REST Application");
+        openApiFeature.setContactName("China MDS");
+        openApiFeature.setDescription("Multimedia distribution service System - digital asset management and multimedia intelligent distribution cloud platform");
+        openApiFeature.setVersion("2.0.0.0");
+        openApiFeature.setSwaggerUiConfig(
+            new SwaggerUiConfig()
+                .url("/services/api/openapi.json"));
+        openApiFeature.setResourcePackages(Collections.singleton("com"));
+        
+        return openApiFeature;
     }
 }

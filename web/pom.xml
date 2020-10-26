@@ -148,7 +148,21 @@
 	              <exclude>**/*WebTest.java</exclude>
 	            </excludes>
 	          </configuration>
-	        </plugin>	
+	        </plugin>
+	        <!-- Verify OS license headers for all source code files -->
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/src/test/resources/**</exclude>
+                        <exclude>**/src/test/data/**</exclude>
+                        <!--Skip license check of third party files included/customized from JSP JS -->
+                        <exclude>src/main/resources/*.vm</exclude>
+                        <exclude>src/main/webapp/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
         </plugins>
         <testResources>
             <testResource>
@@ -365,10 +379,31 @@
         </dependency>
         
         <dependency>
-		    <groupId>org.apache.cxf</groupId>
-		    <artifactId>cxf-rt-rs-service-description-swagger</artifactId>
-		    <version>${cxf.version}</version>
-		</dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-service-description-swagger</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-rs-service-description-openapi-v3 -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-service-description-openapi-v3</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.webjars/swagger-ui -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>swagger-ui</artifactId>
+            <version>3.24.3</version>
+        </dependency>
         
         <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
         <dependency>
@@ -466,10 +501,6 @@
             <artifactId>font-awesome</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.webjars.bowergithub.wenzhixin</groupId>
-            <artifactId>bootstrap-table</artifactId>
-        </dependency>
-        <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>javax.servlet.jsp-api</artifactId>
             <scope>provided</scope>
@@ -503,22 +534,6 @@
             <groupId>org.webjars</groupId>
             <artifactId>jquery-cookie</artifactId>
         </dependency>
-        <dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>bootstrap-application-wizard</artifactId>
-		    <version>3768da3142-1</version>
-		    <exclusions>
-	          <exclusion>
-	            <artifactId>jquery</artifactId>
-	            <groupId>org.webjars</groupId>
-	          </exclusion>
-	        </exclusions>
-		</dependency>
-		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>bootstrap-treeview</artifactId>
-		    <version>1.2.0</version>
-		</dependency>
 		<dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>jquery-migrate</artifactId>

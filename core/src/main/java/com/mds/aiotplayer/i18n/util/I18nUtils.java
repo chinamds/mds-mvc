@@ -1,7 +1,9 @@
 /**
- * Copyright &copy; 2012-2013 <a href="/mdsplus">JeeSite</a> All rights reserved.
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * https://github.com/chinamds/license/
  */
 package com.mds.aiotplayer.i18n.util;
 
@@ -517,6 +519,15 @@ public class I18nUtils {
 		String title =  I18nUtils.getString(key, request.getLocale());
 		if (StringUtils.isBlank(title) || title.equals(key) )
 			title = sub;
+		
+		return title;
+	}
+	
+	public static String getString(Class cls, String fileName, String sub, String def, HttpServletRequest request) {
+		String key = StringUtils.lowerFirst(cls.getSimpleName()) + "." + StringUtils.lowerFirst(fileName) + "." + StringUtils.lowerFirst(sub);
+		String title =  I18nUtils.getString(key, request.getLocale());
+		if (StringUtils.isBlank(title) || title.equals(key) )
+			title = StringUtils.isNotBlank(def) ? def : sub;
 		
 		return title;
 	}

@@ -1,17 +1,9 @@
-/*
- * Copyright 2009-2013 the original author or authors.
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * https://github.com/chinamds/license/
  */
 package com.mds.aiotplayer.common.repository.support;
 
@@ -20,7 +12,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,6 +25,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PersistenceUnitUtil;
+import javax.persistence.criteria.AbstractQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
@@ -40,14 +36,29 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
+import javax.persistence.criteria.Subquery;
 import javax.persistence.metamodel.Attribute;
 import javax.persistence.metamodel.Attribute.PersistentAttributeType;
 import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.Type;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.PropertyAccessor;
 import org.springframework.beans.PropertyAccessorFactory;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.mds.aiotplayer.common.model.search.SearchOperator;
+import com.mds.aiotplayer.common.model.search.Searchable;
+import com.mds.aiotplayer.common.model.search.filter.AndCondition;
+import com.mds.aiotplayer.common.model.search.filter.Condition;
+import com.mds.aiotplayer.common.model.search.filter.OrCondition;
+import com.mds.aiotplayer.common.model.search.filter.SearchFilter;
+import com.mds.aiotplayer.common.utils.Reflections;
 
 /**
  * Utility class for dealing with JPA API
@@ -516,5 +527,368 @@ public abstract class JpaUtils {
 		}
 		
 		return "".equals(mappedBy) ? null : mappedBy;
+	}
+
+	/////////////////////////////////////////////////
+	///////////////////searchable filter////////////////////
+	/////////////////////////////////////////////////
+	
+	 @SuppressWarnings("unchecked")
+	public static CriteriaQuery prepareQL(CriteriaBuilder criteriaBuilder, Class searchedEntity, Searchable search, String selection) {
+        if (search == null || (!search.hasSearchFilter() && !search.hashSort())) {
+            return null;
+        }
+
+        CriteriaQuery criteriaQuery = criteriaBuilder.createQuery(searchedEntity);
+        Root from = criteriaQuery.from(searchedEntity);
+                
+        List<Predicate> predicates = Lists.newArrayList();
+        Map<String, Join> aliasAssociations= Maps.newHashMap();
+        for (SearchFilter searchFilter : search.getSearchFilters()) {
+
+            if (searchFilter instanceof Condition) {
+                Condition condition = (Condition) searchFilter;
+                if (condition.getOperator() == SearchOperator.custom) {
+                    continue;
+                }
+            }
+
+            Predicate criterion = genCondition(criteriaBuilder, searchedEntity, criteriaQuery, from, aliasAssociations, searchFilter);
+            if (criterion != null){
+            	predicates.add(criterion);
+            }
+        }
+        List<javax.persistence.criteria.Order> qOrders = prepareOrder(criteriaBuilder, searchedEntity, from, search, aliasAssociations);
+        
+        criteriaQuery.select(StringUtils.isBlank(selection) ? from : from.get(selection));
+        
+        criteriaQuery.where(predicates.toArray(new Predicate[0]));
+        if (!qOrders.isEmpty())
+        	criteriaQuery.orderBy(qOrders);
+        
+        return criteriaQuery;
+    }
+	 	 
+	 public static List<javax.persistence.criteria.Order> prepareOrder(CriteriaBuilder criteriaBuilder, Class searchedEntity, Root root, Searchable search, Map<String, Join> aliasAssociations) {
+		 List<javax.persistence.criteria.Order> qOrders = Lists.newArrayList();
+        if (search.hashSort()) {
+            for (Sort.Order order : search.getSort()) {
+            	String[] properties = StringUtils.split(order.getProperty(), ".");
+            	String orderName=order.getProperty();
+            	From from = root;
+            	if (properties.length > 1) { //&& !properties[0].equalsIgnoreCase("parent")
+            		String associationPath = "";
+            		for(int i=0; i<properties.length-1; i++) {
+            			associationPath += properties[i];
+            			//orderName = associationPath.replace('.', '_');
+            			from = createJoin(criteriaBuilder, from, aliasAssociations, associationPath, properties[i]);
+            			associationPath += ".";
+            		}            			 
+            		orderName = properties[properties.length-1];
+            	}
+            	if (order.getDirection() == Direction.ASC)
+    				qOrders.add(criteriaBuilder.asc(from.get(orderName)));
+            	else
+            		qOrders.add(criteriaBuilder.desc(from.get(orderName)));
+            }
+        }
+        
+        return qOrders;
+    }
+	 
+	 @SuppressWarnings("unchecked")
+	private static Predicate genPredicate(CriteriaBuilder criteriaBuilder, Class searchedEntity, AbstractQuery criteriaQuery, From from, Map<String, Join> aliasAssociations, Condition condition) {
+		 if (condition.getOperator() == SearchOperator.eq)
+			 return criteriaBuilder.equal(from.get(condition.getSearchJpaProperty()), condition.getValue());
+		 else if (condition.getOperator() == SearchOperator.eqi) //String only
+			 return criteriaBuilder.equal(criteriaBuilder.upper(from.get(condition.getSearchJpaProperty())), condition.getValue().toString().toUpperCase());
+		 else if (condition.getOperator() == SearchOperator.ne)
+			 return criteriaBuilder.notEqual(from.get(condition.getSearchJpaProperty()), condition.getValue());
+		 else if (condition.getOperator() == SearchOperator.nei)
+			 return criteriaBuilder.notEqual(criteriaBuilder.upper(from.get(condition.getSearchJpaProperty())), condition.getValue().toString().toUpperCase());
+		 else if (condition.getOperator() == SearchOperator.gt) {
+			 Class<?> valType = condition.getValue().getClass();
+			 if (valType == String.class){
+				 return criteriaBuilder.greaterThan(from.get(condition.getSearchJpaProperty()), condition.getValue().toString());
+			}else if (valType == Integer.class || valType == int.class){
+				return criteriaBuilder.greaterThan(from.get(condition.getSearchJpaProperty()), (Integer)condition.getValue());
+			}else if (valType == Long.class || valType == long.class){
+				return criteriaBuilder.greaterThan(from.get(condition.getSearchJpaProperty()), (Long)condition.getValue());
+			}else if (valType == Double.class || valType == double.class){
+				return criteriaBuilder.greaterThan(from.get(condition.getSearchJpaProperty()), (Double)condition.getValue());
+			}else if (valType == Float.class || valType == float.class){
+				return criteriaBuilder.greaterThan(from.get(condition.getSearchJpaProperty()), (Float)condition.getValue());
+			}else if (valType == Boolean.class || valType == boolean.class){
+				return criteriaBuilder.greaterThan(from.get(condition.getSearchJpaProperty()), (Boolean)condition.getValue());	
+			}else if (valType == Short.class || valType == short.class){
+				return criteriaBuilder.greaterThan(from.get(condition.getSearchJpaProperty()), (Short)condition.getValue());
+			}else if (valType == Byte.class || valType == byte.class){
+				return criteriaBuilder.greaterThan(from.get(condition.getSearchJpaProperty()), (Byte)condition.getValue());
+			}else if (valType == Date.class){
+				return criteriaBuilder.greaterThan(from.get(condition.getSearchJpaProperty()), (Date)condition.getValue());
+			}			 
+		 } else if (condition.getOperator() == SearchOperator.gte) {
+			 Class<?> valType = condition.getValue().getClass();
+			 if (valType == String.class){
+				 return criteriaBuilder.greaterThanOrEqualTo(from.get(condition.getSearchJpaProperty()), condition.getValue().toString());
+			}else if (valType == Integer.class || valType == int.class){
+				return criteriaBuilder.greaterThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Integer)condition.getValue());
+			}else if (valType == Long.class || valType == long.class){
+				return criteriaBuilder.greaterThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Long)condition.getValue());
+			}else if (valType == Double.class || valType == double.class){
+				return criteriaBuilder.greaterThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Double)condition.getValue());
+			}else if (valType == Float.class || valType == float.class){
+				return criteriaBuilder.greaterThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Float)condition.getValue());
+			}else if (valType == Boolean.class || valType == boolean.class){
+				return criteriaBuilder.greaterThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Boolean)condition.getValue());	
+			}else if (valType == Short.class || valType == short.class){
+				return criteriaBuilder.greaterThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Short)condition.getValue());
+			}else if (valType == Byte.class || valType == byte.class){
+				return criteriaBuilder.greaterThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Byte)condition.getValue());
+			}else if (valType == Date.class){
+				return criteriaBuilder.greaterThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Date)condition.getValue());
+			}			 
+		 }else if (condition.getOperator() == SearchOperator.lt) {
+			 Class<?> valType = condition.getValue().getClass();
+			 if (valType == String.class){
+				 return criteriaBuilder.lessThan(from.get(condition.getSearchJpaProperty()), condition.getValue().toString());
+			}else if (valType == Integer.class || valType == int.class){
+				return criteriaBuilder.lessThan(from.get(condition.getSearchJpaProperty()), (Integer)condition.getValue());
+			}else if (valType == Long.class || valType == long.class){
+				return criteriaBuilder.lessThan(from.get(condition.getSearchJpaProperty()), (Long)condition.getValue());
+			}else if (valType == Double.class || valType == double.class){
+				return criteriaBuilder.lessThan(from.get(condition.getSearchJpaProperty()), (Double)condition.getValue());
+			}else if (valType == Float.class || valType == float.class){
+				return criteriaBuilder.lessThan(from.get(condition.getSearchJpaProperty()), (Float)condition.getValue());
+			}else if (valType == Boolean.class || valType == boolean.class){
+				return criteriaBuilder.lessThan(from.get(condition.getSearchJpaProperty()), (Boolean)condition.getValue());	
+			}else if (valType == Short.class || valType == short.class){
+				return criteriaBuilder.lessThan(from.get(condition.getSearchJpaProperty()), (Short)condition.getValue());
+			}else if (valType == Byte.class || valType == byte.class){
+				return criteriaBuilder.lessThan(from.get(condition.getSearchJpaProperty()), (Byte)condition.getValue());
+			}else if (valType == Date.class){
+				return criteriaBuilder.lessThan(from.get(condition.getSearchJpaProperty()), (Date)condition.getValue());
+			}			 
+		 }else if (condition.getOperator() == SearchOperator.lte){
+			 Class<?> valType = condition.getValue().getClass();
+			 if (valType == String.class){
+				 return criteriaBuilder.lessThanOrEqualTo(from.get(condition.getSearchJpaProperty()), condition.getValue().toString());
+			}else if (valType == Integer.class || valType == int.class){
+				return criteriaBuilder.lessThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Integer)condition.getValue());
+			}else if (valType == Long.class || valType == long.class){
+				return criteriaBuilder.lessThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Long)condition.getValue());
+			}else if (valType == Double.class || valType == double.class){
+				return criteriaBuilder.lessThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Double)condition.getValue());
+			}else if (valType == Float.class || valType == float.class){
+				return criteriaBuilder.lessThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Float)condition.getValue());
+			}else if (valType == Boolean.class || valType == boolean.class){
+				return criteriaBuilder.lessThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Boolean)condition.getValue());	
+			}else if (valType == Short.class || valType == short.class){
+				return criteriaBuilder.lessThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Short)condition.getValue());
+			}else if (valType == Byte.class || valType == byte.class){
+				return criteriaBuilder.lessThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Byte)condition.getValue());
+			}else if (valType == Date.class){
+				return criteriaBuilder.lessThanOrEqualTo(from.get(condition.getSearchJpaProperty()), (Date)condition.getValue());
+			}			 
+		 }else if (condition.getOperator() == SearchOperator.bt) {
+			 Class<?> valType = condition.getValue().getClass();
+			 if (valType == String.class){
+				 return criteriaBuilder.between(from.get(condition.getSearchJpaProperty()), condition.getValue().toString(), condition.getValue2().toString());
+			}else if (valType == Integer.class || valType == int.class){
+				return criteriaBuilder.between(from.get(condition.getSearchJpaProperty()), (Integer)condition.getValue(), (Integer)condition.getValue2());
+			}else if (valType == Long.class || valType == long.class){
+				return criteriaBuilder.between(from.get(condition.getSearchJpaProperty()), (Long)condition.getValue(), (Long)condition.getValue2());
+			}else if (valType == Double.class || valType == double.class){
+				return criteriaBuilder.between(from.get(condition.getSearchJpaProperty()), (Double)condition.getValue(), (Double)condition.getValue2());
+			}else if (valType == Float.class || valType == float.class){
+				return criteriaBuilder.between(from.get(condition.getSearchJpaProperty()), (Float)condition.getValue(), (Float)condition.getValue2());
+			}else if (valType == Boolean.class || valType == boolean.class){
+				return criteriaBuilder.between(from.get(condition.getSearchJpaProperty()), (Boolean)condition.getValue(), (Boolean)condition.getValue2());	
+			}else if (valType == Short.class || valType == short.class){
+				return criteriaBuilder.between(from.get(condition.getSearchJpaProperty()), (Short)condition.getValue(), (Short)condition.getValue2());
+			}else if (valType == Byte.class || valType == byte.class){
+				return criteriaBuilder.between(from.get(condition.getSearchJpaProperty()), (Byte)condition.getValue(), (Byte)condition.getValue2());
+			}else if (valType == Date.class){
+				return criteriaBuilder.between(from.get(condition.getSearchJpaProperty()), (Date)condition.getValue(), (Date)condition.getValue2());
+			}			 
+		 }else if (condition.getOperator() == SearchOperator.prefixLike)
+			 return criteriaBuilder.like(from.get(condition.getSearchJpaProperty()), condition.getValue().toString() + "%");
+		 else if (condition.getOperator() == SearchOperator.prefixNotLike)
+			 return criteriaBuilder.notLike(from.get(condition.getSearchJpaProperty()), condition.getValue().toString() + "%");
+		 else if (condition.getOperator() == SearchOperator.suffixLike)
+			 return criteriaBuilder.like(from.get(condition.getSearchJpaProperty()), "%" + condition.getValue().toString());
+		 else if (condition.getOperator() == SearchOperator.suffixNotLike)
+			 return criteriaBuilder.notLike(from.get(condition.getSearchJpaProperty()), "%" + condition.getValue().toString());
+		 else if (condition.getOperator() == SearchOperator.like)
+			 return criteriaBuilder.like(from.get(condition.getSearchJpaProperty()), condition.getValue().toString() );
+		 else if (condition.getOperator() == SearchOperator.notLike)
+			 return criteriaBuilder.notLike(from.get(condition.getSearchJpaProperty()), condition.getValue().toString());
+		 else if (condition.getOperator() == SearchOperator.contain)
+			 return criteriaBuilder.like(from.get(condition.getSearchJpaProperty()), "%" + condition.getValue().toString() + "%");
+		 else if (condition.getOperator() == SearchOperator.notLike)
+			 return criteriaBuilder.notLike(from.get(condition.getSearchJpaProperty()), "%" + condition.getValue().toString() + "%");
+		 else if (condition.getOperator() == SearchOperator.isNull)
+			 return criteriaBuilder.isNull(from.get(condition.getSearchJpaProperty()));
+		 else if (condition.getOperator() == SearchOperator.isNotNull)
+			 return criteriaBuilder.isNotNull(from.get(condition.getSearchJpaProperty()));
+		 else if (condition.getOperator() == SearchOperator.in) {
+			 Object value = condition.getValue();
+			 if(value instanceof Collection<?>){
+				 if (((Collection<?>)value).isEmpty()) {
+					 //return criteriaBuilder.isTrue(criteriaBuilder.literal(false));
+					 return criteriaBuilder.disjunction();
+				 }else {
+					 //return criteriaBuilder.in(from.get(condition.getSearchJpaProperty()).in((Collection<?>)value));
+					 return from.get(condition.getSearchJpaProperty()).in((Collection<?>)value);
+				 }
+             }else if(value instanceof Object[]){
+            	 if (((Object[])value).length == 0) {
+					 //return criteriaBuilder.isTrue(criteriaBuilder.literal(false));
+            		 return criteriaBuilder.disjunction();
+				 }else {
+					 //return criteriaBuilder.in(from.get(condition.getSearchJpaProperty()).in((Object[])value));
+					 return from.get(condition.getSearchJpaProperty()).in((Object[])value);
+				 }
+             }			
+		 }else if (condition.getOperator() == SearchOperator.notIn){
+			 Object value = condition.getValue();
+			 if(value instanceof Collection<?>){
+				 if (!((Collection<?>)value).isEmpty()) {
+					 return criteriaBuilder.not(from.get(condition.getSearchJpaProperty()).in((Collection<?>)value));
+				 }
+             }else if(value instanceof Object[]){
+            	 if (((Object[])value).length > 0) {
+            		 return criteriaBuilder.not(from.get(condition.getSearchJpaProperty()).in((Object[])value));
+            	 }
+             }			
+		 }else if (condition.getOperator() == SearchOperator.exists || condition.getOperator() == SearchOperator.notExists){
+			 Subquery<?> sq = criteriaQuery.subquery(searchedEntity);
+			 Root ab = sq.from(Reflections.getClassGenricType(from.get(condition.getSearchCollection()).getJavaType()));
+			 sq.select(ab.get(condition.getSearchAlias()).get(condition.getSearchJpaProperty()));
+			 Map<String, Join> subAliasAssociations= Maps.newHashMap();
+			 sq.where(genCondition(criteriaBuilder, searchedEntity, sq, ab, subAliasAssociations, condition)); //cb.equal(ab.get(AB_.id).get(ABPK_.b).get(B_.status), status)
+			 return condition.getOperator() == SearchOperator.exists ? criteriaBuilder.exists(sq) : criteriaBuilder.exists(sq).not();
+		 }
+		 
+		 return criteriaBuilder.equal(from.get(condition.getSearchJpaProperty()), condition.getValue());
+	 }
+	 
+	 private static Join createJoin(CriteriaBuilder criteriaBuilder, Root from, Map<String, Join> aliasAssociations, Condition condition){
+		 if (!StringUtils.isBlank(condition.getSearchAlias())){
+			Join dcAlias = aliasAssociations.get(condition.getSearchAlias());
+     		if (dcAlias == null) {
+	         	dcAlias = from.join(condition.getSearchAlias());
+	         	aliasAssociations.put(condition.getSearchAlias(), dcAlias);
+     		}
+         	
+         	return  dcAlias;
+         }else {
+        	Join dcAlias = null; 
+        	String[] properties = StringUtils.split(condition.getSearchProperty(), ".");
+        	//String searchProp = condition.getSearchProperty();
+         	if (properties.length > 1) { //&& !properties[0].equalsIgnoreCase("parent")
+         		String associationPath = "";
+         		for(int i=0; i<properties.length-1; i++) {
+         			associationPath += properties[i];
+         			//searchProp = associationPath.replace('.', '_');
+         			dcAlias = createJoin(criteriaBuilder, dcAlias==null ? from : dcAlias , aliasAssociations, associationPath, properties[i]);
+         			associationPath += ".";
+         		}
+         		//searchProp = searchProp + "." + properties[properties.length-1];
+         		//searchProp = properties[properties.length-1];
+         		
+         		//condition.setSearchProperty(searchProp);
+         		
+         		return dcAlias;
+         	}
+         	
+         	return null;
+         }
+	 }
+	 
+	 private static Join createJoin(CriteriaBuilder criteriaBuilder, From from,  Map<String, Join> aliasAssociations, String associationPath, String alias){
+		 if (!StringUtils.isBlank(associationPath)) {
+         	if (!aliasAssociations.containsKey(associationPath)) {
+         		Join dcAlias = from.join(alias);
+	         	aliasAssociations.put(associationPath, dcAlias);
+	         	
+	         	return  dcAlias;
+         	}else {
+           	    return aliasAssociations.get(associationPath);
+            }
+         }
+		 
+		 return null;
+	 }
+	 	 
+	 private static Predicate genCriterion(CriteriaBuilder criteriaBuilder, Class searchedEntity, AbstractQuery criteriaQuery, Root from,  Map<String, Join> aliasAssociations, SearchFilter searchFilter) {
+		 Condition condition = (Condition) searchFilter;
+		 Join join = createJoin(criteriaBuilder, from, aliasAssociations, condition);
+			 
+		 return genPredicate(criteriaBuilder, searchedEntity, criteriaQuery, join == null ? from : join, aliasAssociations, condition);
+	 }
+
+    private static Predicate genCondition(CriteriaBuilder criteriaBuilder, Class searchedEntity, AbstractQuery criteriaQuery, Root from, Map<String, Join> aliasAssociations, SearchFilter searchFilter) {
+        if (searchFilter instanceof Condition) {
+        	Predicate cr = genCriterion(criteriaBuilder, searchedEntity, criteriaQuery, from, aliasAssociations, searchFilter);
+        	
+        	return cr;
+        } else if (searchFilter instanceof OrCondition) {
+        	Predicate criterion = null;
+            boolean isFirst = true;
+            for (SearchFilter orSearchFilter : ((OrCondition) searchFilter).getOrFilters()) {
+            	Predicate cr = genCondition(criteriaBuilder, searchedEntity, criteriaQuery, from, aliasAssociations, orSearchFilter);
+            	if (cr == null)
+            		continue;
+            	
+                if (isFirst) {
+                	criterion = cr;
+                }
+                else
+                	criterion = criteriaBuilder.or(criterion, cr);
+                isFirst = false;
+            }
+            
+            return criterion;
+        } else if (searchFilter instanceof AndCondition) {
+            boolean isFirst = true;
+            Predicate criterion = null;
+            for (SearchFilter andSearchFilter : ((AndCondition) searchFilter).getAndFilters()) {
+            	Predicate cr = genCondition(criteriaBuilder, searchedEntity, criteriaQuery, from, aliasAssociations, andSearchFilter);
+            	if (cr == null)
+            		continue;
+            	
+                if (isFirst) {
+                	criterion = cr;
+                }
+                else
+                	criterion = criteriaBuilder.or(criterion, cr);
+                isFirst = false;
+            }
+            
+            return criterion;
+        }
+        
+        return null;
+    }
+    
+    /**
+	 * Gets de id attribute from metamodel
+	 * @return PK SingularAttribute
+	 */
+	/*public static <T> SingularAttribute<? super T, ?> getIdAttribute(EntityManager em, Class persistentClass) {
+		return getIdAttribute(em, persistentClass);
+	}*/
+	
+    /**
+	 * Gets de id attribute from metamodel
+	 * @return PK SingularAttribute
+	 */
+	public static <K> SingularAttribute<? super K, ?> getIdAttribute(EntityManager em, Class<K> clazz) {
+		Type<?> type = em.getMetamodel().entity(clazz).getIdType();
+		EntityType<K> entity =  em.getMetamodel().entity(clazz);
+		SingularAttribute<? super K, ?> id = entity.getId(type.getJavaType());
+		
+		return id;
 	}
 }

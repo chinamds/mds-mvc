@@ -1,4 +1,3 @@
-
 $.mdsTable = {
 	/**
 	 * Initialize boostrapTable 

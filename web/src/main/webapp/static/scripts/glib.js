@@ -1,4 +1,3 @@
-
 //#region jsrender
 
 /*! JsRender v1.0.0-beta: http://github.com/BorisMoore/jsrender and http://jsviews.com/jsviews

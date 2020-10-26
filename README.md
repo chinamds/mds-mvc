@@ -3,6 +3,7 @@ MDSPlus:
 	MDSPlus is a web(SSH) based with Multi-tenant software product, that lets you manage your multi media on your own website.
 
 You can find all details on the [official website](http://www.mmdsplus.com/mds-web).
+SwaggerUi for MDSPlus APIs Demo(http://www.mmdsplus.com/mds-web/services/api/api-docs?url=/mds-web/services/api/openapi.json).
 
 ![alt tag](http://www.mmdsplus.com/mds-web/services/api/contentitems/getmedia?moid=3&dt=Optimized&g=1)
 
@@ -23,7 +24,9 @@ You can find all details on the [official website](http://www.mmdsplus.com/mds-w
 
 		b)	Security Framework: Spring security 5.2.3.RELEASE.
 
-		c)	Workflow Engine: Activit 5.22.
+		c)  Apache CXF services framework 3.3.6
+
+		d)	Workflow Engine: Activit 5.22.
 
 
 	b.	Web module
@@ -35,6 +38,8 @@ You can find all details on the [official website](http://www.mmdsplus.com/mds-w
 		c)	JavaScript Library: JQuery 3.2.1.
 
 		d)	CSS Framework: Twitter Bootstrap 4.3.1.
+
+		e)  swagger ui: org.webjars/swagger-ui 3.24.3
 
 
 	c.	Database module
@@ -61,6 +66,8 @@ You can find all details on the [official website](http://www.mmdsplus.com/mds-w
 		e)	Full-text search: Hibernate Search 5.9.3.Final（Apache Lucene 5.5.5）
 
 		f)	Log Manager: slf4j 1.7.25.
+
+		g) springfox swagger ui: springfox-swagger-ui 3.0.0
 
 
 2.	Requirements

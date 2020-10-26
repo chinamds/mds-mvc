@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.webapp.sys.controller;
 
 import com.google.common.collect.Lists;
@@ -167,7 +174,7 @@ public class OrganizationController extends BaseController {
 			ImportExcel ei = new ImportExcel(file, 1, 0);
 			ExcelImportResult<Organization> importResult = ei.getDataList(Organization.class);
 			List<Organization> listValidated = Lists.newArrayList();
-			Validator validator = SpringContextHolder.getBean(Validator.class);
+			Validator validator = SpringContextHolder.getBean("beanValidator", Validator.class);
 			for (int row : importResult.dataRow()){
 				BindException errors = new BindException(importResult.data(row), "Organization");
 				if (validator != null)

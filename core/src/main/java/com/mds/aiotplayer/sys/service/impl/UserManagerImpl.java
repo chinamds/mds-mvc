@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.sys.service.impl;
 
 import org.apache.commons.lang.StringUtils;
@@ -455,6 +462,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
     @Override
     public User updatePassword(final String username, final String currentPassword, final String recoveryToken, final String newPassword, final String applicationUrl) throws UserExistsException {
         User user = getUserByUsername(username);
+        user.setCurrentUser(UserUtils.getLoginName());
         if (isRecoveryTokenValid(user, recoveryToken)) {
             log.debug("Updating password from recovery token for user: " + username);
             user.setPassword(newPassword);

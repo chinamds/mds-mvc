@@ -3,9 +3,8 @@
  * detailed in the LICENSE and NOTICE files at the root of the source
  * tree and available online at
  *
- * http://github.com/chinamds/license/
+ * https://github.com/chinamds/license/
  */
-
 /**
  * Manages a JavaMail session for code which wants to send email.
  */

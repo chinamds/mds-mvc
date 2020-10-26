@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * https://github.com/chinamds/license/
+ */
 package com.mds.aiotplayer.common.dao.hibernate;
 
 import org.slf4j.Logger;
@@ -14,6 +21,8 @@ import com.google.common.collect.Lists;
 import com.mds.aiotplayer.common.dao.GenericDao;
 import com.mds.aiotplayer.common.exception.SearchException;
 import com.mds.aiotplayer.common.model.search.Searchable;
+import com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools;
+import com.mds.aiotplayer.common.repository.support.JpaUtils;
 import com.mds.aiotplayer.common.utils.Reflections;
 import com.mds.aiotplayer.core.ReloadableEntity;
 import com.mds.aiotplayer.common.model.AbstractEntity;
@@ -160,50 +169,6 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
         return new ArrayList<T>(result);
     }
     
-    private org.apache.lucene.search.Sort prepareOrder(Searchable search) {
-    	List<SortField> sortFields = Lists.newArrayList();
-        for (Sort.Order order : search.getSort()) {
-        	String[] properties = StringUtils.split(order.getProperty(), ".");
-        	Field f = null;
-         	if (properties.length > 1) { //&& !properties[0].equalsIgnoreCase("parent")
-         		f = FieldUtils.getDeclaredField(this.persistentClass, properties[0], true);
-         		Class<?> valType = f.getType();
-         		for(int i=1; i<properties.length; i++) {
-         			f = FieldUtils.getDeclaredField(valType, properties[i], true);
-         			valType = f.getType();
-         		}
-         	}else {
-         		f = FieldUtils.getDeclaredField(this.persistentClass, order.getProperty(), true);
-         	}
-         	         	
-        	//Field f = FieldUtils.getDeclaredField(this.persistentClass, order.getProperty(), true);
-        	if (f!= null) {
-	        	Class<?> valType = f.getType();
-	        	if (valType == String.class || valType == Date.class) {
-	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.STRING, order.getDirection() == Direction.DESC));
-	        	} else if (valType == int.class || valType == Integer.class) {
-	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.INT, order.getDirection() == Direction.DESC));
-	        	}else if (valType == long.class || valType == Long.class) {
-	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.LONG, order.getDirection() == Direction.DESC));
-	        	}else if (valType == float.class || valType == Float.class) {
-	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.FLOAT, order.getDirection() == Direction.DESC));
-	        	}else if (valType == double.class || valType == Double.class) {
-	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.DOUBLE, order.getDirection() == Direction.DESC));
-	        	}else if (valType == int.class || valType == Integer.class) {
-	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.INT, order.getDirection() == Direction.DESC));
-	        	}else {
-	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.DOC));
-	        	}
-	        	/*if (order.getDirection() == Direction.ASC)
-	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.DOC));
-	        	else
-	        		sortFields.add(new SortField(order.getProperty(), SortField.Type.SCORE));*/
-        	}
-        }
-        
-        return new org.apache.lucene.search.Sort(sortFields.toArray(new SortField[0]));
-    }
-    
     /**
      * {@inheritDoc}
      */
@@ -265,7 +230,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
 
         org.apache.lucene.search.Query qry;
         try {       			
-            qry = com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, txtSession, defaultAnalyzer);
+            qry = HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, txtSession, defaultAnalyzer);
             if (searchable.hasSearchFilter()) {
             	QueryBuilder querybuilder = txtSession.getSearchFactory()
             	        .buildQueryBuilder()
@@ -291,7 +256,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
         }*/
         
         if (searchable.hashSort()) {
-        	hibQuery.setSort(prepareOrder(searchable));
+        	hibQuery.setSort(HibernateSearchTools.prepareOrder(searchable, this.persistentClass));
         }
         
         int total = hibQuery.getResultSize();
@@ -320,7 +285,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
 
         org.apache.lucene.search.Query qry;
         try {
-            qry = com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, fnames, txtSession, defaultAnalyzer);
+            qry = HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, fnames, txtSession, defaultAnalyzer);
         } catch (ParseException ex) {
             throw new SearchException(ex);
         }
@@ -351,7 +316,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
 
         org.apache.lucene.search.Query qry;
         try {
-            qry = com.mds.aiotplayer.common.repository.hibernate.HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, fnames, txtSession, defaultAnalyzer);
+            qry = HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, fnames, txtSession, defaultAnalyzer);
 			if (searchable.hasSearchFilter()) { 
 				  /*BooleanQuery.Builder bQuery = new BooleanQuery.Builder(); 
 				  bQuery.add(qry, Occur.MUST);
@@ -377,7 +342,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
         }*/
                         
         if (searchable.hashSort()) {
-        	hibQuery.setSort(prepareOrder(searchable));
+        	hibQuery.setSort(HibernateSearchTools.prepareOrder(searchable, this.persistentClass));
         }
         
         int total = hibQuery.getResultSize();

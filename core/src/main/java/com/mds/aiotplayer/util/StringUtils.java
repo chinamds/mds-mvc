@@ -1,7 +1,9 @@
 /**
- * Copyright &copy; 2012-2013 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * https://github.com/chinamds/license/
  */
 package com.mds.aiotplayer.util;
 
@@ -337,6 +339,13 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		return val;
 	}
 	
+	public static boolean isValidId(String id) {
+		if (isBlank(id))
+			return false;
+		
+		return toLong(id) != Long.MIN_VALUE;
+	}
+	
 	/**
 	 * covert array to set
 	 * @param array
@@ -380,6 +389,13 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		} catch (UnsupportedEncodingException e) {
 			return EMPTY;
 		}
+    }
+    
+    public static String toString(Object val){
+    	if (val == null)
+    		return null;
+    	
+    	return val.toString();
     }
     
     /**

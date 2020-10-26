@@ -43,8 +43,8 @@
 		<input id="${id}Id" name="${keyName}" type="hidden" value="${keyValue}"/>
 		<input id="${id}Name" name="${fieldName}" ${allowInput?'':'readonly="readonly"'} type="text" value="${fns:unescapeHtml(fieldValue)}" data-msg-required="${dataMsgRequired}"
 			class="${cssClass}" style="${cssStyle}" maxlength="${not empty maxlength?maxlength:50}"/>
-		<span class="input-group-btn">
-			<a id="${id}Button" type="button" href="javascript:" class="btn btn-default dropdown-toggle ${disabled} ${hideBtn ? 'hide' : ''}" data-toggle="dropdown"><i class="fa fa-chevron-down"></i></a>
+		<span class="input-group-append">
+			<a id="${id}Button" type="button" href="javascript:" class="btn btn-default dropdown-toggle ${disabled} ${hideBtn ? 'hide' : ''}" data-toggle="dropdown"></a>
 			<ul class="dropdown-menu dropdown-menu-right"><li id="liTreeContent${id}"><div id="${id}TreeView"></div></li></ul>
 		</span>
 	</div>  

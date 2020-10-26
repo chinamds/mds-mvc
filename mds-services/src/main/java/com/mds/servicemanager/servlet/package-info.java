@@ -3,9 +3,8 @@
  * detailed in the LICENSE and NOTICE files at the root of the source
  * tree and available online at
  *
- * http://github.com/chinamds/license/
+ * https://github.com/chinamds/license/
  */
-
 /**
  * Support for using MDS Services in a servlet context.  This is how the
  * kernel and services get started by the servlet container.
