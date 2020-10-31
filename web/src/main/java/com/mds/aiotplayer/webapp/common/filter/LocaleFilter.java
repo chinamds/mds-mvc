@@ -7,18 +7,9 @@
  */
 package com.mds.aiotplayer.webapp.common.filter;
 
-import com.mds.aiotplayer.common.Constants;
-import com.mds.aiotplayer.common.utils.SpringContextHolder;
-import com.mds.aiotplayer.i18n.util.I18nUtils;
-import com.mds.aiotplayer.webapp.common.util.DbResourceBundle;
-
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.util.AntPathMatcher;
-import org.springframework.web.filter.OncePerRequestFilter;
-import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -32,9 +23,13 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 import javax.servlet.jsp.jstl.fmt.LocalizationContext;
 
-import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+
+import com.mds.aiotplayer.common.utils.SpringContextHolder;
+import com.mds.aiotplayer.webapp.common.util.DbResourceBundle;
 
 /**
  * Filter to wrap request with a request including user preferred locale.

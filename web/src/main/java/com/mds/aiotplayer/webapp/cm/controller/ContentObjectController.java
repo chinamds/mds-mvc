@@ -7,58 +7,49 @@
  */
 package com.mds.aiotplayer.webapp.cm.controller;
 
-import com.mds.aiotplayer.common.exception.RecordExistsException;
-import com.mds.aiotplayer.common.exception.SearchException;
-import com.mds.aiotplayer.common.model.search.Searchable;
-import com.mds.aiotplayer.webapp.common.controller.AbstractBaseController;
-import com.mds.aiotplayer.webapp.common.controller.BaseController;
-import com.mds.aiotplayer.webapp.common.plupload.Plupload;
-import com.mds.aiotplayer.webapp.common.plupload.PluploadService;
-import com.mds.aiotplayer.core.ResourceId;
-import com.mds.aiotplayer.core.UiTemplateType;
-import com.mds.aiotplayer.cm.exception.UnsupportedContentObjectTypeException;
-import com.mds.aiotplayer.core.exception.WebException;
-import com.mds.aiotplayer.i18n.util.I18nUtils;
-import com.mds.aiotplayer.sys.util.AppSettings;
-import com.mds.aiotplayer.sys.util.RoleUtils;
-import com.mds.aiotplayer.sys.util.UserUtils;
-import com.mds.aiotplayer.cm.util.AlbumUtils;
-import com.mds.aiotplayer.cm.util.CMUtils;
-import com.mds.aiotplayer.cm.util.GalleryView;
-import com.mds.aiotplayer.util.DateUtils;
-import com.mds.aiotplayer.util.StringUtils;
-import com.mds.aiotplayer.util.Utils;
-import com.mds.aiotplayer.cm.service.ContentObjectManager;
-import com.mds.aiotplayer.cm.service.GallerySettingManager;
-import com.mds.aiotplayer.cm.content.AlbumBo;
-import com.mds.aiotplayer.cm.content.ContentObjectBo;
-import com.mds.aiotplayer.cm.content.GalleryBo;
-import com.mds.aiotplayer.cm.content.GallerySettings;
-import com.mds.aiotplayer.cm.content.UiTemplateBo;
-import com.mds.aiotplayer.cm.exception.GallerySecurityException;
-import com.mds.aiotplayer.cm.exception.InvalidAlbumException;
-import com.mds.aiotplayer.cm.exception.InvalidContentObjectException;
-import com.mds.aiotplayer.cm.exception.InvalidMDSRoleException;
-import com.mds.aiotplayer.cm.exception.InvalidGalleryException;
-import com.mds.aiotplayer.cm.exception.UnsupportedImageTypeException;
-import com.mds.aiotplayer.cm.model.ContentObject;
-
 import java.io.File;
 import java.io.IOException;
-import java.text.MessageFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.mds.aiotplayer.cm.content.AlbumBo;
+import com.mds.aiotplayer.cm.content.GalleryBo;
+import com.mds.aiotplayer.cm.content.GallerySettings;
+import com.mds.aiotplayer.cm.content.UiTemplateBo;
+import com.mds.aiotplayer.cm.exception.GallerySecurityException;
+import com.mds.aiotplayer.cm.exception.InvalidAlbumException;
+import com.mds.aiotplayer.cm.exception.InvalidContentObjectException;
+import com.mds.aiotplayer.cm.exception.InvalidGalleryException;
+import com.mds.aiotplayer.cm.exception.InvalidMDSRoleException;
+import com.mds.aiotplayer.cm.exception.UnsupportedContentObjectTypeException;
+import com.mds.aiotplayer.cm.exception.UnsupportedImageTypeException;
+import com.mds.aiotplayer.cm.model.ContentObject;
+import com.mds.aiotplayer.cm.service.ContentObjectManager;
+import com.mds.aiotplayer.cm.service.GallerySettingManager;
+import com.mds.aiotplayer.cm.util.AlbumUtils;
+import com.mds.aiotplayer.cm.util.CMUtils;
+import com.mds.aiotplayer.cm.util.GalleryView;
+import com.mds.aiotplayer.common.exception.RecordExistsException;
+import com.mds.aiotplayer.common.exception.SearchException;
+import com.mds.aiotplayer.core.ResourceId;
+import com.mds.aiotplayer.core.UiTemplateType;
+import com.mds.aiotplayer.core.exception.WebException;
+import com.mds.aiotplayer.i18n.util.I18nUtils;
+import com.mds.aiotplayer.sys.util.AppSettings;
+import com.mds.aiotplayer.util.DateUtils;
+import com.mds.aiotplayer.util.Utils;
+import com.mds.aiotplayer.webapp.common.controller.AbstractBaseController;
+import com.mds.aiotplayer.webapp.common.plupload.Plupload;
+import com.mds.aiotplayer.webapp.common.plupload.PluploadService;
 
 @Controller
 @RequestMapping("/cm/contentobjects*")

@@ -110,7 +110,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             	.authorizeRequests().antMatchers("/sys/passwordHint/**", "/sys/requestRecoveryToken/**"
         			, "/sys/updatePassword*", "/sys/signup*", "/cm/galleryview*", "/jcaptcha-validate*"
         			, "/services/api/users/jcaptcha*", "/services/api/playerGroups/filelist*"
-        			, "/services/api/contentitems/getmedia*", "/services/api/ftpStatuses*").permitAll()
+        			, "/services/api/contentitems/getmedia*", "/services/api/contentitems/*/meta"
+        			, "/services/api/albumrests/*/meta", "/services/api/ftpStatuses*").permitAll()
             		.antMatchers("/**").authenticated()
             /*.and()
             	.authorizeRequests()

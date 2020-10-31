@@ -18,6 +18,7 @@ import java.util.Set;
 
 import javax.ws.rs.InternalServerErrorException;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
@@ -57,6 +58,8 @@ import com.google.common.collect.Lists;
 import com.mds.aiotplayer.common.service.MailEngine;
 import com.mds.aiotplayer.common.utils.SpringContextHolder;
 import com.mds.aiotplayer.webapp.common.util.CustomSimpleMappingExceptionResolver;
+import com.mds.services.ConfigurationService;
+import com.mds.services.factory.MDSServicesFactory;
 
 /**
  * This class provide extra configuration for our Spring Boot Application
@@ -235,22 +238,46 @@ public class ApplicationConfig {
 	 */
     
     @Bean SimpleMailMessage mailMessage() {
+    	ConfigurationService cfg = MDSServicesFactory.getInstance().getConfigurationService();
     	SimpleMailMessage mailMessage =  new SimpleMailMessage();
-    	mailMessage.setFrom("${mail.default.from}");
+    	mailMessage.setFrom(cfg.getProperty("mail.from.address"));
     	
     	return mailMessage;
     }
     
     @Bean VelocityEngineFactoryBean velocityEngine() {
     	VelocityEngineFactoryBean velocityEngine =  new VelocityEngineFactoryBean();
+    	Properties velocityProperties = new Properties();
+    	velocityProperties.put("resource.loader", "class");
+    	velocityProperties.put("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+    	velocityProperties.put("velocimacro.library", StringUtils.EMPTY);
+    	velocityEngine.setVelocityProperties(velocityProperties);
    	
     	return velocityEngine;
     }
     
     @Bean JavaMailSenderImpl mailSender() {
+    	ConfigurationService cfg = MDSServicesFactory.getInstance().getConfigurationService();
+    	
     	JavaMailSenderImpl mailSender =  new JavaMailSenderImpl();
-    	mailSender.setHost("${mail.host}");
+    	mailSender.setHost(cfg.getProperty("mail.server"));
     	mailSender.setDefaultEncoding("UTF-8");
+    	mailSender.setUsername(cfg.getProperty("mail.server.username"));
+    	mailSender.setPassword(cfg.getProperty("mail.server.password"));
+    	
+    	// Set extra configuration properties
+        String[] extras = cfg.getArrayProperty("mail.extraproperties");
+        if (extras != null) {
+            String key;
+            String value;
+            Properties javaMailProperties = new Properties();
+            for (String argument : extras) {
+                key = argument.substring(0, argument.indexOf('=')).trim();
+                value = argument.substring(argument.indexOf('=') + 1).trim();
+                javaMailProperties.put(key, value);
+            }
+            mailSender.setJavaMailProperties(javaMailProperties);
+        }    	
     	
     	return mailSender;
     }
@@ -259,7 +286,8 @@ public class ApplicationConfig {
     	MailEngine mailEngine =  new MailEngine();
     	mailEngine.setMailSender(mailSender());
     	mailEngine.setVelocityEngine(velocityEngine().getObject());
-    	mailEngine.setFrom("${mail.default.from}");
+    	ConfigurationService cfg = MDSServicesFactory.getInstance().getConfigurationService();
+    	mailEngine.setFrom(cfg.getProperty("mail.from.address"));
     	
     	return mailEngine;
     }
