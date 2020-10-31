@@ -14,8 +14,8 @@
 #
 # Any commented out settings in this file are simply ignored. A configuration
 # will only override another configuration if it has the EXACT SAME key/name.
-# For example, including "mdsplus.home" in this local.cfg will override the
-# default value of "mdsplus.home" in the mds.cfg file.
+# For example, including "mds.home" in this local.cfg will override the
+# default value of "mds.home" in the mds.cfg file.
 # Similarly, including "oai.solr.url" in this local.cfg will override the
 # default value of "oai.solr.url" in the modules/oai.cfg file.
 #
@@ -28,73 +28,60 @@
 # MDS installation directory.
 # This is the location where you want to install MDS.
 # Windows note: Please remember to use forward slashes for all paths (e.g. C:/mds)
-mdsplus.home=D:/dcmtemp/20180408/mds_bootstrap4/mdsplus/mds
+mds.home=/mds
 
-# MDS host name - should match base URL.  Do not include port number
-mds.hostname = localhost
+# URL of MDS backend ('server' webapp). Include port number etc.
+# This is where REST API and all enabled server modules (OAI-PMH, SWORD, SWORDv2, RDF, etc) will respond
+mds.server.url = http://localhost:8080/server
 
-# MDS base host URL.  Include port number etc.
-mds.baseUrl = http://localhost:8080
-
-# Full link your end users will use to access MDS. In most cases, this will be the baseurl followed by
-# the context path to the UI you are using.
-#
-# Alternatively, you can use a url redirect or deploy the web application under the servlet container root.
-#mds.url = ${mds.baseUrl}
+# URL of MDS frontend (Angular UI). Include port number etc
+# This is used by the backend to provide links in emails, RSS feeds, Sitemaps, etc.
+mds.ui.url = http://localhost:3000
 
 # Name of the site
-mds.name = MDS at My University
+mds.name = MDSPlus
 
-# assetstore.dir, look at MDS/config/spring/api/bitstore.xml for more options
-# default is ${mdsplus.home}/assetstore, uncomment and modify if you need to use a different path
-#assetstore.dir = ${mdsplus.home}/assetstore
+# assetstore.dir, look at DSPACE/config/spring/api/bitstore.xml for more options
+# default is ${mds.home}/assetstore, uncomment and modify if you need to use a different path
+#assetstore.dir = ${mds.home}/assetstore
 
 # Default language for metadata values
 #default.language = en_US
 
 # Solr server/webapp.
-# MDS uses Solr for all search/browse capability (and for usage statistics by default).
-# The included 'solr' webapp MUST be deployed to Todcat for MDS to function.
-# Usually it will be available via port 8080 and the 'solr' context path. But,
-# But, you may need to modify this if you are running MDS on a custom port, etc.
-solr.server = http://localhost:8080/solr
+# MDS uses Solr for all search/browse capability (and for usage statistics).
+# Since MDS 7, SOLR must be installed as a stand-alone service
+#solr.server = http://localhost:8983/solr
 
 ##########################
 # DATABASE CONFIGURATION #
 ##########################
-# MDS supports Multi database types: MySQL, MSSQL, PostgreSQL or Oracle
+# MDS only supports two database types: PostgreSQL or Oracle
 
 # URL for connecting to database
-#    * MySql template: jdbc:postgresql://mysql:3306/mdsplus-dev
-#    * MSSql template: jdbc:jtds:sqlserver://localhost:1434/mdsplus-dev
-#    * Postgres template: jdbc:postgresql://localhost:5432/mdsplus-dev
+#    * Postgres template: jdbc:postgresql://localhost:5432/mds
 #    * Oracle template: jdbc:oracle:thin:@//localhost:1521/xe
-db.url = jdbc:mysql://192.168.0.110/mdsplus-dev?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true
+db.url = jdbc:postgresql://localhost:5432/mds
 
 # JDBC Driver
-#    * For MySql: com.mysql.jdbc.Driver
-#    * For MSSql: net.sourceforge.jtds.jdbc.Driver
 #    * For Postgres: org.postgresql.Driver
 #    * For Oracle:   oracle.jdbc.OracleDriver
-db.driver = com.mysql.cj.jdbc.Driver
+db.driver = org.postgresql.Driver
 
 # Database Dialect (for Hibernate)
-#    * For MySql: org.hibernate.dialect.MySQL57Dialect
-#    * For MSSql: org.hibernate.dialect.SQLServerDialect
-#    * For Postgres: com.mds.aiotplayer.storage.rdbms.hibernate.postgres.MDSPostgreSQL82Dialect
+#    * For Postgres: com.mds.storage.rdbms.hibernate.postgres.MDSPostgreSQL82Dialect
 #    * For Oracle:   org.hibernate.dialect.Oracle10gDialect
-#db.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-db.dialect = org.hibernate.dialect.MySQL57Dialect
+db.dialect = com.mds.storage.rdbms.hibernate.postgres.MDSPostgreSQL82Dialect
 
 # Database username and password
-db.username = root
-db.password = mdsplus
+db.username = mds
+db.password = mds
 
 # Database Schema name
 #    * For Postgres, this is often "public" (default schema)
 #    * For Oracle, schema is equivalent to the username of your database account,
 #      so this may be set to ${db.username} in most scenarios.
-db.schema = 
+db.schema = public
 
 ## Connection pool parameters
 
@@ -126,46 +113,20 @@ db.schema =
 
 # From address for mail
 # All mail from the MDS site will use this 'from' address
-#mail.from.address = mds-noreply@myu.edu
+#mail.from.address = mds-noreply@mmdsplus.com
 
 # When feedback is submitted via the Feedback form, it is sent to this address
 # Currently limited to one recipient!
-#feedback.recipient = mds-help@myu.edu
+#feedback.recipient = mds-help@mmdsplus.com
 
 # General site administration (Webmaster) e-mail
-#mail.admin = mds-help@myu.edu
+#mail.admin = mds-help@mmdsplus.com
 
 # Recipient for server errors and alerts (defaults to mail.admin)
 #alert.recipient = ${mail.admin}
 
 # Recipient for new user registration emails (defaults to unspecified)
 #registration.notify =
-
-
-########################
-# HANDLE CONFIGURATION #
-########################
-#
-# Canonical Handle URL prefix
-#
-# Items in MDS receive a unique URL, stored in dc.identifier.uri
-# after it is generated during the submission process.
-# 
-# If you register with CNRI's handle service at http://www.handle.net/,
-# these links can be generated as permalinks using http://hdl.handle.net/
-# as canonical prefix. Please make sure to change handle.canonical.prefix
-# after registering with handle.net by uncommenting one of the following
-# lines, depending if you prefer to use http or https:
-# handle.canonical.prefix = http://hdl.handle.net/
-# handle.canonical.prefix = https://hdl.handle.net/
-#
-# Note that this will not alter dc.identifer.uri metadata for existing
-# items (only for subsequent submissions), but it will alter the URL
-# in JSPUI's 'identifier' message on item record pages for existing items.
-
-# CNRI Handle prefix
-# (Defaults to a dummy/fake prefix of 123456789)
-#handle.prefix = 123456789
 
 #######################
 # PROXY CONFIGURATION #
@@ -192,17 +153,17 @@ db.schema =
 # configuration file and override them in this local.cfg.
 
 # IP-based authentication/authorization. See authentication-ip.cfg for default configuration.
-#plugin.sequence.com.mds.aiotplayer.authenticate.AuthenticationMethod = com.mds.aiotplayer.authenticate.IPAuthentication
+#plugin.sequence.com.mds.authenticate.AuthenticationMethod = com.mds.authenticate.IPAuthentication
 
 # LDAP authentication/authorization. See authentication-ldap.cfg for default configuration.
-#plugin.sequence.com.mds.aiotplayer.authenticate.AuthenticationMethod = com.mds.aiotplayer.authenticate.LDAPAuthentication
+#plugin.sequence.com.mds.authenticate.AuthenticationMethod = com.mds.authenticate.LDAPAuthentication
 
 # Shibboleth authentication/authorization. See authentication-shibboleth.cfg for default configuration.
-#plugin.sequence.com.mds.aiotplayer.authenticate.AuthenticationMethod = com.mds.aiotplayer.authenticate.ShibAuthentication
+#plugin.sequence.com.mds.authenticate.AuthenticationMethod = com.mds.authenticate.ShibAuthentication
 
 # X.509 certificate authentication. See authentication-x509.cfg for default configuration.
-#plugin.sequence.com.mds.aiotplayer.authenticate.AuthenticationMethod = com.mds.aiotplayer.authenticate.X509Authentication
+#plugin.sequence.com.mds.authenticate.AuthenticationMethod = com.mds.authenticate.X509Authentication
 
 # Authentication by Password (encrypted in MDS's database). See authentication-password.cfg for default configuration.
 # Enabled by default in authentication.cfg
-#plugin.sequence.com.mds.aiotplayer.authenticate.AuthenticationMethod = com.mds.aiotplayer.authenticate.PasswordAuthentication
+#plugin.sequence.com.mds.authenticate.AuthenticationMethod = com.mds.authenticate.PasswordAuthentication

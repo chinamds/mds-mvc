@@ -16,6 +16,7 @@ mail.properties
 jdbc.properties
 clear.bat
 yarn-error.log
+local.cfg
 .gradle/
 .svn/
 .mvn/
