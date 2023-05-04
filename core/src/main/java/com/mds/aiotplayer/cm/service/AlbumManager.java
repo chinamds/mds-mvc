@@ -7,16 +7,15 @@
  */
 package com.mds.aiotplayer.cm.service;
 
-import com.mds.aiotplayer.common.exception.RecordExistsException;
-import com.mds.aiotplayer.common.service.GenericManager;
-import com.mds.aiotplayer.cm.model.Album;
-import com.mds.aiotplayer.cm.model.UiTemplate;
-
 import java.util.List;
 import java.util.Map;
 
-import javax.jws.WebService;
 import javax.ws.rs.core.Response;
+
+import com.mds.aiotplayer.cm.model.Album;
+import com.mds.aiotplayer.cm.model.UiTemplate;
+import com.mds.aiotplayer.common.exception.RecordExistsException;
+import com.mds.aiotplayer.common.service.GenericManager;
 
 //@WebService
 public interface AlbumManager extends GenericManager<Album, Long> {

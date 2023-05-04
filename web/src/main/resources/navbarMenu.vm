@@ -29,7 +29,7 @@
           <a href="#" title="$title"
              #if($menu.target)target="$menu.target" #end
              #if($menu.width)style="width: ${menu.width}px"#end
-             class="nav-link dropdown-toggle" id="${menu.name}_$count" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${title}</a>
+             class="nav-link dropdown-toggle" id="${menu.name}_$count" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${title}</a>
     #end
 
     #if ($menu.components.size() > 0)

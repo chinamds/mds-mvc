@@ -148,7 +148,7 @@ public class AppSettingManagerImpl extends GenericManagerImpl<AppSetting, Long> 
     public Response removeAppSetting(final String appSettingIds) {
         log.debug("removing appSetting: " + appSettingIds);
         try {
-	        appSettingDao.remove(ConvertUtil.StringtoLongArray(appSettingIds));
+	        appSettingDao.remove(ConvertUtil.stringtoLongArray(appSettingIds));
 	        //UserUtils.removeCache(UserUtils.CACHE_ORGANIZATION_LIST);
         } catch (final Exception e) {
             e.printStackTrace();

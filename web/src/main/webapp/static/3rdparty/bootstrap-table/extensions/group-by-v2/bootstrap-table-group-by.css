@@ -1,7 +1,8 @@
-.bootstrap-table .table > tbody > tr.groupBy {
+.bootstrap-table .table > tbody > tr.group-by.expanded,
+.bootstrap-table .table > tbody > tr.group-by.collapsed {
   cursor: pointer;
 }
 
-.bootstrap-table .table > tbody > tr.hidden + tr.detail-view {
+.bootstrap-table .table > tbody > tr.hidden {
   display: none;
 }

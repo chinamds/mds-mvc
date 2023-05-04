@@ -2236,10 +2236,10 @@
 				<jdbc.version>${mysql.driver.version}</jdbc.version>
 				<jdbc.driverClassName>com.mysql.cj.jdbc.Driver</jdbc.driverClassName>
 				<jdbc.url>
-					<![CDATA[jdbc:mysql://192.168.0.110/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
+					<![CDATA[jdbc:mysql://192.168.0.180/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
 				</jdbc.url>
 				<jdbc.url.prev>
-					<![CDATA[jdbc:mysql://192.168.0.110/${db.name}_prev?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
+					<![CDATA[jdbc:mysql://192.168.0.180/${db.name}_prev?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
 				</jdbc.url.prev>
 				<jdbc.username>root</jdbc.username>
 				<jdbc.password>mdsplus</jdbc.password>
@@ -2266,10 +2266,10 @@
 				<jdbc.version>${mysql.driver.version}</jdbc.version>
 				<jdbc.driverClassName>com.mysql.cj.jdbc.Driver</jdbc.driverClassName>
 				<jdbc.url>
-					<![CDATA[jdbc:mysql://192.168.0.110/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
+					<![CDATA[jdbc:mysql://192.168.0.180/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
 				</jdbc.url>
 				<jdbc.url.prev>
-					<![CDATA[jdbc:mysql://192.168.0.110/${db.name}_prev?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
+					<![CDATA[jdbc:mysql://192.168.0.180/${db.name}_prev?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
 				</jdbc.url.prev>
 				<jdbc.username>root</jdbc.username>
 				<jdbc.password>mdsplus</jdbc.password>
@@ -2318,10 +2318,10 @@
         <jdbc.version>${mysql.driver.version}</jdbc.version>
         <jdbc.driverClassName>com.mysql.cj.jdbc.Driver</jdbc.driverClassName>
         <jdbc.url>
-            <![CDATA[jdbc:mysql://192.168.0.110/${db.name}?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true]]>
+            <![CDATA[jdbc:mysql://192.168.0.180/${db.name}?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true]]>
         </jdbc.url>
         <jdbc.url.prev>
-            <![CDATA[jdbc:mysql://192.168.0.110/${db.name}_prev?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true]]>
+            <![CDATA[jdbc:mysql://192.168.0.180/${db.name}_prev?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true]]>
         </jdbc.url.prev>
         <jdbc.username>root</jdbc.username>
         <jdbc.password>mdsplus</jdbc.password>
@@ -2354,7 +2354,7 @@
         <selenium.server.browser.version>7</selenium.server.browser.version>
 
 		<test.jdbc.url>
-        	<![CDATA[jdbc:mysql://192.168.0.110/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
+        	<![CDATA[jdbc:mysql://192.168.0.180/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true]]>
         </test.jdbc.url>
         <test.jdbc.username>root</test.jdbc.username>
         <test.jdbc.password>mdsplus</test.jdbc.password>

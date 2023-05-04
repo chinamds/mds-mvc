@@ -169,8 +169,8 @@ $.mainframe = {
         var noComment = $(".notification-list-pop .no-comment");*/
         var markReadUrl = window.Mds.AppRoot + "/sys/notifications/markRead?id=";
 
-        var contentTemplate = '<li class="view-content {unread}"><span>{title}</span><span class="float-right">{date}</span></li>';
-        var detailContentTemplate = '<div id="notificaiton-{id}" class="notification-detail" style="display: none"><div class="title"><span>{title}</span><span class="float-right">{date}</span></div><div class="content">{content}</div></div>';
+        var contentTemplate = '<li class="view-content {unread}"><span>{title}</span><span class="float-end">{date}</span></li>';
+        var detailContentTemplate = '<div id="notificaiton-{id}" class="notification-detail" style="display: none"><div class="title"><span>{title}</span><span class="float-end">{date}</span></div><div class="content">{content}</div></div>';
         var moreContent = '<li class="view-all-notification"><span>&gt;&gt;'+ $.mainframe.options.i18n.viewallnotifications + '</span></li>';
         
         var initPopover = function(dataList, hasUnread){
@@ -1083,7 +1083,7 @@ $.tabs = {
          $.tabs.tabsLiContent = tabsLiContent;
          
          var tabsLiAContent = tabDatas.map(function(tab) {
-             return '<div class="d-table" style="height:35px;"><div class="d-table-row"><a class="nav-link d-table-cell py-0 align-middle" href="#tabs-0" role="tab" data-toggle="tab" aria-controls="tabs-0" aria-selected="false">' + tab.title  //style="display:inline-block; width: 14px; height: 14px"
+             return '<div class="d-table" style="height:35px;"><div class="d-table-row"><a class="nav-link d-table-cell py-0 align-middle" href="#tabs-0" role="tab" data-bs-toggle="tab" aria-controls="tabs-0" aria-selected="false">' + tab.title  //style="display:inline-block; width: 14px; height: 14px"
              	+ '</a><div class="d-table-cell menu"><div class="d-table" style="height:35px;"><span class="d-table-row" style="width: 14px; height: 14px" role="presentation"></span><span class="fa fa-sync d-table-row" role="presentation" title="Refresh"></span></div></div></div></div>';
          });
          $.tabs.tabsLiAContent = tabsLiAContent;
@@ -1280,7 +1280,7 @@ $.tabs = {
 
 	    tabDatas.push(newTab);
 	    $.tabs.tabsLiContent.push('<li role="presentation" title="' + newTab.tooltip + '" data-trigger="hover" class="nav-item"></li>');
-	    $.tabs.tabsLiAContent.push('<div class="d-table" style="height:35px;"><div class="d-table-row"><a class="nav-link d-table-cell py-0 align-middle" href="#'+ newTab.panelId +'"  role="tab" data-toggle="tab" aria-controls="'+ newTab.panelId +'" aria-selected="false">' + newTab.title  //style="display:inline-block; width: 14px; height: 14px"
+	    $.tabs.tabsLiAContent.push('<div class="d-table" style="height:35px;"><div class="d-table-row"><a class="nav-link d-table-cell py-0 align-middle" href="#'+ newTab.panelId +'"  role="tab" data-bs-toggle="tab" aria-controls="'+ newTab.panelId +'" aria-selected="false">' + newTab.title  //style="display:inline-block; width: 14px; height: 14px"
           	+ '</a><div class="d-table-cell menu"><div class="d-table" style="height:35px;"><span class="d-table-row fa fa-times" role="presentation" title="Close"></span><span class="fa fa-sync d-table-row" role="presentation" title="Refresh"></span></div></div></div></div>');
       
 	    $.tabs.tabsPostProcessors.push(function($li, $a) {
@@ -2020,7 +2020,7 @@ $(function () {
     $.tabs = top.$.tabs;
     $.menus = top.$.menus;
 
-    $("[data-toggle='tooltip']").each(function() {
+    $("[data-bs-toggle='tooltip']").each(function() {
         $(this).tooltip({delay:300});
     });
 

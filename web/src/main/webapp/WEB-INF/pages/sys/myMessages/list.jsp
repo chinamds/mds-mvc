@@ -28,7 +28,7 @@
             </a>
         </li>        
         <li role="presentation" class="dropdown nav-item">
-		    <a class="nav-link dropdown-toggle ${MessageFolder.inbox ne state ? 'active' : ''}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+		    <a class="nav-link dropdown-toggle ${MessageFolder.inbox ne state ? 'active' : ''}" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 		      <fmt:message key="myMessage.messagefolder.more"/><span class="caret"></span>
 		    </a>
 		    <ul class="dropdown-menu">
@@ -87,7 +87,7 @@
     <c:if test="${state eq MessageFolder.inbox}">
 		<c:if test="${fns:isMobileDevice(pageContext.request)}">    
 		    <div class="btn-group" role="group">
-			    <a type="button" class="btn btn-sm btn-more dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <a type="button" class="btn btn-sm btn-more dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			      	......<span class="caret"></span>
 			    </a>
 			    <ul class="dropdown-menu">
@@ -113,7 +113,7 @@
 	    </a>
     </c:if>
 </div>
-<form id="searchForm" class="form-inline float-right">
+<form id="searchForm" class="form-inline float-end">
 <div id="search-message" class="input-group">
 	 <input type="text" size="20" name="q" id="query" value="${param.q}"
                placeholder="<fmt:message key="search.enterTerms"/>" class="form-control input-sm"/>

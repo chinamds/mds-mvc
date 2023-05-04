@@ -29,11 +29,8 @@ import com.mds.aiotplayer.cm.rest.AlbumAction;
 import com.mds.aiotplayer.cm.rest.AlbumRest;
 import com.mds.aiotplayer.cm.rest.CMData;
 import com.mds.aiotplayer.cm.rest.ContentItem;
-import com.mds.aiotplayer.cm.rest.JsTreeNode;
 import com.mds.aiotplayer.cm.rest.MediaItem;
 import com.mds.aiotplayer.cm.rest.MetaItemRest;
-import com.mds.aiotplayer.cm.rest.TreeView;
-import com.mds.aiotplayer.common.Constants;
 
 /// <summary>
 /// Contains methods for Web API access to albums.

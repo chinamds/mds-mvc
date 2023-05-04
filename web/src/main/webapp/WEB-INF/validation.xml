@@ -289,6 +289,16 @@
             </field>
         </form>
         <!--Gallery-END-->
+        <!--UiTemplate-START-->
+        <form name="uiTemplate">
+            <field property="name" depends="required">
+                <arg key="uiTemplate.name"/>
+            </field>
+            <field property="gallery" depends="required">
+                <arg key="uiTemplate.gallery"/>
+            </field>
+        </form>
+        <!--UiTemplate-END-->
         <!--GalleryMapping-START-->
         <form name="galleryMapping">
         </form>

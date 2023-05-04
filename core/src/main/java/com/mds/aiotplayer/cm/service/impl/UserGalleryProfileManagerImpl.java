@@ -218,7 +218,7 @@ public class UserGalleryProfileManagerImpl extends GenericManagerImpl<UserGaller
     public Response removeUserGalleryProfile(final String userGalleryProfileIds) {
         log.debug("removing userGalleryProfile: " + userGalleryProfileIds);
         try {
-	        userGalleryProfileDao.remove(ConvertUtil.StringtoLongArray(userGalleryProfileIds));
+	        userGalleryProfileDao.remove(ConvertUtil.stringtoLongArray(userGalleryProfileIds));
 	        //CacheUtils.remove(CacheItem.Albums.toString());
         } catch (final Exception e) {
             e.printStackTrace();

@@ -256,7 +256,7 @@ public class OrganizationWorkflowTypeManagerImpl extends GenericManagerImpl<Orga
     public Response removeOrganizationWorkflowType(final String organizationWorkflowTypeIds) throws WebApplicationException{
         log.debug("removing organizationWorkflowType: " + organizationWorkflowTypeIds);
         try {
-        	organizationWorkflowTypeDao.remove(ConvertUtil.StringtoLongArray(organizationWorkflowTypeIds));
+        	organizationWorkflowTypeDao.remove(ConvertUtil.stringtoLongArray(organizationWorkflowTypeIds));
         } catch (final Exception e) {
             e.printStackTrace();
             log.warn(e.getMessage());

@@ -25,7 +25,7 @@ html.AppendFormat("<script type=\"text/javascript\" src=\"{0}\"; ></script>", jq
     <!-- <div class="container"> javascript:void(0) will prevent scroll -->
     <nav class="navbar navbar-expand-sm navbar-default navbar-light fixed-top navbar-fixed-top bg-light py-0" role="navigation">
 	    <div class="navbar-header" style="padding-top: 5px;">
-	       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarImageMap">
+	       <button type="button" class="navbar-toggle" data-bs-toggle="collapse" data-bs-target="#navbarImageMap">
 	           <span class="icon-bar"></span>
 	           <span class="icon-bar"></span>
 	           <span class="icon-bar"></span>
@@ -34,7 +34,7 @@ html.AppendFormat("<script type=\"text/javascript\" src=\"{0}\"; ></script>", jq
 	   </div>
        <div class="navbar-collapse collapse" id="navbarImageMap" style="padding-top: 5px;"> 
            <ul class="nav navbar-nav">
-               <li style="text-align:left;" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               <li style="text-align:left;" class="dropdown"><a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                	<img src="${ctx}/static/img/zfile.png"/><b class="caret"></b></a>
                    <ul id="filestuff" class="dropdown-menu">
                        <li><a href="#">Load Image</a></li>
@@ -58,9 +58,9 @@ html.AppendFormat("<script type=\"text/javascript\" src=\"{0}\"; ></script>", jq
                <li><a id="btnWebcam" href="javascript:void(0)" onclick="return false;"><img src="${ctx}/static/img/zwebcam.png" style="width:24px;height:24px;" alt="" /></a></li>
                <li><a id="btnCamera" href="javascript:void(0)" onclick="return false;"><img src="${ctx}/static/img/zcamera.png" style="width:24px;height:24px;" alt="" /></a></li>
                
-               <li id="closepolygon"><a id="btnPolygonClose" href="javascript:void(0)" onclick="return false;" data-toggle="tooltip" data-placement="bottom" title="Closes Open polygon"><img src="${ctx}/static/img/zpolygonclose.png" style="width:24px;height:24px;" alt="" /></a></li>
+               <li id="closepolygon"><a id="btnPolygonClose" href="javascript:void(0)" onclick="return false;" data-bs-toggle="tooltip" data-placement="bottom" title="Closes Open polygon"><img src="${ctx}/static/img/zpolygonclose.png" style="width:24px;height:24px;" alt="" /></a></li>
                
-               <li style="text-align:left;" class="dropdown"><a href="#" id="ddtext" class="dropdown-toggle" data-toggle="dropdown">
+               <li style="text-align:left;" class="dropdown"><a href="#" id="ddtext" class="dropdown-toggle" data-bs-toggle="dropdown">
                    <img src="${ctx}/static/img/zfont.png" alt="" /><b class="caret"></b></a>
                    <ul class="dropdown-menu">
                        <li id="liText">
@@ -111,10 +111,10 @@ html.AppendFormat("<script type=\"text/javascript\" src=\"{0}\"; ></script>", jq
                    </ul>
                </li>
 
-<!--                        <li><a id="btnDelete" href="javascript:void(0)" onclick="return false;" data-toggle="tooltip" data-placement="bottom" title="Deletes Only Selected Object"><img src="${ctx}/static/img/zdelete.png" style="width:24px;height:24px;" alt="" /></a></li>
-                        <li><a id="btnEraser" href="javascript:void(0)" onclick="return false;" data-toggle="tooltip" data-placement="bottom" title="Deletes All Object Except for Background Image"><img src="${ctx}/static/img/zfist.png" style="width:24px;height:24px;" alt="" /></a></li>
+<!--                        <li><a id="btnDelete" href="javascript:void(0)" onclick="return false;" data-bs-toggle="tooltip" data-placement="bottom" title="Deletes Only Selected Object"><img src="${ctx}/static/img/zdelete.png" style="width:24px;height:24px;" alt="" /></a></li>
+                        <li><a id="btnEraser" href="javascript:void(0)" onclick="return false;" data-bs-toggle="tooltip" data-placement="bottom" title="Deletes All Object Except for Background Image"><img src="${ctx}/static/img/zfist.png" style="width:24px;height:24px;" alt="" /></a></li>
 -->                        
-               <li style="text-align:left;" class="dropdown"><a href="#" id="qqqq" class="dropdown-toggle" data-toggle="dropdown">
+               <li style="text-align:left;" class="dropdown"><a href="#" id="qqqq" class="dropdown-toggle" data-bs-toggle="dropdown">
                    <img src="${ctx}/static/img/zsettings.png" alt="" /><b class="caret"></b></a>
                    <ul id="btnSelect" class="dropdown-menu">
                        <li><a href="javascript:void(0)"><img id="btnCopy" src="${ctx}/static/img/zcopy.png" style="width:24px;height:24px;padding-right:4px;" alt="" />Copy Object (CTRL C)</a></li>
@@ -134,8 +134,8 @@ html.AppendFormat("<script type=\"text/javascript\" src=\"{0}\"; ></script>", jq
                    </ul>
                </li>
                                
-               <!--<li><a id="btnVideo" href="#" onclick="return false;" data-toggle="tooltip" data-placement="bottom" title="Animates Selected Object"><img src="${ctx}/static/img/ztv.png" style="width:24px;height:24px;" alt="" /></a></li> -->
-               <li style="text-align:left;" class="dropdown"><a href="javascript:void(0)" id="ddproperties" class="dropdown-toggle" data-toggle="dropdown">
+               <!--<li><a id="btnVideo" href="#" onclick="return false;" data-bs-toggle="tooltip" data-placement="bottom" title="Animates Selected Object"><img src="${ctx}/static/img/ztv.png" style="width:24px;height:24px;" alt="" /></a></li> -->
+               <li style="text-align:left;" class="dropdown"><a href="javascript:void(0)" id="ddproperties" class="dropdown-toggle" data-bs-toggle="dropdown">
                    <img src="${ctx}/static/img/zoptions.png" alt="" /><b class="caret"></b></a>
                    <ul class="dropdown-menu">
                        <li id="zspecial">
@@ -215,7 +215,7 @@ html.AppendFormat("<script type=\"text/javascript\" src=\"{0}\"; ></script>", jq
                    </ul>
                </li>
 
-               <li style="text-align:left;" class="dropdown"><a href="#" id="A1" class="dropdown-toggle" data-toggle="dropdown">
+               <li style="text-align:left;" class="dropdown"><a href="#" id="A1" class="dropdown-toggle" data-bs-toggle="dropdown">
                    <img src="${ctx}/static/img/ztarget.png" alt="" /><b class="caret"></b></a>
                    <ul id="btnAnimate" class="dropdown-menu">
                        <li><a href="#"><img id="Img1" src="${ctx}/static/img/zupdate.png" style="padding-right:4px;" alt="" />Spin Selected Object</a></li>
@@ -223,7 +223,7 @@ html.AppendFormat("<script type=\"text/javascript\" src=\"{0}\"; ></script>", jq
                    </ul>
                </li>
 
-               <li style="text-align:left;" class="dropdown"><a href="#" id="ddSlider" class="dropdown-toggle" data-toggle="dropdown">
+               <li style="text-align:left;" class="dropdown"><a href="#" id="ddSlider" class="dropdown-toggle" data-bs-toggle="dropdown">
                    <img src="${ctx}/static/img/ztransparent.png" alt="" /><b class="caret"></b></a>
                    <ul class="dropdown-menu">
                        <li id="liSlider" style="margin:0px 12px 0px 12px;">
@@ -238,7 +238,7 @@ html.AppendFormat("<script type=\"text/javascript\" src=\"{0}\"; ></script>", jq
 
                <!-- <li class="divider-vertical"></li>-->
       
-               <li style="text-align:left;" class="dropdown"><a href="#" id="A2" class="dropdown-toggle" data-toggle="dropdown">
+               <li style="text-align:left;" class="dropdown"><a href="#" id="A2" class="dropdown-toggle" data-bs-toggle="dropdown">
                    <img src="${ctx}/static/img/zzoom.png" alt="" /><b class="caret"></b></a>
                    <ul id="btnZoom" class="dropdown-menu">
                        <li><a href="#"><img id="btnZoomIn" src="${ctx}/static/img/zzoom_in.png" style="padding-right:4px;" alt="" />Zoom In (CTRL Plus)</a></li>
@@ -247,20 +247,20 @@ html.AppendFormat("<script type=\"text/javascript\" src=\"{0}\"; ></script>", jq
                    </ul>
                </li>
 
-               <li style="text-align:left;margin-right:-12px;margin-top:-6px;" class="dropdown"><a href="#" id="ddAreasTop" class="dropdown-toggle" data-toggle="dropdown">
+               <li style="text-align:left;margin-right:-12px;margin-top:-6px;" class="dropdown"><a href="#" id="ddAreasTop" class="dropdown-toggle" data-bs-toggle="dropdown">
                    <span style="white-space:nowrap;text-align:left;white-space:nowrap;">Map Values<img src="${ctx}/static/img/zshape.png" style="width:24px;height:18px;" alt="" /><b class="caret"></b></span></a>
                    <div style="text-align:center;"><input id="txtAreaSelected" style="margin-top:-10px;font-size:.9em;height:16px;width:80px;border-style:none;" readonly="true" /></div>
                    <ul id="ddAreas" class="dropdown-menu">
                    </ul>
                </li>
-               <li><a id="ddrefresh" href="javascript:void(0)" onclick="return false;" data-toggle="tooltip" data-placement="bottom" title="Deletes Only Selected Object">
+               <li><a id="ddrefresh" href="javascript:void(0)" onclick="return false;" data-bs-toggle="tooltip" data-placement="bottom" title="Deletes Only Selected Object">
                	<img src="${ctx}/static/img/zrefresh.png" style="margin-left:2px;width:24px;height:24px;" alt="" />
                </a></li>
                <!--onmouseover="this.style.cursor='hand'"-->                                                                         
            </ul>
            <ul class="nav navbar-nav navbar-right dd" style="padding-top: 5px;">
                <li style="text-align:left;" class="dd">
-               		<a href="#" class="dd-toggle" data-toggle="dd"><span class="dd-text" style="white-space:nowrap;"><img src="${ctx}/static/img/zpatterns.png" />Patterns<b class="caret"></b></span></a>
+               		<a href="#" class="dd-toggle" data-bs-toggle="dd"><span class="dd-text" style="white-space:nowrap;"><img src="${ctx}/static/img/zpatterns.png" />Patterns<b class="caret"></b></span></a>
 	                <ul id="ddPatterns" class="dd-menu">
 	                </ul>
                </li>

@@ -77,7 +77,7 @@ public class BannerManagerImpl extends GenericManagerImpl<Banner, Long> implemen
     public Response removeBanner(final String bannerIds) {
         log.debug("removing banner: " + bannerIds);
         try {
-        	bannerDao.remove(ConvertUtil.StringtoLongArray(bannerIds));
+        	bannerDao.remove(ConvertUtil.stringtoLongArray(bannerIds));
         } catch (final Exception e) {
             e.printStackTrace();
             log.warn(e.getMessage());

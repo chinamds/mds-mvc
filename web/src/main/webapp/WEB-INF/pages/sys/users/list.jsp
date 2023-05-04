@@ -59,7 +59,7 @@
                 </secure:hasPermission>
                 <secure:hasPermission name="sys:user;*"><%-- The following actions are available when user owner full right in user page --%>
                 <div class="btn-group last">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="btn dropdown-toggle" data-bs-toggle="dropdown" href="#">
                         <i class="icon-wrench"></i>
                         <fmt:message key="button.moreactions"/>
                         <span class="caret"></span>

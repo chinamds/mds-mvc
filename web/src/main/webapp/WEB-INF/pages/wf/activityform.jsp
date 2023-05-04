@@ -63,9 +63,9 @@
 	    <div class="form-group">
 		    <div class="tabs-x tabs-above">
 	            <ul id="myTab-kv-1" class="nav nav-tabs" role="tablist">
-	                <li class="active"><a href="#organizations-activity-1" role="tab" data-toggle="tab"><i
+	                <li class="active"><a href="#organizations-activity-1" role="tab" data-bs-toggle="tab"><i
 	                        class="fa fa-sitemap"></i> <fmt:message key="activity.organizations"/></a></li>
-	                <li><a href="#users-activity-1" role="tab-kv" data-toggle="tab"><i class="fa fa-users"></i>
+	                <li><a href="#users-activity-1" role="tab-kv" data-bs-toggle="tab"><i class="fa fa-users"></i>
 	                    <fmt:message key="activity.users"/></a></li>
 	            </ul>
 	            <div id="myTabContent-kv-1" class="tab-content">

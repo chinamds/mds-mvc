@@ -83,7 +83,7 @@ public class SynchronizeManagerImpl extends GenericManagerImpl<Synchronize, Long
     public Response removeSynchronize(final String synchronizeIds) {
         log.debug("removing synchronize: " + synchronizeIds);
         try {
-	        synchronizeDao.remove(ConvertUtil.StringtoLongArray(synchronizeIds));
+	        synchronizeDao.remove(ConvertUtil.stringtoLongArray(synchronizeIds));
 	        //CacheUtils.remove(CacheItem.Albums.toString());
         } catch (final Exception e) {
             e.printStackTrace();

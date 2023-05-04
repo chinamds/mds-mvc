@@ -96,7 +96,7 @@ public final class ConvertUtil {
         return obj;
     }
     
-    public static Long[] StringtoLongArray(String str) {  
+    public static Long[] stringtoLongArray(String str) {  
   	  
         List<Long> ret = Lists.newArrayList();   
       

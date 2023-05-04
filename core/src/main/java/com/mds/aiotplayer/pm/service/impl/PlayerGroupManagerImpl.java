@@ -293,7 +293,7 @@ public class PlayerGroupManagerImpl extends GenericManagerImpl<PlayerGroup, Long
     public Response removePlayerGroup(final String playerGroupIds) throws WebApplicationException{
         log.debug("removing playerGroup: " + playerGroupIds);
         try {
-        	playerGroupDao.remove(ConvertUtil.StringtoLongArray(playerGroupIds));
+        	playerGroupDao.remove(ConvertUtil.stringtoLongArray(playerGroupIds));
         } catch (final Exception e) {
             e.printStackTrace();
             log.warn(e.getMessage());

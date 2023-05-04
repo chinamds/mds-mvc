@@ -239,7 +239,7 @@ public class LocalizedResourceManagerImpl extends GenericManagerImpl<LocalizedRe
     @Override
     public Response removeLocalizedResource(final String localizedResourceIds) {
         log.debug("removing localizedResource: " + localizedResourceIds);
-        localizedResourceDao.remove(ConvertUtil.StringtoLongArray(localizedResourceIds));
+        localizedResourceDao.remove(ConvertUtil.stringtoLongArray(localizedResourceIds));
         CacheUtils.remove(I18nUtils.CACHE_I18N_MAP);
         
         log.info("Content Mapping(id=" + localizedResourceIds + ") was successfully deleted.");

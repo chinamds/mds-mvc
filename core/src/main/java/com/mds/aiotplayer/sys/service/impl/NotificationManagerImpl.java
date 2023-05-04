@@ -195,7 +195,7 @@ public class NotificationManagerImpl extends GenericManagerImpl<Notification, Lo
     @Override
     public Response removeNotification(final String notificationIds) {
         log.debug("removing notification: " + notificationIds);
-        notificationDao.remove(ConvertUtil.StringtoLongArray(notificationIds));
+        notificationDao.remove(ConvertUtil.stringtoLongArray(notificationIds));
         
         log.info("Content Mapping(id=" + notificationIds + ") was successfully deleted.");
         return Response.ok().build();

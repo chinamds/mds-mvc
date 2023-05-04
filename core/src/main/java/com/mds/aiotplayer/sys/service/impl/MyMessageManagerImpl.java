@@ -525,7 +525,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
     @Override
     public Response markRead(String userId, String ids) {
         log.debug("mark message as read: " + ids);
-        markRead(new Long(userId), ConvertUtil.StringtoLongArray(ids));
+        markRead(new Long(userId), ConvertUtil.stringtoLongArray(ids));
         
         log.info("message(id=" + ids + ") was successfully mark as read.");
         return Response.ok().build();
@@ -535,7 +535,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
     @Override
     public Response recycle(String userId, String ids) {
     	log.debug("recycle message: " + ids);
-    	recycle(new Long(userId), ConvertUtil.StringtoLongArray(ids));
+    	recycle(new Long(userId), ConvertUtil.stringtoLongArray(ids));
         
         log.info("message(id=" + ids + ") was successfully recycle.");
         return Response.ok().build();
@@ -546,7 +546,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
     @Override
     public Response archive(String userId, String ids) {
     	log.debug("archive message: " + ids);
-    	archive(new Long(userId), ConvertUtil.StringtoLongArray(ids));
+    	archive(new Long(userId), ConvertUtil.stringtoLongArray(ids));
         
         log.info("message(id=" + ids + ") was successfully archive.");
         return Response.ok().build();
@@ -556,7 +556,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
     @Override
     public Response delete(String userId, String ids) {
     	log.debug("delete message: " + ids);
-    	delete(new Long(userId), ConvertUtil.StringtoLongArray(ids));
+    	delete(new Long(userId), ConvertUtil.stringtoLongArray(ids));
         
         log.info("message(id=" + ids + ") was successfully delete.");
         return Response.ok().build();
@@ -738,7 +738,7 @@ public class MyMessageManagerImpl extends GenericManagerImpl<MyMessage, Long> im
     @Override
     public Response removeMyMessage(final String myMessageIds) {
         log.debug("removing myMessage: " + myMessageIds);
-        myMessageDao.remove(ConvertUtil.StringtoLongArray(myMessageIds));
+        myMessageDao.remove(ConvertUtil.stringtoLongArray(myMessageIds));
         
         log.info("Content Mapping(id=" + myMessageIds + ") was successfully deleted.");
         return Response.ok().build();

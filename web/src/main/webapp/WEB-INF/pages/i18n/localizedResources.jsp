@@ -19,7 +19,7 @@
 <div class="col">
 <h2><fmt:message key="localizedResourceList.heading"/></h2>
 
-<%-- <form method="get" action="${ctx}/i18n/localizedResources" id="searchForm" class="form-inline float-right">
+<%-- <form method="get" action="${ctx}/i18n/localizedResources" id="searchForm" class="form-inline float-end">
 <div id="search" class="input-group">
     <input type="text" size="20" name="q" id="query" value="${param.q}"
                placeholder="<fmt:message key="search.enterTerms"/>" class="form-control input-sm"/>
@@ -31,7 +31,7 @@
 </div>
 </form> --%>
 
-<form id="searchForm" class="form-inline float-right">
+<form id="searchForm" class="form-inline float-end">
 <div id="search" class="input-group text-right">
 	 <input type="text" size="20" name="q" id="query" value="${param.q}"
                placeholder="<fmt:message key="search.enterTerms"/>" class="form-control input-sm"/>
@@ -57,7 +57,7 @@
     <button id="btnExport" class="btn btn-info hidden-xs" type="button" title="<fmt:message key="button.export"/>">
         <i class="fa fa-file-export"></i><span class="hidden-xs"><fmt:message key="button.export"/></span></button>
     <div class="btn-group visible-xs-block visible-sm-block d-md-none d-xs-block d-sm-block">
-	    <button type="button" class="btn btn-info dropdown-toggle visible-xs-block visible-sm-block d-md-none d-xs-block d-sm-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <button type="button" class="btn btn-info dropdown-toggle visible-xs-block visible-sm-block d-md-none d-xs-block d-sm-block" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    <fmt:message key="button.moreactions"/> <span class="caret"></span></button>
 		<ul class="dropdown-menu  visible-xs-block visible-sm-block d-md-none d-xs-block d-sm-block">
 		  <li><a class="btn-moreactions-import"><i class="fa fa-file-import"></i>&nbsp;<fmt:message key="button.import"/></a></li>

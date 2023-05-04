@@ -196,7 +196,7 @@ public class OrganizationManagerImpl extends GenericManagerImpl<Organization, Lo
     @Override
     public void removeOrganization(final String organizationIds) {
         log.debug("removing organization: " + organizationIds);
-        organizationDao.remove(ConvertUtil.StringtoLongArray(organizationIds));
+        organizationDao.remove(ConvertUtil.stringtoLongArray(organizationIds));
         //UserUtils.removeCache(UserUtils.CACHE_ORGANIZATION_LIST);
     }
     

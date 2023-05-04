@@ -111,7 +111,7 @@ public class MimeTypeGalleryManagerImpl extends GenericManagerImpl<MimeTypeGalle
     public Response removeMimeTypeGallery(final String mimeTypeGalleryIds) {
         log.debug("removing mimeTypeGallery: " + mimeTypeGalleryIds);
         try {
-	        mimeTypeGalleryDao.remove(ConvertUtil.StringtoLongArray(mimeTypeGalleryIds));
+	        mimeTypeGalleryDao.remove(ConvertUtil.stringtoLongArray(mimeTypeGalleryIds));
 	        //CacheUtils.remove(CacheItem.Albums.toString());
         } catch (final Exception e) {
             e.printStackTrace();

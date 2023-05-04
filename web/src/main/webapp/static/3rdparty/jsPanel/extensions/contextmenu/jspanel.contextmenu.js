@@ -1,6 +1,6 @@
 /**
  * jsPanel - A JavaScript library to create highly configurable multifunctional floating panels that can also be used as modal, tooltip, hint or contextmenu
- * @version v4.10.2
+ * @version v4.11.4
  * @homepage https://jspanel.de/
  * @license MIT
  * @author Stefan Sträßer - info@jspanel.de
@@ -10,15 +10,16 @@
 'use strict';
 if (!jsPanel.contextmenu) {
   jsPanel.contextmenu = {
-    version: '1.1.2',
-    date: '2020-01-18 15:00',
+    version: '1.2.0',
+    date: '2021-01-13 10:40',
     defaults: {
       //position: is set in jsPanel.contextmenu.create()
       //container: is set in jsPanel.contextmenu.create()
       dragit: false,
       resizeit: false,
       header: false,
-      headerControls: 'none'
+      headerControls: 'none',
+      closeOnMouseleave: true
     },
     cmOverflow: function cmOverflow(elmt) {
       var cltX = elmt.cmEvent.clientX,
@@ -96,9 +97,13 @@ if (!jsPanel.contextmenu) {
           cm.cmEvent = e; // update left/top values if menu overflows browser viewport
 
           jsPanel.contextmenu.cmOverflow(cm);
-          cm.addEventListener('mouseleave', function () {
-            cm.close();
-          }, false); // don't close contextmenu on mousedown in contextmenu
+
+          if (opts.closeOnMouseleave) {
+            cm.addEventListener('mouseleave', function () {
+              cm.close();
+            }, false);
+          } // don't close contextmenu on mousedown in contextmenu
+
 
           jsPanel.pointerdown.forEach(function (evt) {
             cm.addEventListener(evt, function (e) {
@@ -110,8 +115,8 @@ if (!jsPanel.contextmenu) {
     }
   }; // add overflow check to jsPanel.contentAjax always callback
 
-  jsPanel.ajaxAlwaysCallbacks.push(function (obj) {
-    if (obj.classList.contains('jsPanel-contextmenu')) {
+  jsPanel.ajaxAlwaysCallbacks.push(function (xhr, obj) {
+    if (obj && obj.classList && obj.classList.contains('jsPanel-contextmenu')) {
       jsPanel.contextmenu.cmOverflow(obj);
     }
   }); // close tooltips on pointerdown in document

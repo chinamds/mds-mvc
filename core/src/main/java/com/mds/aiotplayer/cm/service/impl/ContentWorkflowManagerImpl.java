@@ -83,7 +83,7 @@ public class ContentWorkflowManagerImpl extends GenericManagerImpl<ContentWorkfl
     public Response removeContentWorkflow(final String contentWorkflowIds) {
         log.debug("removing contentWorkflow: " + contentWorkflowIds);
         try {
-	        contentWorkflowDao.remove(ConvertUtil.StringtoLongArray(contentWorkflowIds));
+	        contentWorkflowDao.remove(ConvertUtil.stringtoLongArray(contentWorkflowIds));
 	        //CacheUtils.remove(CacheItem.Albums.toString());
         } catch (final Exception e) {
             e.printStackTrace();

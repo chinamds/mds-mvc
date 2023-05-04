@@ -232,7 +232,7 @@ public class CultureManagerImpl extends GenericManagerImpl<Culture, Long> implem
     public void removeCulture(final String cultureIds) throws WebApplicationException{
         log.debug("removing culture: " + cultureIds);
         try {
-        	cultureDao.remove(ConvertUtil.StringtoLongArray(cultureIds));
+        	cultureDao.remove(ConvertUtil.stringtoLongArray(cultureIds));
         } catch (final Exception e) {
             e.printStackTrace();
             log.warn(e.getMessage());

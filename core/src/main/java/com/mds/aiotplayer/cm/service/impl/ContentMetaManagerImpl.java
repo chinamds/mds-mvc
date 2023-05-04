@@ -23,6 +23,7 @@ import com.mds.aiotplayer.cm.exception.GallerySecurityException;
 import com.mds.aiotplayer.cm.rest.ContentItemMeta;
 import com.mds.aiotplayer.cm.rest.ContentItem;
 import com.mds.aiotplayer.cm.rest.MetaItemRest;
+import com.mds.aiotplayer.cm.service.ContentMetaManager;
 import com.mds.aiotplayer.cm.service.ContentMetaService;
 import com.mds.aiotplayer.cm.util.AppEventLogUtils;
 import com.mds.aiotplayer.cm.util.MetadataUtils;
@@ -37,7 +38,7 @@ import com.mds.aiotplayer.util.HelperFunctions;
 /// </summary>
 @Service("contentMetaManager")
 @WebService(serviceName = "ContentMetaService", endpointInterface = "com.mds.aiotplayer.cm.service.ContentMetaService")
-public class ContentMetaManagerImpl implements ContentMetaService {
+public class ContentMetaManagerImpl implements ContentMetaManager, ContentMetaService {
 	
 	protected final Logger log = LoggerFactory.getLogger(getClass());
 	
@@ -47,7 +48,7 @@ public class ContentMetaManagerImpl implements ContentMetaService {
 	/// <param name="contentItems">An array of <see cref="ContentItem" /> instances.</param>
 	/// <returns>Returns a merged set of metadata.</returns>
 	/// <exception cref="System.Web.Http.WebApplicationException"></exception>
-	
+    @Override
 	public List<MetaItemRest> getMetaItemsForContentItems(ContentItem[] contentItems, HttpServletRequest request){
 		// GET /api/meta/contentitems - Gets metadata items for the specified objects
 		try	{
@@ -67,7 +68,7 @@ public class ContentMetaManagerImpl implements ContentMetaService {
 	/// <param name="contentItems">A collection of <see cref="ContentItem" /> instances.</param>
 	/// <returns><c>true</c> if the current user can edit the items; <c>false</c> otherwise.</returns>
 	/// <exception cref="System.Web.Http.WebApplicationException"></exception>
-	
+    @Override
 	public boolean canUserEdit(Iterable<ContentItem> contentItems){
 		// POST /api/meta/canuseredit
 		try{
@@ -88,6 +89,7 @@ public class ContentMetaManagerImpl implements ContentMetaService {
 	/// the MTypeId and Value properties of <see cref="ContentMeta.MetaItem" /> are populated.</param>
 	/// <exception cref="System.Web.Http.WebApplicationException">Thrown when the current user does not have permission
 	/// to carry out the operation or an internal server error occurs.</exception>
+    @Override
 	public ContentItemMeta putContentMeta(ContentItemMeta contentItemMeta){
 		// /api/contentitemmeta
 		try{
@@ -107,12 +109,12 @@ public class ContentMetaManagerImpl implements ContentMetaService {
 		return contentItemMeta;
 	}
 	
-	public ContentItemMeta putTest(AddContentObjectSettings settings){
+	/*public ContentItemMeta putTest(AddContentObjectSettings settings){
 		ContentItemMeta contentItemMeta = new ContentItemMeta(); 
 		contentItemMeta.setMetaItem(new MetaItemRest());
 		contentItemMeta.setContentItems(new ContentItem[] {new ContentItem()});
 		return contentItemMeta;
-	}
+	}*/
 
 	/// <summary>
 	/// Deletes the meta tag value from the specified content items.
@@ -120,6 +122,7 @@ public class ContentMetaManagerImpl implements ContentMetaService {
 	/// <param name="contentItemMeta">An instance of <see cref="ContentMeta" /> that defines
 	/// the tag value to be added and the content items it is to be added to.</param>
 	/// <exception cref="System.Web.Http.WebApplicationException"></exception>
+    @Override
 	public Response deleteContentMeta(ContentItemMeta contentItemMeta){
 		// /api/contentitemmeta
 		try{

@@ -32,7 +32,7 @@
             <div class="input-group date" id="datetimepicker0" data-target-input="nearest">
                 <form:input path="startDate" cssClass="form-control datetimepicker-input" data-target="#datetimepicker0" data-position="bottom-left" data-format="${fn:toUpperCase(datePattern)}"/>
                 <!-- <span class="add-on"><i data-time-icon="fa fa-time" data-date-icon="fa fa-calendar"></i></span>-->
-                <div class="input-group-append input-group-addon" data-target="#datetimepicker0" data-toggle="datetimepicker">
+                <div class="input-group-append input-group-addon" data-target="#datetimepicker0" data-bs-toggle="datetimepicker">
                        <div class="input-group-text"><i class="fa fa-calendar icon-calendar"></i></div>
                        <!-- <button class="btn btn-outline-secondary" type="button"><i class="fa fa-calendar icon-calendar"></i></button> -->
                    </div>
@@ -66,7 +66,7 @@
             <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
 	            <%-- <form:input path="startTime" cssClass="form-control datetimepicker-input" data-target="#datetimepicker1" data-position="bottom-left" data-format="HH:mm"/> --%>
 	            <input type="text" class="form-control datetimepicker-input" name="startTimeStr" id="startTimeStr"  data-target="#datetimepicker1" data-position="bottom-left" data-format="HH:mm" />
-	            <div class="input-group-append input-group-addon" data-target="#datetimepicker1" data-toggle="datetimepicker">
+	            <div class="input-group-append input-group-addon" data-target="#datetimepicker1" data-bs-toggle="datetimepicker">
                        <div class="input-group-text"><i class="fa fa-clock icon-calendar"></i></div>
                        <!-- <button class="btn btn-outline-secondary" type="button"><i class="fa fa-clock icon-calendar"></i></button> -->
                    </div>
@@ -83,7 +83,7 @@
             <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                 <%-- <form:input path="endTime" cssClass="form-control datetimepicker-input" data-target="#datetimepicker2" data-position="bottom-left" data-format="HH:mm"/> --%>
                 <input type="text" class="form-control datetimepicker-input" name="endTimeStr" id="endTimeStr"  data-target="#datetimepicker2" data-position="bottom-left" data-format="HH:mm" />
-                <div class="input-group-append input-group-addon" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                <div class="input-group-append input-group-addon" data-target="#datetimepicker2" data-bs-toggle="datetimepicker">
                        <div class="input-group-text"><i class="fa fa-clock icon-calendar"></i></div>
                        <!-- <button class="btn btn-outline-secondary" type="button"><i class="fa fa-clock icon-calendar"></i></button> -->
                    </div>

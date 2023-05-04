@@ -371,7 +371,7 @@ public class AlbumsManagerImpl implements AlbumsManager, AlbumsService{
     @Override
     public Response deleteAlbums(String albumIds) {
         try {
-        	Long[] ids = ConvertUtil.StringtoLongArray(albumIds);
+        	Long[] ids = ConvertUtil.stringtoLongArray(albumIds);
         	for(long id : ids) {
         		AlbumUtils.deleteAlbum(id);
         	}

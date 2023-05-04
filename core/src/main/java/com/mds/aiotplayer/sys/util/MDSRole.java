@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -21,17 +20,16 @@ import com.google.common.collect.Lists;
 import com.mds.aiotplayer.cm.content.GalleryBo;
 import com.mds.aiotplayer.cm.content.GalleryBoCollection;
 import com.mds.aiotplayer.cm.exception.InvalidMDSRoleException;
+import com.mds.aiotplayer.cm.util.CMUtils;
 import com.mds.aiotplayer.common.utils.Reflections;
 import com.mds.aiotplayer.core.LongCollection;
 import com.mds.aiotplayer.core.LongCollectionEvent;
 import com.mds.aiotplayer.core.LongCollectionListener;
 import com.mds.aiotplayer.core.exception.ArgumentNullException;
 import com.mds.aiotplayer.core.exception.BusinessException;
-import com.mds.aiotplayer.cm.util.CMUtils;
 import com.mds.aiotplayer.i18n.util.I18nUtils;
 import com.mds.aiotplayer.sys.model.MenuFunctionPermission;
 import com.mds.aiotplayer.sys.model.RoleType;
-import com.mds.aiotplayer.sys.util.RoleUtils;
 
 /// <summary>
 /// Represents a role that encapsulates a set of permissions for one or more albums in MDS System. Each user

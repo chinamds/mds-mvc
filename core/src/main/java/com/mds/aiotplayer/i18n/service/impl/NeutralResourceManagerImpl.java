@@ -228,7 +228,7 @@ public class NeutralResourceManagerImpl extends GenericManagerImpl<NeutralResour
     @Override
     public Response removeNeutralResource(final String neutralResourceIds) {
         log.debug("removing neutralResource: " + neutralResourceIds);
-        neutralResourceDao.remove(ConvertUtil.StringtoLongArray(neutralResourceIds));
+        neutralResourceDao.remove(ConvertUtil.stringtoLongArray(neutralResourceIds));
         
         log.info("Content Mapping(id=" + neutralResourceIds + ") was successfully deleted.");
         return Response.ok().build();

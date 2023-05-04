@@ -7,23 +7,15 @@
  */
 package com.mds.aiotplayer.sys.service.impl;
 
-import com.mds.aiotplayer.sys.dao.AreaDao;
-import com.mds.aiotplayer.sys.exception.AreaExistsException;
-import com.mds.aiotplayer.sys.model.Area;
-import com.mds.aiotplayer.sys.service.AreaManager;
-import com.mds.aiotplayer.sys.service.AreaService;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.mds.aiotplayer.common.model.TreeEntity;
-import com.mds.aiotplayer.common.model.search.SearchOperator;
-import com.mds.aiotplayer.common.model.search.Searchable;
-import com.mds.aiotplayer.common.service.impl.GenericManagerImpl;
-import com.mds.aiotplayer.common.utils.Reflections;
-import com.mds.aiotplayer.core.CacheItem;
-import com.mds.aiotplayer.util.ConvertUtil;
-import com.mds.aiotplayer.sys.util.UserUtils;
-import com.mds.aiotplayer.util.excel.fieldcell.AreaCell;
-import com.mds.aiotplayer.util.excel.fieldcell.TreeCell;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.StringTokenizer;
+import java.util.stream.Collectors;
+
+import javax.jws.WebService;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,16 +26,21 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
-import java.util.stream.Collectors;
-
-import javax.jws.WebService;
-import javax.ws.rs.core.Response;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.mds.aiotplayer.common.model.search.SearchOperator;
+import com.mds.aiotplayer.common.model.search.Searchable;
+import com.mds.aiotplayer.common.service.impl.GenericManagerImpl;
+import com.mds.aiotplayer.common.utils.Reflections;
+import com.mds.aiotplayer.core.CacheItem;
+import com.mds.aiotplayer.sys.dao.AreaDao;
+import com.mds.aiotplayer.sys.exception.AreaExistsException;
+import com.mds.aiotplayer.sys.model.Area;
+import com.mds.aiotplayer.sys.service.AreaManager;
+import com.mds.aiotplayer.sys.service.AreaService;
+import com.mds.aiotplayer.sys.util.UserUtils;
+import com.mds.aiotplayer.util.ConvertUtil;
+import com.mds.aiotplayer.util.excel.fieldcell.TreeCell;
 
 @Service("areaManager")
 @WebService(serviceName = "AreaService", endpointInterface = "com.mds.aiotplayer.sys.service.AreaService")
@@ -171,7 +168,7 @@ public class AreaManagerImpl extends GenericManagerImpl<Area, Long> implements A
     @Override
     public void removeArea(final String areaIds) {
         log.debug("removing area: " + areaIds);
-        areaDao.remove(ConvertUtil.StringtoLongArray(areaIds));
+        areaDao.remove(ConvertUtil.stringtoLongArray(areaIds));
     }
     
     /**

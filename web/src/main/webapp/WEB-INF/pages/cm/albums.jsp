@@ -31,7 +31,7 @@
     </button>
 </div>
 </form> --%>
-<form id="searchForm" class="form-inline float-right">
+<form id="searchForm" class="form-inline float-end">
 <div id="search" class="input-group text-right">
 	 <input type="text" size="20" name="q" id="query" value="${param.q}"
                placeholder="<fmt:message key="search.enterTerms"/>" class="form-control input-sm"/>
@@ -64,7 +64,7 @@
     </secure:hasPermission>
     <secure:hasAnyPermissions name="cm:albums:data_import,cm:albums:data_export">
     <div class="btn-group visible-xs-block visible-sm-block">
-	    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    <fmt:message key="button.moreactions"/> <span class="caret"></span></button>
 		<ul class="dropdown-menu">
 		  <secure:hasPermission name="cm:albums:data_import">

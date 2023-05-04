@@ -333,7 +333,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
     public void removeUser(final String userIds) throws WebApplicationException{
         log.debug("removing user: " + userIds);
         try {
-        	userDao.remove(ConvertUtil.StringtoLongArray(userIds));
+        	userDao.remove(ConvertUtil.stringtoLongArray(userIds));
         } catch (final Exception e) {
             e.printStackTrace();
             log.warn(e.getMessage());

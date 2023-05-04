@@ -32,7 +32,7 @@
 			// Begin the upload of files to the server.
 			plUploadStarted = true;
 			var discardOriginal = $("#chkDiscardOriginal").prop("checked");
-			var uploader = $("#uploader").plupload('getUploader');
+			var uploader = $("#uploader").bsupload('getUploader');
 
 			if (discardOriginal) {
 				uploader.settings.resize = {
@@ -51,30 +51,49 @@
 			}
 		};
 
-		var configureAddFile = function() {
+        var configureAddFile = function() {
 			$('#pnlOptions').hide();
 			$('#pnlOptionsHdr').click(function () {
 				$('#pnlOptions').slideToggle('fast');
 			});
 
-			$("#uploader").plupload({
-			  runtimes: 'html5,silverlight,flash,html4',
-				url: '${ctx}/cm/contentobjects/pluploadUpload?${_csrf.parameterName}=${_csrf.token}', //?aid=' + $("#albumId").val(),
-				flash_swf_url: '${ctx}/static/3rdparty/plupload/Moxie.swf',
-			  silverlight_xap_url: '${ctx}/static/3rdparty/plupload/Moxie.xap',
-			  filters: '${fileFilters}',
-				unique_names: true,
-				max_file_size : '${gallerySettings.maxUploadSize} KB',
-			  chunk_size: '2mb',
-			  views: {
-				list: true,
-				thumbs: true,
-				active: 'thumbs'
-			  },
-				uploaded: onFileUpload,
-				complete: onComplete,
-				error: onError
-			});
+			$("#uploader").bsupload({
+			     runtimes: 'html5,silverlight,flash,html4',
+				 url: '${ctx}/cm/contentobjects/pluploadUpload?${_csrf.parameterName}=${_csrf.token}', //?aid=' + $("#albumId").val(),
+				 flash_swf_url: '${ctx}/static/3rdparty/plupload/Moxie.swf',
+			     silverlight_xap_url: '${ctx}/static/3rdparty/plupload/Moxie.xap',
+			     filters: $.parseJSON('${fileFilters}'), //$('#fileFilters').val()
+				 unique_names: true,
+				 max_file_size : '${gallerySettings.maxUploadSize} KB',
+			     chunk_size: '2mb',
+			     buttons: {
+                    browse: true,
+                    start: false,
+                    stop: false
+                 },
+			     views: {
+    				list: true,
+    				thumbs: true,
+    				active: 'thumbs'
+			     },
+			     multipart: true,
+                 multiple_queues: true,
+                 // Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
+                 dragdrop: true,
+                
+                 sortable: false
+			}).on("beforeupload",function(event, args) {
+                console.info("before upload");
+            }).on("complete",function(event, args) {
+                console.info("complete");
+                onComplete(event, args);
+            }).on("error",function(event, args) {
+                console.info("error");
+                onError(event, args);
+            }).on("uploaded",function(event, args) {
+                console.info("uploaded");
+                onFileUpload(event, args);
+            });
 		};
 		
 		var redirectToAlbum = function(msgId) {
@@ -155,7 +174,7 @@
 
 		var onFileComplete = function(event, args) {
 			// Invoked when a plUpload error occurs, file has either failed to upload/be processed in some way or has successfully been uploaded and processed
-			var uploader = $('#uploader').plupload('getUploader');
+			var uploader = $('#uploader').bsupload('getUploader');
 			if (fileProcessedCount + uploader.total.failed >= uploader.files.length) {
 			  if (isAsync)
 					redirectToAlbum(<%=MessageType.ObjectsBeingProcessedAsyncronously.value()%>);

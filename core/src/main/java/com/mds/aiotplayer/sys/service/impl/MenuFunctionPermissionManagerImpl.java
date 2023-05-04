@@ -108,7 +108,7 @@ public class MenuFunctionPermissionManagerImpl extends GenericManagerImpl<MenuFu
     public void removeMenuFunctionPermission(final String menuFunctionPermissionIds) {
     	//Separates the comma-separated string into a collection
         log.debug("removing menuFunctionPermission: " + menuFunctionPermissionIds);
-        menuFunctionPermissionDao.remove(ConvertUtil.StringtoLongArray(menuFunctionPermissionIds));
+        menuFunctionPermissionDao.remove(ConvertUtil.stringtoLongArray(menuFunctionPermissionIds));
     }
     
 	

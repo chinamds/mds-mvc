@@ -229,7 +229,7 @@ public class DailyListFormController extends BaseFormController {
 	 			}
     	    }
         	
-        	 Long[] uniqueIndexes = ConvertUtil.StringtoLongArray(request.getParameter("tblAppendGrid_rowOrder"));
+        	 Long[] uniqueIndexes = ConvertUtil.stringtoLongArray(request.getParameter("tblAppendGrid_rowOrder"));
     	     // Process on each row by using for-loop
     	     for (int i=0; i<uniqueIndexes.length; i++) {
     	    	 Long row = uniqueIndexes[i];

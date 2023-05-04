@@ -19,9 +19,9 @@
 <div class="mds_rightBottom">
 	<p class="mds_minimargin">
 		<span class="mds_spinner_msg"></span>&nbsp;<img src="${fns:getSkinnedUrl(pageContext.request, '/images/wait-squares.gif')}" class="mds_spinner" alt=""/>&nbsp;<Button ID="btnOkBottom" type="button"
-			class="btn btn-primary mds_btnOkBottom${empty task_Ok_Button_Tooltip ? '' : ' title=\"' + task_Ok_Button_Tooltip + '\"'}"><i class="fa fa-check icon-white"></i>${task_Ok_Button_Text}</button>
+			class="btn btn-primary btn-sm mds_btnOkBottom${empty task_Ok_Button_Tooltip ? '' : ' title=\"' + task_Ok_Button_Tooltip + '\"'}"><i class="fa fa-check icon-white"></i> ${task_Ok_Button_Text}</button>
 		<Button ID="btnCancelBottom"  type="button" onclick="javascript:window.location.href='<%=getBackURL(request)%>';"  title="${task_Cancel_Button_Tooltip}"
-			class="btn btn-default mds_btnCancelBottom"><i class="fa fa-times"></i>${task_Cancel_Button_Text}</Button>&nbsp;</p>
+			class="btn btn-default btn-sm mds_btnCancelBottom"><i class="fa fa-times"></i> ${task_Cancel_Button_Text}</Button>&nbsp;</p>
 </div>
 
 <%!

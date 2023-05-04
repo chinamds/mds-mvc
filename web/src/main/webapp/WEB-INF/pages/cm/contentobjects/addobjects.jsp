@@ -27,6 +27,7 @@
 	<%@ include file="/common/messages.jsp" %>
 	<input type="hidden" id="galleryId" value="<c:out value="${param.galleryId}"/>"/>
 	<input type="hidden" id="albumId" value="<c:out value="${album.id}"/>"/>
+	<input type="hidden" id="fileFilters" name="fileFilters" value="${fileFilters}"/>
 	<fmt:message key="task.addObjects.Header_Text" var="taskHeader"/>
 	<fmt:message key="task.addObjects.Body_Text" var="taskBody"/>
 	<fmt:message key="task.addObjects.OK_Btn_Text" var="task_Ok_Button_Text"/>
@@ -43,7 +44,7 @@
 	<div>
         <legend id="mds_optionsHdr" class="accordion-heading mds_optionsHdr mds_collapsed ui-corner-top" title="<fmt:message key="Site.Options_Tooltip"/>">
         	<p class="mds_ao_options_hdr">
-				<a data-toggle="collapse" href="#mds_optionsDtl"><fmt:message key="site.Options_Hdr"/></a>
+				<a data-bs-toggle="collapse" href="#mds_optionsDtl"><fmt:message key="site.Options_Hdr"/></a>
 			</p>
         </legend>
        	<div id="mds_optionsDtl" class="accordion-body collapse mds_optionsDtl ui-corner-bottom">

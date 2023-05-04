@@ -12,12 +12,12 @@
 <%
  	AlbumMenuBuilder albumMenuBuilder = new AlbumMenuBuilder(galleryView);
 %>
-<div class="albumMenuContainer">
-	<div id="phActionMenu">
-	 <%
-	  	out.write(albumMenuBuilder.getMenuHtml(galleryView.getRequest()));
-	 %>
-	 </div>
+<div class="albumMenuContainer d-flex">
+    <%
+	    if (albumMenuBuilder.getShowActionMenu()){
+	        out.write(albumMenuBuilder.getMenuHtml(galleryView.getRequest()));
+        }
+	%>
   	<div class="<%= albumMenuBuilder.getAlbumMenuClass() %>">
 	  	<div id="phMenu">
 	  	<%
@@ -27,7 +27,7 @@
 	</div>
  </div>
   
- <%
+ <%-- <%
  	String scripts = 
 "<script>\n" + 
 "   (function ($) {\n" + 
@@ -51,4 +51,4 @@
 	}else{
 		request.setAttribute("scripts", (request.getAttribute("scripts") + "\n" + scripts));
 	}
- %>
+ %> --%>

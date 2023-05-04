@@ -133,7 +133,7 @@ public class AlbumManagerImpl extends GenericManagerImpl<Album, Long> implements
 		return resultData;
 	}
 
-		/**
+	/**
      * {@inheritDoc}
      */
     @Override
@@ -167,7 +167,7 @@ public class AlbumManagerImpl extends GenericManagerImpl<Album, Long> implements
     public Response removeAlbum(final String albumIds) {
         log.debug("removing album: " + albumIds);
         try {
-	        albumDao.remove(ConvertUtil.StringtoLongArray(albumIds));
+	        albumDao.remove(ConvertUtil.stringtoLongArray(albumIds));
 	        //CacheUtils.remove(CacheItem.Albums.toString());
         } catch (final Exception e) {
             e.printStackTrace();

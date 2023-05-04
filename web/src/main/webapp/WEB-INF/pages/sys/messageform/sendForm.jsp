@@ -96,7 +96,7 @@
 	     <div class="accordion message">
 	         <div class="accordion-group">
 	             <div class="accordion-heading">
-	                 <a class="accordion-toggle bold no-underline" data-toggle="collapse" href="#collapse${original.id}">
+	                 <a class="accordion-toggle bold no-underline" data-bs-toggle="collapse" href="#collapse${original.id}">
 	                         ${original.title}
 	                  <span class="muted" style="float: right;padding-right: 20px;">
 	                      ${original.user.username}

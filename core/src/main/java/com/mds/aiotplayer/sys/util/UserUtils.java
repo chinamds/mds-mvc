@@ -7,49 +7,56 @@
  */
 package com.mds.aiotplayer.sys.util;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.security.Principal;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import javax.mail.internet.AddressException;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.tuple.Pair;
-import org.apache.commons.text.CharacterPredicates;
-import org.apache.commons.text.RandomStringGenerator;
-import org.springframework.data.domain.Sort.Direction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
-import org.springframework.security.authentication.RememberMeAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.ldap.userdetails.LdapUserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import com.mds.aiotplayer.cm.content.AlbumBo;
+import com.mds.aiotplayer.cm.content.GalleryBo;
+import com.mds.aiotplayer.cm.content.GalleryBoCollection;
+import com.mds.aiotplayer.cm.content.GallerySettings;
+import com.mds.aiotplayer.cm.content.UserGalleryProfile;
+import com.mds.aiotplayer.cm.content.UserProfile;
+import com.mds.aiotplayer.cm.exception.CannotDeleteAlbumException;
+import com.mds.aiotplayer.cm.exception.GallerySecurityException;
+import com.mds.aiotplayer.cm.exception.InvalidAlbumException;
+import com.mds.aiotplayer.cm.exception.InvalidContentObjectException;
+import com.mds.aiotplayer.cm.exception.InvalidGalleryException;
+import com.mds.aiotplayer.cm.exception.InvalidMDSRoleException;
+import com.mds.aiotplayer.cm.exception.UnsupportedContentObjectTypeException;
+import com.mds.aiotplayer.cm.exception.UnsupportedImageTypeException;
+import com.mds.aiotplayer.cm.model.Gallery;
+import com.mds.aiotplayer.cm.rest.UserRest;
+import com.mds.aiotplayer.cm.util.AlbumUtils;
+import com.mds.aiotplayer.cm.util.AppEventLogUtils;
+import com.mds.aiotplayer.cm.util.CMUtils;
+import com.mds.aiotplayer.cm.util.GalleryUtils;
+import com.mds.aiotplayer.cm.util.ProfileUtils;
 import com.mds.aiotplayer.common.model.search.SearchOperator;
 import com.mds.aiotplayer.common.model.search.Searchable;
 import com.mds.aiotplayer.common.utils.SpringContextHolder;
@@ -61,50 +68,8 @@ import com.mds.aiotplayer.core.UserAction;
 import com.mds.aiotplayer.core.exception.ArgumentException;
 import com.mds.aiotplayer.core.exception.ArgumentNullException;
 import com.mds.aiotplayer.core.exception.ArgumentOutOfRangeException;
-import com.mds.aiotplayer.cm.exception.UnsupportedContentObjectTypeException;
 import com.mds.aiotplayer.core.exception.WebException;
-import com.mds.aiotplayer.cm.content.AlbumBo;
-import com.mds.aiotplayer.sys.util.MDSRole;
-import com.mds.aiotplayer.sys.util.MDSRoleCollection;
-import com.mds.aiotplayer.cm.content.GalleryBo;
-import com.mds.aiotplayer.cm.content.GalleryBoCollection;
-import com.mds.aiotplayer.cm.content.GallerySettings;
-import com.mds.aiotplayer.sys.util.UserAccount;
-import com.mds.aiotplayer.sys.util.SecurityGuard;
-import com.mds.aiotplayer.sys.util.UserAccountCollection;
-import com.mds.aiotplayer.cm.content.UserGalleryProfile;
-import com.mds.aiotplayer.cm.content.UserProfile;
-import com.mds.aiotplayer.cm.exception.CannotDeleteAlbumException;
-import com.mds.aiotplayer.cm.exception.GallerySecurityException;
-import com.mds.aiotplayer.cm.exception.InvalidAlbumException;
-import com.mds.aiotplayer.cm.exception.InvalidContentObjectException;
-import com.mds.aiotplayer.cm.exception.InvalidMDSRoleException;
-import com.mds.aiotplayer.cm.exception.InvalidGalleryException;
-import com.mds.aiotplayer.cm.exception.UnsupportedImageTypeException;
-import com.mds.aiotplayer.cm.model.Gallery;
-import com.mds.aiotplayer.cm.rest.EmailTemplate;
-import com.mds.aiotplayer.cm.rest.EmailTemplateForm;
-import com.mds.aiotplayer.cm.rest.UserRest;
-import com.mds.aiotplayer.cm.service.GalleryManager;
-import com.mds.aiotplayer.cm.util.AlbumUtils;
-import com.mds.aiotplayer.cm.util.AppEventLogUtils;
-import com.mds.aiotplayer.cm.util.CMUtils;
-import com.mds.aiotplayer.cm.util.EmailUtils;
-import com.mds.aiotplayer.cm.util.GalleryUtils;
-import com.mds.aiotplayer.cm.util.ProfileUtils;
-import com.mds.aiotplayer.sys.util.RoleUtils;
-import com.mds.aiotplayer.util.CacheUtils;
-import com.mds.aiotplayer.util.Collections3;
-import com.mds.aiotplayer.util.DateUtils;
-import com.mds.aiotplayer.common.utils.security.Encodes;
-import com.mds.aiotplayer.util.HelperFunctions;
-import com.mds.aiotplayer.util.StringUtils;
-
-import eu.bitwalker.useragentutils.DeviceType;
-import eu.bitwalker.useragentutils.UserAgent;
-
 import com.mds.aiotplayer.i18n.util.I18nUtils;
-import com.mds.aiotplayer.security.Digests;
 import com.mds.aiotplayer.security.model.MdsAuthenticationToken;
 import com.mds.aiotplayer.sys.exception.InvalidUserException;
 import com.mds.aiotplayer.sys.model.Area;
@@ -113,7 +78,6 @@ import com.mds.aiotplayer.sys.model.MenuFunctionPermission;
 import com.mds.aiotplayer.sys.model.MenuFunctionType;
 import com.mds.aiotplayer.sys.model.Organization;
 import com.mds.aiotplayer.sys.model.Permission;
-import com.mds.aiotplayer.sys.model.Role;
 import com.mds.aiotplayer.sys.model.RoleType;
 import com.mds.aiotplayer.sys.model.Tenant;
 import com.mds.aiotplayer.sys.model.User;
@@ -122,9 +86,15 @@ import com.mds.aiotplayer.sys.service.MenuFunctionManager;
 import com.mds.aiotplayer.sys.service.MenuFunctionPermissionManager;
 import com.mds.aiotplayer.sys.service.OrganizationManager;
 import com.mds.aiotplayer.sys.service.PermissionManager;
-import com.mds.aiotplayer.sys.service.RoleManager;
 import com.mds.aiotplayer.sys.service.TenantManager;
 import com.mds.aiotplayer.sys.service.UserManager;
+import com.mds.aiotplayer.util.CacheUtils;
+import com.mds.aiotplayer.util.DateUtils;
+import com.mds.aiotplayer.util.HelperFunctions;
+import com.mds.aiotplayer.util.StringUtils;
+
+import eu.bitwalker.useragentutils.DeviceType;
+import eu.bitwalker.useragentutils.UserAgent;
 
 /**
  * Login user utils
@@ -1145,7 +1115,27 @@ public class UserUtils {
 						 
 		 return false;
 	 }
-	
+		
+	public static boolean isPermitted(List<String> ps) throws InvalidMDSRoleException {
+		for(String p : ps) {
+			String[] tags = p.split(":");
+			if (tags.length == 3) {
+				ResourceId resourceId = ResourceId.getResourceId(tags[0] + "_" + tags[1]);
+				if (resourceId == ResourceId.none)
+					return false;
+				
+				UserAction userAction = UserAction.getUserAction(tags[2]);
+				if (userAction == UserAction.notspecified)
+					return false;
+				
+				if (!isPermitted(resourceId, userAction))
+					return false;
+			}
+		}
+						 
+		 return true;
+	 }
+		
 	 public static boolean isPermitted(ResourceId resourceId, UserAction userAction) throws InvalidMDSRoleException {
 		 long menuId = getMenuFunctionList(false).stream().filter(m->m.getResourceId() == resourceId).map(m->m.getId()).findFirst().orElse(Long.MIN_VALUE);
 		 if (menuId == Long.MIN_VALUE)

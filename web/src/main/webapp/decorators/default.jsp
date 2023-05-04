@@ -24,13 +24,15 @@
     <c:set var="mdsClientId" scope="request"><decorator:getProperty property="meta.mdsClientId"/></c:set>
     <c:set var="mdsShowAlbumMenu" scope="request"><decorator:getProperty property="meta.mdsShowAlbumMenu" default="true"/></c:set>
 	<div class="navbar navbar-expand-sm navbar-default navbar-light fixed-top navbar-fixed-top bg-light py-0 ${fns:isSysUserLogin() ? 'd-sm-none':''}" role="navigation">
-		<a class="navbar-brand" href="<c:url value='/'/>"><fmt:message key="webapp.name"/></a>
-           <button type="button" class="navbar-toggle navbar-toggler" aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation" data-toggle="collapse" data-target="#navbar">
-               <span class="icon-bar navbar-toggler-icon"></span>
-           </button>
-
-        <%@ include file="/common/menu.jsp" %>
-    </div>    
+	   <div class="container-fluid">
+			<a class="navbar-brand" href="<c:url value='/'/>"><fmt:message key="webapp.name"/></a>
+	           <button type="button" class="navbar-toggle navbar-toggler" aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation" data-bs-toggle="collapse" data-bs-target="#navbar">
+	               <span class="icon-bar navbar-toggler-icon"></span>
+	           </button>
+	
+	        <%@ include file="/common/menu.jsp" %>
+	    </div>    
+    </div>
     
 	<c:if test="${empty currentContainer}">
     <div class="container" id="content">

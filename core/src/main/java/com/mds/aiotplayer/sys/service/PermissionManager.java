@@ -7,17 +7,12 @@
  */
 package com.mds.aiotplayer.sys.service;
 
+import java.util.List;
+
 import com.mds.aiotplayer.common.exception.RecordExistsException;
 import com.mds.aiotplayer.common.service.GenericManager;
 import com.mds.aiotplayer.sys.model.Permission;
 
-import java.util.List;
-import javax.jws.WebService;
-
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-
-//@WebService
 public interface PermissionManager extends GenericManager<Permission, Long> {
 	
 	/**
@@ -25,7 +20,6 @@ public interface PermissionManager extends GenericManager<Permission, Long> {
      *
      * @return List
      */
-	//@Cacheable(value="sysCache", key="#root.target.getCacheKey()")
     List<Permission> getPermissions();
     
    	/**
@@ -35,10 +29,8 @@ public interface PermissionManager extends GenericManager<Permission, Long> {
      * @return updated permission
      * @throws PermissionExistsException thrown when permission already exists
      */
-	//@CacheEvict(value="sysCache", key="#root.target.getCacheKey()")
     Permission savePermission(Permission permission) throws RecordExistsException;
     
-	//@CacheEvict(value="sysCache", key="#root.target.getCacheKey()")
 	void removePermission(String permissionIds);
 	
 	String getCacheKey();

@@ -94,37 +94,38 @@ public class AlbumMenuBuilder{
 		if (!getShowActionMenu())
 			return "";
 		
-		final String uiStateDisabled = " ui-state-disabled";
+		final String uiStateDisabled = " disabled";
 		String currURL = (String)request.getAttribute("javax.servlet.forward.request_uri");
 		if (currURL == null)
 			currURL = Utils.getCurrentPageUrl(request);
 
 		return StringUtils.format( 
-"<ul id='{0}_mnu' class='mds_a_m'>\n" + 
-"	<li class='mds_a_m_root'><a href='#'>{1}</a>\n" +
-"		<ul>\n" +
-"			<li class='mds_a_m_c_a{2}'><a href='{18}' title='{33}'><span>{49}</span></a></li>\n" +
-"			<li></li>\n" +
-"			<li class='mds_a_m_a_o{3}'><a href='{19}' title='{34}'><span>{50}</span></a></li>\n" +
-"			<li class='mds_a_m_m_o{4}'><a href='{20}' title='{35}'><span>{51}</span></a></li>\n" +
-"			<li class='mds_a_m_c_o{5}'><a href='{21}' title='{36}'><span>{52}</span></a></li>\n" +
-"			<li class='mds_a_m_m_a{6}'><a href='{22}' title='{37}'><span>{53}</span></a></li>\n" +
-"			<li class='mds_a_m_c_alb{7}'><a href='{23}' title='{38}'><span>{54}</span></a></li>\n" +
-"			<li></li>\n" +
-"			<li class='mds_a_m_dl_o{8}'><a href='{24}' title='{39}'><span>{55}</span></a></li>\n" +
-"			<li></li>\n" +
-"			<li class='mds_a_m_e_c{9}'><a href='{25}' title='{40}'><span>{56}</span></a></li>\n" +
-"			<li class='mds_a_m_a_t{10}'><a href='{26}' title='{41}'><span>{57}</span></a></li>\n" +
-"			<li class='mds_a_m_r_i{11}'><a href='{27}' title='{42}'><span>{58}</span></a></li>\n" +
-"			<li></li>\n" +
-"			<li class='mds_a_m_d_o{12}'><a href='{28}' title='{43}'><span>{59}</span></a></li>\n" +
-"			<li class='mds_a_m_d_o_f{13}'><a href='{29}' title='{44}'><span>{60}</span></a></li>\n" +
-"			<li class='mds_a_m_d_a{14}'><a href='{30}' title='{45}'><span>{61}</span></a></li>\n" +
-"			<li></li>\n" +
-"			<li class='mds_a_m_s{15}'><a href='{31}' title='{46}'><span>{62}</span></a></li>\n" +
+"<div id=\"phActionMenu\">"+ 
+"	<div id='{0}_mnu' class='dropdown' style=\"position:absolute;\">\n" +
+"  		<button class=\"btn btn-secondary btn-sm dropdown-toggle px-1 py-0\" type=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\"><i class=\"fas fa-sun\"></i> {1}</button>\n" + 		
+"		<ul class=\"dropdown-menu\">\n" +
+"			<li><a class='dropdown-item{2}' href='{18}' title='{33}'><i class=\"fas fa-folder-plus\"></i> <span>{49}</span></a></li>\n" +
+"			<li><hr class=\"dropdown-divider\"></li>\n" +
+"			<li><a class='dropdown-item{3}' href='{19}' title='{34}'><i class=\"fas fa-plus-circle\"></i> <span>{50}</span></a></li>\n" +
+"			<li><a class='dropdown-item{4}' href='{20}' title='{35}'><i class=\"fas fa-arrows-alt\"></i> <span>{51}</span></a></li>\n" +
+"			<li><a class='dropdown-item{5}' href='{21}' title='{36}'><i class=\"fas fa-code-branch\"></i> <span>{52}</span></a></li>\n" +
+"			<li><a class='dropdown-item{6}' href='{22}' title='{37}'><i class=\"fas fa-arrows-alt\"></i> <span>{53}</span></a></li>\n" +
+"			<li><a class='dropdown-item{7}' href='{23}' title='{38}'><i class=\"far fa-clone\"></i> <span>{54}</span></a></li>\n" +
+"			<li><hr class=\"dropdown-divider\"></li>\n" +
+"			<li><a class='dropdown-item{8}' href='{24}' title='{39}'><i class=\"far fa-arrow-alt-circle-down\"></i> <span>{55}</span></a></li>\n" +
+"			<li><hr class=\"dropdown-divider\"></li>\n" +
+"			<li><a class='dropdown-item{9}' href='{25}' title='{40}'><i class=\"fas fa-heading\"></i> <span>{56}</span></a></li>\n" +
+"			<li><a class='dropdown-item{10}' href='{26}' title='{41}'><i class=\"fas fa-icons\"></i> <span>{57}</span></a></li>\n" +
+"			<li><a class='dropdown-item{11}' href='{27}' title='{42}'><i class=\"fas fa-redo-alt\"></i> <span>{58}</span></a></li>\n" +
+"			<li><hr class=\"dropdown-divider\"></li>\n" +
+"			<li><a class='dropdown-item{12}' href='{28}' title='{43}'><i class=\"fas fa-times-circle\"></i> <span>{59}</span></a></li>\n" +
+"			<li><a class='dropdown-item{13}' href='{29}' title='{44}'><i class=\"fas fa-unlink\"></i> <span>{60}</span></a></li>\n" +
+"			<li><a class='dropdown-item{14}' href='{30}' title='{45}'><i class=\"fas fa-folder-minus\"></i> <span>{61}</span></a></li>\n" +
+"			<li><hr class=\"dropdown-divider\"></li>\n" +
+"			<li><a class='dropdown-item{15}' href='{31}' title='{46}'><i class=\"fas fa-sync-alt\"></i> <span>{62}</span></a></li>\n" +
 "		</ul>\n" +
-"	</li>\n" +
-"</ul>\n" +
+"	</div>\n" +
+"</div>" +
 "\n",
 	cid, // 0
 	I18nUtils.getString("uc.actionMenu.Root_Text", request.getLocale()), // 1

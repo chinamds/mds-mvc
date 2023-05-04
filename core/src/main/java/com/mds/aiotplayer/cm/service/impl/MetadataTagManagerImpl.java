@@ -71,7 +71,7 @@ public class MetadataTagManagerImpl extends GenericManagerImpl<MetadataTag, Long
     public Response removeMetadataTag(final String metadataTagIds) {
         log.debug("removing metadataTag: " + metadataTagIds);
         try {
-	        metadataTagDao.remove(ConvertUtil.StringtoLongArray(metadataTagIds));
+	        metadataTagDao.remove(ConvertUtil.stringtoLongArray(metadataTagIds));
 	      //CacheUtils.remove(CacheItem.Albums.toString());
         } catch (final Exception e) {
             e.printStackTrace();

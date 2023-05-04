@@ -277,7 +277,7 @@ public class PlayerManagerImpl extends GenericManagerImpl<Player, Long> implemen
     public Response removePlayer(final String playerIds) throws WebApplicationException{
         log.debug("removing player: " + playerIds);
         try {
-        	playerDao.remove(ConvertUtil.StringtoLongArray(playerIds));
+        	playerDao.remove(ConvertUtil.stringtoLongArray(playerIds));
         } catch (final Exception e) {
             e.printStackTrace();
             log.warn(e.getMessage());

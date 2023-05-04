@@ -134,7 +134,7 @@ public class ContentQueueManagerImpl extends GenericManagerImpl<ContentQueue, Lo
     public Response removeContentQueue(final String contentQueueIds) {
         log.debug("removing contentQueue: " + contentQueueIds);
         try {
-	        contentQueueDao.remove(ConvertUtil.StringtoLongArray(contentQueueIds));
+	        contentQueueDao.remove(ConvertUtil.stringtoLongArray(contentQueueIds));
 	        //CacheUtils.remove(CacheItem.ContentQueues.toString());
         } catch (final Exception e) {
             e.printStackTrace();

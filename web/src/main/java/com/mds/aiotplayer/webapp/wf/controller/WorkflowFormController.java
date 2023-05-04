@@ -115,7 +115,7 @@ public class WorkflowFormController extends BaseFormController {
             saveMessage(request, getText("workflow.deleted", locale));
         } else {
         	if (StringUtils.isNotBlank(request.getParameter("tblAppendGrid_rowOrder"))) {
-    	        Long[] uniqueIndexes = ConvertUtil.StringtoLongArray(request.getParameter("tblAppendGrid_rowOrder"));
+    	        Long[] uniqueIndexes = ConvertUtil.stringtoLongArray(request.getParameter("tblAppendGrid_rowOrder"));
     		     // Process on each row by using for-loop
     		     for (int i=0; i<uniqueIndexes.length; i++) {
     		    	 Long row = uniqueIndexes[i];

@@ -24,7 +24,7 @@
 
 <div class="onoffcanvas is-fixed is-center p-3 bg-white rounded" id="onoffcanvas-dialog">
     <div id="mds_dl" class='mds_ns'>
-	    <a href="#onoffcanvas-dialog" class="onoffcanvas-toggler pull-right bg-danger" data-toggle="onoffcanvas"></a>
+	    <a href="#onoffcanvas-dialog" class="onoffcanvas-toggler pull-right bg-danger" data-bs-toggle="onoffcanvas"></a>
 		<hr>
     	<div id="mds_dl_mediaHtml"></div>
     </div>
@@ -39,8 +39,8 @@
 <div class="col-sm-9">
 	<div id="rootwizard">
 		<ul class="hidden d-none">
-		  	<li><a href="#tab1" data-toggle="tab"><fmt:message key="contentList.step.first"/></a></li>
-			<li><a href="#tab2" data-toggle="tab"><fmt:message key="contentList.step.second"/></a></li>
+		  	<li><a href="#tab1" data-bs-toggle="tab"><fmt:message key="contentList.step.first"/></a></li>
+			<li><a href="#tab2" data-bs-toggle="tab"><fmt:message key="contentList.step.second"/></a></li>
 		</ul>
 		<div class="tab-content">
 		    <div class="tab-pane" id="tab1">

@@ -7,6 +7,9 @@
  */
 package com.mds.aiotplayer.sys.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.jws.WebService;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.DELETE;
@@ -19,13 +22,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import com.mds.aiotplayer.common.exception.RecordExistsException;
 import com.mds.aiotplayer.sys.model.Permission;
-
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * Web Service interface so hierarchy of Generic Manager isn't carried through.

@@ -70,11 +70,11 @@ public interface ContentMetaService{
 	@Consumes({MediaType.APPLICATION_JSON})
 	public ContentItemMeta putContentMeta(ContentItemMeta contentItemMeta);
 	
-	@PUT
+	/*@PUT
 	@Path("/addfile")
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes({MediaType.APPLICATION_JSON})
-	public ContentItemMeta putTest(AddContentObjectSettings settings);
+	public ContentItemMeta putTest(AddContentObjectSettings settings);*/
 
 	/// <summary>
 	/// Deletes the meta tag value from the specified content items.

@@ -1174,9 +1174,11 @@
 		tb.ApproveButton = $(".mds_mvTbApprove", this.$target);
 
 		if (this.Data.Settings.ShowUrlsButton) {
-			var dgShare = $(".mds_mo_share_dlg", this.$target);
+			var $dgShare = $(".mds_mo_share_dlg", this.$target);
+            
+            tb.EmbedButton.popoverButton({target: $dgShare, placement: 'auto'});
 
-			dgShare.dialog({
+			/*$dgShare.dialog({
 				appendTo: '#' + self.Data.Settings.ClientId,
 				autoOpen: false,
 				draggable: false,
@@ -1192,19 +1194,19 @@
 					$(this).parent().focus();
 					$(document).on("click", function (e1) {
 						if ($(e1.target).parents('.mds_mo_share_dlg_container').length == 0) {
-							dgShare.dialog('close');
+							$dgShare.dialog('close');
 							$(this).unbind(e1);
 						}
 					});
 				}
-			});
+			});*/
 
 			$('input.mds_mo_share_dlg_ipt,textarea.mds_mo_share_dlg_ipt').click(function (e) {
 				$(this).select(); // Auto select text for easy copy and paste
 			});
 
 			// Update download link when user selects new size in dropdown
-			$(".mds_mo_share_dlg_ipt_select", dgShare).on('change', function (e) {
+			$(".mds_mo_share_dlg_ipt_select", $dgShare).on('change', function (e) {
 				var sel = this; // The select HTML element containing the sizes (thmb, opt, orig).
 
 				var getContentUrl = function (dt) {
@@ -1216,10 +1218,10 @@
 					return url;
 				};
 
-				$('.mds_mo_share_dwnld', dgShare).attr('href', getContentUrl(sel.value));
+				$('.mds_mo_share_dwnld', $dgShare).attr('href', getContentUrl(sel.value));
 
 				if (self.Data.MediaItem.ItemType == window.Mds.Constants.ItemType_External) {
-					$('.mds_mo_share_dwnld', dgShare).click(function (e1) {
+					$('.mds_mo_share_dwnld', $dgShare).click(function (e1) {
 						if (parseInt(sel.value) != window.Mds.Constants.ViewSize_Thumbnail) {
 							e1.preventDefault();
 							e1.stopPropagation();
@@ -1228,52 +1230,42 @@
 					});
 				}
 			}).change();
-
-			tb.EmbedButton
-				.button({
-					text: false,
-					icons: { primary: "mds-ui-icon mds-ui-icon-embed" }
-				})
-				.click(function (e) {
-					if (dgShare.dialog('isOpen') === true)
-						dgShare.dialog('close');
-					else {
-						dgShare.dialog('open');
-					}
-					return false;
-				});
+			
 		} else {
 			tb.EmbedButton.hide();
 		}
 
 		if (this.Data.Settings.ShowSlideShowButton) {
 			var createInlineSlideShowBtn = function () {
-				var playOptions = { text: false, label: self.Data.Resource.MoTbSsStart, icons: { primary: "mds-ui-icon mds-ui-icon-ssplay" } };
-				var pauseOptions = { text: false, label: self.Data.Resource.MoTbSsStop, icons: { primary: "mds-ui-icon mds-ui-icon-sspause" } };
-
 				tb.SlideshowButton
 					.prop('checked', self.Data.Settings.SlideShowIsRunning)
-					.button(self.Data.Settings.SlideShowIsRunning ? pauseOptions : playOptions)
+					//.prop('title', self.Data.Settings.SlideShowIsRunning ? self.Data.Resource.MoTbSsStop : self.Data.Resource.MoTbSsStart)
 					.click(function (e) {
 						if ($(this).prop('checked')) {
 							if (self.startSlideshow()) {
-								$(this).removeClass('mds_mvTbSlideshow_pause').addClass('mds_mvTbSlideshow_play')
-									.button("option", pauseOptions);
+								$(this).removeClass('mds_mvTbSlideshow_pause').addClass('mds_mvTbSlideshow_play');
+								$('img', $(this).next()).removeClass('mds-ui-icon-ssplay').addClass('mds-ui-icon-sspause');
+								$(this).next().prop('title', self.Data.Resource.MoTbSsStop)
 							}
 						} else {
 							self.stopSlideshow();
-							$(this).removeClass('mds_mvTbSlideshow_play').addClass('mds_mvTbSlideshow_pause')
-								.button("option", playOptions);
+							$(this).removeClass('mds_mvTbSlideshow_play').addClass('mds_mvTbSlideshow_pause');
+							$('img', $(this).next()).removeClass('mds-ui-icon-sspause').addClass('mds-ui-icon-ssplay');
+							$(this).next().prop('title', self.Data.Resource.MoTbSsStart)
 						}
 					});
+					
+				if (self.Data.Settings.SlideShowIsRunning){
+                    $('img', tb.SlideshowButton.next()).removeClass('mds-ui-icon-ssplay').addClass('mds-ui-icon-sspause');
+                    tb.SlideshowButton.next().prop('title', self.Data.Resource.MoTbSsStop)
+                }else{
+                    $('img', tb.SlideshowButton.next()).removeClass('mds-ui-icon-sspause').addClass('mds-ui-icon-ssplay');
+                    tb.SlideshowButton.next().prop('title', self.Data.Resource.MoTbSsStart)
+                }
 			};
 
 			var createFullScreenSlideShowBtn = function () {
 				tb.SlideshowButton
-					.button({
-						text: false,
-						icons: { primary: "mds-ui-icon mds-ui-icon-ssplay" }
-					})
 					.click(function (e) {
 						self.startSlideshow();
 						return false;
@@ -1291,13 +1283,7 @@
 		}
 
 		if (this.Data.Settings.ShowTransferContentObjectButton && this.Data.Album.Permissions.DeleteContentObject && this.Data.User.CanAddContentToAtLeastOneAlbum) {
-			tb.MoveButton.button({
-				text: false,
-				icons: {
-					primary: "mds-ui-icon mds-ui-icon-move"
-				}
-			})
-				.click(function (e) {
+			tb.MoveButton.click(function (e) {
 					window.location = Mds.GetUrl(window.location.href, { g: 'cm_transferobject', moid: self.Data.MediaItem.Id, tt: 'move', skipstep1: 'true' });
 					e.preventDefault();
 				});
@@ -1306,13 +1292,7 @@
 		}
 
 		if (this.Data.Settings.ShowCopyContentObjectButton && this.Data.User.CanAddContentToAtLeastOneAlbum) {
-			tb.CopyButton.button({
-				text: false,
-				icons: {
-					primary: "mds-ui-icon mds-ui-icon-copy"
-				}
-			})
-				.click(function (e) {
+			tb.CopyButton.click(function (e) {
 					window.location = Mds.GetUrl(window.location.href, { g: 'cm_transferobject', moid: self.Data.MediaItem.Id, tt: 'copy', skipstep1: 'true' });
 					e.preventDefault();
 				});
@@ -1321,13 +1301,7 @@
 		}
 
 		if (this.Data.Settings.ShowRotateContentObjectButton && this.Data.Album.Permissions.EditContentObject && !this.Data.Settings.IsReadOnlyGallery) {
-			tb.RotateButton.button({
-				text: false,
-				icons: {
-					primary: "mds-ui-icon mds-ui-icon-rotate"
-				}
-			})
-				.click(function (e) {
+			tb.RotateButton.click(function (e) {
 					window.location = Mds.GetUrl(window.location.href, { g: 'cm_rotateimage', moid: self.Data.MediaItem.Id });
 					e.preventDefault();
 				});
@@ -1336,13 +1310,7 @@
 		}
 
 		if (false) {
-		    tb.ApproveButton.button({
-		        text: false,
-		        icons: {
-		            primary: "mds-ui-icon mds-ui-icon-approve"
-		        }
-		    })
-				.click(function (e) {
+		    tb.ApproveButton.click(function (e) {
 				    window.location = Mds.GetUrl(window.location.href, { g: 'task_rotateimage', moid: self.Data.MediaItem.Id });
 				    e.preventDefault();
 				});
@@ -1351,13 +1319,7 @@
 		}
 
 		if (this.Data.Settings.ShowDeleteContentObjectButton && this.Data.Album.Permissions.DeleteContentObject) {
-			tb.DeleteButton.button({
-				text: false,
-				icons: {
-					primary: "mds-ui-icon mds-ui-icon-delete"
-				}
-			})
-				.click(function (e) {
+			tb.DeleteButton.click(function (e) {
 					var removeContentObject = function (idx) {
 						// Remove the content object at the specified index from the client data and show the next content object
 						// (or previous if there aren't any subsequent items).
@@ -1434,9 +1396,14 @@
 					}).addClass("ui-selected");
 
 					// Fire the stop event function to simulate the user selecting the thumbnails.
-					var s = $(".thmb", self).parent().selectable("option", "stop");
+					/*var s = $(".thmb", self).parent().selectable("option", "stop");
 					if (typeof (s) == 'function')
-						s();
+						s();*/
+						
+					var selectable = new Selectable({
+                       filter: ".thmb"
+                    });
+                    selectable.select(0);
 				});
 			};
 
@@ -1572,29 +1539,20 @@
 
 				var getSortIndicatorHtml = function () {
 					if (data.Album.SortById == window.Mds.Constants.IntMinValue) {
-						return '<span class="ui-icon ui-icon-circle-check" />';
+						return '<i class="fas fa-check-circle"></i> ';
 					} else {
-						return (data.Album.SortUp ? '<span class="ui-icon ui-icon ui-icon-circle-arrow-n" />' : '<span class="ui-icon ui-icon ui-icon-circle-arrow-s" />');
+						return (data.Album.SortUp ? '<i class="fas fa-arrow-circle-up"></i> ' : '<i class="fas fa-arrow-circle-down"></i> ');
 					}
 				};
 
 				$(".mds_abm_sum_rs", $target)
-					.button({ text: false, icons: { primary: "ui-icon-arrowthick-2-n-s" } })
 					.click(function () {
 						data.Album.SortUp = !data.Album.SortUp;
 						sortAlbum();
 						return false;
 					})
 					.next()
-					.button({ text: false, icons: { primary: "ui-icon-triangle-1-s" } })
-					.click(function () {
-						var menu = $(this).parent().next().show().position({ my: "right top", at: "right bottom", of: this });
-						$(document).one("click", function () {
-							menu.hide();
-						});
-						return false;
-					})
-					.parent().buttonset().next().hide().menu() // menu() is applied to the <ul> containing the sort options
+					.next()
 					.children().click(function () {
 						var sortById = $('a', $(this)).data('id');
 						if (sortById != null) {
@@ -1604,13 +1562,21 @@
 						}
 						return false;
 					})
-					.children('a[data-id=' + data.Album.SortById + ']').parent().prepend(getSortIndicatorHtml()); // Add the sort icon to the current sort field
+					.children('a[data-id=' + data.Album.SortById + ']').addClass('d-flex justify-content-between align-items-end')
+                    .prepend(getSortIndicatorHtml()); // Add the sort icon to the current sort field
 			};
 
 			var configHeaderShare = function () {
-				var dgShare = $(".mds_abm_sum_share_dlg", $target);
+				var $dgShare = $(".mds_abm_sum_share_dlg", $target);
+				/*$dgShare[0].addEventListener('shown.bs.modal', event => {
+                    const modalBodyInput = dg[0].querySelector('.popover-body input.mds_abm_sum_share_dlg_ipt');
+                    modalBodyInput.select(); // Auto select text for easy copy and paste
+                })*/
+                
+                var $targ = $(".mds_abm_sum_sa_trigger", $target);
+                $targ.popoverButton({target: $dgShare, placement: 'auto-left'});
 
-				dgShare.dialog({
+				/*dgShare.dialog({
 					appendTo: '#' + data.Settings.ClientId,
 					autoOpen: false,
 					draggable: false,
@@ -1641,7 +1607,7 @@
 						dgShare.dialog('open');
 					}
 					return false;
-				});
+				});*/
 
 				$('input.mds_abm_sum_share_dlg_ipt').click(function (e) {
 					$(this).select(); // Auto select text for easy copy and paste
@@ -1674,9 +1640,53 @@
 			};
 
 			var configHeaderAlbumOwner = function () {
-				var dg = $(".mds_abm_sum_ownr_dlg", $target);
+				var $dg = $(".mds_abm_sum_ownr_dlg", $target);
+				const popoverTriggerEl = $dg[0].querySelector('.popover-body .mds_abm_sum_ownr_dlg_o span');
+                new bootstrap.Popover(popoverTriggerEl, {
+                    container: '.mds_abm_sum_ownr_dlg .popover-body',
+                    title: data.Resource.AbmOwnr,
+                    content: data.Resource.AbmOwnrTtDtl
+                })
 
-				dg.dialog({
+                for (const btn of $dg[0].querySelectorAll('.popover-footer .btn')) {                            
+                    btn.addEventListener('click', (e) => {
+                        if (btn.classList.contains('btn-save')){
+                            var oldAbmOwnr = data.Album.Owner;
+                            data.Album.Owner = $dg.find('.mds_abm_sum_ownr_dlg_ipt').val();
+
+                            if (oldAbmOwnr != data.Album.Owner) {
+                                $target.addClass('mds_wait');
+                                Mds.DataService.saveAlbum(data.Album, null, function () {
+                                    if (Mds.isNullOrEmpty(data.Album.Owner)) {
+                                        $.mdsShowMsg(data.Resource.AbmOwnrChngd, data.Resource.AbmOwnrClrd.format(oldAbmOwnr));
+                                    } else {
+                                        $.mdsShowMsg(data.Resource.AbmOwnrChngd, data.Resource.AbmOwnrChngdDtl.format(data.Album.Owner));
+                                    }
+                                    $target.removeClass('mds_wait');
+                                },
+                                    function (response) {
+                                        data.Album.Owner = oldAbmOwnr; // Error, so revert
+                                        $.mdsShowMsg("Cannot Edit Album", response.responseText, { msgType: 'error', autoCloseDelay: 0 });
+                                        $target.removeClass('mds_wait');
+                                    });
+                            }
+                            
+                            $dg.popoverX('hide');
+                        }else{
+                            $dg.popoverX('hide');
+                        }
+                    });
+                }
+                
+                $dg[0].addEventListener('shown.bs.modal', event => {
+                    const modalBodyInput = $dg[0].querySelector('.popover-body .mds_abm_sum_ownr_dlg_ipt');
+                    modalBodyInput.focus();
+                });
+
+                var $targ = $(".mds_abm_sum_ownr_trigger", $target);
+                $targ.popoverButton({target: $dg, placement: 'auto'});
+
+				/*dg.dialog({
 					appendTo: '#' + data.Settings.ClientId,
 					autoOpen: false,
 					draggable: false,
@@ -1742,7 +1752,7 @@
 						dg.dialog('open');
 					}
 					return false;
-				});
+				});*/
 			};
 
 			var configHeader = function () {
@@ -1888,12 +1898,43 @@
 				var isSinglePaneTouchScreen = window.Mds.isTouchScreen() && window.Mds.isWidthLessThan(750);
 
 				if (!isSinglePaneTouchScreen) {
-					thmbs.parent().selectable({
+                    var selectable = new Selectable({
+                       filter: "li",
+                       appendTo: thmbs.parent()[0],
+                       ignore: "a,.hndl",
+                    });
+                    selectable.on("end", function(e, selected, unselected) {
+                        // Get a reference to the selected gallery items, then trigger event to be handled in meta plug-in
+                        var selItems = $(".ui-selected", self).map(function () {
+                            var $this = $(this);
+                            var id = $this.data("id");
+                            var itemType = $this.data("it");
+                            // Get the gallery item that matches the thumbnail that was selected
+                            return $.map(data.Album.ContentItems, function (obj) {
+                                return (obj.Id === id && obj.ItemType === itemType ? obj : null);
+                            })[0];
+                        }).get();
+        
+                        if (data.Album.Permissions.EditAlbum && data.Album.SortById == window.Mds.Constants.IntMinValue) {
+                            if (window.Mds.isTouchScreen && selItems.length == 1) {
+                                $(".ui-selected", self).prepend(hndleDom);
+                            }
+                        }
+        
+                        data.ActiveContentItems = selItems.length > 0 ? selItems : [window.Mds.convertAlbumToContentItem(data.Album)];
+        
+                        $target.trigger('select.' + data.Settings.ClientId, [data.ActiveContentItems]);
+                    });
+                    
+                    selectable.on("deselecteditem", function(item) {
+                        $('.hndl', item).remove();
+                    });
+					/*thmbs.parent().selectable({
 						filter: 'li',
 						cancel: "a,.hndl",
 						stop: thmbSelected,
 						unselected: thmbUnselected
-					});
+					});*/
 				}
 
 				// Make thumbnails sortable

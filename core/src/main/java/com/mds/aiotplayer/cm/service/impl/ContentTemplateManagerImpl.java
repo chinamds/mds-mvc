@@ -142,7 +142,7 @@ public class ContentTemplateManagerImpl extends GenericManagerImpl<ContentTempla
     public Response removeContentTemplate(final String contentTemplateIds) {
         log.debug("removing contentTemplate: " + contentTemplateIds);
         try {
-	        contentTemplateDao.remove(ConvertUtil.StringtoLongArray(contentTemplateIds));
+	        contentTemplateDao.remove(ConvertUtil.stringtoLongArray(contentTemplateIds));
 	        //CacheUtils.remove(CacheItem.ContentTemplates.toString());
         } catch (final Exception e) {
             e.printStackTrace();

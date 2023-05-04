@@ -20,7 +20,7 @@
 
 <h2><fmt:message key="neutralResourceList.heading"/></h2>
 
-<form method="get" action="${ctx}/i18n/neutralResources" id="searchForm" class="form-inline float-right">
+<form method="get" action="${ctx}/i18n/neutralResources" id="searchForm" class="form-inline float-end">
 	<div id="search" class="input-group">
 		 <input type="text" size="20" name="q" id="query" value="${param.q}"
 	               placeholder="<fmt:message key="search.enterTerms"/>" class="form-control input-sm"/>
@@ -46,7 +46,7 @@
     <button id="btnExport" class="btn btn-info hidden-xs" type="button" title="<fmt:message key="button.export"/>">
         <i class="fa fa-file-export"></i><fmt:message key="button.export"/></button>
     <div class="btn-group visible-xs-block visible-sm-block d-block d-sm-block d-md-none">
-	    <button type="button" class="btn btn-info dropdown-toggle" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <button type="button" class="btn btn-info dropdown-toggle" id="dropdownMenuMore" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    <fmt:message key="button.moreactions"/> <span class="caret"></span></button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuMore">
 		  <a class="dropdown-item btn-moreactions-import"><i class="fa fa-file-import"></i>&nbsp;<fmt:message key="button.import"/></a>

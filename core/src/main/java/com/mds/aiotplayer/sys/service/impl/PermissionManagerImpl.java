@@ -184,7 +184,7 @@ public class PermissionManagerImpl extends GenericManagerImpl<Permission, Long> 
     public void removePermission(final String permissionIds) throws WebApplicationException{
         log.debug("removing permission: " + permissionIds);
         try {
-        	permissionDao.remove(ConvertUtil.StringtoLongArray(permissionIds));
+        	permissionDao.remove(ConvertUtil.stringtoLongArray(permissionIds));
         	CacheUtils.remove(CacheItem.sys_permissions);
         } catch (final Exception e) {
             e.printStackTrace();

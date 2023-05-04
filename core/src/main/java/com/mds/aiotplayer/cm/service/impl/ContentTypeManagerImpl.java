@@ -93,7 +93,7 @@ public class ContentTypeManagerImpl extends GenericManagerImpl<ContentType, Long
     public Response removeContentType(final String contentTypeIds) {
         log.debug("removing contentType: " + contentTypeIds);
         try {
-	        contentTypeDao.remove(ConvertUtil.StringtoLongArray(contentTypeIds));
+	        contentTypeDao.remove(ConvertUtil.stringtoLongArray(contentTypeIds));
 	        //CacheUtils.remove(CacheItem.Albums.toString());
         } catch (final Exception e) {
             e.printStackTrace();

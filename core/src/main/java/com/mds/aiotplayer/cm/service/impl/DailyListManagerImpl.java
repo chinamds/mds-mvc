@@ -325,7 +325,7 @@ public class DailyListManagerImpl extends GenericManagerImpl<DailyList, Long> im
     public Response removeDailyList(final String dailyListIds) {
         log.debug("removing dailyList: " + dailyListIds);
         try {
-	        dailyListDao.remove(ConvertUtil.StringtoLongArray(dailyListIds));
+	        dailyListDao.remove(ConvertUtil.stringtoLongArray(dailyListIds));
 	        //CacheUtils.remove(CacheItem.DailyLists.toString());
         } catch (final Exception e) {
             e.printStackTrace();
@@ -355,7 +355,7 @@ public class DailyListManagerImpl extends GenericManagerImpl<DailyList, Long> im
         			}
         		}
         	}
-        	//Long[] ids = ConvertUtil.StringtoLongArray(contentObjectIds);
+        	//Long[] ids = ConvertUtil.stringtoLongArray(contentObjectIds);
         	for(long id : ids) {
         		HashMap<String, Object> mapData = new LinkedHashMap<String, Object>();  			
         		ContentObjectBo mo = CMUtils.loadContentObjectInstance(id);
@@ -444,7 +444,7 @@ public class DailyListManagerImpl extends GenericManagerImpl<DailyList, Long> im
         	    	searchable.addSearchFilter("gallery.id", SearchOperator.in, ids);
                 }
             }else {
-            	searchable.addSearchFilter("gallery.id", SearchOperator.in, ConvertUtil.StringtoLongArray(galleryId));
+            	searchable.addSearchFilter("gallery.id", SearchOperator.in, ConvertUtil.stringtoLongArray(galleryId));
             }
     	}else {
     		searchable.addSort(Direction.ASC, "contentName", "date");
@@ -488,7 +488,7 @@ public class DailyListManagerImpl extends GenericManagerImpl<DailyList, Long> im
 	    	    	searchable.addSearchFilter("gallery.id", SearchOperator.in, ids);
 	            }
 	        }else {
-	        	searchable.addSearchFilter("gallery.id", SearchOperator.in, ConvertUtil.StringtoLongArray(galleryId));
+	        	searchable.addSearchFilter("gallery.id", SearchOperator.in, ConvertUtil.stringtoLongArray(galleryId));
 	        }
         }else {
     		searchable.addSort(Direction.ASC, "contentName", "date");

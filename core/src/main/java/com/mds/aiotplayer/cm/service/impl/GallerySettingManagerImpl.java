@@ -211,7 +211,7 @@ public class GallerySettingManagerImpl extends GenericManagerImpl<GallerySetting
     public Response removeGallerySetting(final String gallerySettingIds) {
         log.debug("removing gallerySetting: " + gallerySettingIds);
         try {
-	        gallerySettingDao.remove(ConvertUtil.StringtoLongArray(gallerySettingIds));
+	        gallerySettingDao.remove(ConvertUtil.stringtoLongArray(gallerySettingIds));
 	      //CacheUtils.remove(CacheItem.Albums.toString());
         } catch (final Exception e) {
             e.printStackTrace();

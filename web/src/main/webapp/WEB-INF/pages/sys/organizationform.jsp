@@ -142,7 +142,7 @@
     </div>
     <div>
         <legend class="accordion-heading">
-            <a data-toggle="collapse" href="#collapse-address"><fmt:message key="organization.address.address"/></a>
+            <a data-bs-toggle="collapse" href="#collapse-address"><fmt:message key="organization.address.address"/></a>
         </legend>
         <div id="collapse-address" class="accordion-body collapse">
             <div class="form-group">

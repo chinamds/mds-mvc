@@ -413,7 +413,7 @@ public class RoleManagerImpl extends GenericManagerImpl<Role, Long> implements R
     public void removeRole(final String roleIds) throws WebApplicationException{
         log.debug("removing role: " + roleIds);
         try {
-        	roleDao.remove(ConvertUtil.StringtoLongArray(roleIds));
+        	roleDao.remove(ConvertUtil.stringtoLongArray(roleIds));
         	//UserUtils.removeCache(UserUtils.CACHE_ROLE_LIST);
         } catch (final Exception e) {
             e.printStackTrace();

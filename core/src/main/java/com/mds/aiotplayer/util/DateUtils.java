@@ -7,18 +7,12 @@
  */
 package com.mds.aiotplayer.util;
 
-import org.apache.commons.lang.time.DateFormatUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import com.mds.aiotplayer.common.Constants;
-import org.springframework.context.i18n.LocaleContextHolder;
-
 import java.nio.file.attribute.FileTime;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -29,6 +23,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.time.DateFormatUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.i18n.LocaleContextHolder;
+
+import com.mds.aiotplayer.common.Constants;
+
 /**
  * Date Utility Class used to convert Strings to Dates and Timestamps
  *
@@ -36,7 +37,7 @@ import java.util.regex.Pattern;
  *         Modified by <a href="mailto:dan@getrolling.com">Dan Kibler </a>
  *         to correct time pattern. Minutes should be mm not MM (MM is month).
  */
-public final class DateUtils extends org.apache.commons.lang.time.DateUtils {
+public final class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     private static Logger log = LoggerFactory.getLogger(DateUtils.class);
     private static final String TIME_PATTERN = "HH:mm";
     private static String[] parsePatterns = { "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", 

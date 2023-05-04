@@ -186,7 +186,7 @@ public class GalleryManagerImpl extends GenericManagerImpl<Gallery, Long> implem
     public Response removeGallery(final String galleryIds) {
         log.debug("removing gallery: " + galleryIds);
         try {
-	        galleryDao.remove(ConvertUtil.StringtoLongArray(galleryIds));
+	        galleryDao.remove(ConvertUtil.stringtoLongArray(galleryIds));
 	        //CacheUtils.remove(CacheItem.Albums.toString());
         } catch (final Exception e) {
             e.printStackTrace();

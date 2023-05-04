@@ -7,16 +7,15 @@
  */
 package com.mds.aiotplayer.i18n.dao.hibernate;
 
-import com.mds.aiotplayer.common.model.Parameter;
-import com.mds.aiotplayer.i18n.model.LocalizedResource;
-import com.mds.aiotplayer.i18n.dao.LocalizedResourceDao;
-import com.mds.aiotplayer.common.dao.hibernate.GenericDaoHibernate;
-
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
+
+import com.mds.aiotplayer.common.dao.hibernate.GenericDaoHibernate;
+import com.mds.aiotplayer.common.model.Parameter;
+import com.mds.aiotplayer.i18n.dao.LocalizedResourceDao;
+import com.mds.aiotplayer.i18n.model.LocalizedResource;
 
 @Repository("localizedResourceDao")
 public class LocalizedResourceDaoHibernate extends GenericDaoHibernate<LocalizedResource, Long> implements LocalizedResourceDao {

@@ -7,33 +7,26 @@
  */
 package com.mds.aiotplayer.sys.dao.hibernate;
 
-import com.mds.aiotplayer.sys.dao.UserDao;
-import com.mds.aiotplayer.sys.exception.UserNotExistsException;
-import com.mds.aiotplayer.cm.exception.InvalidMDSRoleException;
-import com.mds.aiotplayer.common.dao.hibernate.GenericDaoHibernate;
-import com.mds.aiotplayer.common.model.Parameter;
-import com.mds.aiotplayer.sys.model.MenuFunction;
-import com.mds.aiotplayer.sys.model.User;
-import com.mds.aiotplayer.sys.model.UserStatus;
-import com.mds.aiotplayer.sys.util.RoleUtils;
-import com.mds.aiotplayer.sys.util.UserAccount;
-import com.mds.aiotplayer.sys.util.UserUtils;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.orm.hibernate5.SessionFactoryUtils;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Repository;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.sql.DataSource;
 
-import java.util.Date;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Repository;
+
+import com.mds.aiotplayer.common.dao.hibernate.GenericDaoHibernate;
+import com.mds.aiotplayer.common.model.Parameter;
+import com.mds.aiotplayer.sys.dao.UserDao;
+import com.mds.aiotplayer.sys.model.User;
+import com.mds.aiotplayer.sys.util.UserUtils;
 
 /**
  * This class interacts with Hibernate session to save/delete and

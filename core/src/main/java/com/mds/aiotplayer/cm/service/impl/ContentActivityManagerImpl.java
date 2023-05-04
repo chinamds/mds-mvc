@@ -83,7 +83,7 @@ public class ContentActivityManagerImpl extends GenericManagerImpl<ContentActivi
     public Response removeContentActivity(final String contentActivityIds) {
         log.debug("removing contentActivity: " + contentActivityIds);
         try {
-	        contentActivityDao.remove(ConvertUtil.StringtoLongArray(contentActivityIds));
+	        contentActivityDao.remove(ConvertUtil.stringtoLongArray(contentActivityIds));
 	        //CacheUtils.remove(CacheItem.Albums.toString());
         } catch (final Exception e) {
             e.printStackTrace();

@@ -52,7 +52,7 @@
     </secure:hasPermission>
     <secure:hasAnyPermissions name="pm:playerGroups:data_import,pm:playerGroups:data_export">
     <div class="btn-group visible-xs-block visible-sm-block">
-	    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    <fmt:message key="button.moreactions"/> <span class="caret"></span></button>
 		<ul class="dropdown-menu">
 		  <secure:hasPermission name="pm:playerGroups:data_import">	

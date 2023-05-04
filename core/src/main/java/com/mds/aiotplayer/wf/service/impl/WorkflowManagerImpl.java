@@ -255,7 +255,7 @@ public class WorkflowManagerImpl extends GenericManagerImpl<Workflow, Long> impl
     public Response removeWorkflow(final String workflowIds) throws WebApplicationException{
         log.debug("removing workflow: " + workflowIds);
         try {
-        	workflowDao.remove(ConvertUtil.StringtoLongArray(workflowIds));
+        	workflowDao.remove(ConvertUtil.stringtoLongArray(workflowIds));
         } catch (final Exception e) {
             e.printStackTrace();
             log.warn(e.getMessage());

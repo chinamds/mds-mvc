@@ -133,7 +133,7 @@ public class MetadataManagerImpl extends GenericManagerImpl<Metadata, Long> impl
     public Response removeMetadata(final String metadataIds) {
         log.debug("removing metadata: " + metadataIds);
         try {
-	        metadataDao.remove(ConvertUtil.StringtoLongArray(metadataIds));
+	        metadataDao.remove(ConvertUtil.stringtoLongArray(metadataIds));
 	        //CacheUtils.remove(CacheItem.Albums.toString());
         } catch (final Exception e) {
             e.printStackTrace();

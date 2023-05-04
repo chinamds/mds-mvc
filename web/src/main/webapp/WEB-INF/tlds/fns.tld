@@ -86,6 +86,14 @@
   </function>
   
   <function>
+    <description>Determine whether the current user is the specified permission</description>
+    <name>isPermitted</name>
+    <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>
+    <function-signature>java.lang.Boolean isPermitted(java.lang.String)</function-signature>
+    <example>${fns:isPermitted(p)}</example>  
+  </function>
+  
+  <function>
     <description>Determine whether login by mobile device</description>
     <name>isMobileDevice</name>
     <function-class>com.mds.aiotplayer.sys.util.UserUtils</function-class>

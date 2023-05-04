@@ -248,7 +248,7 @@ public class ContentObjectManagerImpl extends GenericManagerImpl<ContentObject, 
     public Response removeContentObject(final String contentObjectIds) {
         log.debug("removing contentObject: " + contentObjectIds);
         try {
-	        contentObjectDao.remove(ConvertUtil.StringtoLongArray(contentObjectIds));
+	        contentObjectDao.remove(ConvertUtil.stringtoLongArray(contentObjectIds));
 	        //CacheUtils.remove(CacheItem.ContentObjects.toString());
         } catch (final Exception e) {
             e.printStackTrace();

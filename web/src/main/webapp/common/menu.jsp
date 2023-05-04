@@ -3,7 +3,7 @@
  <!-- display menu for mobile device, handle by MenuRepositoryFilter 10/12/2017 -->
 <!-- display menu for desktop device -->
 <div class="collapse navbar-collapse" id="navbar">
-<ul class="nav navbar-nav mr-auto">
+<ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
     <c:if test="${empty pageContext.request.remoteUser}">
         <c:if test="${not empty fns:getFilingNo()}">
 	        <li class="nav-item">
@@ -20,7 +20,7 @@
 	    </c:forEach>
     </c:if>
 </ul>
-<form class="navbar-form navbar-right form-inline shadow-sm" id="userinfo">
+<form class="navbar-form navbar-right form-inline shadow-sm d-flex ms-auto" id="userinfo">
 	<div id="user-navbar" class="navbar navbar-default navbar-light my-0 py-0" role="navigation">
 		<ul class="nav navbar-nav btn-group">
         <c:if test="${not empty pageContext.request.remoteUser}">
@@ -30,16 +30,16 @@
 		   </a>
 		  </li>
 		  <li class="nav-item btn" data-placement="bottom" title="<fmt:message key="menu.mynotifications"/>">
-		   <a class="nav-link btn-notification" role="button" data-toggle="popover">
+		   <a class="nav-link btn-notification" role="button" data-bs-toggle="popover">
 			   <i class="icon-large fa fa-envelope fa fa-volume-up"></i>
 		   </a>
 		  </li>
-		  <div class="notification-list popover fade bottom" role="tooltip">
+		  <div class="notification-list popover fade bottom d-none" role="tooltip">
 	             <div class="content">
 				   <div class="loading">
 					   <div class="popover-title title popover-header">
 						   <a class="btn btn-link no-padding view-all-notification"><i class="fa fa-table"></i> <fmt:message key="menu.viewallnotifications"/></a>
-						   <span class="float-right"><a class="btn btn-link no-padding close-notification-list"><i class="fa fa-times"></i></a></span>
+						   <span class="float-end"><a class="btn btn-link no-padding close-notification-list"><i class="fa fa-times"></i></a></span>
 					   </div>
 					   <div class="popover-content list popover-body">
 						   <img src="${ctx}/static/images/loading.gif" width="20px">&nbsp;&nbsp;&nbsp; <fmt:message key="menu.loading"/>
@@ -48,7 +48,7 @@
 				   <div class="no-comment">
 					   <div class="popover-title title popover-header">
 						   <a class="btn btn-link no-padding view-all-notification"><i class="fa fa-table"></i> <fmt:message key="menu.viewallnotifications"/></a>
-						   <span class="float-right"><a  class="btn btn-link no-padding close-notification-list"><i class="fa fa-times"></i></a></span>
+						   <span class="float-end"><a  class="btn btn-link no-padding close-notification-list"><i class="fa fa-times"></i></a></span>
 					   </div>
 					   <div class="popover-content list popover-body">
 						   <i class="icon-comment fa fa-comment"></i>&nbsp;&nbsp;&nbsp;<fmt:message key="menu.nonewnotifications"/>
@@ -57,7 +57,7 @@
 				   <div class="detail">
 					   <div class="popover-title title popover-header">
 						   <a class="btn btn-link no-padding back-notification-list"><i class="fa fa-reply"></i> <fmt:message key="menu.backtonotificationlist"/></a>
-						   <span class="float-right"><a class="pre">&lt; <fmt:message key="menu.prev"/></a> | <a class="next"><fmt:message key="menu.next"/> &gt;</a></span>
+						   <span class="float-end"><a class="pre">&lt; <fmt:message key="menu.prev"/></a> | <a class="next"><fmt:message key="menu.next"/> &gt;</a></span>
 					   </div>
 					   <div class="popover-content list popover-body">
 					   </div>
@@ -66,7 +66,7 @@
 				   <div class="menu">
 					   <div class="popover-title title popover-header">
 						   <a class="btn btn-link no-padding view-all-notification"><i class="fa fa-table"></i> <fmt:message key="menu.viewallnotifications"/></a>
-						   <span class="float-right"><a  class="btn btn-link no-padding close-notification-list"><i class="fa fa-times"></i></a></span>
+						   <span class="float-end"><a  class="btn btn-link no-padding close-notification-list"><i class="fa fa-times"></i></a></span>
 					   </div>
 					   <div class="popover-content list popover-body">
 					   </div>
@@ -80,9 +80,8 @@
 		   </a>
 		  </li>
 		  <li class="nav-item btn dropdown">
-		   <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+		   <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
 			   <i class="icon-large fas fa-cogs"></i>
-			   <span class="caret"></span>
 		   </a>
 		   <ul class="dropdown-menu dropdown-menu-right">
 			   <li>
@@ -104,10 +103,9 @@
 		  </li>
 		  </c:if>
 		  <li class="nav-item btn dropdown">
-			   <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+			   <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
 				   <i class="icon-large fas fa-globe"></i>
 		    		${fns:getLanguageName(pageContext.request)}
-				   <span class="caret"></span>
 			   </a>
 			   <ul class="dropdown-menu dropdown-menu-right">
 				    <c:forEach items="${fns:getCultures()}" var="culture">

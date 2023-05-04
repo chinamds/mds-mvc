@@ -383,7 +383,7 @@ public class ContentItemsManagerImpl implements ContentItemsManager, ContentItem
         			}
         		}
         	}
-        	//Long[] ids = ConvertUtil.StringtoLongArray(contentObjectIds);
+        	//Long[] ids = ConvertUtil.stringtoLongArray(contentObjectIds);
         	for(long id : ids) {
         		HashMap<String, Object> mapData = new LinkedHashMap<String, Object>();  			
         		ContentObjectBo mo = CMUtils.loadContentObjectInstance(id);

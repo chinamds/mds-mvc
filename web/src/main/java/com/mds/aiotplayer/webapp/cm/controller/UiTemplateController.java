@@ -7,15 +7,7 @@
  */
 package com.mds.aiotplayer.webapp.cm.controller;
 
-import com.mds.aiotplayer.common.exception.SearchException;
-import com.mds.aiotplayer.cm.service.UiTemplateManager;
-import com.mds.aiotplayer.cm.model.UiTemplate;
-
-import com.mds.aiotplayer.webapp.common.controller.AbstractBaseController;
-import com.mds.aiotplayer.webapp.common.controller.BaseController;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
@@ -23,8 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mds.aiotplayer.cm.model.UiTemplate;
+import com.mds.aiotplayer.cm.service.UiTemplateManager;
+import com.mds.aiotplayer.common.exception.SearchException;
+import com.mds.aiotplayer.webapp.common.controller.AbstractBaseController;
+
 @Controller
-@RequestMapping("/cm/uitemplates*")
+@RequestMapping("/cm/uiTemplates*")
 public class UiTemplateController extends AbstractBaseController<UiTemplate, Long> {
     private UiTemplateManager uiTemplateManager;
 
@@ -43,11 +40,12 @@ public class UiTemplateController extends AbstractBaseController<UiTemplate, Lon
             model.addAttribute("searchError", se.getMessage());
             model.addAttribute(uiTemplateManager.getAll());
         }
+        
         return model;
     }
     
-    @RequestMapping(value = {"", "main"}, method = RequestMethod.GET)
-    public String main() {
-        return viewName("main");
+    @RequestMapping(method = RequestMethod.GET)
+    public Model main() {
+        return new ExtendedModelMap();
     }
 }

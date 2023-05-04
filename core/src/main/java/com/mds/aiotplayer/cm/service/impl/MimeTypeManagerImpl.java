@@ -121,7 +121,7 @@ public class MimeTypeManagerImpl extends GenericManagerImpl<MimeType, Long> impl
     public Response removeMimeType(final String mimeTypeIds) {
         log.debug("removing mimeType: " + mimeTypeIds);
         try {
-	        mimeTypeDao.remove(ConvertUtil.StringtoLongArray(mimeTypeIds));
+	        mimeTypeDao.remove(ConvertUtil.stringtoLongArray(mimeTypeIds));
 	        //CacheUtils.remove(CacheItem.MimeTypes.toString());
         } catch (final Exception e) {
             e.printStackTrace();

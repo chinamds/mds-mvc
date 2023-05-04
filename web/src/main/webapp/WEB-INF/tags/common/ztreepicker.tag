@@ -32,7 +32,7 @@
 	<input id="${id}Name" name="${fieldName}" ${allowInput?'':'readonly="readonly"'} type="text" value="${fns:unescapeHtml(fieldValue)}" data-msg-required="${dataMsgRequired}"
 		class="${cssClass}" style="${cssStyle}" maxlength="${not empty maxlength?maxlength:50}"/>
 	<span class="input-group-append">
-		<a id="${id}Button" type="button" href="javascript:" class="btn btn-outline-secondary dropdown-toggle ${disabled} ${hideBtn ? 'hidden d-none' : ''}" data-toggle="dropdown"></a>
+		<a id="${id}Button" type="button" href="javascript:" class="btn btn-outline-secondary dropdown-toggle ${disabled} ${hideBtn ? 'hidden d-none' : ''}" data-bs-toggle="dropdown"></a>
 	</span>
 </div>  
  

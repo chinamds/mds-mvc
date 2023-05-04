@@ -24,7 +24,7 @@
 
 <div class="onoffcanvas is-fixed is-center p-3 bg-white rounded" id="onoffcanvas-dialog">
     <div id="mds_dl" class='mds_ns'>
-	    <a href="#onoffcanvas-dialog" class="onoffcanvas-toggler pull-right bg-danger" data-toggle="onoffcanvas"></a>
+	    <a href="#onoffcanvas-dialog" class="onoffcanvas-toggler pull-right bg-danger" data-bs-toggle="onoffcanvas"></a>
 		<hr>
     	<div id="mds_dl_mediaHtml"></div>
     </div>
@@ -39,8 +39,8 @@
 <div class="col-sm-9">
 	<div id="rootwizard">
 		<ul class="hidden d-none">
-		  	<li><a href="#tab1" data-toggle="tab"><fmt:message key="dailyList.step.first"/></a></li>
-			<li><a href="#tab2" data-toggle="tab"><fmt:message key="dailyList.step.second"/></a></li>
+		  	<li><a href="#tab1" data-bs-toggle="tab"><fmt:message key="dailyList.step.first"/></a></li>
+			<li><a href="#tab2" data-bs-toggle="tab"><fmt:message key="dailyList.step.second"/></a></li>
 		</ul>
 		<div class="tab-content">
 		    <div class="tab-pane" id="tab1">
@@ -78,7 +78,7 @@
 					        <appfuse:label key="dailyList.date" styleClass="control-label"/>
 					        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
 					            <form:input path="date" cssClass="form-control datetimepicker-input" data-target="#datetimepicker1" data-position="bottom-left" data-format="${fn:toUpperCase(datePattern)}"/>
-					            <div class="input-group-append input-group-addon" data-target="#datetimepicker1" data-toggle="datetimepicker">
+					            <div class="input-group-append input-group-addon" data-target="#datetimepicker1" data-bs-toggle="datetimepicker">
 			                        <div class="input-group-text"><i class="fa fa-calendar icon-calendar"></i></div>
 			                    </div>
 					        </div>

@@ -61,7 +61,7 @@
             <c:if test="${message.sendDate.time < m.sendDate.time}">
             <div class="accordion-group">
                 <div class="accordion-heading">
-                    <a class="accordion-toggle bold no-underline" data-toggle="collapse" href="#collapse${message.id}">
+                    <a class="accordion-toggle bold no-underline" data-bs-toggle="collapse" href="#collapse${message.id}">
                         ${message.title}
                         <span class="muted" style="float: right;padding-right: 20px;">
                             ${m.user.username}
@@ -80,7 +80,7 @@
 
         <div class="accordion-group">
             <div class="accordion-heading">
-                <a class="accordion-toggle bold no-underline" data-toggle="collapse" href="#collapse${m.id}">
+                <a class="accordion-toggle bold no-underline" data-bs-toggle="collapse" href="#collapse${m.id}">
                     ${m.title}
                     <span class="muted" style="float: right;padding-right: 20px;">
                         ${m.user.username}
@@ -101,7 +101,7 @@
             <c:if test="${message.sendDate.time > m.sendDate.time}">
                 <div class="accordion-group">
                     <div class="accordion-heading">
-                        <a class="accordion-toggle bold no-underline" data-toggle="collapse" href="#collapse${message.id}">
+                        <a class="accordion-toggle bold no-underline" data-bs-toggle="collapse" href="#collapse${message.id}">
                                 ${message.title}
                                 <span class="muted" style="float: right;padding-right: 20px;">
                                     ${m.user.username}

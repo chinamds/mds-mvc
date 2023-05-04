@@ -42,9 +42,13 @@
 				<button type="button" class="jcaptcha-btn btn btn-link"><fmt:message key="login.changepicture"/></button>
 			</div> ${ctx}/jcaptcha.jpg
 		</div> --%>
-		<div>              
-			<img class="jcaptcha-btn jcaptcha-img" src="${ctx}/services/api/users/jcaptcha" title="<fmt:message key="login.changepicture.tip"/>">
-			<button type="button" class="jcaptcha-btn btn btn-link float-right"><fmt:message key="login.changepicture"/></button>
+		<div class="row">         
+		    <div class="col">
+			     <img class="jcaptcha-btn jcaptcha-img" src="${ctx}/services/api/users/jcaptcha" title="<fmt:message key="login.changepicture.tip"/>">
+			</div>
+			<div class="col px-0">
+			     <button type="button" class="jcaptcha-btn btn btn-link float-end"><fmt:message key="login.changepicture"/></button>
+			</div>
 		</div>
 	</c:if>           
 
@@ -56,9 +60,11 @@
 	</c:if>
 		<input type="hidden" id="mobileDevice" name="mobileDevice" value="true" />
 
-		<button type="submit" class="btn btn-lg btn-primary btn-block" name="login" tabindex="5">
-			<fmt:message key='button.login'/>
-		</button>
+		<div class="row d-grid">
+            <button type="submit" class="btn btn-lg btn-primary btn-block" name="login" tabindex="5">
+                <fmt:message key='button.login'/>
+            </button>
+        </div>
 	</form>
 
 	<p>

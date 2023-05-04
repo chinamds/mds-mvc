@@ -30,7 +30,7 @@
     </button>
 </div>
 </form> --%>
-<form id="searchForm" class="form-inline float-right">
+<form id="searchForm" class="form-inline float-end">
 <div id="search" class="input-group text-right">
 	 <input type="text" size="20" name="q" id="query" value="${param.q}"
                placeholder="<fmt:message key="search.enterTerms"/>" class="form-control input-sm"/>
@@ -46,7 +46,7 @@
 
 <div class="onoffcanvas is-fixed is-center p-3 bg-white rounded" id="onoffcanvas-dialog">
     <div id="mds_dl" class='mds_ns'>
-	    <a href="#onoffcanvas-dialog" class="onoffcanvas-toggler pull-right bg-danger" data-toggle="onoffcanvas"></a>
+	    <a href="#onoffcanvas-dialog" class="onoffcanvas-toggler pull-right bg-danger" data-bs-toggle="onoffcanvas"></a>
 		<hr>
     	<div id="mds_dl_mediaHtml"></div>
     </div>
@@ -80,7 +80,7 @@
     </secure:hasPermission>
     <secure:hasAnyPermissions name="cm:contentLists:data_import,cm:contentLists:data_export">
     <div class="btn-group visible-xs-block visible-sm-block">
-	    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    <fmt:message key="button.moreactions"/> <span class="caret"></span></button>
 		<ul class="dropdown-menu">
 		  <secure:hasPermission name="cm:contentLists:data_import">	

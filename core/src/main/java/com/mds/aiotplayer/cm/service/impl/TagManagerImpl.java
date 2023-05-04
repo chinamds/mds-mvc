@@ -72,7 +72,7 @@ public class TagManagerImpl extends GenericManagerImpl<Tag, Long> implements Tag
     public Response removeTag(final String tagIds) {
         log.debug("removing tag: " + tagIds);
         try {
-	        tagDao.remove(ConvertUtil.StringtoLongArray(tagIds));
+	        tagDao.remove(ConvertUtil.stringtoLongArray(tagIds));
 	      //CacheUtils.remove(CacheItem.Albums.toString());
         } catch (final Exception e) {
             e.printStackTrace();

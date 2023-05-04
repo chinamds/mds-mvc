@@ -21,7 +21,7 @@
 <h2><fmt:message key="roleList.heading"/></h2>
 
 <%-- <form method="get" action="${ctx}/sys/roles" id="searchForm" class="form-inline"> --%>
-<form id="searchForm" class="form-inline float-right">
+<form id="searchForm" class="form-inline float-end">
 <div id="search" class="input-group">
 	 <input type="text" size="20" name="q" id="query" value="${param.q}"
                placeholder="<fmt:message key="search.enterTerms"/>" class="form-control input-sm"/>

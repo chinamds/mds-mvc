@@ -10,7 +10,6 @@ package com.mds.aiotplayer.core;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.mds.aiotplayer.core.exception.ArgumentException;
 
 /// <summary>
 /// Specifies a distinct resource access id within MDS System.
@@ -28,6 +27,9 @@ public enum ResourceId {
 	sys_permissions,
 	sys_eventLogs,
 	
+	sys_emailTemplates,
+	sys_emailHistories,
+	
 	sys_myMessages,
 	sys_myCalendars,
 	sys_notifications,
@@ -37,6 +39,8 @@ public enum ResourceId {
 	cm_galleries,
 	cm_galleryview,
 	cm_contenteditor,
+	
+	cm_uiTemplates,
 	
 	cm_banners,
 	cm_slideshows,

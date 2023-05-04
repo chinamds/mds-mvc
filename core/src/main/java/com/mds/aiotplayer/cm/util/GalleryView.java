@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.UriBuilder;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.NotImplementedException;
@@ -29,26 +28,23 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.http.client.utils.URIBuilder;
 
-import com.mds.aiotplayer.common.Constants;
 import com.mds.aiotplayer.cm.content.AlbumBo;
 import com.mds.aiotplayer.cm.content.ClientMessageOptions;
 import com.mds.aiotplayer.cm.content.ContentObjectBo;
 import com.mds.aiotplayer.cm.content.ContentObjectSearchOptions;
 import com.mds.aiotplayer.cm.content.ContentObjectSearcher;
-import com.mds.aiotplayer.sys.util.MDSRoleCollection;
 import com.mds.aiotplayer.cm.content.GalleryBo;
 import com.mds.aiotplayer.cm.content.GalleryBoCollection;
 import com.mds.aiotplayer.cm.content.GalleryControlSettings;
 import com.mds.aiotplayer.cm.content.GallerySettings;
-import com.mds.aiotplayer.sys.util.SecurityGuard;
 import com.mds.aiotplayer.cm.content.SynchronizationStatus;
 import com.mds.aiotplayer.cm.content.UiTemplateBoCollection;
-import com.mds.aiotplayer.sys.util.UserAccountCollection;
 import com.mds.aiotplayer.cm.exception.GallerySecurityException;
 import com.mds.aiotplayer.cm.exception.InvalidAlbumException;
 import com.mds.aiotplayer.cm.exception.InvalidContentObjectException;
-import com.mds.aiotplayer.cm.exception.InvalidMDSRoleException;
 import com.mds.aiotplayer.cm.exception.InvalidGalleryException;
+import com.mds.aiotplayer.cm.exception.InvalidMDSRoleException;
+import com.mds.aiotplayer.cm.exception.UnsupportedContentObjectTypeException;
 import com.mds.aiotplayer.cm.exception.UnsupportedImageTypeException;
 import com.mds.aiotplayer.cm.rest.CMData;
 import com.mds.aiotplayer.cm.rest.CMDataLoadOptions;
@@ -57,6 +53,7 @@ import com.mds.aiotplayer.cm.rest.SyncInitiator;
 import com.mds.aiotplayer.cm.rest.SyncOptions;
 import com.mds.aiotplayer.cm.rest.TreeView;
 import com.mds.aiotplayer.cm.rest.TreeViewOptions;
+import com.mds.aiotplayer.common.Constants;
 import com.mds.aiotplayer.common.exception.RecordExistsException;
 import com.mds.aiotplayer.common.mapper.JsonMapper;
 import com.mds.aiotplayer.common.utils.Reflections;
@@ -80,12 +77,12 @@ import com.mds.aiotplayer.core.exception.ArgumentException;
 import com.mds.aiotplayer.core.exception.ArgumentNullException;
 import com.mds.aiotplayer.core.exception.ArgumentOutOfRangeException;
 import com.mds.aiotplayer.core.exception.NotSupportedException;
-import com.mds.aiotplayer.cm.exception.UnsupportedContentObjectTypeException;
 import com.mds.aiotplayer.core.exception.WebException;
 import com.mds.aiotplayer.i18n.util.I18nUtils;
-import com.mds.aiotplayer.sys.model.Organization;
-import com.mds.aiotplayer.sys.util.AppSettings;
+import com.mds.aiotplayer.sys.util.MDSRoleCollection;
 import com.mds.aiotplayer.sys.util.RoleUtils;
+import com.mds.aiotplayer.sys.util.SecurityGuard;
+import com.mds.aiotplayer.sys.util.UserAccountCollection;
 import com.mds.aiotplayer.sys.util.UserUtils;
 import com.mds.aiotplayer.util.DateUtils;
 import com.mds.aiotplayer.util.StringUtils;
@@ -3061,10 +3058,10 @@ public class GalleryView{
  	/// <returns>System.String.</returns>
  	public static String getFileFilters(GallerySettings gallerySettings) throws InvalidGalleryException	{
  		if (gallerySettings.getAllowUnspecifiedMimeTypes())	{
- 			return "[]";
+ 			return "{\"max_file_size\": \"2048mb\", \"mime_types\": []}";
  		}
 
  		String extensions = StringUtils.join(ArrayUtils.add(CMUtils.loadMimeTypes(gallerySettings.getGalleryId()).stream().filter(mt -> mt.getAllowAddToGallery()).map(mt -> mt.getExtension()).toArray(String[]::new), ".zip" ), ",");
- 		return StringUtils.format("[{{ title: \"Supported files\", extensions: \"{0}\" }}]", extensions.replace(".", ""));
+ 		return StringUtils.format("{\"max_file_size\": \"2048mb\", \"mime_types\": [{ \"title\": \"Supported files\", \"extensions\": \"{0}\" }]}", extensions.replace(".", ""));
  	}
 }

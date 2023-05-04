@@ -7,11 +7,17 @@
  */
 package com.mds.aiotplayer.webapp.configuration;
 
+import java.util.Arrays;
+import java.util.Collections;
+
+import javax.xml.ws.Endpoint;
+
 import org.apache.cxf.Bus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.feature.LoggingFeature;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.openapi.OpenApiFeature;
+import org.apache.cxf.jaxrs.swagger.ui.SwaggerUiConfig;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,12 +30,13 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.mds.aiotplayer.cm.service.AlbumManager;
 import com.mds.aiotplayer.cm.service.AlbumsManager;
 import com.mds.aiotplayer.cm.service.ContentItemsManager;
-import com.mds.aiotplayer.cm.service.ContentMetaService;
+import com.mds.aiotplayer.cm.service.ContentMetaManager;
 import com.mds.aiotplayer.cm.service.DailyListManager;
 import com.mds.aiotplayer.cm.service.FeedService;
 import com.mds.aiotplayer.cm.service.GalleryManager;
 import com.mds.aiotplayer.cm.service.MetaService;
 import com.mds.aiotplayer.cm.service.TaskService;
+import com.mds.aiotplayer.cm.service.UiTemplateManager;
 import com.mds.aiotplayer.cm.util.AlbumSyndicationFeedFormatter;
 import com.mds.aiotplayer.i18n.service.CultureManager;
 import com.mds.aiotplayer.i18n.service.LocalizedResourceManager;
@@ -49,14 +56,6 @@ import com.mds.aiotplayer.sys.service.UsersService;
 import com.mds.aiotplayer.wf.service.ActivityManager;
 import com.mds.aiotplayer.wf.service.OrganizationWorkflowTypeManager;
 import com.mds.aiotplayer.wf.service.WorkflowManager;
-
-import org.apache.cxf.jaxrs.swagger.Swagger2Feature;
-import org.apache.cxf.jaxrs.swagger.ui.SwaggerUiConfig;
-
-import java.util.Arrays;
-import java.util.Collections;
-
-import javax.xml.ws.Endpoint;
 
 
 @Configuration
@@ -116,13 +115,16 @@ public class CxfConfig {
     ContentItemsManager contentItemsManager;
     
     @Autowired
+    UiTemplateManager uiTemplateManager;
+    
+    @Autowired
     TaskService taskManager;
     
     @Autowired
     FeedService feedManager;
     
     @Autowired
-    ContentMetaService contentMetaManager;
+    ContentMetaManager contentMetaManager;
     
     @Autowired
     MetaService metaManager;
@@ -221,10 +223,11 @@ public class CxfConfig {
         		albumManager,
         		albumsManager,
         		contentItemsManager,
+        		contentMetaManager,
         		metaManager,
         		taskManager,
         		feedManager,
-        		metaManager,
+        		uiTemplateManager,
         		dailyListManager,
         		playerManager,
         		playerGroupManager,

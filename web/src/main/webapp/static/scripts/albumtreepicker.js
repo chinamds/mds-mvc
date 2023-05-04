@@ -376,12 +376,12 @@
 	        	}else if (self.ThumbPickerOptions.controlPlugin =='rotate'){
 	        		thumbhtml.push('	        <div class="btn-group">');
 	        		thumbhtml.push('	        	<button type="button" class="btn btn-primary mds_hor" data-method="rotate" data-option="-90" title="Rotate Left">');
-	        		thumbhtml.push('	        		<span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotate(-90)">');
+	        		thumbhtml.push('	        		<span class="docs-tooltip" data-bs-toggle="tooltip" title="cropper.rotate(-90)">');
 	        		thumbhtml.push('	        			<span class="fa fa-undo-alt"></span>');
 	        		thumbhtml.push('	        		</span>');
 	        		thumbhtml.push('	        	</button>');
 	        		thumbhtml.push('	        	<button type="button" class="btn btn-primary mds_vert" data-method="rotate" data-option="90" title="Rotate Right">');
-	        		thumbhtml.push('	        		<span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotate(90)">');
+	        		thumbhtml.push('	        		<span class="docs-tooltip" data-bs-toggle="tooltip" title="cropper.rotate(90)">');
 	        		thumbhtml.push('	        			<span class="fa fa-redo-alt"></span>');
 	        		thumbhtml.push('	        		</span>');
 	        		thumbhtml.push('	        	</button>');

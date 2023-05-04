@@ -7,10 +7,12 @@
  */
 package com.mds.aiotplayer.cm.content;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.MessageFormat;
-import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,37 +21,16 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.text.StrBuilder;
 
+import com.google.common.collect.Lists;
 import com.mds.aiotplayer.core.CancelToken;
 import com.mds.aiotplayer.core.ContentObjectRotation;
 import com.mds.aiotplayer.core.Orientation;
 import com.mds.aiotplayer.core.exception.ArgumentNullException;
-import com.mds.aiotplayer.core.exception.BusinessException;
-import com.mds.aiotplayer.sys.service.AppSettingManager;
 import com.mds.aiotplayer.sys.util.AppSettings;
-import com.google.common.collect.Lists;
-import com.mds.aiotplayer.cm.util.CMUtils;
 import com.mds.aiotplayer.util.FileMisc;
 import com.mds.aiotplayer.util.MathUtil;
 import com.mds.aiotplayer.util.StringUtils;
 import com.mds.aiotplayer.util.custom.ffmpeg.CustomRunProcessFunc;
-import com.mds.aiotplayer.util.custom.ffmpeg.ProcessListener;
-
-import io.vavr.control.Try;
-
-import static java.util.Objects.nonNull;
-import static java.util.concurrent.CompletableFuture.runAsync;
-import static java.util.concurrent.CompletableFuture.supplyAsync;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.lang.ProcessBuilder.Redirect;
-
-import net.bramp.ffmpeg.FFmpeg;
-import net.bramp.ffmpeg.FFmpegExecutor;
-import net.bramp.ffmpeg.FFprobe;
 
 /// <summary>
 /// Contains functionality for interacting with FFmpeg, the open source utility. Specifically, MDS System uses it to generate

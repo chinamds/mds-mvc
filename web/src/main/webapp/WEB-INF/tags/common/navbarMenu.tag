@@ -27,7 +27,7 @@
     </c:when>
     <c:otherwise>
         <li class="${dropdownmenu ? '' : 'nav-item'} dropdown${menu.name == currentMenu ? ' active' : ''}">
-            <a class="${dropdownmenu ? 'dropdown-item' : 'nav-link'} dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="${url}" title="${menu.title}" <c:if test="${ not empty menu.target}"> target="${menu.target}"</c:if> <c:if test="${ not empty menu.width}"> style="width: ${menu.width}px"</c:if>><c:if test="${ not empty menu.image}"><span class="${menu.image}"></span></c:if>&nbsp;${menu.title}</a>
+            <a class="${dropdownmenu ? 'dropdown-item' : 'nav-link'} dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="${url}" title="${menu.title}" <c:if test="${ not empty menu.target}"> target="${menu.target}"</c:if> <c:if test="${ not empty menu.width}"> style="width: ${menu.width}px"</c:if>><c:if test="${ not empty menu.image}"><span class="${menu.image}"></span></c:if>&nbsp;${menu.title}</a>
             <ul class="dropdown-menu">
              <c:forEach items="${menu.components}" var="menu2">
                  <comm:navbarMenu menu="${menu2}" dropdownmenu="true" />

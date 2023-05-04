@@ -215,7 +215,7 @@ public class DictManagerImpl extends GenericManagerImpl<Dict, Long> implements D
     public void removeDict(final String dictIds) throws WebApplicationException{
         log.debug("removing dict: " + dictIds);
         try {
-        	dictDao.remove(ConvertUtil.StringtoLongArray(dictIds));
+        	dictDao.remove(ConvertUtil.stringtoLongArray(dictIds));
         } catch (final Exception e) {
             e.printStackTrace();
             log.warn(e.getMessage());

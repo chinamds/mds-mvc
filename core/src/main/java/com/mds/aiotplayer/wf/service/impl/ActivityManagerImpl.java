@@ -371,7 +371,7 @@ public class ActivityManagerImpl extends GenericManagerImpl<Activity, Long> impl
     	Searchable searchable = Searchable.newSearchable();
         searchable.addSort(Direction.ASC, "username");
         long oId = StringUtils.toLong(organizationId);
-        List<Long> oIds = Lists.newArrayList(ConvertUtil.StringtoLongArray(organizationIds));
+        List<Long> oIds = Lists.newArrayList(ConvertUtil.stringtoLongArray(organizationIds));
         UserAccount user = UserUtils.getUser();
         if (!user.isSystem()) {
         	List<Long> userOrganizationIds = UserUtils.getUserOrganizationIds(user.getUsername());
@@ -400,7 +400,7 @@ public class ActivityManagerImpl extends GenericManagerImpl<Activity, Long> impl
         	Activity activity = get(new Long(activityId));
         	selectOrganizations = activity.getActivityOrganizationUsers().stream().filter(a->a.getUser() != null).map(a->a.getUser().getId()).collect(Collectors.toList());
         }*/
-        List<Long> selectedUserIds = Lists.newArrayList(ConvertUtil.StringtoLongArray(userIds));
+        List<Long> selectedUserIds = Lists.newArrayList(ConvertUtil.stringtoLongArray(userIds));
         
         List<HashMap<String,Object>> resultData = new LinkedList<HashMap<String,Object>>();
 		for (User u : list) {
@@ -456,7 +456,7 @@ public class ActivityManagerImpl extends GenericManagerImpl<Activity, Long> impl
     public Response removeActivity(final String activityIds) throws WebApplicationException{
         log.debug("removing activity: " + activityIds);
         try {
-        	activityDao.remove(ConvertUtil.StringtoLongArray(activityIds));
+        	activityDao.remove(ConvertUtil.stringtoLongArray(activityIds));
         } catch (final Exception e) {
             e.printStackTrace();
             log.warn(e.getMessage());

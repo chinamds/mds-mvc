@@ -9,62 +9,38 @@
 
 package com.mds.aiotplayer.cm.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.collect.Lists;
-import com.mds.aiotplayer.common.model.IdEntity;
-import com.mds.aiotplayer.core.UiTemplateType;
-
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-import org.hibernate.annotations.Type;
-import org.hibernate.search.annotations.DocumentId;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.FieldBridge;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.IndexedEmbedded;
-import org.hibernate.search.bridge.builtin.IntegerBridge;
-import  org.apache.commons.lang.builder.HashCodeBuilder;
-import  org.apache.commons.lang.builder.EqualsBuilder;
-
-import java.util.Date;
-import java.util.HashSet;
+import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.CascadeType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
+import  org.apache.commons.lang.builder.EqualsBuilder;
+import  org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.annotations.Type;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.Lists;
+import com.mds.aiotplayer.common.model.IdEntity;
+import com.mds.aiotplayer.core.UiTemplateType;
 
 @Entity
 @Table(name="cm_uitemplate" )
@@ -76,7 +52,6 @@ public class UiTemplate extends IdEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 5260450698301464119L;
 	private UiTemplateType templateType;
-    private Long fKGalleryId;
     private String name;
     private String description;
     private String htmlTemplate;
@@ -99,8 +74,9 @@ public class UiTemplate extends IdEntity implements Serializable {
 		this.scriptTemplate = scriptTemplate;
 	}
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="gallery_id", nullable=false)
+    @JsonIgnore
     public Gallery getGallery() {
 		return gallery;
 	}
@@ -108,8 +84,15 @@ public class UiTemplate extends IdEntity implements Serializable {
 	public void setGallery(Gallery gallery) {
 		this.gallery = gallery;
 	}
+	
+	@Transient
+    public String getGalleryName(){
+        if (this.gallery != null)
+        	return this.gallery.getName();
+        
+        return StringUtils.EMPTY;
+    }
     
-    @JsonProperty(value = "TemplateType")
     @Column(name="template_type", nullable=false, length=50)
     @Enumerated(EnumType.STRING)
     @Field
@@ -120,20 +103,7 @@ public class UiTemplate extends IdEntity implements Serializable {
     public void setTemplateType(UiTemplateType templateType){
         this.templateType = templateType;
     }
-    
-   /* @JsonProperty(value = "FKGalleryId")
-    @Column(name="FKGalleryId", nullable=false)
-    @Field*/
-    @Transient
-    public Long getFKGalleryId(){
-        return this.fKGalleryId;
-    }
-    
-    public void setFKGalleryId(Long fKGalleryId){
-        this.fKGalleryId = fKGalleryId;
-    }
-    
-    @JsonProperty(value = "Name")
+            
     @Column(name="name", nullable=false, length=255)
     @Field
     public String getName(){
@@ -144,7 +114,6 @@ public class UiTemplate extends IdEntity implements Serializable {
         this.name = name;
     }
     
-    @JsonProperty(value = "Description")
     @Column(name="description", nullable=false)
     @Type(type="text")
     @Field
@@ -156,7 +125,6 @@ public class UiTemplate extends IdEntity implements Serializable {
         this.description = description;
     }
     
-    @JsonProperty(value = "HtmlTemplate")
     @Column(name="html_template", nullable=false)
     @Type(type="text")
     @Field
@@ -168,7 +136,6 @@ public class UiTemplate extends IdEntity implements Serializable {
         this.htmlTemplate = htmlTemplate;
     }
     
-    @JsonProperty(value = "ScriptTemplate")
     @Column(name="script_template", nullable=false)
     @Type(type="text")
     @Field
@@ -184,7 +151,7 @@ public class UiTemplate extends IdEntity implements Serializable {
 	@OrderBy("id") 
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	//
+    @JsonIgnore
     public List<Album> getAlbums() {
 		return albums;
 	}
@@ -207,7 +174,6 @@ public class UiTemplate extends IdEntity implements Serializable {
         UiTemplate pojo = (UiTemplate)o;
         return (new EqualsBuilder()
              .append(templateType, pojo.templateType)
-             .append(fKGalleryId, pojo.fKGalleryId)
              .append(name, pojo.name)
              .append(description, pojo.description)
              .append(htmlTemplate, pojo.htmlTemplate)
@@ -222,7 +188,6 @@ public class UiTemplate extends IdEntity implements Serializable {
      public int hashCode() {
         return   new  HashCodeBuilder( 17 ,  37 )
              .append(templateType)
-             .append(fKGalleryId)
              .append(name)
              .append(description)
              .append(htmlTemplate)
@@ -239,7 +204,6 @@ public class UiTemplate extends IdEntity implements Serializable {
         sb.append(" [");
         sb.append("uiTemplateId").append("='").append(getId()).append("', ");
         sb.append("templateType").append("='").append(getTemplateType()).append("', ");
-        sb.append("fKGalleryId").append("='").append(getFKGalleryId()).append("', ");
         sb.append("name").append("='").append(getName()).append("', ");
         sb.append("description").append("='").append(getDescription()).append("', ");
         sb.append("htmlTemplate").append("='").append(getHtmlTemplate()).append("', ");

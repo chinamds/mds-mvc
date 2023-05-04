@@ -224,7 +224,7 @@ public class MenuFunctionManagerImpl extends GenericManagerImpl<MenuFunction, Lo
     	//Separates the comma-separated string into a collection
     	String[] ids = StringUtils.split(menuFunctionIds, ',');
         log.debug("removing menuFunction: " + menuFunctionIds);
-        menuFunctionDao.remove(ConvertUtil.StringtoLongArray(menuFunctionIds));
+        menuFunctionDao.remove(ConvertUtil.stringtoLongArray(menuFunctionIds));
         UserUtils.removeCache(UserUtils.CACHE_MENU_LIST);
     }
     
